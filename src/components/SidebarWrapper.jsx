@@ -6,6 +6,7 @@ import Navbar from './Navbar';
 import { Link, NavLink } from 'react-router-dom';
 import logo1 from '../assets/images/logo1.png';
 import logo3 from '../assets/images/logo3.png';
+import Footer from './Footer';
 
 const SidebarWrapper = ({ children }) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -83,6 +84,8 @@ const SidebarWrapper = ({ children }) => {
                     <Navbar setSidebarOpen={setSidebarOpen} />
 
                     {children}
+
+                    <Footer />
                 </div>
             </div>
         </>

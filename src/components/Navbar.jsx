@@ -1,13 +1,40 @@
 import { MenuIcon } from '@heroicons/react/solid';
+import { useEffect, useState } from 'react';
 import { FaWallet } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import logo2 from '../assets/images/logo2.png';
+import classNames from 'classnames';
 
 const Navbar = ({ setSidebarOpen }) => {
     const navigate = useNavigate();
 
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
+                setScrolled(true);
+            } else {
+                setScrolled(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     return (
-        <div className='fixed top-0 right-0 left-0 z-10 flex h-20 flex-shrink-0 bg-primary-dark md:left-56'>
+        <div
+            className={classNames(
+                'fixed top-0 right-0 left-0 z-10 flex h-20 flex-shrink-0 bg-primary-dark md:left-56',
+                {
+                    'bg-transparent': !scrolled,
+                }
+            )}
+        >
             <button
                 type='button'
                 className='focus:ring-primary-black  px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset md:hidden'
