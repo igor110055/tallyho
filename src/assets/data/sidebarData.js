@@ -3,6 +3,16 @@ import { HomeIcon } from "@heroicons/react/solid";
 import { FaExchangeAlt } from "react-icons/fa";
 import { BiRocket } from "react-icons/bi";
 
+import scamImg from '../images/scam.png';
+import raffleImg from '../images/raffle.png';
+import ethImg from '../images/eth.png';
+import polygonImg from '../images/polygon.png';
+import cardanoImg from '../images/cardano.png';
+import chartsImg from '../images/chats.png';
+import analyImg from '../images/analy.png';
+
+
+
 function LiquidityIcon(props) {
   return (
     <svg viewBox="0 0 24 24" width="24px" color="text" xmlns="http://www.w3.org/2000/svg" fill="#fff" {...props}>
@@ -92,5 +102,12 @@ export const navigation = [
   { name: "NFT Market", href: "nftmarket", icon: NftMarketPlaceIcon, badge: "soon" },
   { name: "Stake Launchpad", href: "stakelaunchpad", icon: BiRocket, badge: "soon" },
   { name: "NFT Earn", href: "nftearn", icon: NFTEarnIcon, badge: "soon" },
-  { name: "Tally Centralised", href: "tallycentralised", icon: TallyCentralisedIcon, badge: "soon" },
+  { name: "Token Checker", href: "tokenchecker", icon: null, badge: "", image: scamImg },
+  { name: "Tally Centralised", href: "tally_centralise", icon: TallyCentralisedIcon, badge: "soon" },
+  { name: "Raffle (Integrating Soon)", href: "tally_centralise", icon: null, badge: "", image: raffleImg },
+  { name: "Eth", href: "tally_centralise", icon: null, badge: "soon", image: ethImg },
+  { name: "Polygon", href: "tally_centralise", icon: null, badge: "soon", image: polygonImg },
+  { name: "Cardano", href: "tally_centralise", icon: null, badge: "soon", image: cardanoImg },
+  { name: "Bsc Charts", href: "tally_centralise", icon: null, badge: "soon", image: chartsImg },
+  { name: "Analytics", href: "tally_centralise", icon: null, badge: "", image: analyImg },
 ];

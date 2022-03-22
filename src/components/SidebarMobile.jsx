@@ -4,7 +4,9 @@ import { navigation } from '../assets/data/sidebarData';
 import { classNames } from '../utils/classNames';
 
 import { XIcon } from '@heroicons/react/solid';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import logo1 from '../assets/images/logo1.png';
+import logo3 from '../assets/images/logo3.png';
 
 const SidebarMobile = ({ setSidebarOpen, sidebarOpen }) => {
     return (
@@ -34,7 +36,7 @@ const SidebarMobile = ({ setSidebarOpen, sidebarOpen }) => {
                     leaveFrom='translate-x-0'
                     leaveTo='-translate-x-full'
                 >
-                    <div className='relative flex w-full max-w-xs flex-1 flex-col bg-white pt-5 pb-4'>
+                    <div className='relative flex w-full max-w-xs flex-1 flex-col bg-primary-sidebar pt-5 pb-4'>
                         <Transition.Child
                             as={Fragment}
                             enter='ease-in-out duration-300'
@@ -62,6 +64,20 @@ const SidebarMobile = ({ setSidebarOpen, sidebarOpen }) => {
                         </Transition.Child>
 
                         <div className='mt-5 h-0 flex-1 overflow-y-auto'>
+                            <div className='sticky mb-4 px-6 transition-all duration-200'>
+                                <Link to='/' className='flex items-center'>
+                                    <img
+                                        src={logo1}
+                                        alt='mobile logo'
+                                        className='w-10'
+                                    />
+                                    <img
+                                        src={logo3}
+                                        alt='tally ho logo'
+                                        className='ml-2  w-32'
+                                    />
+                                </Link>
+                            </div>
                             <nav className='space-y-1 px-2'>
                                 {navigation.map(item => (
                                     <NavLink
@@ -70,28 +86,37 @@ const SidebarMobile = ({ setSidebarOpen, sidebarOpen }) => {
                                         className={({ isActive }) =>
                                             classNames(
                                                 isActive
-                                                    ? 'text-primary-black bg-gray-100'
-                                                    : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                                                'group flex items-center rounded-md py-2 px-2 text-sm font-medium'
+                                                    ? 'bg-[#444444] text-white'
+                                                    : 'text-white hover:bg-[#444444] hover:text-[#646464]',
+                                                'group flex h-12 items-center rounded-lg py-2 px-3 text-sm font-medium transition-colors duration-300'
                                             )
                                         }
                                         end
                                         onClick={() => setSidebarOpen(false)}
                                     >
-                                        {({ isActive }) => (
-                                            <>
+                                        <>
+                                            {item.icon && (
                                                 <item.icon
-                                                    className={classNames(
-                                                        isActive
-                                                            ? 'text-primary-black'
-                                                            : 'text-gray-400 group-hover:text-gray-500',
-                                                        'mr-3 h-6 w-6 flex-shrink-0'
-                                                    )}
+                                                    className='mr-3 h-5 w-5 flex-shrink-0 fill-white text-white'
                                                     aria-hidden='true'
                                                 />
-                                                {item.name}
-                                            </>
-                                        )}
+                                            )}
+
+                                            {item.image && (
+                                                <img
+                                                    src={item.image}
+                                                    alt='icon'
+                                                    className='mr-2 h-6 w-6 object-cover'
+                                                />
+                                            )}
+                                            <span>{item.name}</span>
+
+                                            {item.badge && (
+                                                <span className=' ml-auto inline-flex items-center justify-center rounded-2xl bg-primary-brand px-2 py-[2px] text-[8px] font-semibold leading-3 text-primary-dark'>
+                                                    {item.badge}
+                                                </span>
+                                            )}
+                                        </>
                                     </NavLink>
                                 ))}
                             </nav>
