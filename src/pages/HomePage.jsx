@@ -1,8 +1,10 @@
+import { Intro } from '../containers';
+
 const HomePage = () => {
     return (
-        <div>
-            <h1>Home Page</h1>
-        </div>
+        <>
+            <Intro />
+        </>
     );
 };
 

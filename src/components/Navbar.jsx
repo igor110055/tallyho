@@ -2,11 +2,12 @@ import { MenuAlt4Icon } from '@heroicons/react/solid';
 import { FaWallet } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import logo2 from '../assets/images/logo2.png';
+
 const Navbar = ({ setSidebarOpen }) => {
     const navigate = useNavigate();
 
     return (
-        <div className='sticky top-0 z-10 flex h-16 flex-shrink-0 bg-primary-dark'>
+        <div className='fixed top-0 right-0 left-56 z-10 flex h-20 flex-shrink-0 bg-primary-dark'>
             <button
                 type='button'
                 className='focus:ring-primary-black border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset md:hidden'
