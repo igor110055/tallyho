@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { Layout, LazyLoad } from './components';
-import { HomePage } from './pages';
+import { HomePage,LiquidityPage,ExchangePage,PoolsPage,FarmsPage,NFTmarketPage,StakeLaunchPadPage,NFTearnPage,TallyCentralisedPage } from './pages';
 
 function App() {
     return (
@@ -18,9 +18,72 @@ function App() {
                 <Route
                     path='liquidity'
                     element={
-                        <div className='grid h-full place-items-center'>
-                            <h1>Liquidity</h1>
-                        </div>
+                        <LazyLoad loadingMessage='Loading Liquidity...'>
+                            <LiquidityPage />
+                        </LazyLoad>
+                    }
+                />
+
+                <Route
+                    path='swap'
+                    element={
+                        <LazyLoad loadingMessage='Loading Exchange...'>
+                            <ExchangePage />
+                        </LazyLoad>
+                    }
+                />
+
+                <Route
+                    path='pools/stake_tally'
+                    element={
+                        <LazyLoad loadingMessage='Loading pools...'>
+                            <PoolsPage />
+                        </LazyLoad>
+                    }
+                />
+
+                <Route
+                    path='farms'
+                    element={
+                        <LazyLoad loadingMessage='Loading farms...'>
+                            <FarmsPage />
+                        </LazyLoad>
+                    }
+                />
+
+                <Route
+                    path='nftmarket'
+                    element={
+                        <LazyLoad loadingMessage='Loading NFT Market...'>
+                            <NFTmarketPage />
+                        </LazyLoad>
+                    }
+                />
+
+                <Route
+                    path='stakelaunchpad'
+                    element={
+                        <LazyLoad loadingMessage='Loading Stake Launchpad...'>
+                            <StakeLaunchPadPage />
+                        </LazyLoad>
+                    }
+                />
+
+                <Route
+                    path='nftearn'
+                    element={
+                        <LazyLoad loadingMessage='Loading NFT earn...'>
+                            <NFTearnPage />
+                        </LazyLoad>
+                    }
+                />
+
+                <Route
+                    path='tallycentralised'
+                    element={
+                        <LazyLoad loadingMessage='Loading Tally Centralised...'>
+                            <TallyCentralisedPage />
+                        </LazyLoad>
                     }
                 />
             </Route>
