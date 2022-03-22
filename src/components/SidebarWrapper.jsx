@@ -18,7 +18,7 @@ const SidebarWrapper = ({ children }) => {
             />
 
             <div className='hidden md:fixed md:inset-y-0 md:flex md:w-56 md:flex-col'>
-                <div className='flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-primary-sidebar pt-5 text-white'>
+                <div className='flex flex-grow flex-col overflow-y-auto border-r border-primary-sidebar bg-primary-sidebar pt-5 text-white'>
                     <div className='mb-4 px-6 transition-all duration-200'>
                         <Link to='/' className='flex items-center'>
                             <img
@@ -67,7 +67,7 @@ const SidebarWrapper = ({ children }) => {
                 </div>
             </div>
             <div className='md:pl-56'>
-                <div className='mx-auto flex  flex-col md:px-8 xl:px-8'>
+                <div className='flex flex-col'>
                     <Navbar setSidebarOpen={setSidebarOpen} />
 
                     {children}

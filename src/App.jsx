@@ -1,6 +1,16 @@
 import { Routes, Route } from 'react-router-dom';
 import { Layout, LazyLoad } from './components';
-import { HomePage,LiquidityPage,ExchangePage,PoolsPage,FarmsPage,NFTmarketPage,StakeLaunchPadPage,NFTearnPage,TallyCentralisedPage } from './pages';
+import {
+    HomePage,
+    LiquidityPage,
+    ExchangePage,
+    PoolsPage,
+    FarmsPage,
+    NFTmarketPage,
+    StakeLaunchPadPage,
+    NFTearnPage,
+    TallyCentralisedPage,
+} from './pages';
 
 function App() {
     return (
@@ -34,13 +44,22 @@ function App() {
                 />
 
                 <Route
-                    path='pools/stake_tally'
+                    path='pools'
                     element={
                         <LazyLoad loadingMessage='Loading pools...'>
                             <PoolsPage />
                         </LazyLoad>
                     }
-                />
+                >
+                    <Route
+                        path=':stakeType'
+                        element={
+                            <LazyLoad loadingMessage='Loading pools...'>
+                                <StakeLaunchPadPage />
+                            </LazyLoad>
+                        }
+                    />
+                </Route>
 
                 <Route
                     path='farms'

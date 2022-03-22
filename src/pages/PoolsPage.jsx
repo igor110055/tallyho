@@ -1,6 +1,12 @@
+import { Outlet } from 'react-router-dom';
 
-export const PoolsPage = () => {
-  return (
-    <div>PoolsPage</div>
-  )
-}
+const PoolsPage = () => {
+    return (
+        <div>
+            PoolsPage
+            <Outlet />
+        </div>
+    );
+};
+
+export default PoolsPage;
