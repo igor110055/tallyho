@@ -10,3 +10,4 @@ export { default as MovingIcons } from './MovingIcons';
 export { default as FarmItem } from './FarmItem';
 export { default as PoolItem } from './PoolItem';
 export { default as BenefitItem } from './BenefitItem';
+export { default as InfoItem } from './InfoItem';

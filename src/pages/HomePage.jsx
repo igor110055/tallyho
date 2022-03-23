@@ -1,12 +1,20 @@
-import { FarmSection, FeaturesSection, Intro } from '../containers';
+import {
+    FarmSection,
+    FeaturesSection,
+    InfoSection,
+    Intro,
+} from '../containers';
 
 const HomePage = () => {
     return (
-        <>
+        <main>
             <Intro />
-            <FarmSection />
-            <FeaturesSection />
-        </>
+            <section className='bg-primary-background'>
+                <FarmSection />
+                <FeaturesSection />
+                <InfoSection />
+            </section>
+        </main>
     );
 };
 
