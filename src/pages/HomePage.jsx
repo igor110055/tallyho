@@ -1,9 +1,10 @@
-import { Intro } from '../containers';
+import { FarmSection, Intro } from '../containers';
 
 const HomePage = () => {
     return (
         <>
             <Intro />
+            <FarmSection />
         </>
     );
 };

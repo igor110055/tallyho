@@ -8,6 +8,7 @@ module.exports = {
 					background: '#f9fafd',
 					sidebar: '#303030',
 					dark: '#212529',
+					darkText: '#07162d'
 				}
 			},
 			backgroundImage: {

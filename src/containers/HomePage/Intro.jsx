@@ -5,8 +5,8 @@ import { MovingIcons } from '../../components';
 
 const Intro = () => {
     return (
-        <div className='bg-intro_bg pt-20'>
-            <div className='container mx-auto max-w-6xl px-6 py-16'>
+        <section className='bg-intro_bg pt-20'>
+            <div className='container mx-auto max-w-6xl px-6 py-10'>
                 <div>
                     <div className='relative mx-auto max-w-lg text-center'>
                         <h2 className='mb-2 flex items-center justify-center font-comfortaa text-[40px] font-semibold'>
@@ -79,7 +79,7 @@ const Intro = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

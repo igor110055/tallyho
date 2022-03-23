@@ -7,3 +7,5 @@ export { default as LazyLoad } from './LazyLoad';
 export { default as Footer } from './Footer';
 export { default as FooterToggle } from './FooterToggle';
 export { default as MovingIcons } from './MovingIcons';
+export { default as FarmItem } from './FarmItem';
+export { default as PoolItem } from './PoolItem';
