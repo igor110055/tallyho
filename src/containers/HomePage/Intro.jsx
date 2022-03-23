@@ -66,12 +66,12 @@ const Intro = () => {
                         </div>
                     </div>
 
-                    <div className='flex max-h-52 min-h-[162px] w-full overflow-hidden py-6'>
+                    <div className='flex max-h-52 min-h-[162px] w-full justify-center overflow-hidden py-6'>
                         <MovingIcons />
 
                         <Link
                             to='/analytics'
-                            className='group ml-auto flex items-center text-white'
+                            className='group ml-auto hidden items-center text-white md:flex'
                         >
                             <span>All Markets</span>
                             <ChevronRightIcon className='ml-3 h-6 w-6 transition-transform duration-300 group-hover:translate-x-1' />

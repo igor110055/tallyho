@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { shuffle } from 'lodash';
 
 import tokensData from '../assets/data/introTokens';
@@ -12,35 +12,37 @@ const MovingIcons = () => {
     const [isShuffled, setIsShuffled] = useState(true);
 
     return (
-        <div className='grid grid-cols-5 items-center gap-8 overflow-hidden'>
+        <Transition
+            show={isShuffled}
+            appear={true}
+            beforeEnter={() => {
+                setShuffledArr(shuffle(tokensData).slice(0, 5));
+            }}
+            afterEnter={() => {
+                setTimeout(() => {
+                    setIsShuffled(false);
+                }, 2500);
+            }}
+            afterLeave={() => {
+                setIsShuffled(true);
+                clearTimeout();
+            }}
+            className='grid grid-cols-2 items-center gap-8 md:grid-cols-3 xl:grid-cols-5'
+            unmount={true}
+        >
             {shuffledArr.map((item, index) => (
-                <Transition
+                <Transition.Child
                     key={index}
-                    show={isShuffled}
-                    appear={true}
-                    enter='transition ease duration-300'
+                    enter='transition ease duration-500'
                     enterFrom='-translate-y-full scale-95 opacity-0'
                     enterTo='translate-y-0 scale-100 opacity-100'
-                    leave='transition ease duration-300'
+                    leave='transition ease duration-500'
                     leaveFrom='translate-y-0 scale-100 opacity-100'
                     leaveTo='translate-y-full scale-95 opacity-0'
-                    beforeEnter={() => {
-                        setShuffledArr(shuffle(tokensData).slice(0, 5));
-                    }}
-                    afterEnter={() => {
-                        setTimeout(() => {
-                            setIsShuffled(false);
-                        }, 2500);
-                    }}
-                    afterLeave={() => {
-                        setIsShuffled(true);
-                        clearTimeout();
-                    }}
-                    unmount={true}
                 >
                     <div
                         key={`${item.name} ${index}`}
-                        className='flex items-center rounded-md border-2  border-[#e2c574] bg-[#262626] p-3 text-white transition-all duration-200 hover:bg-[#e2c574]'
+                        className='flex items-center  rounded-md border-2  border-[#e2c574] bg-[#262626] p-3 text-white transition-all duration-200 hover:bg-[#e2c574]'
                     >
                         <a
                             href={`https://exchange.tally.org/#/swap?outputCurrency=${item.hash}`}
@@ -78,9 +80,9 @@ const MovingIcons = () => {
                             </div>
                         </a>
                     </div>
-                </Transition>
+                </Transition.Child>
             ))}
-        </div>
+        </Transition>
     );
 };
 
