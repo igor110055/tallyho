@@ -6,3 +6,4 @@ export { default as Loading } from './Loading';
 export { default as LazyLoad } from './LazyLoad';
 export { default as Footer } from './Footer';
 export { default as FooterToggle } from './FooterToggle';
+export { default as MovingIcons } from './MovingIcons';

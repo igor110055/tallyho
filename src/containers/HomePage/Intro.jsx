@@ -1,4 +1,7 @@
+import { Link } from 'react-router-dom';
 import logo2 from '../../assets/images/logo2.png';
+import { ChevronRightIcon } from '@heroicons/react/solid';
+import { MovingIcons } from '../../components';
 
 const Intro = () => {
     return (
@@ -6,18 +9,17 @@ const Intro = () => {
             <div className='container mx-auto max-w-6xl px-6 py-16'>
                 <div>
                     <div className='relative mx-auto max-w-lg text-center'>
-                        <h2 className='mb-2 flex items-center justify-center text-[40px] font-semibold'>
+                        <h2 className='mb-2 flex items-center justify-center font-comfortaa text-[40px] font-semibold'>
                             <img src={logo2} alt='logo' className='mr-2 w-7' />
-                            <span className='text-white'>Tally </span>
-                            <span className='text-primary-brand'>
+                            <span className='font-light text-white '>
+                                Tally{' '}
+                            </span>
+                            <span className='font-semibold text-primary-brand'>
                                 {' '}
                                 &nbsp;Exchange
                             </span>
                         </h2>
 
-                        <span className='font-semibold text-black'>
-                            Beta Version 1.0
-                        </span>
                         <span className='block text-lg font-semibold text-white'>
                             A decentralised platform for token swaps, staking,
                             yield farming and auto compounding.
@@ -62,6 +64,18 @@ const Intro = () => {
                                 </span>
                             </div>
                         </div>
+                    </div>
+
+                    <div className='flex max-h-52 min-h-[162px] w-full overflow-hidden py-6'>
+                        <MovingIcons />
+
+                        <Link
+                            to='/analytics'
+                            className='group ml-auto flex items-center text-white'
+                        >
+                            <span>All Markets</span>
+                            <ChevronRightIcon className='ml-3 h-6 w-6 transition-transform duration-300 group-hover:translate-x-1' />
+                        </Link>
                     </div>
                 </div>
             </div>

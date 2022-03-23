@@ -1148,6 +1148,16 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@fontsource/comfortaa@^4.5.4":
+  version "4.5.4"
+  resolved "https://registry.yarnpkg.com/@fontsource/comfortaa/-/comfortaa-4.5.4.tgz#b3a1fd6b398f9d6899342ed96f6a0efd2c7d3878"
+  integrity sha512-pv/US5E1ivwmVXtWE6ta0VGiezTlwuneEY531ZWnzJJhLDu15TFQyJfpeE5tK9Z81aykzG/+4QJ+jiYNbekI7g==
+
+"@fontsource/roboto@^4.5.3":
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-4.5.3.tgz#c729ac22c35ae1c224cde10042ce7ab356bc4dda"
+  integrity sha512-NUvBTj332dFRdiVkLlavXbDGoD2zyyeGYmMyrXOnctg/3e4pq95+rJgNfUP+k4v8UBk2L1aomGw9dDjbRdAmTg==
+
 "@headlessui/react@^1.5.0":
   version "1.5.0"
   resolved "https://registry.npmjs.org/@headlessui/react/-/react-1.5.0.tgz"
