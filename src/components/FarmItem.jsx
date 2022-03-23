@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const FarmItem = ({ tokenImg, tokenName, apy }) => {
     return (
-        <div className='flex h-20 flex-row items-center border-b border-primary-dark/10 py-5 px-6 transition-colors duration-300 hover:bg-[#f2f6fc]'>
+        <div className='flex h-20 flex-row items-center border-b border-primary-dark/10 py-5 px-6 transition-colors duration-300 hover:bg-[#f2f6fc] md:py-3 md:px-4'>
             <div className='mr-2 flex -space-x-3'>
                 <img
                     src={tokenImg || usdt}

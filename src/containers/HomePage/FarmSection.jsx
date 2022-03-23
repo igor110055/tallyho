@@ -5,7 +5,7 @@ import bnbImg from '../../assets/images/tokens/bnb.svg';
 import busdImg from '../../assets/images/tokens/busd.svg';
 const FarmSection = () => {
     return (
-        <section className=' mx-auto flex w-4/5 max-w-6xl flex-row justify-between gap-8 bg-primary-background py-16 '>
+        <section className=' mx-3 flex max-w-6xl flex-col justify-between gap-8 bg-primary-background py-16 md:flex-col xl:mx-auto xl:w-4/5 xl:flex-row '>
             <div className='flex-1 '>
                 <div className='mb-6 flex w-full items-center justify-between'>
                     <h2 className='font-comfortaa text-2xl font-semibold leading-6 text-primary-darkText'>

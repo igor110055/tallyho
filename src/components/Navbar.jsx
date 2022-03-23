@@ -29,7 +29,7 @@ const Navbar = ({ setSidebarOpen }) => {
     return (
         <div
             className={classNames(
-                'fixed top-0 right-0 left-0 z-10 flex h-20 flex-shrink-0 bg-primary-dark md:left-56',
+                'fixed top-0 right-0 left-0 z-30 flex h-20 flex-shrink-0 bg-primary-dark md:left-56',
                 {
                     'bg-transparent': !scrolled,
                 }
