@@ -17,3 +17,5 @@ export { default as InfoItem } from './HomePage/InfoItem';
 
 // ExchangePage
 export { default as RadioGroupComp } from './ExchangePage/RadioGroupComp';
+export { default as CommonBaseToken } from './ExchangePage/CommonBaseToken';
+export { default as CurrencyItem } from './ExchangePage/CurrencyItem';

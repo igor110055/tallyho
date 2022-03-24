@@ -5,8 +5,12 @@ import exchangeImg from '../../assets/images/exchange.png';
 
 import { FaCog } from 'react-icons/fa';
 import { GiBackwardTime } from 'react-icons/gi';
+import { useState } from 'react';
+import SelectTokenModal from '../../components/shared/SelectTokenModal';
 
 const SwapSection = () => {
+    const [tokenModalOpen, setTokenModalOpen] = useState(false);
+
     return (
         <div className='relative z-10 mt-5 w-full max-w-lg rounded-2xl bg-card_gradient py-4 pb-8 text-white'>
             <div className='flex items-center justify-center p-6'>
@@ -22,7 +26,10 @@ const SwapSection = () => {
                         From
                     </span>
 
-                    <button className='flex items-center space-x-2'>
+                    <button
+                        className='flex items-center space-x-2'
+                        onClick={() => setTokenModalOpen(true)}
+                    >
                         <img
                             src={bnbIcon}
                             alt='token icon'
@@ -66,7 +73,10 @@ const SwapSection = () => {
                 <div className='flex justify-between px-3'>
                     <span className='text-xl text-primary-brand_light'>To</span>
 
-                    <button className='flex items-center space-x-2'>
+                    <button
+                        className='flex items-center space-x-2'
+                        onClick={() => setTokenModalOpen(true)}
+                    >
                         <img
                             src={tallyIcon}
                             alt='token icon'
@@ -111,6 +121,11 @@ const SwapSection = () => {
                     <GiBackwardTime className='ml-4 h-6 w-6' />
                 </button>
             </div>
+
+            <SelectTokenModal
+                open={tokenModalOpen}
+                setOpen={setTokenModalOpen}
+            />
         </div>
     );
 };
