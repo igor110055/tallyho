@@ -1,4 +1,4 @@
-import btally from '../assets/images/tokens/btally.png';
+import btally from '../../assets/images/tokens/btally.png';
 import { MdOutlineCalculate } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 

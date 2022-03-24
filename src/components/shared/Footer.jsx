@@ -1,4 +1,4 @@
-import btally from '../assets/images/btally.png';
+import btally from '../../assets/images/btally.png';
 import FooterToggle from './FooterToggle';
 import {
     FaTelegramPlane,

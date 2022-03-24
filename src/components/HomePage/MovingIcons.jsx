@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { shuffle } from 'lodash';
 
-import tokensData from '../assets/data/introTokens';
+import tokensData from '../../assets/data/introTokens';
 import classNames from 'classnames';
 import { Transition } from '@headlessui/react';
 

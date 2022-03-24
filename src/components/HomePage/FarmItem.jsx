@@ -1,6 +1,6 @@
 import React from 'react';
-import usdt from '../assets/images/tokens/usdt.svg';
-import tally from '../assets/images/tokens/btally.png';
+import usdt from '../../assets/images/tokens/usdt.svg';
+import tally from '../../assets/images/tokens/btally.png';
 
 import { MdOutlineCalculate, MdOutlineHelpOutline } from 'react-icons/md';
 import ReactTooltip from 'react-tooltip';

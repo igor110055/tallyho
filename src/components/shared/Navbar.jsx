@@ -2,7 +2,7 @@ import { MenuIcon } from '@heroicons/react/solid';
 import { useEffect, useState } from 'react';
 import { FaWallet } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import logo2 from '../assets/images/logo2.png';
+import logo2 from '../../assets/images/logo2.png';
 import classNames from 'classnames';
 
 const Navbar = ({ setSidebarOpen }) => {

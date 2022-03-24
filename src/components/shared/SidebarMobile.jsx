@@ -1,12 +1,13 @@
-import { Dialog, Transition } from '@headlessui/react';
 import React, { Fragment } from 'react';
-import { navigation } from '../assets/data/sidebarData';
-import { classNames } from '../utils/classNames';
-
-import { XIcon } from '@heroicons/react/solid';
 import { Link, NavLink } from 'react-router-dom';
-import logo1 from '../assets/images/logo1.png';
-import logo3 from '../assets/images/logo3.png';
+import { Dialog, Transition } from '@headlessui/react';
+import { XIcon } from '@heroicons/react/solid';
+
+import { navigation } from '../../assets/data/sidebarData';
+import { classNames } from '../../utils/classNames';
+
+import logo1 from '../../assets/images/logo1.png';
+import logo3 from '../../assets/images/logo3.png';
 
 const SidebarMobile = ({ setSidebarOpen, sidebarOpen }) => {
     return (

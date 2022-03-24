@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import category1 from '../assets/images/category/1.png';
+import category1 from '../../assets/images/category/1.png';
 
 const InfoItem = ({ img, title, value, lastChild }) => {
     return (

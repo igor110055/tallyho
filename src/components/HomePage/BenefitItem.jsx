@@ -1,4 +1,4 @@
-import glassImg from '../assets/images/media/glass.png';
+import glassImg from '../../assets/images/media/glass.png';
 
 const BenefitItem = ({ img, title, children }) => {
     return (

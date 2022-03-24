@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { classNames } from '../utils/classNames';
-import { navigation } from '../assets/data/sidebarData';
-import SidebarMobile from './SidebarMobile';
-import Navbar from './Navbar';
 import { Link, NavLink } from 'react-router-dom';
-import logo1 from '../assets/images/logo1.png';
-import logo3 from '../assets/images/logo3.png';
-import Footer from './Footer';
+import { classNames } from '../../utils/classNames';
+import { navigation } from '../../assets/data/sidebarData';
+import { SidebarMobile, Navbar, Footer } from '..';
+
+import logo1 from '../../assets/images/logo1.png';
+import logo3 from '../../assets/images/logo3.png';
 
 const SidebarWrapper = ({ children }) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
