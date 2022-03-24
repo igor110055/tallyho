@@ -7,3 +7,4 @@ export { default as InfoSection } from './HomePage/InfoSection';
 // ExchangePage
 export { default as SwapSection } from './ExchangePage/SwapSection';
 export { default as LiquiditySection } from './ExchangePage/LiquiditySection';
+export { default as SliderBanner } from './ExchangePage/SliderBanner';
