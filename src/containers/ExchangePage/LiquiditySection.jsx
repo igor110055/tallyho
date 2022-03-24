@@ -2,7 +2,7 @@ import { QuestionMarkCircleIcon } from '@heroicons/react/outline';
 import { FaCog } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const LiquiditySection = () => {
+const LiquiditySection = ({ openSettingsModal }) => {
     return (
         <div className='relative z-10 mt-5 w-full max-w-lg rounded-2xl bg-card_gradient py-4 pb-8 text-white'>
             <div className=' p-6'>
@@ -15,7 +15,7 @@ const LiquiditySection = () => {
                             Add liquidity to receive LP tokens
                         </p>
                     </div>
-                    <button>
+                    <button onClick={openSettingsModal}>
                         <FaCog className='h-6 w-6' />
                     </button>
                 </div>

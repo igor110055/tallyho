@@ -1,14 +1,15 @@
+import { useState } from 'react';
+import { FaCog } from 'react-icons/fa';
+import { GiBackwardTime } from 'react-icons/gi';
 import { ChevronDownIcon } from '@heroicons/react/solid';
+
 import bnbIcon from '../../assets/images/tokens/bnb.svg';
 import tallyIcon from '../../assets/images/tokens/btally.png';
 import exchangeImg from '../../assets/images/exchange.png';
 
-import { FaCog } from 'react-icons/fa';
-import { GiBackwardTime } from 'react-icons/gi';
-import { useState } from 'react';
-import SelectTokenModal from '../../components/shared/SelectTokenModal';
+import { SelectTokenModal } from '../../components';
 
-const SwapSection = () => {
+const SwapSection = ({ openSettingsModal }) => {
     const [tokenModalOpen, setTokenModalOpen] = useState(false);
 
     return (
@@ -113,7 +114,7 @@ const SwapSection = () => {
 
             {/* Icon Buttons */}
             <div className='mt-4 flex items-center justify-center space-x-4'>
-                <button>
+                <button onClick={openSettingsModal}>
                     <FaCog className='h-6 w-6' />
                 </button>
 

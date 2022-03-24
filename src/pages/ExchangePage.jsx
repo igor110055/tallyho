@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { RadioGroupComp } from '../components';
+import { RadioGroupComp, SettingsModal } from '../components';
 import { LiquiditySection, SwapSection } from '../containers';
 
 const ExchangePage = () => {
@@ -15,6 +15,11 @@ const ExchangePage = () => {
     ];
 
     const [type, setType] = useState(types[0].value);
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const openSettingsModal = () => {
+        setModalOpen(true);
+    };
 
     return (
         <div className='flex min-h-screen flex-col items-center justify-center bg-primary-sidebar px-4 pt-40 pb-8'>
@@ -44,8 +49,14 @@ const ExchangePage = () => {
 
             <RadioGroupComp type={type} setType={setType} types={types} />
 
-            {type === 'swap' && <SwapSection />}
-            {type === 'pool' && <LiquiditySection />}
+            {type === 'swap' && (
+                <SwapSection openSettingsModal={openSettingsModal} />
+            )}
+            {type === 'pool' && (
+                <LiquiditySection openSettingsModal={openSettingsModal} />
+            )}
+
+            <SettingsModal open={modalOpen} setOpen={setModalOpen} />
         </div>
     );
 };

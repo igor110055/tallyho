@@ -7,6 +7,11 @@ export { default as Loading } from './shared/Loading';
 export { default as LazyLoad } from './shared/LazyLoad';
 export { default as Footer } from './shared/Footer';
 export { default as FooterToggle } from './shared/FooterToggle';
+export { default as SelectTokenModal } from './shared/SelectTokenModal';
+export { default as SettingsModal } from './shared/SettingsModal';
+export { default as GasSpeedRadio } from './shared/GasSpeedRadio';
+export { default as ToleranceRadio } from './shared/ToleranceRadio';
+export { default as AudioSwitch } from './shared/AudioSwitch';
 
 // HomePage
 export { default as MovingIcons } from './HomePage/MovingIcons';
