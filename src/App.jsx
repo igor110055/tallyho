@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { Layout, LazyLoad, NotFoundRoute } from './components';
+import { SwapSection } from './containers';
 import {
     HomePage,
     LiquidityPage,
@@ -42,7 +43,9 @@ function App() {
                             <ExchangePage />
                         </LazyLoad>
                     }
-                />
+                >
+                    <Route path='add/:coin' element={<SwapSection />} />
+                </Route>
 
                 <Route
                     path='pools'

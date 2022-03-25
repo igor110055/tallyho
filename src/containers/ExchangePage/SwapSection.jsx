@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FaCog } from 'react-icons/fa';
+import { FaCog, FaCaretLeft } from 'react-icons/fa';
 import { GiBackwardTime } from 'react-icons/gi';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 
@@ -8,16 +8,30 @@ import tallyIcon from '../../assets/images/tokens/btally.png';
 import exchangeImg from '../../assets/images/exchange.png';
 
 import { SelectTokenModal } from '../../components';
+import { Link, useParams } from 'react-router-dom';
+import { QuestionMarkCircleIcon } from '@heroicons/react/outline';
 
 const SwapSection = ({ openSettingsModal }) => {
     const [tokenModalOpen, setTokenModalOpen] = useState(false);
 
+    const { coin } = useParams();
+
     return (
         <div className='relative z-10 mt-5 w-full max-w-lg rounded-2xl bg-card_gradient py-4 pb-8 text-white'>
             <div className='flex items-center justify-center p-6'>
-                <h2 className='text-lg font-normal leading-6 text-primary-brand_light'>
-                    Trades, in an instance:
-                </h2>
+                {coin ? (
+                    <h2 className='flex w-full justify-between text-sm font-semibold'>
+                        <Link to='/swap'>
+                            <FaCaretLeft className='h-5 w-5 cursor-pointer' />
+                        </Link>
+                        <span>Add Liquidity</span>
+                        <QuestionMarkCircleIcon className='h-5 w-5' />
+                    </h2>
+                ) : (
+                    <h2 className='text-lg font-normal leading-6 text-primary-brand_light'>
+                        Trades, in an instance:
+                    </h2>
+                )}
             </div>
 
             <div className='grid auto-rows-auto gap-y-3 p-6'>

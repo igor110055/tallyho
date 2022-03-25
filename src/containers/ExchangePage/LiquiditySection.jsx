@@ -2,7 +2,7 @@ import { QuestionMarkCircleIcon } from '@heroicons/react/outline';
 import { FaCog } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const LiquiditySection = ({ openSettingsModal }) => {
+const LiquiditySection = ({ openSettingsModal, setType }) => {
     return (
         <div className='relative z-10 mt-5 w-full max-w-lg rounded-2xl bg-card_gradient py-4 pb-8 text-white'>
             <div className=' p-6'>
@@ -24,7 +24,12 @@ const LiquiditySection = ({ openSettingsModal }) => {
                     to='add/ETH'
                     className='my-4 flex h-12 w-full items-center justify-center rounded-lg bg-[#1263f1] px-6'
                 >
-                    <button className='font-semibold'>Add Liquidity +</button>
+                    <button
+                        onClick={() => setType('')}
+                        className='font-semibold'
+                    >
+                        Add Liquidity +
+                    </button>
                 </Link>
             </div>
 

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { RadioGroupComp, SettingsModal } from '../components';
 import { LiquiditySection, SliderBanner, SwapSection } from '../containers';
 
@@ -13,13 +14,26 @@ const ExchangePage = () => {
             value: 'pool',
         },
     ];
+    const navigate = useNavigate();
+    const { coin } = useParams();
 
     const [type, setType] = useState(types[0].value);
     const [modalOpen, setModalOpen] = useState(false);
 
+    const setTypeandNavigate = type => {
+        setType(type);
+        navigate('/swap');
+    };
+
     const openSettingsModal = () => {
         setModalOpen(true);
     };
+
+    useEffect(() => {
+        if (!coin) {
+            setType('swap');
+        }
+    }, [coin]);
 
     return (
         <>
@@ -48,14 +62,22 @@ const ExchangePage = () => {
                     )}
                 </div>
 
-                <RadioGroupComp type={type} setType={setType} types={types} />
+                <RadioGroupComp
+                    type={type}
+                    setType={setTypeandNavigate}
+                    types={types}
+                />
 
-                {type === 'swap' && (
+                {type === 'swap' && !coin && (
                     <SwapSection openSettingsModal={openSettingsModal} />
                 )}
-                {type === 'pool' && (
-                    <LiquiditySection openSettingsModal={openSettingsModal} />
+                {type === 'pool' && !coin && (
+                    <LiquiditySection
+                        openSettingsModal={openSettingsModal}
+                        setType={setType}
+                    />
                 )}
+                <Outlet />
             </section>
 
             <SliderBanner />
