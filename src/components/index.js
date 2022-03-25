@@ -30,3 +30,5 @@ export { default as CurrencyItem } from './ExchangePage/CurrencyItem';
 // PoolsPage
 export { default as StackedSwitch } from './PoolsPage/StackedSwitch';
 export { default as CustomSelect } from './PoolsPage/CustomSelect';
+export { default as StakeTallyCard } from './PoolsPage/StakeTallyCard';
+export { default as StakeTokensCard } from './PoolsPage/StakeTokenCard';
