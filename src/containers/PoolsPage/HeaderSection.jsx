@@ -55,7 +55,7 @@ const HeaderSection = () => {
                 </Carousel>
             </div>
 
-            <div className='container mx-auto mt-6 flex max-w-5xl space-x-5 px-6'>
+            <div className='container mx-auto mt-6 flex max-w-6xl space-x-5 md:max-w-5xl md:px-8'>
                 <NavLink
                     to='stake_tally'
                     end

@@ -53,7 +53,7 @@ export default function SettingsModal({ open, setOpen }) {
                         leaveFrom='opacity-100 translate-y-0 sm:scale-100'
                         leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
                     >
-                        <div className='relative inline-block w-full transform overflow-hidden rounded-2xl bg-white align-bottom shadow-xl transition-all sm:my-8 sm:align-middle'>
+                        <div className='relative inline-block w-full max-w-6xl transform overflow-hidden rounded-2xl bg-white align-bottom shadow-xl transition-all sm:my-8 sm:align-middle'>
                             <div className='bg-white p-8'>
                                 <div className='flex items-center justify-between border-b border-[#708db7]/10 pb-6'>
                                     <h2 className='text-xl font-semibold text-primary-darkText'>

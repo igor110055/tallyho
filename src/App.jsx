@@ -3,7 +3,7 @@ import { Layout, LazyLoad, NotFoundRoute } from './components';
 import { SwapSection } from './containers';
 import {
     HomePage,
-    LiquidityPage,
+    // LiquidityPage,
     ExchangePage,
     PoolsPage,
     FarmsPage,
@@ -11,6 +11,7 @@ import {
     StakeLaunchPadPage,
     NFTearnPage,
     TallyCentralisedPage,
+    PoolsStakeType,
 } from './pages';
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
                 <Route
                     index
                     element={
-                        <LazyLoad loadingMessage='Loading Home...'>
+                        <LazyLoad>
                             <HomePage />
                         </LazyLoad>
                     }
@@ -29,7 +30,7 @@ function App() {
                 <Route
                     path='liquidity'
                     element={
-                        <LazyLoad loadingMessage='Loading Liquidity...'>
+                        <LazyLoad>
                             {/* <LiquidityPage /> */}
                             <ExchangePage />
                         </LazyLoad>
@@ -39,7 +40,7 @@ function App() {
                 <Route
                     path='swap'
                     element={
-                        <LazyLoad loadingMessage='Loading Exchange...'>
+                        <LazyLoad>
                             <ExchangePage />
                         </LazyLoad>
                     }
@@ -50,7 +51,7 @@ function App() {
                 <Route
                     path='pools'
                     element={
-                        <LazyLoad loadingMessage='Loading pools...'>
+                        <LazyLoad>
                             <PoolsPage />
                         </LazyLoad>
                     }
@@ -58,8 +59,8 @@ function App() {
                     <Route
                         path=':stakeType'
                         element={
-                            <LazyLoad loadingMessage='Loading pools...'>
-                                <StakeLaunchPadPage />
+                            <LazyLoad>
+                                <PoolsStakeType />
                             </LazyLoad>
                         }
                     />
@@ -68,7 +69,7 @@ function App() {
                 <Route
                     path='farms'
                     element={
-                        <LazyLoad loadingMessage='Loading farms...'>
+                        <LazyLoad>
                             <FarmsPage />
                         </LazyLoad>
                     }
@@ -77,7 +78,7 @@ function App() {
                 <Route
                     path='nftmarket'
                     element={
-                        <LazyLoad loadingMessage='Loading NFT Market...'>
+                        <LazyLoad>
                             <NFTmarketPage />
                         </LazyLoad>
                     }
@@ -86,7 +87,7 @@ function App() {
                 <Route
                     path='stakelaunchpad'
                     element={
-                        <LazyLoad loadingMessage='Loading Stake Launchpad...'>
+                        <LazyLoad>
                             <StakeLaunchPadPage />
                         </LazyLoad>
                     }
@@ -95,7 +96,7 @@ function App() {
                 <Route
                     path='nftearn'
                     element={
-                        <LazyLoad loadingMessage='Loading NFT earn...'>
+                        <LazyLoad>
                             <NFTearnPage />
                         </LazyLoad>
                     }
@@ -104,7 +105,7 @@ function App() {
                 <Route
                     path='tallycentralised'
                     element={
-                        <LazyLoad loadingMessage='Loading Tally Centralised...'>
+                        <LazyLoad>
                             <TallyCentralisedPage />
                         </LazyLoad>
                     }

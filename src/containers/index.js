@@ -11,3 +11,6 @@ export { default as SliderBanner } from './ExchangePage/SliderBanner';
 
 // PoolsPage
 export { default as HeaderSection } from './PoolsPage/HeaderSection';
+export { default as OptionsHeader } from './PoolsPage/OptionsHeader';
+export { default as CardsSection } from './PoolsPage/CardsSection';
+export { default as LaunchpadContainer } from './PoolsPage/LaunchpadContainer';

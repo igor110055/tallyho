@@ -25,3 +25,8 @@ export { default as InfoItem } from './HomePage/InfoItem';
 export { default as RadioGroupComp } from './ExchangePage/RadioGroupComp';
 export { default as CommonBaseToken } from './ExchangePage/CommonBaseToken';
 export { default as CurrencyItem } from './ExchangePage/CurrencyItem';
+
+
+// PoolsPage
+export { default as StackedSwitch } from './PoolsPage/StackedSwitch';
+export { default as CustomSelect } from './PoolsPage/CustomSelect';

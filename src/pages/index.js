@@ -9,6 +9,7 @@ const NFTmarketPage = lazy(() => import("./NFTMarketPage"));
 const StakeLaunchPadPage = lazy(() => import("./StakeLaunchpadPage"));
 const NFTearnPage = lazy(() => import("./NFTearnPage"));
 const TallyCentralisedPage = lazy(() => import("./TallyCetralisedPage"));
+const PoolsStakeType = lazy(() => import("./PoolsStakeType"));
 
 export {
     HomePage,
@@ -20,4 +21,5 @@ export {
     StakeLaunchPadPage,
     NFTearnPage,
     TallyCentralisedPage,
+    PoolsStakeType,
 };
