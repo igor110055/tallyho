@@ -29,7 +29,8 @@ function App() {
                     path='liquidity'
                     element={
                         <LazyLoad loadingMessage='Loading Liquidity...'>
-                            <LiquidityPage />
+                            {/* <LiquidityPage /> */}
+                            <ExchangePage />
                         </LazyLoad>
                     }
                 />

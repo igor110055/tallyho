@@ -5,8 +5,8 @@ import banner3 from '../../assets/images/banners/TallyRaffle.jpg';
 
 const SliderBanner = () => {
     return (
-        <div className='container bg-gradient-to-b from-white to-[#dbdbdb] p-6'>
-            <div className='mx-auto max-w-6xl'>
+        <div className=' bg-gradient-to-b from-white to-[#dbdbdb] p-6'>
+            <div className='container mx-auto max-w-6xl'>
                 <Slider
                     infinite={true}
                     autoplay
