@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { Layout, LazyLoad } from './components';
+import { Layout, LazyLoad, NotFoundRoute } from './components';
 import {
     HomePage,
     LiquidityPage,
@@ -106,6 +106,8 @@ function App() {
                         </LazyLoad>
                     }
                 />
+
+                <Route path='*' element={<NotFoundRoute />} />
             </Route>
         </Routes>
     );
