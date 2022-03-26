@@ -1,17 +1,18 @@
 import { Routes, Route } from 'react-router-dom';
 import { Layout, LazyLoad, NotFoundRoute } from './components';
-import { SwapSection } from './containers';
+import { CoinsTable, SwapSection } from './containers';
 import {
     HomePage,
     // LiquidityPage,
     ExchangePage,
     PoolsPage,
     FarmsPage,
-    NFTmarketPage,
-    StakeLaunchPadPage,
-    NFTearnPage,
+    // NFTmarketPage,
+    // StakeLaunchPadPage,
+    // NFTearnPage,
     TallyCentralisedPage,
     PoolsStakeType,
+    TokenCheckerPage,
 } from './pages';
 
 function App() {
@@ -78,29 +79,43 @@ function App() {
                 <Route
                     path='nftmarket'
                     element={
-                        <LazyLoad>
-                            <NFTmarketPage />
-                        </LazyLoad>
+                        // <LazyLoad>
+                        //     <NFTmarketPage />
+                        // </LazyLoad>
+                        <NotFoundRoute />
                     }
                 />
 
                 <Route
                     path='stakelaunchpad'
                     element={
-                        <LazyLoad>
-                            <StakeLaunchPadPage />
-                        </LazyLoad>
+                        // <LazyLoad>
+                        //     <StakeLaunchPadPage />
+                        // </LazyLoad>
+                        <NotFoundRoute />
                     }
                 />
 
                 <Route
                     path='nftearn'
                     element={
-                        <LazyLoad>
-                            <NFTearnPage />
-                        </LazyLoad>
+                        // <LazyLoad>
+                        //     <NFTearnPage />
+                        // </LazyLoad>
+                        <NotFoundRoute />
                     }
                 />
+
+                <Route
+                    path='tokenchecker'
+                    element={
+                        <LazyLoad>
+                            <TokenCheckerPage />
+                        </LazyLoad>
+                    }
+                >
+                    <Route index path=':filter' element={<CoinsTable />} />
+                </Route>
 
                 <Route
                     path='tallycentralised'

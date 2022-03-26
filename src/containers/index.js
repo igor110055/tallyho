@@ -19,3 +19,7 @@ export { default as LaunchpadContainer } from './PoolsPage/LaunchpadContainer';
 export { default as FarmHeader } from './FarmsPage/FarmHeader';
 export { default as FarmOptions } from './FarmsPage/FarmOptions';
 export { default as FarmsContainer } from './FarmsPage/FarmsContainer';
+
+// TokenCheckerPage
+export { default as TokenCheckerHeading } from './TokenCheckerPage/TokenCheckerHeading';
+export { default as CoinsTable } from './TokenCheckerPage/CoinsTable';

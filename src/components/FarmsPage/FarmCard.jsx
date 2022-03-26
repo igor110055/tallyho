@@ -1,15 +1,14 @@
-import usdt from '../../assets/images/tokens/usdt.svg';
-import btally from '../../assets/images/tokens/btally.png';
 import Tooltip from 'rc-tooltip';
-import { MdOutlineHelpOutline, MdOutlineCalculate } from 'react-icons/md';
-import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/solid';
+import classNames from 'classnames';
+import { Disclosure } from '@headlessui/react';
 import {
     ExternalLinkIcon,
     InformationCircleIcon,
 } from '@heroicons/react/outline';
-import { Disclosure } from '@headlessui/react';
-import { Fragment } from 'react';
-import classNames from 'classnames';
+import { MdOutlineHelpOutline, MdOutlineCalculate } from 'react-icons/md';
+import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/solid';
+import usdt from '../../assets/images/tokens/usdt.svg';
+import btally from '../../assets/images/tokens/btally.png';
 
 const FarmCard = () => {
     return (
