@@ -39,7 +39,7 @@ const ExchangePage = () => {
         <>
             <section className='flex min-h-screen flex-col items-center justify-center bg-primary-sidebar px-4 pt-40 pb-8'>
                 <div className='w-full max-w-lg'>
-                    <h1 className='mb-2 whitespace-nowrap text-center text-[40px] font-bold text-white'>
+                    <h1 className='mb-2 whitespace-nowrap text-center  text-3xl font-bold text-white md:text-[40px]'>
                         {type === 'swap'
                             ? 'Swap BEP20 Tokens'
                             : 'Become a Liquidity Provider'}

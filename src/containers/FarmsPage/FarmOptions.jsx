@@ -14,8 +14,8 @@ const FarmOptions = () => {
 
     const [status, setStatus] = useState('live');
     return (
-        <div className='flex justify-between'>
-            <div className='flex items-center space-x-5'>
+        <div className='flex flex-col justify-between md:flex-row'>
+            <div className='flex items-center justify-between md:space-x-5'>
                 <div className='flex space-x-1 rounded-lg bg-white font-semibold'>
                     <button
                         className={classNames('px-4 py-2 font-semibold ', {
@@ -42,28 +42,30 @@ const FarmOptions = () => {
                 </div>
             </div>
 
-            <div className='flex items-center space-x-2'>
-                <div className='flex w-40 items-center'>
+            <div className='flex flex-col items-center space-x-2 md:flex-row'>
+                <div className=' order-2 mt-4 flex w-full items-center md:order-1 md:mt-0 md:w-40'>
                     <input
                         type='text'
                         placeholder='Search Farms'
                         className='h-10 w-full rounded-lg border border-primary-dark bg-primary-brand p-0 px-4 text-sm text-white outline-none  placeholder:text-white'
                     />
                 </div>
-                <div className='w-36'>
-                    <CustomSelect
-                        options={options1}
-                        selected={option1}
-                        onChange={setOption1}
-                    />
-                </div>
-                <div className='flex w-40 items-center'>
-                    <button
-                        className='flex h-10 items-center justify-center rounded-lg bg-[#1dc872] px-4 font-semibold text-white disabled:cursor-not-allowed disabled:border disabled:border-primary-brand/80 disabled:bg-primary-brand/80'
-                        disabled
-                    >
-                        Harvest All
-                    </button>
+                <div className='order-1 mt-4 flex w-full items-center justify-between md:mt-0 md:w-fit'>
+                    <div className=' w-full md:w-36'>
+                        <CustomSelect
+                            options={options1}
+                            selected={option1}
+                            onChange={setOption1}
+                        />
+                    </div>
+                    <div className='ml-12 flex w-40 items-center justify-end md:ml-0 md:justify-center'>
+                        <button
+                            className='flex h-10 items-center justify-center rounded-lg bg-[#1dc872] px-4 font-semibold text-white disabled:cursor-not-allowed disabled:border disabled:border-primary-brand/80 disabled:bg-primary-brand/80'
+                            disabled
+                        >
+                            Harvest All
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

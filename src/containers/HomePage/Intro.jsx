@@ -45,7 +45,7 @@ const Intro = () => {
                     <div className='my-5 mt-8 grid max-w-xl grid-cols-2 rounded-2xl bg-right_gradient p-6 '>
                         <div className='flex items-center border-r border-primary-brand'>
                             <img src={logo2} alt='logo' className='h-12 w-12' />
-                            <div className='ml-4'>
+                            <div className='ml-4 sm:mr-4'>
                                 <span className='mb-1 block text-xs font-bold leading-6 text-primary-brand'>
                                     Total Value Locked
                                 </span>
@@ -55,7 +55,7 @@ const Intro = () => {
                             </div>
                         </div>
                         <div className='flex items-center'>
-                            <div className='ml-8'>
+                            <div className='ml-2 md:ml-8'>
                                 <span className='mb-1 block text-xs font-bold leading-6 text-primary-brand'>
                                     Total Trading Volume
                                 </span>

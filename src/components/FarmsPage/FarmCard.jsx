@@ -15,33 +15,35 @@ const FarmCard = () => {
         <Disclosure>
             {({ open }) => (
                 <>
-                    <Disclosure.Button className='flex w-full flex-row items-center rounded-2xl bg-white px-6 py-4'>
-                        <div className='mr-8 ml-4 flex items-center justify-center rounded-2xl bg-[#f93b5d] px-3 py-1 text-xs font-semibold'>
-                            <span>Hot</span>
-                        </div>
-
-                        <div className='flex items-center space-x-2'>
-                            <div className='flex items-center -space-x-1'>
-                                <img
-                                    src={usdt}
-                                    alt='usdt'
-                                    className='z-10 h-6 w-6 rounded-full outline outline-2 outline-white'
-                                />
-                                <img
-                                    src={btally}
-                                    alt='btally'
-                                    className='h-6 w-6'
-                                />
+                    <Disclosure.Button className='flex w-full flex-col items-center rounded-2xl bg-white px-6 py-4 md:flex-row'>
+                        <div className='flex w-full items-center justify-between md:w-fit'>
+                            <div className='order-2 mr-8 ml-4 flex items-center justify-center rounded-2xl bg-[#f93b5d] px-3 py-1 text-xs font-semibold md:order-1'>
+                                <span>Hot</span>
                             </div>
 
-                            <div className='text-sm font-semibold uppercase text-black'>
-                                <span>USDT</span>
-                                <span>-</span>
-                                <span>Tally</span>
+                            <div className='order-1 flex items-center space-x-2'>
+                                <div className='flex items-center -space-x-1'>
+                                    <img
+                                        src={usdt}
+                                        alt='usdt'
+                                        className='z-10 h-6 w-6 rounded-full outline outline-2 outline-white'
+                                    />
+                                    <img
+                                        src={btally}
+                                        alt='btally'
+                                        className='h-6 w-6'
+                                    />
+                                </div>
+
+                                <div className='text-sm font-semibold uppercase text-black'>
+                                    <span>USDT</span>
+                                    <span>-</span>
+                                    <span>Tally</span>
+                                </div>
                             </div>
                         </div>
 
-                        <div className='mx-auto flex items-center'>
+                        <div className='mx-auto my-4 flex items-center md:my-0'>
                             <div className='mx-6 ml-10 flex flex-col text-primary-brand'>
                                 <span className='text-xs'>APY</span>
                                 <div className='flex flex-row items-center space-x-2 font-semibold'>
@@ -144,41 +146,41 @@ const FarmCard = () => {
                         </div>
                     </Disclosure.Button>
 
-                    <Disclosure.Panel className='flex flex-row items-center rounded-b-2xl bg-[#f2f6fc] py-5 px-8'>
-                        <div className='flex grow items-center'>
+                    <Disclosure.Panel className='flex flex-col items-center rounded-b-2xl bg-[#f2f6fc] py-5 px-8 md:flex-row'>
+                        <div className='flex w-full grow items-center justify-between border-b-2 border-gray-400/40 pb-3 md:w-fit md:border-0 md:pb-0'>
                             <a
                                 href='https://exchange.tally.org/#/add/0x965F527D9159dCe6288a2219DB51fc6Eef120dD1/0x55d398326f99059ff775485246999027b3197955'
                                 target='_blank'
                                 rel='noopener noreferrer'
-                                className='flex h-12 items-center justify-center rounded-lg border-2 border-primary-brand bg-white px-6 text-sm font-semibold text-primary-brand'
+                                className='order-2 flex h-12 items-center justify-center rounded-lg border-2 border-primary-brand bg-white px-6 text-sm font-semibold text-primary-brand md:order-1'
                             >
                                 Get LP
                             </a>
-                            <div className='ml-4 flex flex-col text-xs font-semibold text-primary-brand'>
+                            <div className='order-1 ml-4 flex flex-col text-xs font-semibold text-primary-brand'>
                                 <span>Available LP</span>
                                 <span className='text-sm text-black'>0 LP</span>
                                 <span>$0.0000</span>
                             </div>
 
-                            <ChevronRightIcon className='h-10 w-10 text-gray-400' />
+                            <ChevronRightIcon className='hidden h-10 w-10 text-gray-400 md:block' />
                         </div>
 
-                        <div className='mx-auto flex w-full max-w-sm items-center space-x-2 px-10'>
-                            <button className='flex h-12 w-full items-center justify-center rounded-lg bg-primary-brand px-6 font-semibold text-white'>
+                        <div className='mx-auto ml-auto flex w-full max-w-sm items-center space-x-2 border-b-2 border-gray-400/40 py-4 px-0 md:border-0 md:py-0 md:px-10'>
+                            <button className='ml-auto flex h-12 w-fit items-center justify-center rounded-lg bg-primary-brand px-6 font-semibold text-white md:ml-0 md:w-full'>
                                 Unlock Wallet
                             </button>
-                            <ChevronRightIcon className='h-12 w-12 text-gray-400' />
+                            <ChevronRightIcon className='hidden h-12 w-12 text-gray-400 md:block' />
                         </div>
 
-                        <div className='mx-10 flex max-w-[250px] items-center space-x-4'>
+                        <div className='mx-10 flex w-full max-w-full items-center justify-between space-x-4 py-4 md:w-fit md:max-w-[250px] md:py-0'>
                             <button
                                 disabled
-                                className='flex h-12 items-center justify-center rounded-lg bg-primary-brand px-6 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-80'
+                                className='order-2 flex h-12 items-center justify-center rounded-lg bg-primary-brand px-6 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-80 md:order-1'
                             >
                                 Harvest
                             </button>
 
-                            <div className='flex flex-col text-xs font-semibold text-black'>
+                            <div className='order-1 flex flex-col text-xs font-semibold text-black'>
                                 <span className='text-primary-brand'>
                                     Earned
                                 </span>

@@ -16,7 +16,7 @@ const GasSpeedRadio = () => {
             <RadioGroup.Label className='sr-only'>
                 Choose a Gas Speed
             </RadioGroup.Label>
-            <div className='flex justify-between'>
+            <div className='flex flex-wrap justify-between '>
                 {speedOptions.map(option => (
                     <RadioGroup.Option
                         key={option.name}
@@ -26,7 +26,7 @@ const GasSpeedRadio = () => {
                                 checked
                                     ? ' bg-[#1263f1] text-white '
                                     : ' bg-[#e4efff] text-[#1263f1]',
-                                'flex h-12  cursor-pointer items-center rounded-lg px-6 font-semibold'
+                                'flex h-12  cursor-pointer items-center rounded-lg px-3 font-semibold md:px-6'
                             )
                         }
                     >

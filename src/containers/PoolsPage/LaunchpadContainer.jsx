@@ -1,6 +1,6 @@
 const LaunchpadContainer = () => {
     return (
-        <div className='container mx-auto max-w-6xl px-6 py-20'>
+        <div className='container mx-auto max-w-6xl px-3 py-20 md:px-6'>
             <div className='flex max-w-xl flex-col space-y-4 text-white'>
                 <h1 className='pb-4 text-4xl font-semibold'>
                     The Stake Token LaunchPad on Tally!

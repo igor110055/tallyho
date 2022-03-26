@@ -20,9 +20,9 @@ const OptionsHeader = () => {
 
     const [status, setStatus] = useState('active');
     return (
-        <div className='flex justify-between'>
-            <div className='flex items-center space-x-5'>
-                <div className='flex space-x-1 rounded-lg bg-white font-semibold'>
+        <div className='flex flex-col justify-between md:flex-row md:flex-wrap'>
+            <div className='flex  items-center space-x-5'>
+                <div className='flex justify-between space-x-1 rounded-lg bg-white  font-semibold'>
                     <button
                         className={classNames('px-4 py-2 ', {
                             'rounded-lg bg-primary-brand text-white':
@@ -42,29 +42,31 @@ const OptionsHeader = () => {
                         Inactive
                     </button>
                 </div>
-                <div className='flex items-center space-x-4'>
+                <div className='ml-auto flex items-center space-x-4 md:ml-0'>
                     <StackedSwitch />
                     <span className='leading-6 text-white'>Stacked Only</span>
                 </div>
             </div>
 
-            <div className='flex items-center space-x-2'>
-                <div className='w-36'>
-                    <CustomSelect
-                        options={options1}
-                        selected={option1}
-                        onChange={setOption1}
-                    />
-                </div>
-                <div className='w-40'>
-                    <CustomSelect
-                        options={options2}
-                        selected={option2}
-                        onChange={setOption2}
-                    />
+            <div className='mt-4 flex flex-col items-center space-x-2 md:mt-0 md:flex-row'>
+                <div className='order-2 mt-4 flex w-full items-center justify-between gap-x-3 md:mt-0 md:w-fit'>
+                    <div className=' w-1/2 md:w-36'>
+                        <CustomSelect
+                            options={options1}
+                            selected={option1}
+                            onChange={setOption1}
+                        />
+                    </div>
+                    <div className=' w-1/2 md:w-40'>
+                        <CustomSelect
+                            options={options2}
+                            selected={option2}
+                            onChange={setOption2}
+                        />
+                    </div>
                 </div>
 
-                <div className='flex w-40 items-center'>
+                <div className='order-1 flex w-full items-center md:order-3 md:w-40'>
                     <input
                         type='text'
                         placeholder='Search Launchpool'

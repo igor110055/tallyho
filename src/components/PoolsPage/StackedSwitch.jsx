@@ -20,7 +20,7 @@ const StackedSwitch = () => {
                 aria-hidden='true'
                 className={classNames(
                     enabled ? 'translate-x-5' : 'translate-x-0 bg-[#555555]',
-                    'pointer-events-none absolute left-0 inline-block h-6 w-6 transform rounded-full bg-[#1dc872] transition-transform duration-200 ease-in-out'
+                    'pointer-events-none absolute left-0 inline-block h-6 w-6 transform rounded-full bg-[#555555] transition-transform duration-200 ease-in-out'
                 )}
             />
         </Switch>

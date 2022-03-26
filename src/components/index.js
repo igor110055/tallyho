@@ -36,3 +36,11 @@ export { default as StakeTokensCard } from './PoolsPage/StakeTokenCard';
 
 // FarmsPage
 export { default as FarmCard } from './FarmsPage/FarmCard';
+
+// TokenChecker
+export { default as TokenCheckerNav } from './TokenChecker/TokenCheckerNav';
+export { default as MakeAChallangeModal } from './TokenChecker/MakeAChallangeModal';
+export { default as GetDoxxedModal } from './TokenChecker/GetDoxxedModal';
+export { default as WatchlistTokenModal } from './TokenChecker/WatchlistTokenModal';
+export { default as ReportScamModal } from './TokenChecker/ReportScamModal';
+export { default as AdvertiseModal } from './TokenChecker/AdvertiseModal';

@@ -6,7 +6,7 @@ import { bannerData } from '../../assets/data/bannerData';
 const FarmHeader = () => {
     return (
         <div className='bg-pools_header'>
-            <div className='container mx-auto grid max-w-6xl grid-cols-2 p-6 pt-28'>
+            <div className='container mx-auto grid max-w-6xl grid-cols-1 p-6 pt-28 md:grid-cols-2'>
                 <div className='space-y-4'>
                     <h1 className='text-[40px] font-semibold text-white'>
                         Farms
@@ -35,6 +35,8 @@ const FarmHeader = () => {
                     swipeable
                     emulateTouch
                     stopOnHover
+                    className='mt-4 md:mt-0'
+                    centerMode
                 >
                     {bannerData.map(item => (
                         <a

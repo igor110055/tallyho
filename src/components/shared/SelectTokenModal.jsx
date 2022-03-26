@@ -75,7 +75,7 @@ export default function SelectTokenModal({ open, setOpen }) {
                                         <QuestionMarkCircleIcon className='ml-2 h-4 w-4' />
                                     </h3>
 
-                                    <div className='grid grid-cols-4 gap-4 py-6'>
+                                    <div className='grid grid-cols-3 gap-4 py-6 sm:grid-cols-4'>
                                         <CommonBaseToken
                                             icon={tallyIcon}
                                             name='Tally'

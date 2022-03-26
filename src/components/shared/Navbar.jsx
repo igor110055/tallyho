@@ -1,14 +1,25 @@
 import { MenuIcon } from '@heroicons/react/solid';
 import { useEffect, useState } from 'react';
 import { FaWallet } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import logo2 from '../../assets/images/logo2.png';
 import classNames from 'classnames';
+import { TokenCheckerNav } from '..';
 
 const Navbar = ({ setSidebarOpen }) => {
     const navigate = useNavigate();
+    const location = useLocation();
 
     const [scrolled, setScrolled] = useState(false);
+    const [onTokenCheckPage, setOnTokenCheckPage] = useState(false);
+
+    useEffect(() => {
+        if (location.pathname.includes('/tokenchecker')) {
+            setOnTokenCheckPage(true);
+        } else {
+            setOnTokenCheckPage(false);
+        }
+    }, [location.pathname]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -58,6 +69,8 @@ const Navbar = ({ setSidebarOpen }) => {
                         <span className='hidden md:block'>Tally Ho Home</span>
                     </button>
                 </div>
+
+                <TokenCheckerNav onTokenCheckPage={onTokenCheckPage} />
 
                 <div className='flex items-center'>
                     <button

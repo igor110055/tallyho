@@ -54,7 +54,7 @@ export default function SettingsModal({ open, setOpen }) {
                         leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
                     >
                         <div className='relative inline-block w-full max-w-6xl transform overflow-hidden rounded-2xl bg-white align-bottom shadow-xl transition-all sm:my-8 sm:align-middle'>
-                            <div className='bg-white p-8'>
+                            <div className='bg-white p-4 md:p-8'>
                                 <div className='flex items-center justify-between border-b border-[#708db7]/10 pb-6'>
                                     <h2 className='text-xl font-semibold text-primary-darkText'>
                                         Settings
@@ -88,25 +88,29 @@ export default function SettingsModal({ open, setOpen }) {
                                         <QuestionMarkCircleIcon className='ml-2 h-4 w-4' />
                                     </h3>
 
-                                    <div className='flex items-center space-x-4'>
+                                    <div className='flex flex-col items-center space-x-4 space-y-3 md:flex-row md:space-y-0'>
                                         <ToleranceRadio
                                             tolerance={tolerance}
                                             setTolerance={setTolerance}
                                             toleranceOptions={toleranceOptions}
                                         />
-                                        <input
-                                            type='number'
-                                            inputMode='decimal'
-                                            step={0.1}
-                                            min={0.1}
-                                            placeholder='5%'
-                                            value={tolerance}
-                                            onChange={e =>
-                                                setTolerance(e.target.value)
-                                            }
-                                            className='h-10 rounded-lg border border-[#e5eaf2] bg-transparent px-4 text-primary-darkText focus:outline-none'
-                                        />
-                                        <span className='font-semibold'>%</span>
+                                        <div className='flex items-center'>
+                                            <input
+                                                type='number'
+                                                inputMode='decimal'
+                                                step={0.1}
+                                                min={0.1}
+                                                placeholder='5%'
+                                                value={tolerance}
+                                                onChange={e =>
+                                                    setTolerance(e.target.value)
+                                                }
+                                                className='h-10 rounded-lg border border-[#e5eaf2] bg-transparent px-4 text-primary-darkText focus:outline-none'
+                                            />
+                                            <span className='ml-3 font-semibold'>
+                                                %
+                                            </span>
+                                        </div>
                                     </div>
 
                                     {tolerance <= 0.1 && (
@@ -122,7 +126,7 @@ export default function SettingsModal({ open, setOpen }) {
                                         <QuestionMarkCircleIcon className='ml-2 h-4 w-4' />
                                     </h3>
 
-                                    <div className='flex items-center justify-between '>
+                                    <div className='flex flex-col items-center justify-between md:flex-row '>
                                         <div className='space-x-4'>
                                             <input
                                                 type='number'
@@ -138,7 +142,7 @@ export default function SettingsModal({ open, setOpen }) {
                                             </span>
                                         </div>
 
-                                        <div className='flex flex-col space-y-4'>
+                                        <div className='mt-4 flex flex-col space-y-4 md:mt-0'>
                                             <span className='text-sm font-semibold text-primary-darkText'>
                                                 Audio
                                             </span>
