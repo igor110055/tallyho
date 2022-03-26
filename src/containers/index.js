@@ -14,3 +14,8 @@ export { default as HeaderSection } from './PoolsPage/HeaderSection';
 export { default as OptionsHeader } from './PoolsPage/OptionsHeader';
 export { default as CardsSection } from './PoolsPage/CardsSection';
 export { default as LaunchpadContainer } from './PoolsPage/LaunchpadContainer';
+
+//FarmsPage
+export { default as FarmHeader } from './FarmsPage/FarmHeader';
+export { default as FarmOptions } from './FarmsPage/FarmOptions';
+export { default as FarmsContainer } from './FarmsPage/FarmsContainer';

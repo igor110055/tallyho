@@ -19,7 +19,7 @@ export default function CustomSelect({ options, selected, onChange }) {
                     <div className='relative mt-1'>
                         <Listbox.Button
                             className={classNames(
-                                'relative w-full cursor-default rounded-md bg-primary-brand py-2 pl-3 pr-10 text-left font-semibold text-white shadow-sm sm:text-sm',
+                                'relative w-full cursor-default rounded-md bg-primary-brand py-2 pl-3 pr-10 text-left font-semibold text-white shadow-sm',
                                 { 'rounded-b-none': open }
                             )}
                         >

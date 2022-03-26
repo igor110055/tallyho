@@ -3,8 +3,8 @@ import usdt from '../../assets/images/tokens/usdt.svg';
 import tally from '../../assets/images/tokens/btally.png';
 
 import { MdOutlineCalculate, MdOutlineHelpOutline } from 'react-icons/md';
-import ReactTooltip from 'react-tooltip';
 import { Link } from 'react-router-dom';
+import Tooltip from 'rc-tooltip';
 
 const FarmItem = ({ tokenImg, tokenName, apy }) => {
     return (
@@ -33,22 +33,25 @@ const FarmItem = ({ tokenImg, tokenName, apy }) => {
                 </div>
                 <div className='flex flex-row items-center justify-between space-x-2 text-xs text-[#708db7]'>
                     <span className='text-lg text-primary-brand'>{apy}%</span>
-                    <MdOutlineHelpOutline
-                        data-tip='helpIcon'
-                        className='h-5 w-5'
-                    />
-                    <ReactTooltip
-                        id='helpIcon'
-                        place='top'
-                        effect='solid'
-                        className='w-1/3'
+                    <Tooltip
+                        placement='topLeft'
+                        trigger={['hover']}
+                        overlay={
+                            <span>
+                                APY is based on your one-year income if Harvest
+                                and Compound are made once a day. Provided APY
+                                calculations depend on current APR rates.
+                            </span>
+                        }
+                        overlayClassName='bg-[#888888] max-w-xs text-xs text-white py-2 px-4 rounded-lg'
+                        destroyTooltipOnHide
+                        arrowContent
                     >
-                        <span>
-                            APY is based on your one-year income if Harvest and
-                            Compound are made once a day. Provided APY
-                            calculations depend on current APR rates.
-                        </span>
-                    </ReactTooltip>
+                        <MdOutlineHelpOutline
+                            data-tip='helpIcon'
+                            className='h-5 w-5'
+                        />
+                    </Tooltip>
                 </div>
             </div>
 
