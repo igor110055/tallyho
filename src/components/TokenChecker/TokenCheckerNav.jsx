@@ -1,12 +1,14 @@
+import { useState } from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { FaTrophy } from 'react-icons/fa';
 import { BsStarFill } from 'react-icons/bs';
 import AdvertiseModal from './AdvertiseModal';
-import { useState } from 'react';
+import ReportScamModal from './ReportScamModal';
 
 const TokenCheckerNav = ({ onTokenCheckPage }) => {
     const [advertiseOpen, setAdvertiseOpen] = useState(false);
+    const [reportScamOpen, setReportScamOpen] = useState(false);
 
     return (
         <>
@@ -34,7 +36,10 @@ const TokenCheckerNav = ({ onTokenCheckPage }) => {
                     <BsStarFill />
                 </button>
 
-                <button className='flex items-center space-x-1 rounded-lg px-2 py-3 font-semibold text-white transition-colors duration-200 hover:bg-white hover:text-black'>
+                <button
+                    className='flex items-center space-x-1 rounded-lg px-2 py-3 font-semibold text-white transition-colors duration-200 hover:bg-white hover:text-black'
+                    onClick={() => setReportScamOpen(true)}
+                >
                     <span>Report Scam Token</span>
                 </button>
 
@@ -48,6 +53,10 @@ const TokenCheckerNav = ({ onTokenCheckPage }) => {
             </div>
 
             <AdvertiseModal open={advertiseOpen} setOpen={setAdvertiseOpen} />
+            <ReportScamModal
+                open={reportScamOpen}
+                setOpen={setReportScamOpen}
+            />
         </>
     );
 };
