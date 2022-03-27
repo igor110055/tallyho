@@ -44,3 +44,5 @@ export { default as GetDoxxedModal } from './TokenChecker/GetDoxxedModal';
 export { default as WatchlistTokenModal } from './TokenChecker/WatchlistTokenModal';
 export { default as ReportScamModal } from './TokenChecker/ReportScamModal';
 export { default as AdvertiseModal } from './TokenChecker/AdvertiseModal';
+export { default as TCCustomSelect } from './TokenChecker/TCCustomSelect';
+export { default as TCCustomInput } from './TokenChecker/TCCustomInput';

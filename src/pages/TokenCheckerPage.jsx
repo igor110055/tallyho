@@ -9,8 +9,8 @@ const TokenCheckerPage = () => {
     const { filter } = useParams();
 
     return (
-        <>
-            <main className='max-w-7xl bg-primary-sidebar px-6 pt-20'>
+        <div className='bg-primary-sidebar'>
+            <div className='container mx-auto max-w-7xl  px-6 pt-20'>
                 <TokenCheckerHeading />
 
                 {!filter && <CoinsTable />}
@@ -18,17 +18,17 @@ const TokenCheckerPage = () => {
                 <Outlet />
 
                 <TokenCheckerInfo />
-            </main>
-            <div className='mt-24 bg-gradient-to-b from-white to-[#dbdbdb] px-6 pb-5'>
+            </div>
+            <div className='bg-gradient-to-b from-white to-[#dbdbdb] px-6 pt-24 pb-5'>
                 <div className='container max-w-5xl'>
-                    <span className='float-right font-semibold text-[#777777]'>
-                        Want to advertise with us?{' '}
-                        <span className='text-primary-brand'>click here</span>{' '}
-                        the more info
+                    <span className=' flex justify-end space-x-1 font-semibold text-[#777777]'>
+                        <span>Want to advertise with us? click </span>{' '}
+                        <span className='text-primary-brand'> here</span>{' '}
+                        <span>the more info</span>
                     </span>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
