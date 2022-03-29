@@ -52,7 +52,7 @@ const ReportScamModal = ({ open, setOpen }) => {
                         leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
                     >
                         <div className='relative inline-block w-full max-w-4xl transform overflow-hidden rounded-2xl border border-white bg-black align-bottom shadow-xl transition-all sm:my-8 sm:align-middle'>
-                            <div className='flex flex-col space-y-4 bg-black p-4 text-white md:p-8'>
+                            <div className='flex flex-col space-y-2 bg-black p-4 text-white md:p-8'>
                                 <div className='flex items-center justify-between pb-4'>
                                     <h2 className='mx-auto text-base font-semibold'>
                                         Report Scam Token
@@ -64,7 +64,7 @@ const ReportScamModal = ({ open, setOpen }) => {
                                     />
                                 </div>
 
-                                <div className='flex w-full items-center justify-start space-x-2 pb-4'>
+                                <div className='flex w-full flex-col items-center justify-start space-x-2 pb-4 md:flex-row'>
                                     <span>
                                         To make a free report visit Home Page
                                     </span>
@@ -78,7 +78,7 @@ const ReportScamModal = ({ open, setOpen }) => {
                                     </a>
                                 </div>
 
-                                <div className='flex items-center space-x-10'>
+                                <div className='flex flex-col items-center md:flex-row md:space-x-10'>
                                     <div className='flex w-full flex-col items-center justify-start space-y-4'>
                                         <TCCustomInput
                                             label='Name of Token'
@@ -94,7 +94,7 @@ const ReportScamModal = ({ open, setOpen }) => {
                                         />
                                     </div>
                                     <div className='w-full'>
-                                        <div className='flex w-1/3 flex-col items-center space-y-4'>
+                                        <div className='flex flex-col items-center space-y-4 md:w-1/3'>
                                             <TCCustomInput
                                                 label='Ticker'
                                                 name='ticker'
@@ -111,7 +111,7 @@ const ReportScamModal = ({ open, setOpen }) => {
                                     </div>
                                 </div>
 
-                                <div className='flex items-center space-x-10'>
+                                <div className='flex flex-col items-center md:flex-row md:space-x-10'>
                                     <div className='flex w-full flex-col items-center justify-start space-y-4'>
                                         <TCCustomInput
                                             label='Chain/Network'
@@ -150,7 +150,7 @@ const ReportScamModal = ({ open, setOpen }) => {
                                     </span>
                                 </div>
 
-                                <div className='flex items-center space-x-10'>
+                                <div className='flex flex-col items-center md:flex-row md:space-x-10'>
                                     <div className='flex w-full flex-col items-center justify-start space-y-4'>
                                         <TCCustomInput
                                             label='Scam'

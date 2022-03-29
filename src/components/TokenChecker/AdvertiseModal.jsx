@@ -32,7 +32,7 @@ export default function AdvertiseModal({ open, setOpen }) {
         <Transition.Root show={open} as={Fragment}>
             <Dialog
                 as='div'
-                className='fixed inset-0 z-10 overflow-y-auto'
+                className='fixed inset-0 z-50 overflow-y-auto'
                 onClose={setOpen}
             >
                 <div className='flex min-h-screen items-end justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0'>
@@ -65,15 +65,15 @@ export default function AdvertiseModal({ open, setOpen }) {
                         leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
                     >
                         <div className='relative inline-block w-full max-w-4xl transform overflow-hidden rounded-2xl border border-white bg-black align-bottom shadow-xl transition-all sm:my-8 sm:align-middle'>
-                            <div className='flex flex-col space-y-4 bg-black p-4 text-white md:p-8'>
-                                <div className='flex items-center justify-between pb-4'>
+                            <div className='flex flex-col space-y-2 bg-black p-4 text-white md:p-8'>
+                                <div className='flex flex-col items-center justify-between pb-4 md:flex-row'>
                                     <div className='flex w-44 flex-col rounded-lg bg-primary-brand py-1 font-semibold'>
                                         <span className='text-red-600'>
                                             Warning Box
                                         </span>
                                         <span> If unavailable space</span>
                                     </div>
-                                    <h2 className='pr-32 text-base font-semibold'>
+                                    <h2 className='text-base font-semibold md:pr-32'>
                                         Advertise on Tally
                                     </h2>
 

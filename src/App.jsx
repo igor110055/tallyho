@@ -7,7 +7,7 @@ import {
     ExchangePage,
     PoolsPage,
     FarmsPage,
-    // NFTmarketPage,
+    NFTmarketPage,
     // StakeLaunchPadPage,
     // NFTearnPage,
     TallyCentralisedPage,
@@ -79,10 +79,10 @@ function App() {
                 <Route
                     path='nftmarket'
                     element={
-                        // <LazyLoad>
-                        //     <NFTmarketPage />
-                        // </LazyLoad>
-                        <NotFoundRoute />
+                        <LazyLoad>
+                            <NFTmarketPage />
+                        </LazyLoad>
+                        // <NotFoundRoute />
                     }
                 />
 

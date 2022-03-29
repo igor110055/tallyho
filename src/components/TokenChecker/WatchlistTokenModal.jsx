@@ -65,21 +65,7 @@ const WatchlistTokenModal = ({ open, setOpen }) => {
                                     />
                                 </div>
 
-                                <div className='flex w-full items-center justify-start space-x-2 pb-4'>
-                                    <span>
-                                        To make a free report visit Home Page
-                                    </span>
-                                    <a
-                                        href='https://tally-ho.org/'
-                                        target='_blank'
-                                        rel='noopener noreferrer'
-                                        className='text-blue-500 transition hover:text-blue-700'
-                                    >
-                                        https://tally-ho.org
-                                    </a>
-                                </div>
-
-                                <div className='flex items-center space-x-10'>
+                                <div className='flex flex-col items-center md:flex-row md:space-x-10'>
                                     <div className='flex w-full flex-col items-center justify-start space-y-4'>
                                         <TCCustomInput
                                             label='Name of Token'
@@ -94,8 +80,8 @@ const WatchlistTokenModal = ({ open, setOpen }) => {
                                             }
                                         />
                                     </div>
-                                    <div className='flex w-full items-center space-x-4'>
-                                        <div className='flex w-1/3 flex-col items-center space-y-3'>
+                                    <div className='flex w-full flex-col md:flex-row md:items-center md:space-x-4'>
+                                        <div className='flex flex-col items-center space-y-3 md:w-1/3'>
                                             <TCCustomInput
                                                 label='Ticker'
                                                 name='ticker'
@@ -127,7 +113,7 @@ const WatchlistTokenModal = ({ open, setOpen }) => {
                                     </div>
                                 </div>
 
-                                <div className='flex items-center space-x-10'>
+                                <div className='flex flex-col items-center md:flex-row md:space-x-10'>
                                     <div className='flex w-full flex-col items-center justify-start space-y-4'>
                                         <TCCustomInput
                                             label='Chain/Network'
@@ -166,7 +152,7 @@ const WatchlistTokenModal = ({ open, setOpen }) => {
                                     </span>
                                 </div>
 
-                                <div className='flex items-center space-x-10'>
+                                <div className='flex flex-col items-center md:flex-row md:space-x-10'>
                                     <div className='flex w-full flex-col items-center justify-start space-y-4'>
                                         <TCCustomInput
                                             label='Email Address'
@@ -231,8 +217,8 @@ const WatchlistTokenModal = ({ open, setOpen }) => {
                                     ></textarea>
                                 </div>
 
-                                <div className='grid grid-cols-3 items-center pt-6'>
-                                    <span className='ml-auto'>1 BNB</span>
+                                <div className='grid grid-cols-1 items-center gap-y-3 pt-6 md:grid-cols-3'>
+                                    <span className='md:ml-auto'>1 BNB</span>
                                     <button className='mx-auto h-11 w-fit self-center rounded-md bg-primary-brand px-12 text-white'>
                                         Report
                                     </button>

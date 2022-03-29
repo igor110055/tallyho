@@ -1,14 +1,18 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { classNames } from '../../utils/classNames';
 import { navigation } from '../../assets/data/sidebarData';
 import { SidebarMobile, Navbar, Footer } from '..';
 
 import logo1 from '../../assets/images/logo1.png';
 import logo3 from '../../assets/images/logo3.png';
+import { MinusIcon, PlusIcon } from '@heroicons/react/solid';
+
+import { FaTelegramPlane, FaTwitter, FaInstagram } from 'react-icons/fa';
+import classNames from 'classnames';
 
 const SidebarWrapper = ({ children }) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [simpleAppbarOpen, setSimpleAppbarOpen] = useState(false);
 
     return (
         <>
@@ -85,6 +89,83 @@ const SidebarWrapper = ({ children }) => {
                     {children}
 
                     <Footer />
+                </div>
+            </div>
+
+            <div
+                className={classNames(
+                    'fixed right-0 top-20 z-50 h-14 w-6 overflow-hidden rounded-l-xl bg-[#1a1818] transition-all duration-300',
+                    { 'h-40 w-64': simpleAppbarOpen }
+                )}
+            >
+                <div className='mb-1 grid h-6 w-6 cursor-pointer place-items-center rounded-sm bg-[#e7cd86]'>
+                    {simpleAppbarOpen ? (
+                        <MinusIcon
+                            className='h-5 w-5 text-black'
+                            aria-hidden='true'
+                            onClick={() => setSimpleAppbarOpen(false)}
+                        />
+                    ) : (
+                        <PlusIcon
+                            className='h-5 w-5 text-black'
+                            aria-hidden='true'
+                            onClick={() => setSimpleAppbarOpen(true)}
+                        />
+                    )}
+                </div>
+
+                <div
+                    className={classNames(
+                        'mb-3 w-full bg-[#e7cd86] px-2  text-center text-white',
+                        {
+                            hidden: !simpleAppbarOpen,
+                        }
+                    )}
+                >
+                    <span>Join us!</span>
+                </div>
+
+                <div
+                    className={classNames(
+                        'mt-4 flex w-full items-center justify-center space-x-3',
+                        {
+                            hidden: !simpleAppbarOpen,
+                        }
+                    )}
+                >
+                    <a
+                        href='https://t.me/tallytoken'
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='flex h-10 w-10 items-center justify-center rounded-full bg-[#129bd0] text-white'
+                    >
+                        <FaTelegramPlane
+                            className='h-5 w-5 text-white'
+                            aria-hidden='true'
+                        />
+                    </a>
+                    <a
+                        href='https://twitter.com/tallytoken'
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='flex h-10 w-10 items-center justify-center rounded-full bg-[#00acee] text-white'
+                    >
+                        <FaTwitter
+                            className='h-5 w-5 text-white'
+                            aria-hidden='true'
+                        />
+                    </a>
+                    <a
+                        href='https://www.instagram.com/tallytoken'
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='flex h-10 w-10 items-center justify-center rounded-full bg-[#82338e] text-white'
+                    >
+                        <FaInstagram
+                            className='h-5 w-5 text-white'
+                            aria-hidden='true'
+                        />
+                    </a>
                 </div>
             </div>
         </>

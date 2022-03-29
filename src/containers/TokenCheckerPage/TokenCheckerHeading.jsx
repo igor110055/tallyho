@@ -1,8 +1,11 @@
-import { CheckIcon, SearchIcon } from '@heroicons/react/solid';
-import { FaCertificate, FaStar, FaBell, FaChartPie } from 'react-icons/fa';
+import { useState } from 'react';
 import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
+import { CheckIcon, SearchIcon } from '@heroicons/react/solid';
+import { FaCertificate, FaStar, FaBell, FaChartPie } from 'react-icons/fa';
+
 import tokenCheckerImg from '../../assets/images/tokenChecker/TokenChecker.png';
+import { MakeAChallangeModal, WatchlistTokenModal } from '../../components';
 
 const routes = [
     {
@@ -38,6 +41,9 @@ const routes = [
 ];
 
 const TokenCheckerHeading = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isWatchlistModalOpen, setIsWatchlistModalOpen] = useState(false);
+
     return (
         <div className='flex flex-col items-center justify-center sm:mx-4 md:mx-11'>
             <img
@@ -78,13 +84,28 @@ const TokenCheckerHeading = () => {
                     </NavLink>
                 ))}
 
-                <div className='flex items-center justify-center space-x-4 whitespace-nowrap pl-5'>
-                    <button className='flex h-9 items-center justify-center rounded-2xl bg-red-600 p-3 text-white md:hidden'>
+                <div className='flex items-center justify-center space-x-4 whitespace-nowrap pl-5 md:hidden'>
+                    <button
+                        className='flex h-9 items-center justify-center rounded-2xl bg-red-600 p-3 text-white'
+                        onClick={() => setIsModalOpen(true)}
+                    >
                         <span>Make a Challange</span>
                     </button>
-                    <button className='flex h-9 items-center justify-center rounded-2xl bg-primary-brand p-3 text-white md:hidden'>
+                    <button
+                        className='flex h-9 items-center justify-center rounded-2xl bg-primary-brand p-3 text-white'
+                        onClick={() => setIsWatchlistModalOpen(true)}
+                    >
                         <span>Watchlist Tokens</span>
                     </button>
+
+                    <MakeAChallangeModal
+                        open={isModalOpen}
+                        setOpen={setIsModalOpen}
+                    />
+                    <WatchlistTokenModal
+                        open={isWatchlistModalOpen}
+                        setOpen={setIsWatchlistModalOpen}
+                    />
                 </div>
             </div>
         </div>

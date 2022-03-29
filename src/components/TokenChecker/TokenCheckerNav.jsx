@@ -3,14 +3,19 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { FaTrophy } from 'react-icons/fa';
 import { BsStarFill } from 'react-icons/bs';
-import AdvertiseModal from './AdvertiseModal';
-import ReportScamModal from './ReportScamModal';
-import WatchlistTokenModal from './WatchlistTokenModal';
+
+import {
+    GetDoxxedModal,
+    WatchlistTokenModal,
+    ReportScamModal,
+    AdvertiseModal,
+} from '..';
 
 const TokenCheckerNav = ({ onTokenCheckPage }) => {
     const [advertiseOpen, setAdvertiseOpen] = useState(false);
     const [reportScamOpen, setReportScamOpen] = useState(false);
     const [watchlistTokenOpen, setWatchlistTokenOpen] = useState(false);
+    const [doxxedOpen, setDoxxedOpen] = useState(false);
 
     return (
         <>
@@ -52,7 +57,10 @@ const TokenCheckerNav = ({ onTokenCheckPage }) => {
                     <span>Watchlist Tokens</span>
                 </button>
 
-                <button className='flex items-center space-x-1 rounded-lg px-2 py-3 font-semibold text-white transition-colors duration-200 hover:bg-white hover:text-black'>
+                <button
+                    className='flex items-center space-x-1 rounded-lg px-2 py-3 font-semibold text-white transition-colors duration-200 hover:bg-white hover:text-black'
+                    onClick={() => setDoxxedOpen(true)}
+                >
                     <span>Get Doxxed</span>
                 </button>
             </div>
@@ -66,6 +74,8 @@ const TokenCheckerNav = ({ onTokenCheckPage }) => {
                 open={watchlistTokenOpen}
                 setOpen={setWatchlistTokenOpen}
             />
+
+            <GetDoxxedModal open={doxxedOpen} setOpen={setDoxxedOpen} />
         </>
     );
 };

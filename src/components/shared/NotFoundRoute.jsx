@@ -7,7 +7,7 @@ const NotFoundRoute = () => {
                 <img
                     src={noticeImg}
                     alt='notice'
-                    className='max-w-4xl object-contain'
+                    className='object-contain md:max-w-4xl'
                 />
             </div>
         </div>
