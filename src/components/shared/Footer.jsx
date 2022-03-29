@@ -124,7 +124,7 @@ const aboutItems = [
         external: true,
     },
     {
-        title: 'Github',
+        title: 'Audit',
         href: '/',
     },
 ];
