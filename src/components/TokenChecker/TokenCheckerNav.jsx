@@ -5,10 +5,12 @@ import { FaTrophy } from 'react-icons/fa';
 import { BsStarFill } from 'react-icons/bs';
 import AdvertiseModal from './AdvertiseModal';
 import ReportScamModal from './ReportScamModal';
+import WatchlistTokenModal from './WatchlistTokenModal';
 
 const TokenCheckerNav = ({ onTokenCheckPage }) => {
     const [advertiseOpen, setAdvertiseOpen] = useState(false);
     const [reportScamOpen, setReportScamOpen] = useState(false);
+    const [watchlistTokenOpen, setWatchlistTokenOpen] = useState(false);
 
     return (
         <>
@@ -43,7 +45,10 @@ const TokenCheckerNav = ({ onTokenCheckPage }) => {
                     <span>Report Scam Token</span>
                 </button>
 
-                <button className='flex items-center space-x-1 rounded-lg px-2 py-3 font-semibold text-white transition-colors duration-200 hover:bg-white hover:text-black'>
+                <button
+                    className='flex items-center space-x-1 rounded-lg px-2 py-3 font-semibold text-white transition-colors duration-200 hover:bg-white hover:text-black'
+                    onClick={() => setWatchlistTokenOpen(true)}
+                >
                     <span>Watchlist Tokens</span>
                 </button>
 
@@ -56,6 +61,10 @@ const TokenCheckerNav = ({ onTokenCheckPage }) => {
             <ReportScamModal
                 open={reportScamOpen}
                 setOpen={setReportScamOpen}
+            />
+            <WatchlistTokenModal
+                open={watchlistTokenOpen}
+                setOpen={setWatchlistTokenOpen}
             />
         </>
     );
