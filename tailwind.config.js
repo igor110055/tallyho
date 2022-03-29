@@ -18,6 +18,7 @@ module.exports = {
 				'info_gradient': 'linear-gradient(91.2deg,#686868 2.58%,rgba(86,86,86,.3) 103.63%)',
 				'card_gradient': 'linear-gradient(rgba(9,27,54,.8),rgba(9,27,54,.2))',
 				'pools_header': 'linear-gradient(180deg,#3a3a3a,#626262)',
+				'elipseBg': 'url("./assets/images/ellipse1.png")',
 			},
 			fontFamily: {
 				comfortaa: '"Comfortaa", cursive',

@@ -24,3 +24,6 @@ export { default as FarmsContainer } from './FarmsPage/FarmsContainer';
 export { default as TokenCheckerHeading } from './TokenCheckerPage/TokenCheckerHeading';
 export { default as CoinsTable } from './TokenCheckerPage/CoinsTable';
 export { default as TokenCheckerInfo } from './TokenCheckerPage/TokenCheckerInfo';
+
+// NFTMarketPage
+export { default as Showcase } from './NFTMarketPage/Showcase';
