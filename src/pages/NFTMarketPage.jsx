@@ -29,7 +29,7 @@ const NFTMarketPage = () => {
             </div>
 
             <div className='my-20 mx-auto max-w-5xl space-y-14'>
-                <h2 className='text-center text-4xl text-white'>
+                <h2 className='text-center text-3xl text-white md:text-4xl'>
                     Are you looking for investment in a project? Or do you have
                     an asset to trade as a{' '}
                     <span className='text-primary-brand_light'>Tally</span>NFT?

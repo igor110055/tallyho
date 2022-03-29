@@ -10,24 +10,34 @@ const Showcase = () => {
     return (
         <div className='bg-elipseBg bg-[length:125%] bg-bottom bg-no-repeat'>
             <div className='container mx-auto mt-20 max-w-6xl'>
-                <div className='flex justify-center -space-x-6 text-white'>
+                <div className='flex flex-col justify-center text-white md:flex-row lg:-space-x-4 xl:-space-x-6'>
                     <div className='relative flex flex-col items-center'>
-                        <img src={card1} alt='card1' className='max-w-xs' />
-                        <span className='absolute bottom-10 right-[20%] -rotate-12'>
+                        <img
+                            src={card1}
+                            alt='card1'
+                            className='w-60 lg:max-w-[15rem] xl:max-w-xs'
+                        />
+                        <span className='absolute hidden -rotate-12 md:block lg:-bottom-1 lg:right-[12%] xl:bottom-10 xl:right-[20%]'>
                             Property
                         </span>
                     </div>
-                    <div className='relative flex -translate-y-8 flex-col items-center'>
+                    <div className='relative flex flex-col items-center md:-translate-y-8'>
                         <img
                             src={card2}
                             alt='card2'
-                            className='z-10 max-w-[18rem]'
+                            className='z-10 w-60 lg:max-w-[12rem] xl:max-w-[18rem]'
                         />
-                        <span>Back film / media projects.</span>
+                        <span className='hidden text-sm md:block xl:text-base'>
+                            Back film / media projects.
+                        </span>
                     </div>
                     <div className='relative flex flex-col items-center'>
-                        <img src={card3} alt='card3' className='max-w-xs' />
-                        <span className='absolute bottom-8 left-[15%] rotate-12'>
+                        <img
+                            src={card3}
+                            alt='card3'
+                            className='w-60 lg:max-w-[15rem] xl:max-w-xs'
+                        />
+                        <span className='absolute hidden rotate-12 text-sm md:block lg:left-[5%] lg:-bottom-1 xl:left-[15%] xl:bottom-8 xl:text-base'>
                             Business investments.
                         </span>
                     </div>
@@ -40,18 +50,22 @@ const Showcase = () => {
                 </h2>
 
                 <div className='mx-auto my-8 flex justify-center'>
-                    <img src={sharehand} alt='sharehand' className='w-44' />
+                    <img
+                        src={sharehand}
+                        alt='sharehand'
+                        className='w-36 sm:w-32 lg:w-36 xl:w-44'
+                    />
                 </div>
 
                 <div className='flex w-full items-center justify-center text-white'>
                     <PlusIcon className='h-10 w-10 ' />
-                    <h3 className='text-4xl text-primary-brand_light'>
+                    <h3 className='text-primary-brand_light lg:text-3xl xl:text-4xl'>
                         Trade ART and Mint your music onto the blockchain!
                     </h3>
                 </div>
 
                 <div className='my-10 flex flex-col items-center'>
-                    <h2 className='text-5xl text-white'>
+                    <h2 className='text-3xl text-white sm:text-4xl md:text-5xl'>
                         <span className='text-primary-brand_light'>Tally</span>
                         NFT Launchpad.
                     </h2>
@@ -66,7 +80,7 @@ const Showcase = () => {
                     <span>Non-Tally Token Holders.</span>
                 </div>
 
-                <div className='mx-auto mt-4 grid max-w-5xl grid-cols-5 gap-4'>
+                <div className='mx-auto mt-4 grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5'>
                     {cardsData.map(item => (
                         <MarketPageCard key={item.id} {...item} />
                     ))}
