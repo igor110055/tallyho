@@ -47,10 +47,7 @@ const FarmItem = ({ tokenImg, tokenName, apy }) => {
                         destroyTooltipOnHide
                         arrowContent
                     >
-                        <MdOutlineHelpOutline
-                            data-tip='helpIcon'
-                            className='h-5 w-5'
-                        />
+                        <MdOutlineHelpOutline className='h-5 w-5' />
                     </Tooltip>
                 </div>
             </div>

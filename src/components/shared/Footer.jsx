@@ -1,11 +1,12 @@
-import btally from '../../assets/images/btally.png';
-import FooterToggle from './FooterToggle';
 import {
-    FaTelegramPlane,
-    FaTwitter,
-    FaYoutube,
-    FaMedium,
-} from 'react-icons/fa';
+    aboutItems,
+    productItems,
+    serviceItems,
+    socialItems,
+} from '../../assets/data/footerData';
+import FooterToggle from './FooterToggle';
+import btally from '../../assets/images/btally.png';
+import Tooltip from 'rc-tooltip';
 
 function MetaMaskIcon(props) {
     return (
@@ -73,61 +74,6 @@ function MetaMaskIcon(props) {
         </svg>
     );
 }
-
-const serviceItems = [
-    {
-        title: 'Home',
-        href: '/',
-    },
-    {
-        title: 'Tally Token',
-        href: '/bsw_token',
-    },
-    {
-        title: 'Apply to Launch',
-        href: 'https://forms.gle/V8sQfCi5aBesL2ya8',
-        external: true,
-    },
-];
-
-const productItems = [
-    {
-        title: 'Exchange',
-        href: '/swap',
-    },
-    {
-        title: 'Liquidity',
-        href: '/liquidity',
-    },
-    {
-        title: 'Farms',
-        href: '/farms',
-    },
-    {
-        title: 'Pools',
-        href: '/pools',
-    },
-    {
-        title: 'Analytics',
-        href: '/analytics',
-    },
-];
-
-const aboutItems = [
-    {
-        title: 'Docs',
-        href: '/docs',
-    },
-    {
-        title: 'News',
-        href: 'https://tally.zendesk.com/hc/en-us',
-        external: true,
-    },
-    {
-        title: 'Audit',
-        href: '/',
-    },
-];
 
 const Footer = () => {
     return (
@@ -225,10 +171,56 @@ const Footer = () => {
                         Community
                     </h4>
                     <div className='group mt-4 flex items-center space-x-3 text-white'>
-                        <FaTelegramPlane className='cursor-pointer transition duration-200 hover:text-white/60' />
-                        <FaTwitter className='cursor-pointer transition duration-200 hover:text-white/60' />
-                        <FaMedium className='cursor-pointer transition duration-200 hover:text-white/60' />
-                        <FaYoutube className='cursor-pointer transition duration-200 hover:text-white/60' />
+                        {/* <FaTelegramPlane className='cursor-pointer transition duration-200 hover:text-white/60' /> */}
+                        {socialItems.map(item => {
+                            const { children, href, Icon, title } = item;
+
+                            if (children && children.length) {
+                                return (
+                                    <Tooltip
+                                        placement='topLeft'
+                                        trigger={['hover']}
+                                        overlay={
+                                            <div className='flex flex-col items-center space-y-2'>
+                                                {children.map(child => {
+                                                    const { title, href } =
+                                                        child;
+                                                    return (
+                                                        <a
+                                                            href={href}
+                                                            target='_blank'
+                                                            rel='noopener noreferrer'
+                                                            className='flex items-center text-xs font-semibold text-white'
+                                                        >
+                                                            {title}
+                                                        </a>
+                                                    );
+                                                })}
+                                            </div>
+                                        }
+                                        overlayClassName='bg-[#888888] max-w-fit rounded-lg p-4'
+                                        destroyTooltipOnHide
+                                        arrowContent
+                                        key={title}
+                                    >
+                                        <Icon className='cursor-pointer transition duration-200 hover:text-white/60' />
+                                    </Tooltip>
+                                );
+                            } else {
+                                return (
+                                    <a
+                                        href={href}
+                                        target='_blank'
+                                        rel='noopener noreferrer'
+                                        className='cursor-pointer transition duration-200 hover:text-white/60'
+                                        title={title}
+                                        key={title}
+                                    >
+                                        <Icon className='cursor-pointer transition duration-200 hover:text-white/60' />
+                                    </a>
+                                );
+                            }
+                        })}
                     </div>
                 </div>
             </div>

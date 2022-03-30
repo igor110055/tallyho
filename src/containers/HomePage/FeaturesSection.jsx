@@ -7,7 +7,7 @@ import lowfeesImg from '../../assets/images/media/lowfees.png';
 
 const FeaturesSection = () => {
     return (
-        <section className='mx-auto max-w-7xl bg-primary-background px-4 pt-6'>
+        <section className='mx-auto max-w-6xl bg-primary-background px-4 pt-6'>
             <h2 className='mb-8 text-center text-2xl font-semibold text-primary-darkText'>
                 Our Exchange Features to Look Forward to
             </h2>

@@ -147,7 +147,7 @@ const FarmCard = () => {
                     </Disclosure.Button>
 
                     <Disclosure.Panel className='flex flex-col items-center rounded-b-2xl bg-[#f2f6fc] py-5 px-8 md:flex-row'>
-                        <div className='flex w-full grow items-center justify-between border-b-2 border-gray-400/40 pb-3 md:w-fit md:border-0 md:pb-0'>
+                        <div className='flex w-full grow items-center justify-between border-b-2 border-gray-400/40 pb-3 md:w-fit md:justify-center md:border-0 md:pb-0'>
                             <a
                                 href='https://exchange.tally.org/#/add/0x965F527D9159dCe6288a2219DB51fc6Eef120dD1/0x55d398326f99059ff775485246999027b3197955'
                                 target='_blank'
@@ -156,13 +156,13 @@ const FarmCard = () => {
                             >
                                 Get LP
                             </a>
-                            <div className='order-1 ml-4 flex flex-col text-xs font-semibold text-primary-brand'>
+                            <div className='order-1 ml-4 flex flex-col text-xs font-semibold text-primary-brand md:order-2'>
                                 <span>Available LP</span>
                                 <span className='text-sm text-black'>0 LP</span>
                                 <span>$0.0000</span>
                             </div>
 
-                            <ChevronRightIcon className='hidden h-10 w-10 text-gray-400 md:block' />
+                            <ChevronRightIcon className='hidden h-10 w-10 text-gray-400 md:order-3 md:block' />
                         </div>
 
                         <div className='mx-auto ml-auto flex w-full max-w-sm items-center space-x-2 border-b-2 border-gray-400/40 py-4 px-0 md:border-0 md:py-0 md:px-10'>
