@@ -15,7 +15,7 @@ const Showcase = () => {
                         <img
                             src={card1}
                             alt='card1'
-                            className='w-60 lg:max-w-[15rem] xl:max-w-xs'
+                            className='w-60 sm:w-full lg:max-w-[15rem] xl:max-w-xs'
                         />
                         <span className='absolute hidden -rotate-12 md:block lg:-bottom-1 lg:right-[12%] xl:bottom-10 xl:right-[20%]'>
                             Property
@@ -25,7 +25,7 @@ const Showcase = () => {
                         <img
                             src={card2}
                             alt='card2'
-                            className='z-10 w-60 lg:max-w-[12rem] xl:max-w-[18rem]'
+                            className='z-10 w-60 sm:w-full lg:max-w-[12rem] xl:max-w-[18rem]'
                         />
                         <span className='hidden text-sm md:block xl:text-base'>
                             Back film / media projects.
@@ -35,7 +35,7 @@ const Showcase = () => {
                         <img
                             src={card3}
                             alt='card3'
-                            className='w-60 lg:max-w-[15rem] xl:max-w-xs'
+                            className='w-60 sm:w-full lg:max-w-[15rem] xl:max-w-xs'
                         />
                         <span className='absolute hidden rotate-12 text-sm md:block lg:left-[5%] lg:-bottom-1 xl:left-[15%] xl:bottom-8 xl:text-base'>
                             Business investments.
