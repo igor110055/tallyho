@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import logo2 from '../../assets/images/logo2.png';
 import classNames from 'classnames';
 import { TokenCheckerNav } from '..';
+import Web3ConnectModal from './Web3ConnectModal';
 
 const Navbar = ({ setSidebarOpen }) => {
     const navigate = useNavigate();
@@ -12,6 +13,7 @@ const Navbar = ({ setSidebarOpen }) => {
 
     const [scrolled, setScrolled] = useState(false);
     const [onTokenCheckPage, setOnTokenCheckPage] = useState(false);
+    const [connectModalOpen, setConnectModalOpen] = useState(false);
 
     useEffect(() => {
         if (location.pathname.includes('/tokenchecker')) {
@@ -76,10 +78,16 @@ const Navbar = ({ setSidebarOpen }) => {
                     <button
                         type='button'
                         className='mx-4 flex h-10 min-h-[40px] items-center justify-center rounded-lg bg-primary-brand px-4 text-sm font-medium text-white transition duration-300 ease-in-out hover:bg-primary-brand/60'
+                        onClick={() => setConnectModalOpen(true)}
                     >
                         <span>Connect</span>
                         <FaWallet className='ml-2 opacity-40' />
                     </button>
+
+                    <Web3ConnectModal
+                        open={connectModalOpen}
+                        setOpen={setConnectModalOpen}
+                    />
                 </div>
             </div>
         </div>

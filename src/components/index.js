@@ -13,7 +13,7 @@ export { default as GasSpeedRadio } from './shared/GasSpeedRadio';
 export { default as ToleranceRadio } from './shared/ToleranceRadio';
 export { default as AudioSwitch } from './shared/AudioSwitch';
 export { default as NotFoundRoute } from './shared/NotFoundRoute';
-
+export { default as Web3ConnectModal } from './shared/Web3ConnectModal';
 // HomePage
 export { default as MovingIcons } from './HomePage/MovingIcons';
 export { default as FarmItem } from './HomePage/FarmItem';
