@@ -111,3 +111,13 @@ export const navigation = [
   { name: "Bsc Charts", href: "tally_centralise", icon: null, badge: "soon", image: chartsImg },
   { name: "Analytics", href: "tally_centralise", icon: null, badge: "", image: analyImg },
 ];
+
+export const moreNavigation = [
+  { name: 'Audit (PDF)', href: 'pdf/TallyAudit.pdf' },
+  { name: 'News', href: 'hc/en-us' },
+  { name: "About Tally", href: 'bsw_token' },
+  { name: "Team", href: 'team' },
+  { name: "Docs", href: '/' },
+  { name: "Voting", href: 'tally_centralise' },
+  { name: "Voting2", href: '/' },
+]
