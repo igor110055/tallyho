@@ -1,11 +1,13 @@
 import { MenuIcon } from '@heroicons/react/solid';
 import { useEffect, useState } from 'react';
 import { FaWallet } from 'react-icons/fa';
+import { FcApproval } from 'react-icons/fc';
 import { useLocation, useNavigate } from 'react-router-dom';
-import logo2 from '../../assets/images/logo2.png';
 import classNames from 'classnames';
 import { TokenCheckerNav } from '..';
 import Web3ConnectModal from './Web3ConnectModal';
+import logo2 from '../../assets/images/logo2.png';
+import ealogo from '../../assets/images/eatherauthority.png';
 
 const Navbar = ({ setSidebarOpen }) => {
     const navigate = useNavigate();
@@ -58,18 +60,45 @@ const Navbar = ({ setSidebarOpen }) => {
             </button>
             <div className='flex w-full flex-1 justify-between px-0 md:px-10'>
                 <div className='flex items-center'>
-                    <button
-                        type='button'
-                        className='mx-4 flex h-10 min-h-[40px] items-center justify-center rounded-lg border border-primary-brand px-4 font-medium text-white transition duration-300 ease-in-out hover:border-white'
-                        onClick={() => navigate('/')}
-                    >
-                        <img
-                            src={logo2}
-                            alt='logo'
-                            className='mr-0 w-5 md:mr-2'
-                        />
-                        <span className='hidden md:block'>Tally Ho Home</span>
-                    </button>
+                    <div className='flex items-center'>
+                        <button
+                            type='button'
+                            className='mx-4 flex h-10 min-h-[40px] items-center justify-center rounded-lg border border-primary-brand px-4 font-medium text-white transition duration-300 ease-in-out hover:border-white'
+                            onClick={() => navigate('/')}
+                        >
+                            <img
+                                src={logo2}
+                                alt='logo'
+                                className='mr-0 w-5 md:mr-2'
+                            />
+                            <span className='hidden md:block'>
+                                Tally Ho Home
+                            </span>
+                        </button>
+                    </div>
+
+                    <div className='flex items-center'>
+                        <button
+                            type='button'
+                            className='mx-4 flex items-center justify-center rounded-lg px-4 font-medium text-white transition duration-300 ease-in-out'
+                            onClick={() => navigate('/')}
+                        >
+                            <img
+                                src={ealogo}
+                                alt='Eather Authority Logo'
+                                className='mr-0 h-12 rounded-lg object-cover md:mr-2'
+                            />
+                            <div className='hidden md:block'>
+                                <span className='flex items-center font-comfortaa text-xs font-light uppercase'>
+                                    Audited by{' '}
+                                    <FcApproval className='ml-2 h-4 w-4' />
+                                </span>
+                                <span className='font-comfortaa'>
+                                    Eather Authority
+                                </span>
+                            </div>
+                        </button>
+                    </div>
                 </div>
 
                 <TokenCheckerNav onTokenCheckPage={onTokenCheckPage} />
