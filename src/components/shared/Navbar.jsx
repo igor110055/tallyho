@@ -80,8 +80,7 @@ const Navbar = ({ setSidebarOpen }) => {
                     <div className='flex items-center'>
                         <button
                             type='button'
-                            className='mx-4 flex items-center justify-center rounded-lg px-4 font-medium text-white transition duration-300 ease-in-out'
-                            onClick={() => navigate('/')}
+                            className='mx-4 flex items-center justify-center rounded-lg px-4 font-medium text-white'
                         >
                             <img
                                 src={ealogo}
