@@ -1,4 +1,5 @@
-import { Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { Layout, LazyLoad, NotFoundRoute } from './components';
 import { CoinsTable, SwapSection } from './containers';
 import {
@@ -16,6 +17,12 @@ import {
 } from './pages';
 
 function App() {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
+
     return (
         <Routes>
             <Route path='/' element={<Layout />}>
