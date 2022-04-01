@@ -25,19 +25,26 @@ const serviceItems = [
 const productItems = [
     {
         title: 'Exchange',
-        href: '/swap',
+        href: '/ExchangeWP.pdf',
+        external: true,
     },
     {
         title: 'Liquidity',
-        href: '/liquidity',
+        href: '/ExchangeWP.pdf',
+        external: true,
+
     },
     {
         title: 'Farms',
-        href: '/farms',
+        href: '/ExchangeWP.pdf',
+        external: true,
+
     },
     {
         title: 'Pools',
-        href: '/pools',
+        href: '/ExchangeWP.pdf',
+        external: true,
+
     },
     {
         title: 'Analytics',

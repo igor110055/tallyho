@@ -42,24 +42,24 @@ const Intro = () => {
                         </span>
                     </div>
 
-                    <div className='my-5 mt-8 grid max-w-xl grid-cols-2 rounded-2xl bg-right_gradient p-6 '>
-                        <div className='flex items-center border-r border-primary-brand'>
+                    <div className='my-5 mt-8 flex w-full max-w-xl rounded-2xl bg-right_gradient p-3 md:p-6 '>
+                        <div className='flex items-center border-r border-primary-brand pr-4 md:pr-6'>
                             <img src={logo2} alt='logo' className='h-12 w-12' />
                             <div className='ml-4 sm:mr-4'>
                                 <span className='mb-1 block text-xs font-bold leading-6 text-primary-brand'>
                                     Total Value Locked
                                 </span>
-                                <span className='text-2xl font-semibold text-white'>
+                                <span className='text-lg font-semibold text-white md:text-2xl'>
                                     $000, 000,000
                                 </span>
                             </div>
                         </div>
                         <div className='flex items-center'>
-                            <div className='ml-2 md:ml-8'>
+                            <div className='ml-3 md:ml-8'>
                                 <span className='mb-1 block text-xs font-bold leading-6 text-primary-brand'>
                                     Total Trading Volume
                                 </span>
-                                <span className='text-2xl font-semibold text-white'>
+                                <span className='text-lg font-semibold text-white md:text-2xl'>
                                     $000, 000,000
                                 </span>
                             </div>
