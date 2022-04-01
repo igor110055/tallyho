@@ -30,7 +30,7 @@ const TokenCheckerInfo = () => {
 
             <p>Join our Telegram Token Tracker Bot to:</p>
 
-            <p>
+            <div>
                 <ul className='list-inside list-disc'>
                     <li>
                         Receive Scam Alerts when Token Checker publishes new
@@ -46,7 +46,7 @@ const TokenCheckerInfo = () => {
                     </li>
                     <li>Receive crypto News Feeds</li>
                 </ul>
-            </p>
+            </div>
 
             <p className='space-x-2 text-[#6aa45b]'>
                 <span>Tally-Ho</span>
@@ -107,7 +107,7 @@ const TokenCheckerInfo = () => {
                 themselves as victims.
             </p>
             <p>Tally Token Holders</p>
-            <p>
+            <div>
                 <ul className='list-inside list-disc'>
                     <li>
                         Get Alerts when a token is marked as a scam on Token
@@ -122,7 +122,7 @@ const TokenCheckerInfo = () => {
                         all the difference
                     </li>
                 </ul>
-            </p>
+            </div>
 
             <p className='text-[#6aa45b]'>Tally-Ho does Doxxing</p>
             <p>

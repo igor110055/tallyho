@@ -80,7 +80,7 @@ const Footer = () => {
         <div className='bg-primary-dark px-4 py-8'>
             <div className='container mx-auto grid w-full max-w-6xl grid-cols-1 md:grid-cols-4 xl:grid-cols-6'>
                 {/* Info Card */}
-                <div className='flex flex-row gap-4 rounded-2xl bg-[#3c3c3c] p-5 md:col-span-4 xl:col-span-2'>
+                <div className='flex flex-row gap-4 rounded-2xl bg-[#3c3c3c] p-4 md:col-span-4 xl:col-span-2'>
                     <div className='flex flex-col justify-between'>
                         <div>
                             <div className='flex flex-row'>
@@ -181,7 +181,10 @@ const Footer = () => {
                                         placement='topLeft'
                                         trigger={['hover']}
                                         overlay={
-                                            <div className='flex flex-col items-center space-y-2'>
+                                            <div
+                                                className='flex flex-col items-center space-y-2'
+                                                key={title}
+                                            >
                                                 {children.map(child => {
                                                     const { title, href } =
                                                         child;
@@ -191,6 +194,7 @@ const Footer = () => {
                                                             target='_blank'
                                                             rel='noopener noreferrer'
                                                             className='flex items-center text-xs font-semibold text-white'
+                                                            key={title}
                                                         >
                                                             {title}
                                                         </a>
@@ -203,7 +207,10 @@ const Footer = () => {
                                         arrowContent
                                         key={title}
                                     >
-                                        <Icon className='cursor-pointer transition duration-200 hover:text-white/60' />
+                                        <Icon
+                                            key={title}
+                                            className='cursor-pointer transition duration-200 hover:text-white/60'
+                                        />
                                     </Tooltip>
                                 );
                             } else {
@@ -216,7 +223,10 @@ const Footer = () => {
                                         title={title}
                                         key={title}
                                     >
-                                        <Icon className='cursor-pointer transition duration-200 hover:text-white/60' />
+                                        <Icon
+                                            key={title}
+                                            className='cursor-pointer transition duration-200 hover:text-white/60'
+                                        />
                                     </a>
                                 );
                             }

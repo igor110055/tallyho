@@ -39,7 +39,7 @@ const TokenCheckerNav = ({ onTokenCheckPage }) => {
                     className='flex items-center space-x-1 rounded-lg px-2 py-3 font-semibold text-white transition-colors duration-200 hover:bg-white hover:text-black'
                     onClick={() => setAdvertiseOpen(true)}
                 >
-                    <span>Advertiese</span>
+                    <span>Advertise</span>
                     <BsStarFill />
                 </button>
 

@@ -12,9 +12,9 @@ const FarmHeader = () => {
                         Farms
                     </h1>
                     <p className='max-w-sm font-light leading-6 text-[#dddddd]'>
-                        Tally Farms gives you opportunities to achieve high
+                        Tally Farms give you opportunities to achieve high
                         earnings by simply staking LP tokens. Take advantage of
-                        the high yield for Tally LPs
+                        high yields for Tally LPs.
                     </p>
                     <a
                         href='#add_product'

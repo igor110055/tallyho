@@ -9,7 +9,7 @@ import { FaTelegramPlane, FaTwitter, FaInstagram } from 'react-icons/fa';
 import { moreNavigation, navigation } from '../../assets/data/sidebarData';
 import { SidebarMobile, Navbar, Footer } from '..';
 
-import logo1 from '../../assets/images/logo1.png';
+import logo1 from '../../assets/images/btally.png';
 import logo3 from '../../assets/images/logo3.png';
 
 const SidebarWrapper = ({ children }) => {
@@ -30,7 +30,7 @@ const SidebarWrapper = ({ children }) => {
                             <img
                                 src={logo1}
                                 alt='mobile logo'
-                                className='w-10'
+                                className='h-10 w-10'
                             />
                             <img
                                 src={logo3}

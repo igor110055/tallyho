@@ -8,7 +8,8 @@ import {
 const serviceItems = [
     {
         title: 'Home',
-        href: '/',
+        href: 'https://tally-ho.org/',
+        external: true,
     },
     {
         title: 'Tally Token',
@@ -16,7 +17,7 @@ const serviceItems = [
     },
     {
         title: 'Apply to Launch',
-        href: 'https://forms.gle/V8sQfCi5aBesL2ya8',
+        href: 'https://forms.gle/z1LRTLbesKuC7RYv8',
         external: true,
     },
 ];

@@ -2,30 +2,22 @@ const LaunchpadContainer = () => {
     return (
         <div className='container mx-auto max-w-6xl px-3 py-20 md:px-6'>
             <div className='flex max-w-xl flex-col space-y-4 text-white'>
-                <h1 className='pb-4 text-4xl font-semibold'>
-                    The Stake Token LaunchPad on Tally!
-                </h1>
+                <h1 className='pb-4 text-4xl font-semibold'>Tally Launchpad</h1>
                 <p className='font-normal leading-7 text-[#d3d3d3]'>
-                    In Q3, Tally-Ho will be offering a launchpad specially for
-                    project owners who are interested in their tokens being
-                    readily stake-able on Tally Farms.
+                    Looking to sell an asset as a NFT? Are you looking for
+                    funding for a project (Film, media or a business)?
                     <br />
-                    When a project applies to launch on Tally Exchange, their
-                    holders can stake their token immediately on launch.
-                    <br />
-                    We bring instant value to tokens leading to beneficial
-                    partnerships
-                </p>
-                <p className='font-normal leading-7 text-[#d3d3d3]'>
-                    Tally Token holders will have guaranteed, semi-guaranteed
-                    and lottery presalespots dependent on amount of tally
-                    holdings. <br />
-                    Launchpad Coming Soon (more info closer to Q3){' '}
+                    Apply to launch on Tally NFT Launchpad and reach investors
                 </p>
 
-                <button className='h-12 max-w-fit rounded-lg bg-primary-brand px-6 text-white'>
+                <a
+                    href='https://forms.gle/z1LRTLbesKuC7RYv8'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='flex h-12 max-w-fit items-center rounded-lg bg-primary-brand px-6 text-white'
+                >
                     Apply to Launch
-                </button>
+                </a>
             </div>
         </div>
     );

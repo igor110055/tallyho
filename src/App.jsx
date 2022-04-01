@@ -3,7 +3,7 @@ import { Layout, LazyLoad, NotFoundRoute } from './components';
 import { CoinsTable, SwapSection } from './containers';
 import {
     HomePage,
-    // LiquidityPage,
+    LiquidityPage,
     ExchangePage,
     PoolsPage,
     FarmsPage,
@@ -32,8 +32,8 @@ function App() {
                     path='liquidity'
                     element={
                         <LazyLoad>
-                            {/* <LiquidityPage /> */}
-                            <ExchangePage />
+                            <LiquidityPage />
+                            {/* <ExchangePage /> */}
                         </LazyLoad>
                     }
                 />

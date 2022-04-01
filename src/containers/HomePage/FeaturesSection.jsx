@@ -1,9 +1,9 @@
 import Slider from 'react-slick';
 import { BenefitItem } from '../../components';
 
-import glassImg from '../../assets/images/media/glass.png';
 import animImg from '../../assets/images/media/anim.png';
 import lowfeesImg from '../../assets/images/media/lowfees.png';
+import logoImg from '../../assets/images/logo2.png';
 
 const FeaturesSection = () => {
     return (
@@ -50,12 +50,11 @@ const FeaturesSection = () => {
                     draggable
                     className='mx-auto w-3/4 xl:w-11/12'
                 >
-                    <BenefitItem img={glassImg} title='Blockchains in 1 place'>
-                        Whether Bep20, Erc20, Matic ERC20 or Cardano ERC20.
+                    <BenefitItem img={logoImg} title='Blockchains in 1 place'>
+                        Whether trading crypto or
                         <br />
-                        All can be traded on Tally Exchange.
-                        <br />
-                        Starting with Bep20 swaps is our first roll out
+                        swapping stablecoins <br /> Receive $TallyBACK on all
+                        transactions.
                     </BenefitItem>
                     <BenefitItem img={animImg} title='Monthly Raffle'>
                         Participate in the regular Tally Raffle and win prizes
@@ -72,12 +71,11 @@ const FeaturesSection = () => {
                         <br />
                         Fees held low serving Tally Users
                     </BenefitItem>
-                    <BenefitItem img={glassImg} title='Blockchains in 1 place'>
-                        Whether Bep20, Erc20, Matic ERC20 or Cardano ERC20.
+                    <BenefitItem img={logoImg} title='Blockchains in 1 place'>
+                        Whether trading crypto or
                         <br />
-                        All can be traded on Tally Exchange.
-                        <br />
-                        Starting with Bep20 swaps is our first roll out
+                        swapping stablecoins <br /> Receive $TallyBACK on all
+                        transactions.
                     </BenefitItem>
                 </Slider>
             </div>
