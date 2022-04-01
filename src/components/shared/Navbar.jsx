@@ -93,7 +93,7 @@ const Navbar = ({ setSidebarOpen }) => {
                                     <FcApproval className='ml-2 h-4 w-4' />
                                 </span>
                                 <span className='font-comfortaa'>
-                                    Eather Authority
+                                    EtherAuthority
                                 </span>
                             </div>
                         </button>
