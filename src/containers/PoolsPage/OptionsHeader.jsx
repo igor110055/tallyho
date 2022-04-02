@@ -44,7 +44,7 @@ const OptionsHeader = () => {
                 </div>
                 <div className='ml-auto flex items-center space-x-4 md:ml-0'>
                     <StackedSwitch />
-                    <span className='leading-6 text-white'>Stacked Only</span>
+                    <span className='leading-6 text-white'>Staked Only</span>
                 </div>
             </div>
 

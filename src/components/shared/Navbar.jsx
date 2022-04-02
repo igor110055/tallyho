@@ -52,7 +52,7 @@ const Navbar = ({ setSidebarOpen }) => {
         >
             <button
                 type='button'
-                className='focus:ring-primary-black  px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset md:hidden'
+                className='focus:ring-primary-black  px-2 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset md:hidden'
                 onClick={() => setSidebarOpen(true)}
             >
                 <span className='sr-only'>Open sidebar</span>
@@ -63,7 +63,7 @@ const Navbar = ({ setSidebarOpen }) => {
                     <div className='flex items-center'>
                         <button
                             type='button'
-                            className='mx-4 flex h-10 min-h-[40px] items-center justify-center rounded-lg border border-primary-brand px-4 font-medium text-white transition duration-300 ease-in-out hover:border-white'
+                            className='flex h-10 min-h-[40px] items-center justify-center rounded-lg border-0 border-primary-brand px-4 font-medium text-white transition duration-300 ease-in-out hover:border-white md:mx-4 md:border'
                             onClick={() => navigate('/')}
                         >
                             <img
@@ -80,19 +80,19 @@ const Navbar = ({ setSidebarOpen }) => {
                     <div className='flex items-center'>
                         <button
                             type='button'
-                            className='mx-4 hidden items-center justify-center rounded-lg px-4 font-medium text-white md:flex'
+                            className='flex items-center justify-center rounded-lg font-medium text-white md:mx-4 md:px-4'
                         >
                             <img
                                 src={ealogo}
                                 alt='Eather Authority Logo'
-                                className='mr-0 h-12 rounded-lg object-cover'
+                                className='mr-0 h-8  rounded-lg object-cover md:h-12'
                             />
-                            <div className='hidden md:block'>
-                                <span className='flex items-center font-comfortaa text-xs font-light uppercase'>
+                            <div className='-ml-1 flex flex-col items-center -space-y-1 md:ml-0 md:space-y-0'>
+                                <span className='flex items-center font-comfortaa text-[8px] font-light uppercase md:text-xs'>
                                     Audited by{' '}
-                                    <FcApproval className='ml-2 h-4 w-4' />
+                                    <FcApproval className='ml-1 h-3 w-3 md:ml-2 md:h-4 md:w-4' />
                                 </span>
-                                <span className='font-comfortaa'>
+                                <span className='font-comfortaa text-[10px] md:text-base'>
                                     EtherAuthority
                                 </span>
                             </div>

@@ -27,7 +27,7 @@ const MovingIcons = () => {
                 setIsShuffled(true);
                 clearTimeout();
             }}
-            className='grid grid-cols-2 items-center gap-8 md:grid-cols-3 xl:grid-cols-5'
+            className='mb-4 grid grid-cols-2 items-center gap-8 md:grid-cols-3 xl:grid-cols-5'
             unmount={true}
         >
             {shuffledArr.map((item, index) => (

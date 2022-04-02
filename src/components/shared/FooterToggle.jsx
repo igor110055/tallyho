@@ -22,7 +22,7 @@ const FooterToggle = ({ title, items }) => {
     }, [handleResize]);
 
     return (
-        <Disclosure defaultOpen={!isMobile}>
+        <Disclosure defaultOpen={isMobile}>
             <Disclosure.Button
                 className='cursor-pointer text-base font-semibold text-white'
                 as='h4'

@@ -81,7 +81,7 @@ const Footer = () => {
             <div className='container mx-auto grid w-full max-w-6xl grid-cols-1 md:grid-cols-4 xl:grid-cols-6'>
                 {/* Info Card */}
                 <div className='flex flex-row gap-4 rounded-2xl bg-[#3c3c3c] p-4 md:col-span-4 xl:col-span-2'>
-                    <div className='flex flex-col justify-between'>
+                    <div className='flex flex-col justify-between space-y-3 md:space-y-0'>
                         <div>
                             <div className='flex flex-row'>
                                 <img src={btally} alt='logo' />
@@ -94,7 +94,7 @@ const Footer = () => {
                             </span>
                         </div>
 
-                        <div className='flex flex-row items-center space-x-2'>
+                        <div className='flex flex-col space-y-2 md:flex-row md:items-center md:space-y-0 md:space-x-2'>
                             <button className='grid h-10 w-10 place-items-center rounded-full border-none bg-[#dcdcdc] outline-none'>
                                 <MetaMaskIcon />
                             </button>

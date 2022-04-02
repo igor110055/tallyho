@@ -6,10 +6,10 @@ import { MovingIcons } from '../../components';
 const Intro = () => {
     return (
         <section className='bg-intro_bg pt-20'>
-            <div className='container mx-auto max-w-6xl px-6 pt-10'>
-                <div>
+            <div className='container mx-auto max-w-6xl px-4 pt-10 md:px-6'>
+                <div className='pb-4'>
                     <div className='relative mx-auto max-w-lg text-center'>
-                        <h2 className='mb-2 flex items-center justify-center font-comfortaa text-[40px] font-semibold'>
+                        <h2 className='mb-2 flex items-center justify-center font-comfortaa text-3xl font-semibold md:text-[40px]'>
                             <img src={logo2} alt='logo' className='mr-2 w-7' />
                             <span className='font-light text-white '>
                                 Tally{' '}
@@ -20,7 +20,7 @@ const Intro = () => {
                             </span>
                         </h2>
 
-                        <span className='block text-lg font-semibold text-white'>
+                        <span className='mt-3 block text-lg font-semibold text-white'>
                             A decentralised platform for token swaps, staking,
                             yield farming and auto compounding.
                         </span>
@@ -42,9 +42,13 @@ const Intro = () => {
                         </span>
                     </div>
 
-                    <div className='my-5 mt-8 flex w-full max-w-xl rounded-2xl bg-right_gradient p-3 md:p-6 '>
+                    <div className='my-5 mt-8 flex w-full max-w-xl rounded-2xl bg-right_gradient px-2 py-4 md:p-6 '>
                         <div className='flex items-center border-r border-primary-brand pr-4 md:pr-6'>
-                            <img src={logo2} alt='logo' className='h-12 w-12' />
+                            <img
+                                src={logo2}
+                                alt='logo'
+                                className=' h-10 w-10 md:h-12 md:w-12'
+                            />
                             <div className='ml-4 sm:mr-4'>
                                 <span className='mb-1 block text-xs font-bold leading-6 text-primary-brand'>
                                     Total Value Locked
