@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Dialog, Transition } from '@headlessui/react';
-import { XIcon } from '@heroicons/react/solid';
+import { Dialog, Disclosure, Transition } from '@headlessui/react';
+import { ChevronDownIcon, XIcon } from '@heroicons/react/solid';
+import { MdMore } from 'react-icons/md';
 
-import { navigation } from '../../assets/data/sidebarData';
+import { moreNavigation, navigation } from '../../assets/data/sidebarData';
 import { classNames } from '../../utils/classNames';
 
 import logo1 from '../../assets/images/btally.png';
@@ -120,6 +121,49 @@ const SidebarMobile = ({ setSidebarOpen, sidebarOpen }) => {
                                         </>
                                     </NavLink>
                                 ))}
+
+                                <Disclosure>
+                                    {({ open }) => (
+                                        <>
+                                            <Disclosure.Button className='group flex h-12 w-full items-center justify-between rounded-lg py-2 px-3 text-sm font-medium text-white transition-colors duration-300 hover:bg-[#444444] hover:text-[#646464]'>
+                                                <span className='flex items-center font-semibold'>
+                                                    <MdMore className='mr-3 h-5 w-5 rotate-180 text-white' />
+                                                    <span>More</span>
+                                                </span>
+                                                <ChevronDownIcon
+                                                    className={`${
+                                                        open
+                                                            ? 'rotate-180 transform'
+                                                            : ''
+                                                    } h-5 w-5`}
+                                                />
+                                            </Disclosure.Button>
+                                            <Transition
+                                                show={open}
+                                                enter='transition ease-out duration-300'
+                                                enterFrom='opacity-0 transform scale-95'
+                                                enterTo='opacity-100 transform scale-100'
+                                                leave='transition ease-in duration-75'
+                                                leaveFrom='opacity-100 transform scale-100'
+                                                leaveTo='opacity-0 transform scale-95'
+                                            >
+                                                <Disclosure.Panel className='flex flex-col items-center border-t border-gray-200/10 px-4 pt-4 pb-2 text-sm text-gray-500'>
+                                                    {moreNavigation.map(
+                                                        (item, index) => (
+                                                            <Link
+                                                                to={item.href}
+                                                                key={index}
+                                                                className='group flex w-full items-center rounded-lg py-2 px-3 text-sm font-medium text-white transition-colors duration-300 hover:bg-[#444444] hover:text-[#646464]'
+                                                            >
+                                                                {item.name}
+                                                            </Link>
+                                                        )
+                                                    )}
+                                                </Disclosure.Panel>
+                                            </Transition>
+                                        </>
+                                    )}
+                                </Disclosure>
                             </nav>
                         </div>
                     </div>

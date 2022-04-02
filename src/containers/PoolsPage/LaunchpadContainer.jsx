@@ -4,10 +4,16 @@ const LaunchpadContainer = () => {
             <div className='flex max-w-xl flex-col space-y-4 text-white'>
                 <h1 className='pb-4 text-4xl font-semibold'>Tally Launchpad</h1>
                 <p className='font-normal leading-7 text-[#d3d3d3]'>
-                    Looking to sell an asset as a NFT? Are you looking for
-                    funding for a project (Film, media or a business)?
+                    Looking to sell an asset as a NFT?
                     <br />
-                    Apply to launch on Tally NFT Launchpad and reach investors
+                    Are you looking for funding for a project (Film, media or a
+                    business)?
+                    <br />
+                    <br />
+                    <span>
+                        Apply to launch on Tally NFT Launchpad and reach
+                        investors
+                    </span>
                 </p>
 
                 <a

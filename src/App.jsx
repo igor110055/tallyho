@@ -40,10 +40,11 @@ function App() {
                     element={
                         <LazyLoad>
                             <LiquidityPage />
-                            {/* <ExchangePage /> */}
                         </LazyLoad>
                     }
-                />
+                >
+                    <Route path='add/:coin' element={<SwapSection />} />
+                </Route>
 
                 <Route
                     path='swap'

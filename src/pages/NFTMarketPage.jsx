@@ -36,9 +36,14 @@ const NFTMarketPage = () => {
                 </h2>
 
                 <div className='flex justify-center'>
-                    <button className='rounded-full bg-[#3889a1] px-10 py-2 text-xl text-white transition duration-200 hover:-translate-y-2 hover:shadow-md hover:shadow-slate-200/20'>
+                    <a
+                        href='https://forms.gle/z1LRTLbesKuC7RYv8'
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='rounded-full bg-[#3889a1] px-10 py-2 text-xl text-white transition duration-200 hover:-translate-y-2 hover:shadow-md hover:shadow-slate-200/20'
+                    >
                         Apply Here
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

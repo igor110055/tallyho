@@ -1,4 +1,4 @@
-import noticeImg from '../../assets/images/anim.png';
+import noticeImg from '../../assets/images/notfoundpage.png';
 
 const NotFoundRoute = () => {
     return (

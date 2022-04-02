@@ -17,7 +17,7 @@ const LiquidityPage = () => {
     const navigate = useNavigate();
     const { coin } = useParams();
 
-    const [type, setType] = useState(types[0].value);
+    const [type, setType] = useState(types[1].value);
     const [modalOpen, setModalOpen] = useState(false);
 
     const setTypeandNavigate = type => {
@@ -31,7 +31,7 @@ const LiquidityPage = () => {
 
     useEffect(() => {
         if (!coin) {
-            setType('swap');
+            setType('pool');
         }
     }, [coin]);
 
@@ -47,15 +47,11 @@ const LiquidityPage = () => {
 
                     <h3 className=' text-center text-base font-light text-white'>
                         Receive high yields from earning a share of transaction
-                        fees
+                        fees.
                     </h3>
 
                     {type === 'pool' && (
                         <div className='mb-4 flex flex-col text-center text-white'>
-                            <h3 className=' text-base font-light'>
-                                Receive high yields from earning a share of
-                                transaction fees
-                            </h3>
                             <a
                                 href='https://docs.tally.org/education-hub/how-to-earn-on-tally-farms#:~:text=for%20this%20guide.-,Provide%20Liquidity%2C%20Stake%20LP%20tokens%20%26%20Earn%20BSW,-As%20you%20noticed'
                                 target='_blank'

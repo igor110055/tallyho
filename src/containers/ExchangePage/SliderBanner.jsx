@@ -54,7 +54,7 @@ const SliderBanner = () => {
                         <img src={banner3} alt='banner 3' className='mx-auto' />
                     </div>
                     <div className='mx-auto max-w-xs'>
-                        <img src={banner1} alt='banner 1' className='mx-auto' />
+                        <img src={banner2} alt='banner 2' className='mx-auto' />
                     </div>
                 </Slider>
             </div>

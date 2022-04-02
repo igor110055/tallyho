@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { TokenCheckerNav } from '..';
 import Web3ConnectModal from './Web3ConnectModal';
 import logo2 from '../../assets/images/logo2.png';
-import ealogo from '../../assets/images/eatherauthority.png';
+import ealogo from '../../assets/images/etherauthority_logo.png';
 
 const Navbar = ({ setSidebarOpen }) => {
     const navigate = useNavigate();
@@ -85,7 +85,7 @@ const Navbar = ({ setSidebarOpen }) => {
                             <img
                                 src={ealogo}
                                 alt='Eather Authority Logo'
-                                className='mr-0 h-12 rounded-lg object-cover md:mr-2'
+                                className='mr-0 h-12 rounded-lg object-cover'
                             />
                             <div className='hidden md:block'>
                                 <span className='flex items-center font-comfortaa text-xs font-light uppercase'>

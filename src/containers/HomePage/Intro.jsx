@@ -33,7 +33,7 @@ const Intro = () => {
                         </span>
                     </div>
 
-                    <div className='my-5 flex max-w-xl flex-col space-y-4 rounded-2xl bg-right_gradient p-4 text-2xl font-semibold text-white'>
+                    <div className='my-5 flex max-w-xl flex-col space-y-4 rounded-2xl bg-right_gradient p-4 text-xl font-semibold text-white sm:text-2xl'>
                         <span className='pl-5 align-middle leading-6'>
                             Low fees High Yields
                         </span>

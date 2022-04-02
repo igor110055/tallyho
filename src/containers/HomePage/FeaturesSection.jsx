@@ -4,6 +4,7 @@ import { BenefitItem } from '../../components';
 import animImg from '../../assets/images/media/anim.png';
 import lowfeesImg from '../../assets/images/media/lowfees.png';
 import logoImg from '../../assets/images/logo2.png';
+import glassImg from '../../assets/images/media/glass.png';
 
 const FeaturesSection = () => {
     return (
@@ -50,11 +51,11 @@ const FeaturesSection = () => {
                     draggable
                     className='mx-auto w-3/4 xl:w-11/12'
                 >
-                    <BenefitItem img={logoImg} title='Blockchains in 1 place'>
-                        Whether trading crypto or
+                    <BenefitItem img={glassImg} title='Blockchains in 1 place'>
+                        Whether Bep20, Erc20, Matic ERC20 or Cardano ERC20.
                         <br />
-                        swapping stablecoins <br /> Receive $TallyBACK on all
-                        transactions.
+                        All can be traded on Tally Exchange.
+                        <br /> Starting with Bep20 swaps is our first roll out
                     </BenefitItem>
                     <BenefitItem img={animImg} title='Monthly Raffle'>
                         Participate in the regular Tally Raffle and win prizes
@@ -71,7 +72,7 @@ const FeaturesSection = () => {
                         <br />
                         Fees held low serving Tally Users
                     </BenefitItem>
-                    <BenefitItem img={logoImg} title='Blockchains in 1 place'>
+                    <BenefitItem img={logoImg} title='Get $TallyBACK'>
                         Whether trading crypto or
                         <br />
                         swapping stablecoins <br /> Receive $TallyBACK on all

@@ -37,6 +37,7 @@ const FarmHeader = () => {
                     stopOnHover
                     className='mt-4 md:mt-0'
                     centerMode
+                    centerSlidePercentage={100}
                 >
                     {bannerData.map(item => (
                         <a
@@ -47,7 +48,7 @@ const FarmHeader = () => {
                             <img
                                 src={item.image}
                                 alt={'banner'}
-                                className='ml-auto h-full w-full rounded-lg object-cover'
+                                className='ml-auto h-full w-full rounded-2xl object-cover'
                             />
                         </a>
                     ))}

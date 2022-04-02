@@ -49,7 +49,7 @@ const HeaderSection = () => {
                             <img
                                 src={item.image}
                                 alt={'banner'}
-                                className='ml-auto h-full w-full rounded-lg object-cover'
+                                className='ml-auto h-full w-full rounded-2xl object-cover'
                             />
                         </a>
                     ))}
