@@ -11,6 +11,9 @@ const NFTearnPage = lazy(() => import("./NFTearnPage"));
 const TallyCentralisedPage = lazy(() => import("./TallyCetralisedPage"));
 const PoolsStakeType = lazy(() => import("./PoolsStakeType"));
 const TokenCheckerPage = lazy(() => import("./TokenCheckerPage"));
+const AnalyticsPageLayout = lazy(() => import("./AnalyticsPageLayout"));
+const AnalyticsOverviewPage = lazy(() => import("./AnalyticsOverviewPage"));
+const AnalyticsFilterPage = lazy(() => import("./AnalyticsFilterPage"));
 
 export {
     HomePage,
@@ -23,5 +26,8 @@ export {
     NFTearnPage,
     TallyCentralisedPage,
     PoolsStakeType,
-    TokenCheckerPage
+    TokenCheckerPage,
+    AnalyticsPageLayout,
+    AnalyticsOverviewPage,
+    AnalyticsFilterPage
 };

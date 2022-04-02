@@ -14,6 +14,9 @@ import {
     TallyCentralisedPage,
     PoolsStakeType,
     TokenCheckerPage,
+    AnalyticsPageLayout,
+    AnalyticsOverviewPage,
+    AnalyticsFilterPage,
 } from './pages';
 
 function App() {
@@ -26,6 +29,7 @@ function App() {
     return (
         <Routes>
             <Route path='/' element={<Layout />}>
+                {/* Home Page Route */}
                 <Route
                     index
                     element={
@@ -35,6 +39,7 @@ function App() {
                     }
                 />
 
+                {/* Liquidity Page Route */}
                 <Route
                     path='liquidity'
                     element={
@@ -46,6 +51,7 @@ function App() {
                     <Route path='add/:coin' element={<SwapSection />} />
                 </Route>
 
+                {/* Exchange Page Route */}
                 <Route
                     path='swap'
                     element={
@@ -57,6 +63,7 @@ function App() {
                     <Route path='add/:coin' element={<SwapSection />} />
                 </Route>
 
+                {/* Pools Page Route */}
                 <Route
                     path='pools'
                     element={
@@ -75,6 +82,7 @@ function App() {
                     />
                 </Route>
 
+                {/* Farms Page Route */}
                 <Route
                     path='farms'
                     element={
@@ -84,16 +92,17 @@ function App() {
                     }
                 />
 
+                {/* NFTmarket Page Route */}
                 <Route
                     path='nftmarket'
                     element={
                         <LazyLoad>
                             <NFTmarketPage />
                         </LazyLoad>
-                        // <NotFoundRoute />
                     }
                 />
 
+                {/* Tally Launchpad Page Route */}
                 <Route
                     path='stakelaunchpad'
                     element={
@@ -104,6 +113,7 @@ function App() {
                     }
                 />
 
+                {/* NFTearn Page Route */}
                 <Route
                     path='nftearn'
                     element={
@@ -114,6 +124,7 @@ function App() {
                     }
                 />
 
+                {/* Token Checker Page Route */}
                 <Route
                     path='tokenchecker'
                     element={
@@ -125,6 +136,7 @@ function App() {
                     <Route index path=':filter' element={<CoinsTable />} />
                 </Route>
 
+                {/* Tally Centralised Page Route */}
                 <Route
                     path='tallycentralised'
                     element={
@@ -133,6 +145,34 @@ function App() {
                         </LazyLoad>
                     }
                 />
+
+                {/* Analytics Routes */}
+                <Route
+                    path='analytics'
+                    element={
+                        <LazyLoad>
+                            <AnalyticsPageLayout />
+                        </LazyLoad>
+                    }
+                >
+                    <Route
+                        index
+                        element={
+                            <LazyLoad>
+                                <AnalyticsOverviewPage />
+                            </LazyLoad>
+                        }
+                    />
+
+                    <Route
+                        path=':filter'
+                        element={
+                            <LazyLoad>
+                                <AnalyticsFilterPage />
+                            </LazyLoad>
+                        }
+                    />
+                </Route>
 
                 <Route path='*' element={<NotFoundRoute />} />
             </Route>
