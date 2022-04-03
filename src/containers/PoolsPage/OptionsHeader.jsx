@@ -20,7 +20,7 @@ const OptionsHeader = () => {
 
     const [status, setStatus] = useState('active');
     return (
-        <div className='flex flex-col justify-between md:flex-row md:flex-wrap'>
+        <nav className='flex flex-col justify-between md:flex-row md:flex-wrap'>
             <div className='flex  items-center space-x-5'>
                 <div className='flex justify-between space-x-1 rounded-lg bg-white  font-semibold'>
                     <button
@@ -74,7 +74,7 @@ const OptionsHeader = () => {
                     />
                 </div>
             </div>
-        </div>
+        </nav>
     );
 };
 

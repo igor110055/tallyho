@@ -3,12 +3,12 @@ import { Showcase } from '../containers';
 
 const NFTMarketPage = () => {
     return (
-        <div className='bg-primary-sidebar p-6 pt-24'>
-            <div className='container mx-auto max-w-6xl'>
+        <main className='bg-primary-sidebar p-6 pt-24'>
+            <section className='container mx-auto max-w-6xl'>
                 <img src={bannerImg} alt='banner' className='w-full' />
-            </div>
+            </section>
 
-            <div className='mt-8 flex justify-center'>
+            <section className='mt-8 flex justify-center'>
                 <div className='text-center'>
                     <h1 className='text-5xl text-primary-brand_light'>
                         NFT Marketplace.
@@ -17,7 +17,7 @@ const NFTMarketPage = () => {
                         Coming Soon.
                     </span>
                 </div>
-            </div>
+            </section>
 
             <Showcase />
 
@@ -41,12 +41,13 @@ const NFTMarketPage = () => {
                         target='_blank'
                         rel='noopener noreferrer'
                         className='rounded-full bg-[#3889a1] px-10 py-2 text-xl text-white transition duration-200 hover:-translate-y-2 hover:shadow-md hover:shadow-slate-200/20'
+                        role='button'
                     >
                         Apply Here
                     </a>
                 </div>
             </div>
-        </div>
+        </main>
     );
 };
 

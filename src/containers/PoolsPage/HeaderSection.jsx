@@ -8,7 +8,7 @@ import classNames from 'classnames';
 
 const HeaderSection = () => {
     return (
-        <div className='bg-pools_header'>
+        <section className='bg-pools_header'>
             <div className='container mx-auto grid max-w-6xl grid-cols-1 p-6 pt-28 md:grid-cols-2'>
                 <div className='space-y-4'>
                     <h1 className='text-3xl font-semibold text-white md:text-[40px]'>
@@ -86,7 +86,7 @@ const HeaderSection = () => {
                     Stake Tokens
                 </NavLink>
             </div>
-        </div>
+        </section>
     );
 };
 

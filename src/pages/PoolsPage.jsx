@@ -15,11 +15,11 @@ const PoolsPage = () => {
     }, [stakeType, navigate]);
 
     return (
-        <div className='bg-primary-sidebar'>
+        <main className='bg-primary-sidebar'>
             <HeaderSection />
             <Outlet />
             <SliderBanner />
-        </div>
+        </main>
     );
 };
 

@@ -11,36 +11,36 @@ const Showcase = () => {
         <div className='bg-elipseBg bg-[length:125%] bg-bottom bg-no-repeat'>
             <div className='container mx-auto mt-20 max-w-6xl'>
                 <div className='flex flex-col justify-center text-white md:flex-row lg:-space-x-4 xl:-space-x-6'>
-                    <div className='relative flex flex-col items-center'>
+                    <figure className='relative flex flex-col items-center'>
                         <img
                             src={card1}
                             alt='card1'
                             className='w-60 sm:w-full lg:max-w-[15rem] xl:max-w-xs'
                         />
-                        <span className='absolute hidden -rotate-12 md:block lg:-bottom-1 lg:right-[12%] xl:bottom-10 xl:right-[20%]'>
+                        <figcaption className='absolute hidden -rotate-12 md:block lg:-bottom-1 lg:right-[12%] xl:bottom-10 xl:right-[20%]'>
                             Property
-                        </span>
-                    </div>
-                    <div className='relative flex flex-col items-center md:-translate-y-8'>
+                        </figcaption>
+                    </figure>
+                    <figure className='relative flex flex-col items-center md:-translate-y-8'>
                         <img
                             src={card2}
                             alt='card2'
                             className='z-10 w-60 sm:w-full lg:max-w-[12rem] xl:max-w-[18rem]'
                         />
-                        <span className='hidden text-sm md:block xl:text-base'>
+                        <figcaption className='hidden text-sm md:block xl:text-base'>
                             Back film / media projects.
-                        </span>
-                    </div>
-                    <div className='relative flex flex-col items-center'>
+                        </figcaption>
+                    </figure>
+                    <figure className='relative flex flex-col items-center'>
                         <img
                             src={card3}
                             alt='card3'
                             className='w-60 sm:w-full lg:max-w-[15rem] xl:max-w-xs'
                         />
-                        <span className='absolute hidden rotate-12 text-sm md:block lg:left-[5%] lg:-bottom-1 xl:left-[15%] xl:bottom-8 xl:text-base'>
+                        <figcaption className='absolute hidden rotate-12 text-sm md:block lg:left-[5%] lg:-bottom-1 xl:left-[15%] xl:bottom-8 xl:text-base'>
                             Business investments.
-                        </span>
-                    </div>
+                        </figcaption>
+                    </figure>
                 </div>
 
                 <h2 className='mx-auto mt-10 max-w-4xl text-center text-white'>

@@ -3,12 +3,10 @@ import { SidebarWrapper } from '..';
 
 const Layout = ({ children }) => {
     return (
-        <>
-            <SidebarWrapper>
-                {children}
-                <Outlet />
-            </SidebarWrapper>
-        </>
+        <SidebarWrapper>
+            {children}
+            <Outlet />
+        </SidebarWrapper>
     );
 };
 

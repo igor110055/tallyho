@@ -77,7 +77,7 @@ function MetaMaskIcon(props) {
 
 const Footer = () => {
     return (
-        <div className='bg-primary-dark px-4 py-8'>
+        <footer className='bg-primary-dark px-4 py-8'>
             <div className='container mx-auto grid w-full max-w-6xl grid-cols-1 md:grid-cols-4 xl:grid-cols-6'>
                 {/* Info Card */}
                 <div className='flex flex-row gap-4 rounded-2xl bg-[#3c3c3c] p-4 md:col-span-4 xl:col-span-2'>
@@ -234,7 +234,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </footer>
     );
 };
 
