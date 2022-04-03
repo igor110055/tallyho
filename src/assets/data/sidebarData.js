@@ -109,7 +109,7 @@ export const navigation = [
   { name: "Polygon", href: "tally_centralise", icon: null, badge: "soon", image: polygonImg },
   { name: "Cardano", href: "tally_centralise", icon: null, badge: "soon", image: cardanoImg },
   { name: "Bsc Charts", href: "tally_centralise", icon: null, badge: "soon", image: chartsImg },
-  { name: "Analytics", href: "tally_centralise", icon: null, badge: "", image: analyImg },
+  { name: "Analytics", href: "analytics", icon: null, badge: "", image: analyImg },
 ];
 
 export const moreNavigation = [

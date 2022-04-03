@@ -27,3 +27,6 @@ export { default as TokenCheckerInfo } from './TokenCheckerPage/TokenCheckerInfo
 
 // NFTMarketPage
 export { default as Showcase } from './NFTMarketPage/Showcase';
+
+// AnalyticsPage
+export { default as AnalyticsHeading } from './AnalyticsPage/AnalyticsHeading';

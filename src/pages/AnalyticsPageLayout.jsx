@@ -1,8 +1,17 @@
+import { Outlet } from 'react-router-dom';
+import { AnalyticsHeading } from '../containers';
+
 const AnalyticsPageLayout = () => {
     return (
-        <div>
-            <h1>Analytics Page Layout</h1>
-        </div>
+        <main className='bg-primary-sidebar'>
+            <div className='container mx-auto mt-24 max-w-6xl'>
+                <AnalyticsHeading />
+
+                <section className='mt-8 px-6'>
+                    <Outlet />
+                </section>
+            </div>
+        </main>
     );
 };
 

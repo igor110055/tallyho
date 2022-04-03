@@ -1,7 +1,32 @@
 const AnalyticsOverviewPage = () => {
     return (
-        <div>
-            <h1>Analytics Page</h1>
+        <div className='space-y-4'>
+            <div className='flex items-center justify-between'>
+                <h2 className='text-2xl font-semibold text-white'>
+                    Tally Info & Analytics
+                </h2>
+
+                <div className='flex items-center justify-between space-x-4 font-medium'>
+                    <div className='flex items-center space-x-1 text-sm text-white'>
+                        <span className='text-primary-brand'>TALLY Price:</span>
+                        <span>$444.31</span>
+                    </div>
+                    <div className='flex items-center space-x-1 text-sm text-white'>
+                        <span className='text-primary-brand'>
+                            Transactions (24H):
+                        </span>
+                        <span>119 811</span>
+                    </div>
+                    <div className='flex items-center space-x-1 text-sm text-white'>
+                        <span className='text-primary-brand'>Pairs:</span>
+                        <span>1 261</span>
+                    </div>
+                    <div className='flex items-center space-x-1 text-sm text-white'>
+                        <span className='text-primary-brand'>Fees (24H):</span>
+                        <span>$320 028.124</span>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
