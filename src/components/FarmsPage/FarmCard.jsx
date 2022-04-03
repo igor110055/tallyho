@@ -44,7 +44,7 @@ const FarmCard = () => {
                         </div>
 
                         <div className='mx-auto my-4 flex items-center md:my-0'>
-                            <div className='mx-6 ml-10 flex flex-col text-primary-brand'>
+                            <div className='mx-6 flex flex-col text-primary-brand md:ml-10'>
                                 <span className='text-xs'>APY</span>
                                 <div className='flex flex-row items-center space-x-2 font-semibold'>
                                     <span>0%</span>
@@ -68,7 +68,7 @@ const FarmCard = () => {
                                 </div>
                             </div>
 
-                            <div className='mx-6 ml-10 flex flex-col text-primary-brand'>
+                            <div className='mx-6 flex flex-col text-primary-brand md:ml-10'>
                                 <span className='text-xs'>APR</span>
                                 <div className='flex flex-row items-center space-x-2 font-semibold'>
                                     <span>0%</span>
@@ -77,7 +77,7 @@ const FarmCard = () => {
                                 </div>
                             </div>
 
-                            <div className='mx-6 ml-10 flex flex-col text-primary-brand'>
+                            <div className='mx-6 flex flex-col text-primary-brand md:ml-10'>
                                 <span className='text-xs'>Liquidity</span>
                                 <div className='flex flex-row items-center space-x-2 font-semibold text-black'>
                                     <span>$ 0</span>
@@ -100,9 +100,9 @@ const FarmCard = () => {
                         </div>
 
                         <div className='flex items-center space-x-10'>
-                            <div className='flex flex-col text-primary-brand'>
+                            <div className='flex items-center text-primary-brand md:flex-col'>
                                 <span className='text-sm'>Earned</span>
-                                <span>-</span>
+                                <span className='ml-2 md:ml-0'>-</span>
                             </div>
 
                             <div className='flex items-center text-xs font-semibold text-primary-brand'>

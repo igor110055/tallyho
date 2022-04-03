@@ -1,6 +1,6 @@
 import { Disclosure, Transition } from '@headlessui/react';
 import { ChevronDownIcon, ExternalLinkIcon } from '@heroicons/react/solid';
-import btally from '../../assets/images/tokens/btally.png';
+import btally from '../../assets/images/logo1.png';
 
 const StakeTallyCard = ({ coverImg, avatar, tokenName, apyValue }) => {
     return (

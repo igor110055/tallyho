@@ -58,7 +58,7 @@ const FarmOptions = () => {
                             onChange={setOption1}
                         />
                     </div>
-                    <div className='ml-12 flex w-40 items-center justify-end md:ml-0 md:justify-center'>
+                    <div className='flex w-full items-center justify-end md:ml-0 md:w-40 md:justify-center'>
                         <button
                             className='flex h-10 items-center justify-center rounded-lg bg-[#1dc872] px-4 font-semibold text-white disabled:cursor-not-allowed disabled:border disabled:border-primary-brand/80 disabled:bg-primary-brand/80'
                             disabled

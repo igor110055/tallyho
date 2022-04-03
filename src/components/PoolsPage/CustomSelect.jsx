@@ -48,7 +48,7 @@ export default function CustomSelect({ options, selected, onChange }) {
                             leaveFrom='translate-y-0 opacity-100 scale-100'
                             leaveTo='-translate-y-4 opacity-0 scale-95'
                         >
-                            <Listbox.Options className='absolute z-10 max-h-60 w-full overflow-auto rounded-md rounded-t-none bg-primary-brand py-2 text-base text-white shadow-lg focus:outline-none sm:text-sm'>
+                            <Listbox.Options className='absolute z-50 max-h-60 w-full overflow-auto rounded-md rounded-t-none bg-primary-brand py-2 text-base text-white shadow-lg focus:outline-none sm:text-sm'>
                                 {options.map(option => (
                                     <Listbox.Option
                                         key={option.id}

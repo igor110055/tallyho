@@ -9,7 +9,7 @@ const options1 = [
 ];
 
 const options2 = [
-    { id: 1, name: '10 TALLY', value: '10' },
+    { id: 1, name: 'Max Stake TALLY', value: 'max' },
     { id: 2, name: '500 TALLY', value: '500' },
     { id: 3, name: 'Unlimited', value: 'unlimited' },
 ];

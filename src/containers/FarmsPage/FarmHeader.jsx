@@ -35,15 +35,16 @@ const FarmHeader = () => {
                     swipeable
                     emulateTouch
                     stopOnHover
-                    className='mt-4 md:mt-0'
+                    className='mx-auto mt-5 flex justify-center md:mt-0'
                     centerMode
                     centerSlidePercentage={100}
+                    width={'90%'}
                 >
                     {bannerData.map(item => (
                         <a
                             href={item.url}
                             key={item.id}
-                            className='ml-auto flex w-full max-w-md rounded-lg'
+                            className='ml-auto flex w-full max-w-sm rounded-lg md:max-w-md'
                         >
                             <img
                                 src={item.image}
