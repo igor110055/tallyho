@@ -49,3 +49,6 @@ export { default as TCCustomInput } from './TokenChecker/TCCustomInput';
 
 // NFTMarketPage
 export { default as MarketPageCard } from './NFTMarketPage/MarketPageCard';
+
+//AnalyticsPage
+export { default as AreaChartComp } from './AnalyticsPage/AreaChartComp';

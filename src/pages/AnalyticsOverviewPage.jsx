@@ -1,3 +1,5 @@
+import { AreaChartContainer, BarChartContainer } from '../containers';
+
 const AnalyticsOverviewPage = () => {
     return (
         <div className='space-y-4'>
@@ -25,6 +27,15 @@ const AnalyticsOverviewPage = () => {
                         <span className='text-primary-brand'>Fees (24H):</span>
                         <span>$320 028.124</span>
                     </div>
+                </div>
+            </div>
+
+            <div className='flex w-full flex-col justify-between gap-4 md:flex-row'>
+                <div className='relative flex-1 overflow-hidden rounded-2xl bg-primary-brand/50 shadow-lg'>
+                    <AreaChartContainer />
+                </div>
+                <div className='relative flex-1 overflow-hidden rounded-2xl bg-primary-brand/50 shadow-lg'>
+                    <BarChartContainer />
                 </div>
             </div>
         </div>
