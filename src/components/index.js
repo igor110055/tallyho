@@ -52,3 +52,4 @@ export { default as MarketPageCard } from './NFTMarketPage/MarketPageCard';
 
 //AnalyticsPage
 export { default as AreaChartComp } from './AnalyticsPage/AreaChartComp';
+export { default as BarChartComp } from './AnalyticsPage/BarChartComp';
