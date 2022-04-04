@@ -3,6 +3,8 @@ import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { RadioGroupComp, SettingsModal } from '../components';
 import { LiquiditySection, SliderBanner, SwapSection } from '../containers';
 
+import liquidityGif from '../assets/images/liquidity/tally-ho_MOD.gif';
+
 const LiquidityPage = () => {
     const types = [
         {
@@ -38,7 +40,12 @@ const LiquidityPage = () => {
     return (
         <main>
             <section className='flex min-h-screen flex-col items-center justify-center bg-primary-sidebar px-4 pt-40 pb-8'>
-                <div className='w-full max-w-lg'>
+                <div className='flex w-full flex-col items-center'>
+                    <img
+                        src={liquidityGif}
+                        alt='gif img'
+                        className='mb-8 w-full max-w-sm flex-1'
+                    />
                     <h1 className='mb-2 whitespace-nowrap text-center text-2xl font-bold text-white md:text-[40px]'>
                         {type === 'swap'
                             ? 'Be a Liquidity Provider'
