@@ -36,7 +36,7 @@ const BarChartContainer = () => {
             </span>
             <div className='mt-4 h-64'>
                 <BarChartComp
-                    data={barChartData}
+                    // data={barChartData}
                     setDate={setDate}
                     setValue={setValue}
                 />

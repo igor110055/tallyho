@@ -10,6 +10,7 @@ import {
 import millify from 'millify';
 import { useCallback } from 'react';
 import { throttle } from 'lodash';
+import ScaleLoader from 'react-spinners/ScaleLoader';
 
 const BarChartComp = ({ data, setDate, setValue }) => {
     const getFormattedValue = throttle(
@@ -26,6 +27,23 @@ const BarChartComp = ({ data, setDate, setValue }) => {
         ),
         200
     );
+
+    if (!data || !data.length) {
+        return (
+            <div className='flex h-full w-full flex-col items-center justify-center rounded-lg bg-slate-500/20'>
+                <ScaleLoader
+                    height={140}
+                    margin={10}
+                    width={15}
+                    radius={5}
+                    color={'#1dc872'}
+                />
+                <h2 className='mt-4 text-xl text-white'>
+                    Loading Chart Data...
+                </h2>
+            </div>
+        );
+    }
 
     return (
         <ResponsiveContainer>

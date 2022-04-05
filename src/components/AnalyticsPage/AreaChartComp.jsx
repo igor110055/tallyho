@@ -9,6 +9,7 @@ import {
 import millify from 'millify';
 import { useCallback } from 'react';
 import { throttle } from 'lodash';
+import RingLoader from 'react-spinners/RingLoader';
 
 const AreaChartComp = ({ data, setDate, setValue }) => {
     const getFormattedValue = throttle(
@@ -25,6 +26,16 @@ const AreaChartComp = ({ data, setDate, setValue }) => {
         ),
         200
     );
+    if (!data || !data.length) {
+        return (
+            <div className='flex h-full w-full flex-col items-center justify-center rounded-lg bg-slate-500/20'>
+                <RingLoader size={160} color={'#1dc872'} />
+                <h2 className='mt-4 text-xl text-white'>
+                    Loading Chart Data...
+                </h2>
+            </div>
+        );
+    }
 
     return (
         <ResponsiveContainer
