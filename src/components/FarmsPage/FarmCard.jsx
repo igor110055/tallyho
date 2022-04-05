@@ -7,15 +7,25 @@ import {
 } from '@heroicons/react/outline';
 import { MdOutlineHelpOutline, MdOutlineCalculate } from 'react-icons/md';
 import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/solid';
-import usdt from '../../assets/images/tokens/usdt.svg';
-import btally from '../../assets/images/tokens/btally.png';
 
-const FarmCard = () => {
+const FarmCard = ({ item }) => {
+    const {
+        firstToken,
+        secondToken,
+        firstTokenIcon,
+        secondTokenIcon,
+        apy,
+        arp,
+        liquidity,
+        lp,
+        earned,
+    } = item;
+
     return (
         <Disclosure>
             {({ open }) => (
-                <>
-                    <Disclosure.Button className='flex w-full flex-col items-center rounded-2xl bg-white px-6 py-4 md:flex-row'>
+                <div className='bg-white transition-all duration-200 first:rounded-t-2xl last:rounded-b-2xl odd:bg-[#f2f6fc] hover:bg-opacity-90'>
+                    <Disclosure.Button className='flex w-full flex-col items-center  px-6 py-4     md:flex-row'>
                         <div className='flex w-full items-center justify-between md:w-fit'>
                             <div className='order-2 mr-8 ml-4 flex items-center justify-center rounded-2xl bg-[#f93b5d] px-3 py-1 text-xs font-semibold md:order-1'>
                                 <span>Hot</span>
@@ -24,21 +34,21 @@ const FarmCard = () => {
                             <div className='order-1 flex items-center space-x-2'>
                                 <div className='flex items-center -space-x-1'>
                                     <img
-                                        src={usdt}
+                                        src={firstTokenIcon}
                                         alt='usdt'
                                         className='z-10 h-6 w-6 rounded-full outline outline-2 outline-white'
                                     />
                                     <img
-                                        src={btally}
+                                        src={secondTokenIcon}
                                         alt='btally'
                                         className='h-6 w-6'
                                     />
                                 </div>
 
                                 <div className='text-sm font-semibold uppercase text-black'>
-                                    <span>USDT</span>
+                                    <span>{firstToken}</span>
                                     <span>-</span>
-                                    <span>Tally</span>
+                                    <span>{secondToken}</span>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +57,7 @@ const FarmCard = () => {
                             <div className='mx-6 flex flex-col text-primary-brand md:ml-10'>
                                 <span className='text-xs'>APY</span>
                                 <div className='flex flex-row items-center space-x-2 font-semibold'>
-                                    <span>0%</span>
+                                    <span>{apy}%</span>
                                     <Tooltip
                                         placement='topLeft'
                                         trigger={['hover']}
@@ -71,7 +81,7 @@ const FarmCard = () => {
                             <div className='mx-6 flex flex-col text-primary-brand md:ml-10'>
                                 <span className='text-xs'>APR</span>
                                 <div className='flex flex-row items-center space-x-2 font-semibold'>
-                                    <span>0%</span>
+                                    <span>{arp}%</span>
 
                                     <MdOutlineCalculate className='h-4 w-4 text-black' />
                                 </div>
@@ -80,7 +90,7 @@ const FarmCard = () => {
                             <div className='mx-6 flex flex-col text-primary-brand md:ml-10'>
                                 <span className='text-xs'>Liquidity</span>
                                 <div className='flex flex-row items-center space-x-2 font-semibold text-black'>
-                                    <span>$ 0</span>
+                                    <span>$ {liquidity}</span>
                                     <Tooltip
                                         placement='topLeft'
                                         trigger={['hover']}
@@ -158,7 +168,9 @@ const FarmCard = () => {
                             </a>
                             <div className='order-1 ml-4 flex flex-col text-xs font-semibold text-primary-brand md:order-2'>
                                 <span>Available LP</span>
-                                <span className='text-sm text-black'>0 LP</span>
+                                <span className='text-sm text-black'>
+                                    {lp} LP
+                                </span>
                                 <span>$0.0000</span>
                             </div>
 
@@ -184,12 +196,12 @@ const FarmCard = () => {
                                 <span className='text-primary-brand'>
                                     Earned
                                 </span>
-                                <span className='text-sm'>0 TALLY</span>
+                                <span className='text-sm'>{earned} TALLY</span>
                                 <span>$0.0000</span>
                             </div>
                         </div>
                     </Disclosure.Panel>
-                </>
+                </div>
             )}
         </Disclosure>
     );
