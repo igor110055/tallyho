@@ -8,12 +8,28 @@ import {
 } from 'recharts';
 
 import millify from 'millify';
-import { barChartData } from '../../assets/data/chartData';
+import { useCallback } from 'react';
+import { throttle } from 'lodash';
 
-const BarChartComp = () => {
+const BarChartComp = ({ data, setDate, setValue }) => {
+    const getFormattedValue = throttle(
+        useCallback(
+            ({ payload, label, active }) => {
+                if (active) {
+                    setDate(label);
+                    const data = payload[0].payload;
+                    setValue(data.value);
+                }
+                return null;
+            },
+            [setDate, setValue]
+        ),
+        200
+    );
+
     return (
         <ResponsiveContainer>
-            <BarChart width={500} height={300} data={barChartData}>
+            <BarChart width={500} height={300} data={data}>
                 <XAxis
                     dataKey='date'
                     axisLine={false}
@@ -37,7 +53,10 @@ const BarChartComp = () => {
                     type='number'
                     tickCount={6}
                 />
-                <Tooltip wrapperClassName='invisible hidden' />
+                <Tooltip
+                    wrapperClassName='invisible hidden'
+                    content={getFormattedValue}
+                />
                 <Bar dataKey='value' fill='#1dc872' />
             </BarChart>
         </ResponsiveContainer>

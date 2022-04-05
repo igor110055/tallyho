@@ -6,17 +6,33 @@ import {
     Tooltip,
     ResponsiveContainer,
 } from 'recharts';
-import { areaChartData } from '../../assets/data/chartData';
 import millify from 'millify';
+import { useCallback } from 'react';
+import { throttle } from 'lodash';
 
-const AreaChartComp = () => {
+const AreaChartComp = ({ data, setDate, setValue }) => {
+    const getFormattedValue = throttle(
+        useCallback(
+            ({ payload, label, active }) => {
+                if (active) {
+                    setDate(label);
+                    const data = payload[0].payload;
+                    setValue(data.value);
+                }
+                return null;
+            },
+            [setDate, setValue]
+        ),
+        200
+    );
+
     return (
         <ResponsiveContainer
             width={'100%'}
             height={'100%'}
             className='m-0 h-full w-full'
         >
-            <AreaChart data={areaChartData}>
+            <AreaChart data={data}>
                 <defs>
                     <linearGradient id='gradient' x1='0' y1='0' x2='0' y2='1'>
                         <stop offset='5%' stopColor='#07162d' stopOpacity={1} />
@@ -51,16 +67,16 @@ const AreaChartComp = () => {
                     type='number'
                     tickCount={6}
                 />
-                <Tooltip wrapperClassName='invisible' />
+                <Tooltip
+                    wrapperClassName='invisible'
+                    content={getFormattedValue}
+                />
                 <Area
                     type='monotone'
                     dataKey='value'
                     stroke='#89c438'
                     fill='url(#gradient)'
                     strokeWidth={2}
-                    onMouseOver={e => {
-                        console.log(e);
-                    }}
                 />
             </AreaChart>
         </ResponsiveContainer>
