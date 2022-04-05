@@ -38,7 +38,7 @@ const AreaChartContainer = () => {
     );
 
     return (
-        <div className='w-full bg-gradient-to-b from-primary-brand/5 to-primary-brand p-4 md:p-6'>
+        <div className='w-full bg-gradient-to-b from-primary-brand/5 to-primary-brand/70 p-4 md:p-6'>
             <div className='flex flex-col space-y-2'>
                 <span className='block text-base font-semibold text-primary-dark'>
                     Liquidity

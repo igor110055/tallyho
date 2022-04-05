@@ -35,10 +35,10 @@ const AnalyticsOverviewPage = () => {
             </div>
 
             <div className='flex w-full flex-col justify-between gap-4 pb-6 md:flex-row'>
-                <div className='relative flex-1 overflow-hidden rounded-2xl bg-primary-brand/50 shadow-lg'>
+                <div className='relative flex-1 overflow-hidden rounded-2xl bg-primary-brand/40 shadow-lg'>
                     <AreaChartContainer />
                 </div>
-                <div className='relative flex-1 overflow-hidden rounded-2xl bg-primary-brand/50 shadow-lg'>
+                <div className='relative flex-1 overflow-hidden rounded-2xl bg-primary-brand/40 shadow-lg'>
                     <BarChartContainer />
                 </div>
             </div>

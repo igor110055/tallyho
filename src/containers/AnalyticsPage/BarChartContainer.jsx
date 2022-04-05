@@ -34,7 +34,7 @@ const BarChartContainer = () => {
         barChartData[Math.floor(barChartData?.length / 2)]?.value
     );
     return (
-        <div className='h-full w-full bg-gradient-to-b from-primary-brand/5 to-primary-brand p-4 md:p-6'>
+        <div className='h-full w-full bg-gradient-to-b from-primary-brand/5 to-primary-brand/70 p-4 md:p-6'>
             <span className='block text-base font-semibold text-primary-dark'>
                 24H Volume
             </span>

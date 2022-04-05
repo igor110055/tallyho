@@ -46,10 +46,10 @@ const AreaChartComp = ({ data, setDate, setValue }) => {
             <AreaChart data={data}>
                 <defs>
                     <linearGradient id='gradient' x1='0' y1='0' x2='0' y2='1'>
-                        <stop offset='5%' stopColor='#07162d' stopOpacity={1} />
+                        <stop offset='5%' stopColor='#0349b1' stopOpacity={1} />
                         <stop
                             offset='100%'
-                            stopColor='#212529'
+                            stopColor='#001c38'
                             stopOpacity={0}
                         />
                     </linearGradient>
