@@ -1,3 +1,4 @@
+import { DateTime } from 'luxon';
 import { useState } from 'react';
 import { barChartData } from '../../assets/data/chartData';
 import { BarChartComp } from '../../components';
@@ -17,6 +18,15 @@ const BarChartContainer = () => {
         return null;
     };
 
+    const dateFormatter = value => {
+        if (value) {
+            return DateTime.fromFormat(value, 'MM/dd/yyyy').toFormat(
+                'MMM dd, yyyy'
+            );
+        }
+        return null;
+    };
+
     const [date, setDate] = useState(
         barChartData[Math.floor(barChartData?.length / 2)]?.date
     );
@@ -24,7 +34,7 @@ const BarChartContainer = () => {
         barChartData[Math.floor(barChartData?.length / 2)]?.value
     );
     return (
-        <div className='w-full bg-gradient-to-b from-primary-brand/5 to-primary-brand p-4 md:p-6'>
+        <div className='h-full w-full bg-gradient-to-b from-primary-brand/5 to-primary-brand p-4 md:p-6'>
             <span className='block text-base font-semibold text-primary-dark'>
                 24H Volume
             </span>
@@ -32,11 +42,11 @@ const BarChartContainer = () => {
                 {textFormatter(formatter(value))}
             </span>
             <span className='block align-middle font-normal text-primary-dark'>
-                {date}
+                {dateFormatter(date)}
             </span>
             <div className='mt-4 h-64'>
                 <BarChartComp
-                    // data={barChartData}
+                    data={barChartData}
                     setDate={setDate}
                     setValue={setValue}
                 />

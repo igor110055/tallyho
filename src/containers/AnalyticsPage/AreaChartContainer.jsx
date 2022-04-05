@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { areaChartData } from '../../assets/data/chartData';
 import { AreaChartComp } from '../../components';
+import { DateTime } from 'luxon';
 
 const AreaChartContainer = () => {
     const formatter = new Intl.NumberFormat('en-US', {
@@ -13,6 +14,18 @@ const AreaChartContainer = () => {
         if (value) {
             const formattedValue = value.toString().replace(/,/g, ' ');
             return formattedValue;
+        }
+        return null;
+    };
+
+    const dateFormatter = value => {
+        // value will be on this format , 12/15/2021
+
+        if (value) {
+            // return date on this format Nov 10, 2021
+            return DateTime.fromFormat(value, 'MM/dd/yyyy').toFormat(
+                'MMM dd, yyyy'
+            );
         }
         return null;
     };
@@ -34,7 +47,7 @@ const AreaChartContainer = () => {
                     {textFormatter(formatter(value))}
                 </span>
                 <span className='block align-middle font-normal text-primary-dark'>
-                    {date}
+                    {dateFormatter(date)}
                 </span>
             </div>
             <div className='mt-4 h-64'>
