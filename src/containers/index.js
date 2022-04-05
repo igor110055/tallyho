@@ -32,3 +32,4 @@ export { default as Showcase } from './NFTMarketPage/Showcase';
 export { default as AnalyticsHeading } from './AnalyticsPage/AnalyticsHeading';
 export { default as AreaChartContainer } from './AnalyticsPage/AreaChartContainer';
 export { default as BarChartContainer } from './AnalyticsPage/BarChartContainer';
+export { default as TopPoolsContainer } from './AnalyticsPage/TopPoolsContainer';
