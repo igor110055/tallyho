@@ -14,14 +14,14 @@ const TopPoolsContainer = () => {
         <>
             <h1 className='text-2xl font-semibold text-white'>Top Pools</h1>
 
-            <div className='grid grid-cols-analytics items-center gap-4 p-6 text-xs font-semibold text-[#708db7]'>
-                <span className='text-white'>#</span>
+            <div className='grid grid-cols-[1fr_80px] items-center gap-4 p-6 text-xs font-semibold text-[#708db7] md:grid-cols-analytics'>
+                <span className='hidden text-white md:block'>#</span>
                 <span className='text-white'>Pool</span>
                 <span>Volume 24H</span>
-                <span>Volume 7D</span>
-                <span>LP reward fees 24H</span>
-                <span>LP reward APR</span>
-                <span>Liquidity</span>
+                <span className='hidden md:block'>Volume 7D</span>
+                <span className='hidden md:block'>LP reward fees 24H</span>
+                <span className='hidden md:block'>LP reward APR</span>
+                <span className='hidden md:block'>Liquidity</span>
             </div>
 
             <div className='overflow-hidden rounded-2xl bg-white'>
