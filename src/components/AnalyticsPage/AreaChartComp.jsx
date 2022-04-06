@@ -7,7 +7,7 @@ import {
     ResponsiveContainer,
 } from 'recharts';
 import millify from 'millify';
-import { useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import { throttle } from 'lodash';
 import RingLoader from 'react-spinners/RingLoader';
 
@@ -94,4 +94,6 @@ const AreaChartComp = ({ data, setDate, setValue }) => {
     );
 };
 
-export default AreaChartComp;
+export default memo(AreaChartComp, (prevProps, nextProps) => {
+    return prevProps.data === nextProps.data;
+});

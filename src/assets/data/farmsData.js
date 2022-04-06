@@ -313,6 +313,4 @@ export const farmsData = [
         earned: 10,
         isHot: true,
     }
-
-
 ]

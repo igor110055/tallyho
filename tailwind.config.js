@@ -26,6 +26,9 @@ module.exports = {
 			},
 			dropShadow: {
 				search: 'inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(217,217,217,.35)'
+			},
+			gridTemplateColumns: {
+				analytics: '0px 2fr repeat(5, 1fr)'
 			}
 		},
 	},

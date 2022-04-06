@@ -8,7 +8,7 @@ import {
 } from 'recharts';
 
 import millify from 'millify';
-import { useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import { throttle } from 'lodash';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 
@@ -81,4 +81,6 @@ const BarChartComp = ({ data, setDate, setValue }) => {
     );
 };
 
-export default BarChartComp;
+export default memo(BarChartComp, (prevProps, nextProps) => {
+    return prevProps.data === nextProps.data;
+});
