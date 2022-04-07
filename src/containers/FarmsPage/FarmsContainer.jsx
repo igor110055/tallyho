@@ -1,4 +1,4 @@
-import { FarmCard, PaginateComponent } from '../../components';
+import { EmptyState, FarmCard, PaginateComponent } from '../../components';
 
 const FarmsContainer = ({
     currentItems,
@@ -12,6 +12,8 @@ const FarmsContainer = ({
                 {currentItems.map(farm => (
                     <FarmCard key={farm.id} item={farm} />
                 ))}
+
+                {currentItems.length === 0 && <EmptyState />}
             </div>
             <PaginateComponent
                 dataSets={filteredData}

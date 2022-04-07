@@ -8,7 +8,7 @@ import Tooltip from 'rc-tooltip';
 
 const FarmItem = ({ tokenImg, tokenName, apy }) => {
     return (
-        <div className='flex h-20 flex-row items-center border-b border-primary-dark/10 py-5 px-6 transition-colors duration-300 hover:bg-[#f2f6fc] md:py-3 md:px-4'>
+        <div className='flex h-20 flex-row items-center border-b border-primary-dark/10 py-5 px-3 transition-colors duration-300 hover:bg-[#f2f6fc] sm:px-6 md:py-3 md:px-4'>
             <div className='mr-2 flex -space-x-3'>
                 <img
                     src={tokenImg || usdt}
@@ -22,7 +22,7 @@ const FarmItem = ({ tokenImg, tokenName, apy }) => {
                 />
             </div>
 
-            <div className='text-sm font-semibold uppercase text-primary-darkText'>
+            <div className='text-xs font-semibold uppercase text-primary-darkText sm:text-sm'>
                 <span>{tokenName}</span>-<span>TALLY</span>
             </div>
 
