@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { CustomSelect, StackedSwitch } from '../../components';
+import { debounce } from 'lodash';
 
 const options1 = [
     { id: 1, name: 'All', value: 'all' },
@@ -9,8 +10,35 @@ const options1 = [
     { id: 4, name: 'Stable', value: 'stable' },
 ];
 
-const FarmOptions = () => {
+const FarmOptions = ({
+    data,
+    setCurrentItems,
+    itemsPerPage,
+    setFilteredData,
+}) => {
     const [option1, setOption1] = useState(options1[0].value);
+    const [searchValue, setSearchValue] = useState('');
+
+    const filterBy = debounce(() => {
+        const filteredData = data.filter(item => {
+            return (
+                item.firstToken
+                    .toLowerCase()
+                    .includes(searchValue.toLowerCase()) ||
+                item.secondToken
+                    .toLowerCase()
+                    .includes(searchValue.toLowerCase())
+            );
+        });
+
+        setFilteredData(filteredData);
+        setCurrentItems(filteredData.slice(0, itemsPerPage));
+    }, 500);
+
+    useEffect(() => {
+        filterBy();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [searchValue]);
 
     const [status, setStatus] = useState('live');
     return (
@@ -48,6 +76,8 @@ const FarmOptions = () => {
                         type='text'
                         placeholder='Search Farms'
                         className='h-10 w-full rounded-lg border border-primary-dark bg-primary-brand p-0 px-4 text-sm text-white outline-none  placeholder:text-white'
+                        value={searchValue}
+                        onChange={e => setSearchValue(e.target.value)}
                     />
                 </div>
                 <div className='order-1 mt-4 flex w-full items-center justify-between md:mt-0 md:w-fit'>

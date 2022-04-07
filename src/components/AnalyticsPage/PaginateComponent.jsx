@@ -1,22 +1,26 @@
 import { useEffect, useState } from 'react';
-import { topPools } from '../../assets/data/analyticsData';
 import ReactPaginate from 'react-paginate';
 
-const PaginateComponent = ({ itemsPerPage, setCurrentItems }) => {
+const PaginateComponent = ({
+    itemsPerPage,
+    setCurrentItems,
+    dataSets = [],
+}) => {
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
 
     useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
-        setCurrentItems(topPools.slice(itemOffset, endOffset));
-        setPageCount(Math.ceil(topPools.length / itemsPerPage));
-    }, [itemOffset, itemsPerPage, setCurrentItems]);
+        setCurrentItems(dataSets.slice(itemOffset, endOffset));
+        setPageCount(Math.ceil(dataSets.length / itemsPerPage));
+    }, [itemOffset, itemsPerPage, setCurrentItems, dataSets]);
 
     const handlePageClick = event => {
-        const newOffset = (event.selected * itemsPerPage) % topPools.length;
+        const newOffset = (event.selected * itemsPerPage) % dataSets.length;
 
         setItemOffset(newOffset);
     };
+
     return (
         <div className='mt-4'>
             <ReactPaginate

@@ -33,6 +33,7 @@ const TopPoolsContainer = () => {
             <PaginateComponent
                 itemsPerPage={ITEMS_PER_PAGE}
                 setCurrentItems={setCurrentItems}
+                dataSets={topPools}
             />
         </>
     );
