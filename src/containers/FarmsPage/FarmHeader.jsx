@@ -8,7 +8,7 @@ const FarmHeader = () => {
         <div className='bg-pools_header'>
             <div className='container mx-auto grid max-w-6xl grid-cols-1 p-6 pt-28 md:grid-cols-2'>
                 <div className='space-y-4'>
-                    <h1 className='text-[40px] font-semibold text-white'>
+                    <h1 className='font-comfortaa text-[40px] font-semibold text-white'>
                         Farms
                     </h1>
                     <p className='max-w-sm font-light leading-6 text-[#dddddd]'>

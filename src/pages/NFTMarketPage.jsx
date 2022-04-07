@@ -10,7 +10,7 @@ const NFTMarketPage = () => {
 
             <section className='mt-8 flex justify-center'>
                 <div className='text-center'>
-                    <h1 className='text-5xl text-primary-brand_light'>
+                    <h1 className='font-comfortaa text-5xl text-primary-brand_light'>
                         NFT Marketplace.
                     </h1>
                     <span className='block w-full text-right text-white'>
@@ -29,7 +29,7 @@ const NFTMarketPage = () => {
             </div>
 
             <div className='my-20 mx-auto max-w-5xl space-y-14'>
-                <h2 className='text-center text-3xl text-white md:text-4xl'>
+                <h2 className='text-center font-comfortaa text-3xl text-white md:text-4xl'>
                     Are you looking for investment in a project? Or do you have
                     an asset to trade as a{' '}
                     <span className='text-primary-brand_light'>Tally</span>NFT?

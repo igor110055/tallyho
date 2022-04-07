@@ -5,7 +5,7 @@ import {
     socialItems,
 } from '../../assets/data/footerData';
 import FooterToggle from './FooterToggle';
-import btally from '../../assets/images/btally.png';
+import btally from '../../assets/images/logo2.png';
 import Tooltip from 'rc-tooltip';
 
 function MetaMaskIcon(props) {
@@ -83,19 +83,23 @@ const Footer = () => {
                 <div className='flex flex-row gap-4 rounded-2xl bg-[#3c3c3c] p-4 md:col-span-4 xl:col-span-2'>
                     <div className='flex flex-col justify-between space-y-3 md:space-y-0'>
                         <div>
-                            <div className='flex flex-row'>
-                                <img src={btally} alt='logo' />
-                                <span className='ml-2 text-sm uppercase text-primary-brand'>
+                            <div className='flex flex-col sm:flex-row'>
+                                <img
+                                    src={btally}
+                                    alt='logo'
+                                    className='h-11 w-11 sm:w-full'
+                                />
+                                <span className='text-sm uppercase text-primary-brand sm:ml-2'>
                                     Tally
                                 </span>
                             </div>
                             <span className='font-semibold text-white'>
-                                $1.076
+                                $1.039
                             </span>
                         </div>
 
                         <div className='flex flex-col space-y-2 md:flex-row md:items-center md:space-y-0 md:space-x-2'>
-                            <button className='grid h-10 w-10 place-items-center rounded-full border-none bg-[#dcdcdc] outline-none'>
+                            <button className='grid h-8 w-8 place-items-center rounded-full border-none bg-[#dcdcdc] outline-none sm:h-10 sm:w-10'>
                                 <MetaMaskIcon />
                             </button>
 
@@ -103,55 +107,43 @@ const Footer = () => {
                                 target='_blank'
                                 rel='noopener noreferrer'
                                 href='https://exchange.tally.org/#/swap?outputCurrency=0x965f527d9159dce6288a2219db51fc6eef120dd1'
-                                className='rounded-lg bg-[#f93b5d] px-2 py-2 text-xs font-bold text-white'
+                                className='rounded-lg bg-[#f93b5d] p-1 text-[10px] font-bold text-white sm:px-2 sm:py-2 sm:text-xs'
                             >
                                 Buy TALLY
                             </a>
                         </div>
                     </div>
 
-                    <div className='grow space-y-3 font-bold text-white'>
+                    <div className='grow space-y-3 text-xs font-bold text-white'>
                         <div className='flex items-center justify-between'>
-                            <span className='text-xs font-bold text-[#c3c3c3]'>
-                                Max supply:
-                            </span>
-                            <span className='text-xs font-bold'>
-                                1, 000, 000, 000
-                            </span>
+                            <span className=' text-[#c3c3c3]'>Max supply:</span>
+                            <span>1, 000, 000, 000</span>
                         </div>
 
                         <div className='flex items-center justify-between'>
-                            <span className='text-xs font-bold text-[#c3c3c3]'>
+                            <span className=' text-[#c3c3c3]'>
                                 Total supply:
                             </span>
-                            <span className='text-xs font-bold'>
-                                1, 000, 000, 000
-                            </span>
+                            <span>1, 000, 000, 000</span>
                         </div>
 
                         <div className='flex items-center justify-between'>
-                            <span className='text-xs font-bold text-[#c3c3c3]'>
+                            <span className=' text-[#c3c3c3]'>
                                 Circulating supply:
                             </span>
-                            <span className='text-xs font-bold'>
-                                478, 000, 000
-                            </span>
+                            <span>478, 000, 000</span>
                         </div>
 
                         <div className='flex items-center justify-between'>
-                            <span className='text-xs font-bold text-[#c3c3c3]'>
+                            <span className=' text-[#c3c3c3]'>
                                 Total Burned:
                             </span>
-                            <span className='text-xs font-bold'>0</span>
+                            <span>0</span>
                         </div>
 
                         <div className='flex items-center justify-between'>
-                            <span className='text-xs font-bold text-[#c3c3c3]'>
-                                Market Cap:
-                            </span>
-                            <span className='text-xs font-bold'>
-                                $647, 000, 000
-                            </span>
+                            <span className=' text-[#c3c3c3]'>Market Cap:</span>
+                            <span>$647, 000, 000</span>
                         </div>
                     </div>
                 </div>

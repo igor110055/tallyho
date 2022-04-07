@@ -38,7 +38,7 @@ export const farmsData = [
         liquidity: 123128,
         lp: 15545.5,
         earned: 10,
-        isHot: false,
+        isHot: true,
     },
     {
         id: 3,
@@ -77,7 +77,7 @@ export const farmsData = [
         liquidity: 123128,
         lp: 15545.5,
         earned: 10,
-        isHot: true,
+        isHot: false,
     },
     {
         id: 6,
@@ -103,7 +103,7 @@ export const farmsData = [
         liquidity: 123128,
         lp: 15545.5,
         earned: 10,
-        isHot: true,
+        isHot: false,
     },
     {
         id: 8,
@@ -129,7 +129,7 @@ export const farmsData = [
         liquidity: 123128,
         lp: 15545.5,
         earned: 10,
-        isHot: true,
+        isHot: false,
     },
     {
         id: 10,
@@ -155,7 +155,7 @@ export const farmsData = [
         liquidity: 123128,
         lp: 15545.5,
         earned: 10,
-        isHot: true,
+        isHot: false,
     },
     {
         id: 12,
@@ -181,7 +181,7 @@ export const farmsData = [
         liquidity: 123128,
         lp: 15545.5,
         earned: 10,
-        isHot: true,
+        isHot: false,
     },
     {
         id: 14,
@@ -207,7 +207,7 @@ export const farmsData = [
         liquidity: 123128,
         lp: 15545.5,
         earned: 10,
-        isHot: true,
+        isHot: false,
     },
     {
         id: 16,
@@ -233,7 +233,7 @@ export const farmsData = [
         liquidity: 123128,
         lp: 15545.5,
         earned: 10,
-        isHot: true,
+        isHot: false,
     },
     {
         id: 18,
@@ -259,7 +259,7 @@ export const farmsData = [
         liquidity: 123128,
         lp: 15545.5,
         earned: 10,
-        isHot: true,
+        isHot: false,
     },
     {
         id: 20,
@@ -285,7 +285,7 @@ export const farmsData = [
         liquidity: 123128,
         lp: 15545.5,
         earned: 10,
-        isHot: true,
+        isHot: false,
     },
     {
         id: 22,
@@ -311,6 +311,6 @@ export const farmsData = [
         liquidity: 123128,
         lp: 15545.5,
         earned: 10,
-        isHot: true,
+        isHot: false,
     }
 ]

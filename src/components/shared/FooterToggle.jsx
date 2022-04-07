@@ -1,31 +1,24 @@
 import { Disclosure, Transition } from '@headlessui/react';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const FooterToggle = ({ title, items }) => {
-    const [isMobile, setIsMobile] = useState(false);
-
-    const handleResize = useCallback(() => {
-        if (window.innerWidth < 768) {
-            setIsMobile(true);
-        } else {
-            setIsMobile(false);
-        }
-    }, []);
+    const [isMobile, setIsMobile] = useState(
+        window.innerWidth < 768 ? true : false
+    );
 
     useEffect(() => {
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, [handleResize]);
+        window.addEventListener('resize', () => {
+            setIsMobile(window.innerWidth < 768);
+        });
+    }, []);
 
     return (
-        <Disclosure defaultOpen={isMobile}>
+        <Disclosure defaultOpen={!isMobile}>
             <Disclosure.Button
                 className='cursor-pointer text-base font-semibold text-white'
                 as='h4'
+                aria-label={`${title} toggle`}
             >
                 {title}
             </Disclosure.Button>

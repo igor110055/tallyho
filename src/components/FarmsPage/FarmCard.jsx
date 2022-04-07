@@ -19,6 +19,7 @@ const FarmCard = ({ item }) => {
         liquidity,
         lp,
         earned,
+        isHot,
     } = item;
 
     return (
@@ -27,7 +28,14 @@ const FarmCard = ({ item }) => {
                 <div className='bg-white transition-all duration-200 first:rounded-t-2xl last:rounded-b-2xl odd:bg-[#f2f6fc] hover:bg-opacity-90'>
                     <Disclosure.Button className='flex w-full flex-col items-center  px-6 py-4     md:flex-row'>
                         <div className='flex w-full items-center justify-between md:w-fit'>
-                            <div className='order-2 mr-8 ml-4 flex items-center justify-center rounded-2xl bg-[#f93b5d] px-3 py-1 text-xs font-semibold md:order-1'>
+                            <div
+                                className={classNames(
+                                    'order-2 mr-8 ml-4 flex items-center justify-center rounded-2xl bg-[#f93b5d] px-3 py-1 text-xs font-semibold md:order-1',
+                                    {
+                                        'opacity-0': !isHot,
+                                    }
+                                )}
+                            >
                                 <span>Hot</span>
                             </div>
 
@@ -73,7 +81,7 @@ const FarmCard = ({ item }) => {
                                         overlayClassName='bg-[#888888] max-w-xs text-xs text-white py-2 px-4 rounded-lg'
                                         destroyTooltipOnHide
                                     >
-                                        <MdOutlineHelpOutline className='h-4 w-4 text-black' />
+                                        <MdOutlineHelpOutline className='hidden h-4 w-4 text-black md:block' />
                                     </Tooltip>
                                 </div>
                             </div>
@@ -83,7 +91,7 @@ const FarmCard = ({ item }) => {
                                 <div className='flex flex-row items-center space-x-2 font-semibold'>
                                     <span>{arp}%</span>
 
-                                    <MdOutlineCalculate className='h-4 w-4 text-black' />
+                                    <MdOutlineCalculate className='hidden h-4 w-4 text-black md:block' />
                                 </div>
                             </div>
 
@@ -103,7 +111,7 @@ const FarmCard = ({ item }) => {
                                         overlayClassName='bg-[#888888] max-w-xs text-xs text-white py-2 px-4 rounded-lg'
                                         destroyTooltipOnHide
                                     >
-                                        <MdOutlineHelpOutline className='h-4 w-4 text-black' />
+                                        <MdOutlineHelpOutline className='hidden h-4 w-4 text-black md:block' />
                                     </Tooltip>
                                 </div>
                             </div>

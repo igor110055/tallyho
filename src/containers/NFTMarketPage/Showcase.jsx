@@ -65,8 +65,10 @@ const Showcase = () => {
                 </div>
 
                 <div className='my-10 flex flex-col items-center'>
-                    <h2 className='text-3xl text-white sm:text-4xl md:text-5xl'>
-                        <span className='text-primary-brand_light'>Tally</span>
+                    <h2 className='font-comfortaa text-3xl text-white sm:text-4xl md:text-5xl'>
+                        <span className='font-comfortaa font-semibold text-primary-brand_light'>
+                            Tally
+                        </span>
                         NFT Launchpad.
                     </h2>
                     <p className='text-lg text-white'>
