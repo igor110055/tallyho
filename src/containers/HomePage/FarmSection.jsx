@@ -42,8 +42,19 @@ const FarmSection = () => {
                 </div>
 
                 <div className='mt-4 space-y-4'>
-                    <PoolItem tokenName={'usdt'} apy={0} />
-                    <PoolItem tokenName='bnb' apy={1} tokenImg={bnbImg} />
+                    <PoolItem
+                        tokenName={'usdt'}
+                        apy={0}
+                        title='Earn Tally'
+                        subtitle={'Stake Tally'}
+                    />
+                    <PoolItem
+                        tokenName='bnb'
+                        apy={1}
+                        tokenImg={bnbImg}
+                        title='Auto Compound'
+                        subtitle={'Stake TALLY - Earn TALLY'}
+                    />
                 </div>
             </div>
         </section>

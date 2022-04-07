@@ -3,7 +3,7 @@ import btally from '../../assets/images/logo1.png';
 import { MdOutlineCalculate } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
-const PoolItem = () => {
+const PoolItem = ({ title, subtitle }) => {
     return (
         <div className='flex flex-col rounded-2xl bg-white py-4 px-6 shadow-2xl transition duration-200 hover:shadow-lg  xl:h-[90px] xl:flex-row'>
             <div className='flex flex-row border-b-2 border-dotted border-primary-darkText/50 pb-4 md:border-b-2 xl:border-b-0 xl:border-r-2'>
@@ -24,10 +24,11 @@ const PoolItem = () => {
 
                 <div className='ml-4 flex h-fit flex-col  space-y-2 truncate pr-4'>
                     <span className='font-comfortaa text-lg font-semibold leading-6 text-primary-darkText'>
-                        Auto Compound
+                        {title}
                     </span>
                     <span className='text-xs font-bold text-[#708db7]'>
-                        Stake TALLY - Earn TALLY
+                        {/* Stake TALLY - Earn TALLY */}
+                        {subtitle}
                     </span>
                 </div>
             </div>

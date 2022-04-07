@@ -4,7 +4,7 @@ import { QuestionMarkCircleIcon } from '@heroicons/react/outline';
 import { ArrowSmDownIcon, XIcon } from '@heroicons/react/solid';
 import { CommonBaseToken, CurrencyItem } from '../../components';
 
-import tallyIcon from '../../assets/images/tokens/btally.png';
+import tallyIcon from '../../assets/images/logo1.png';
 import bnbIcon from '../../assets/images/tokens/bnb.svg';
 import busdIcon from '../../assets/images/tokens/busd.svg';
 import usdtIcon from '../../assets/images/tokens/usdt.svg';
