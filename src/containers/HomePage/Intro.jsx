@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import logo2 from '../../assets/images/logo2.png';
 import { ChevronRightIcon } from '@heroicons/react/solid';
-import { MovingIcons } from '../../components';
+import { MovingIcons, SlideshowHome } from '../../components';
 
 const Intro = () => {
     return (
@@ -33,40 +33,48 @@ const Intro = () => {
                         </span>
                     </div>
 
-                    <div className='my-5 flex max-w-xl flex-col space-y-4 rounded-2xl bg-right_gradient p-4 text-xl font-semibold text-white sm:text-2xl'>
-                        <span className='pl-5 align-middle leading-6'>
-                            Low fees High Yields
-                        </span>
-                        <span className='pl-20 align-middle leading-6 text-primary-brand'>
-                            Youtility
-                        </span>
-                    </div>
+                    <div className='flex flex-col gap-x-4 lg:flex-row'>
+                        <div className='flex flex-1 flex-col justify-center'>
+                            <div className='my-5 flex max-w-xl flex-col space-y-4 rounded-2xl bg-right_gradient p-4 text-xl font-semibold text-white sm:text-2xl'>
+                                <span className='pl-5 align-middle leading-6'>
+                                    Low fees High Yields
+                                </span>
+                                <span className='pl-20 align-middle leading-6 text-primary-brand'>
+                                    Youtility
+                                </span>
+                            </div>
 
-                    <div className='my-5 mt-8 flex w-full max-w-xl rounded-2xl bg-right_gradient px-2 py-4 md:p-6 '>
-                        <div className='flex items-center border-r border-primary-brand pr-4 md:pr-6'>
-                            <img
-                                src={logo2}
-                                alt='logo'
-                                className=' h-10 w-10 md:h-12 md:w-12'
-                            />
-                            <div className='ml-4 sm:mr-4'>
-                                <span className='mb-1 block text-xs font-bold leading-6 text-primary-brand'>
-                                    Total Value Locked
-                                </span>
-                                <span className='text-lg font-semibold text-white md:text-2xl'>
-                                    $000, 000,000
-                                </span>
+                            <div className='my-5 mt-8 flex w-full max-w-xl rounded-2xl bg-right_gradient px-2 py-4 md:p-6 '>
+                                <div className='flex items-center border-r border-primary-brand pr-4 md:pr-6'>
+                                    <img
+                                        src={logo2}
+                                        alt='logo'
+                                        className=' h-10 w-10 md:h-12 md:w-12'
+                                    />
+                                    <div className='ml-4 sm:mr-4'>
+                                        <span className='mb-1 block text-xs font-bold leading-6 text-primary-brand'>
+                                            Total Value Locked
+                                        </span>
+                                        <span className='text-lg font-semibold text-white md:text-2xl'>
+                                            $000, 000,000
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className='flex items-center'>
+                                    <div className='ml-3 md:ml-8'>
+                                        <span className='mb-1 block text-xs font-bold leading-6 text-primary-brand'>
+                                            Total Trading Volume
+                                        </span>
+                                        <span className='text-lg font-semibold text-white md:text-2xl'>
+                                            $000, 000,000
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div className='flex items-center'>
-                            <div className='ml-3 md:ml-8'>
-                                <span className='mb-1 block text-xs font-bold leading-6 text-primary-brand'>
-                                    Total Trading Volume
-                                </span>
-                                <span className='text-lg font-semibold text-white md:text-2xl'>
-                                    $000, 000,000
-                                </span>
-                            </div>
+
+                        <div className='mb-6 flex-1 lg:mb-0'>
+                            <SlideshowHome />
                         </div>
                     </div>
 

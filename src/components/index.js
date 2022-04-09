@@ -21,6 +21,7 @@ export { default as FarmItem } from './HomePage/FarmItem';
 export { default as PoolItem } from './HomePage/PoolItem';
 export { default as BenefitItem } from './HomePage/BenefitItem';
 export { default as InfoItem } from './HomePage/InfoItem';
+export { default as SlideshowHome } from './HomePage/SlideshowHome';
 
 // ExchangePage
 export { default as RadioGroupComp } from './ExchangePage/RadioGroupComp';
