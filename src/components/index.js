@@ -27,6 +27,7 @@ export { default as SlideshowHome } from './HomePage/SlideshowHome';
 export { default as RadioGroupComp } from './ExchangePage/RadioGroupComp';
 export { default as CommonBaseToken } from './ExchangePage/CommonBaseToken';
 export { default as CurrencyItem } from './ExchangePage/CurrencyItem';
+export { default as ClaimCard } from './ExchangePage/ClaimCard';
 
 
 // PoolsPage

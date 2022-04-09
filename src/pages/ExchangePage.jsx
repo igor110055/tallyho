@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import { RadioGroupComp, SettingsModal } from '../components';
+import { ClaimCard, RadioGroupComp, SettingsModal } from '../components';
 import { LiquiditySection, SliderBanner, SwapSection } from '../containers';
 
 import exchangeGif from '../assets/images/gifs/Tally-ho_icon2.gif';
@@ -94,22 +94,31 @@ const ExchangePage = () => {
                     />
                 </div>
 
-                <RadioGroupComp
-                    type={type}
-                    setType={setTypeandNavigate}
-                    types={types}
-                />
+                <div className='flex w-full flex-row justify-center'>
+                    <div className='flex flex-1 flex-col items-center'>
+                        <RadioGroupComp
+                            type={type}
+                            setType={setTypeandNavigate}
+                            types={types}
+                        />
+                        {type === 'swap' && !coin && (
+                            <SwapSection
+                                openSettingsModal={openSettingsModal}
+                            />
+                        )}
+                        {type === 'pool' && !coin && (
+                            <LiquiditySection
+                                openSettingsModal={openSettingsModal}
+                                setType={setType}
+                            />
+                        )}
+                        <Outlet />
+                    </div>
 
-                {type === 'swap' && !coin && (
-                    <SwapSection openSettingsModal={openSettingsModal} />
-                )}
-                {type === 'pool' && !coin && (
-                    <LiquiditySection
-                        openSettingsModal={openSettingsModal}
-                        setType={setType}
-                    />
-                )}
-                <Outlet />
+                    <div className='flex items-end justify-end'>
+                        <ClaimCard />
+                    </div>
+                </div>
             </section>
 
             <SliderBanner />
