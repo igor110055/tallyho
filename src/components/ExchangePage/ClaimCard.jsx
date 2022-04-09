@@ -25,7 +25,7 @@ const ClaimCard = ({ coverImg, avatar, tokenName, apyValue }) => {
                         Your $Tally Balance
                     </h3>
                     <h4 className='text-xl font-semibold text-primary-brand'>
-                        2.3400,000
+                        2,340,000
                     </h4>
                     <p className='font-semibold text-white'>$359.94</p>
                 </div>
