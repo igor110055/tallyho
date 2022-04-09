@@ -94,7 +94,7 @@ const ExchangePage = () => {
                     />
                 </div>
 
-                <div className='flex w-full flex-row justify-center'>
+                <div className='container mx-auto flex max-w-7xl flex-row justify-center'>
                     <div className='flex flex-1 flex-col items-center'>
                         <RadioGroupComp
                             type={type}

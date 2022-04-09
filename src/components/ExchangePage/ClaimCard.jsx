@@ -7,7 +7,7 @@ import bnb from '../../assets/images/tokens/bnb.svg';
 
 const ClaimCard = ({ coverImg, avatar, tokenName, apyValue }) => {
     return (
-        <div className='flex flex-col rounded-2xl bg-gradient-to-b from-slate-800 to-slate-600 p-6'>
+        <div className='flex flex-col rounded-2xl border border-yellow-500 bg-gradient-to-b from-stone-600 to-slate-600 p-6'>
             <div className='flex flex-row space-x-5 pb-4'>
                 <figure className='relative inline-block'>
                     <img className='h-20 w-20' src={btally} alt='token' />
@@ -33,7 +33,7 @@ const ClaimCard = ({ coverImg, avatar, tokenName, apyValue }) => {
             <div className='flex w-full flex-row items-center justify-between'>
                 <div className='flex flex-col space-y-2'>
                     <h3 className='inline-block space-x-1 font-semibold'>
-                        <span className='text-white'>$TallyBack</span>
+                        <span className='text-white'>$TallyBACK</span>
                         <span className='text-primary-brand'>Rewards:</span>
                     </h3>
 
@@ -57,7 +57,7 @@ const ClaimCard = ({ coverImg, avatar, tokenName, apyValue }) => {
                     </div>
                 </div>
 
-                <button className='flex h-12 items-center justify-center rounded-lg bg-primary-brand px-4 font-semibold uppercase text-white hover:outline hover:outline-2 hover:outline-primary-darkText'>
+                <button className='flex h-12 items-center justify-center rounded-lg bg-primary-brand px-4 font-semibold uppercase text-white outline outline-2 outline-yellow-500 transition-all hover:outline hover:outline-2 hover:outline-yellow-700'>
                     Claim
                 </button>
             </div>

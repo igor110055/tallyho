@@ -35,7 +35,7 @@ const AnalyticsHeading = () => {
                     <input
                         type='text'
                         placeholder='Search pools or tokens'
-                        className='focus:shadow-outline block h-10 w-full rounded-lg border border-white/40 bg-primary-dark px-4 text-xs text-primary-darkText caret-white focus:border-white focus:outline-none'
+                        className='focus:shadow-outline block h-10 w-full rounded-lg border border-white/40 bg-primary-dark px-4 text-xs text-white caret-white focus:border-white focus:outline-none'
                     />
                     <SearchIcon className='absolute top-1/2 right-4 h-5 w-5 -translate-y-1/2 text-white' />
                 </div>
