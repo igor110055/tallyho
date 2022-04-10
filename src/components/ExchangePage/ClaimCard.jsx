@@ -4,10 +4,15 @@ import btally from '../../assets/images/logo1.png';
 
 import tallysmall from '../../assets/images/logo2.png';
 import bnb from '../../assets/images/tokens/bnb.svg';
+import btcb from '../../assets/images/tokens/btcb.svg';
+import eth from '../../assets/images/tokens/eth.svg';
+import xrp from '../../assets/images/tokens/xrp.svg';
+import doge from '../../assets/images/tokens/doge.svg';
+import ada from '../../assets/images/tokens/ada.svg';
 
 const ClaimCard = ({ coverImg, avatar, tokenName, apyValue }) => {
     return (
-        <div className='flex flex-col rounded-2xl border border-yellow-500 bg-gradient-to-b from-stone-600 to-slate-600 p-6'>
+        <div className='flex min-w-[320px] flex-col rounded-2xl border border-yellow-500 bg-gradient-to-b from-stone-600 to-slate-600 p-6 xl:absolute'>
             <div className='flex flex-row space-x-5 pb-4'>
                 <figure className='relative inline-block'>
                     <img className='h-20 w-20' src={btally} alt='token' />
@@ -114,27 +119,27 @@ const ClaimCard = ({ coverImg, avatar, tokenName, apyValue }) => {
 
                                 <div className='flex items-center justify-end space-x-1'>
                                     <img
-                                        src={btally}
+                                        src={btcb}
                                         alt='token'
                                         className='h-8 w-8 rounded-full'
                                     />
                                     <img
-                                        src={tallysmall}
+                                        src={eth}
                                         alt='token'
                                         className='h-8 w-8 rounded-full'
                                     />
                                     <img
-                                        src={bnb}
+                                        src={xrp}
                                         alt='token'
                                         className='h-8 w-8 rounded-full'
                                     />
                                     <img
-                                        src={btally}
+                                        src={ada}
                                         alt='token'
                                         className='h-8 w-8 rounded-full'
                                     />
                                     <img
-                                        src={btally}
+                                        src={doge}
                                         alt='token'
                                         className='h-8 w-8 rounded-full'
                                     />

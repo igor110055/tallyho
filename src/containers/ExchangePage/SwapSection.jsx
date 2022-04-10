@@ -95,7 +95,7 @@ const SwapSection = ({ openSettingsModal }) => {
                         <img
                             src={tallyIcon}
                             alt='token icon'
-                            className='h-6 w-6 rounded-full object-cover'
+                            className='h-7 w-7 rounded-full object-cover'
                         />
                         <span className='text-sm font-semibold'>Tally</span>
                         <ChevronDownIcon className='h-5 w-5 text-primary-brand_light' />

@@ -40,7 +40,7 @@ const ExchangePage = () => {
     return (
         <main>
             <section className='flex min-h-screen flex-col items-center justify-center bg-primary-sidebar px-4 pt-40 pb-8'>
-                <div className='flex w-full flex-col justify-center overflow-hidden lg:flex-row'>
+                <div className='flex w-full flex-col justify-center overflow-hidden xl:flex-row'>
                     <div className='flex flex-1 flex-col items-center'>
                         <img
                             src={exchangeGif}
@@ -87,7 +87,7 @@ const ExchangePage = () => {
                         <Outlet />
                     </div>
 
-                    <div className='mt-8 flex items-center justify-center lg:mt-0 lg:items-end lg:justify-end'>
+                    <div className='relative mt-8 flex items-center justify-center xl:mt-0 xl:items-end xl:justify-end'>
                         <ClaimCard />
                     </div>
                 </div>
