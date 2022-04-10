@@ -77,15 +77,51 @@ const Showcase = () => {
                     </p>
                 </div>
 
-                <div className='grid grid-cols-2 place-items-center justify-center text-lg font-semibold text-white'>
+                {/* <div className='grid grid-cols-2 place-items-center justify-center text-lg font-semibold text-white'>
                     <span>Tally Token Holders.</span>
                     <span>Non-Tally Token Holders.</span>
-                </div>
+                </div> */}
 
-                <div className='mx-auto mt-4 grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5'>
+                {/* <div className='mx-auto mt-4 grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5'>
                     {cardsData.map(item => (
                         <MarketPageCard key={item.id} {...item} />
                     ))}
+                </div> */}
+                <div className='flex w-full flex-col items-center justify-center gap-4 lg:flex-row'>
+                    <div className='flex flex-col items-center'>
+                        <span className='text-center text-lg font-semibold text-white'>
+                            Tally Token Holders
+                        </span>
+
+                        <div className='mt-4 flex flex-wrap justify-center gap-4'>
+                            {cardsData.map(
+                                item =>
+                                    item.color === 'blue' && (
+                                        <MarketPageCard
+                                            key={item.id}
+                                            {...item}
+                                        />
+                                    )
+                            )}
+                        </div>
+                    </div>
+                    <div className='flex flex-col items-center'>
+                        <span className='text-center text-lg font-semibold text-white'>
+                            Non-Tally Token Holders.
+                        </span>
+
+                        <div className='mt-4 flex flex-wrap justify-center gap-4'>
+                            {cardsData.map(
+                                item =>
+                                    item.color === 'green' && (
+                                        <MarketPageCard
+                                            key={item.id}
+                                            {...item}
+                                        />
+                                    )
+                            )}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

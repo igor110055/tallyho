@@ -73,7 +73,7 @@ const Intro = () => {
                             </div>
                         </div>
 
-                        <div className='mb-6 flex-1 lg:mb-0'>
+                        <div className='mb-6 flex flex-1 justify-end lg:mb-0'>
                             <SlideshowHome />
                         </div>
                     </div>

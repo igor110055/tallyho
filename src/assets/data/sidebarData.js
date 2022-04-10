@@ -6,10 +6,12 @@ import { BiRocket } from "react-icons/bi";
 import scamImg from '../images/scam.png';
 import raffleImg from '../images/raffle.png';
 import ethImg from '../images/eth.png';
-import polygonImg from '../images/polygon.png';
+// import polygonImg from '../images/polygon.png';
 import cardanoImg from '../images/cardano.png';
 import chartsImg from '../images/chats.png';
 import analyImg from '../images/analy.png';
+
+import solanaImg from '../images/tokens/solana-removebg.png';
 
 
 
@@ -106,7 +108,7 @@ export const navigation = [
   { name: "Tally Centralised", href: "tally_centralise", icon: TallyCentralisedIcon, badge: "soon" },
   { name: "Raffle (Integrating Soon)", href: "tally_centralise", icon: null, badge: "", image: raffleImg },
   { name: "Eth", href: "tally_centralise", icon: null, badge: "soon", image: ethImg },
-  { name: "Polygon", href: "tally_centralise", icon: null, badge: "soon", image: polygonImg },
+  { name: "Solana", href: "tally_centralise", icon: null, badge: "soon", image: solanaImg },
   { name: "Cardano", href: "tally_centralise", icon: null, badge: "soon", image: cardanoImg },
   { name: "Bsc Charts", href: "tally_centralise", icon: null, badge: "soon", image: chartsImg },
   { name: "Analytics", href: "analytics", icon: null, badge: "", image: analyImg },

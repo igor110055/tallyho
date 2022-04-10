@@ -4,7 +4,7 @@ import { GiBackwardTime } from 'react-icons/gi';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 
 import bnbIcon from '../../assets/images/tokens/bnb.svg';
-import tallyIcon from '../../assets/images/tokens/btally.png';
+import tallyIcon from '../../assets/images/logo1.png';
 import exchangeImg from '../../assets/images/exchange.png';
 
 import { SelectTokenModal } from '../../components';

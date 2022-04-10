@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const navlinks = [
     { name: 'Overview', path: '' },
-    { name: 'Pools', path: 'pools' },
+    { name: 'Pools', path: '/pools' },
     { name: 'Tokens', path: 'tokens' },
 ];
 

@@ -9,20 +9,21 @@ const SlideshowHome = () => {
             showArrows={false}
             showThumbs={false}
             showStatus={false}
-            showIndicators={true}
+            showIndicators={false}
             autoPlay={true}
             infiniteLoop={true}
-            interval={3000}
+            interval={3500}
             centerMode={true}
             centerSlidePercentage={100}
+            className='w-fit'
         >
-            <div className='mx-auto w-full max-w-md'>
+            <div className='mx-auto w-full max-w-md lg:ml-auto lg:mr-0'>
                 <img src={gif1} alt='gif1' className='w-full' />
             </div>
-            <div className='mx-auto w-full max-w-md'>
+            <div className='mx-auto w-full max-w-md lg:ml-auto lg:mr-0'>
                 <img src={gif2} alt='gif2' className='w-full' />
             </div>
-            <div className='mx-auto w-full max-w-md'>
+            <div className='mx-auto w-full max-w-md lg:ml-auto lg:mr-0'>
                 <img src={gif3} alt='gif3' className='w-full' />
             </div>
         </Carousel>

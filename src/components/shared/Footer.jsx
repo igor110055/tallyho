@@ -87,7 +87,7 @@ const Footer = () => {
                                 <img
                                     src={btally}
                                     alt='logo'
-                                    className='h-11 w-11 sm:w-full'
+                                    className='h-11 w-11 sm:w-fit'
                                 />
                                 <span className='text-sm uppercase text-primary-brand sm:ml-2'>
                                     Tally

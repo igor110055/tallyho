@@ -40,7 +40,7 @@ const ExchangePage = () => {
     return (
         <main>
             <section className='flex min-h-screen flex-col items-center justify-center bg-primary-sidebar px-4 pt-40 pb-8'>
-                <div className='container mx-auto flex max-w-7xl flex-col justify-center lg:flex-row'>
+                <div className='flex w-full flex-col justify-center overflow-hidden lg:flex-row'>
                     <div className='flex flex-1 flex-col items-center'>
                         <img
                             src={exchangeGif}
