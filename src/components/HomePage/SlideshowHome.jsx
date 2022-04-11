@@ -1,7 +1,7 @@
 import { Carousel } from 'react-responsive-carousel';
-import gif1 from '../../assets/images/gifs/Tally-ho_icon2.gif';
+import gif1 from '../../assets/images/gifs/Tally-ho_Home 2.gif';
 import gif2 from '../../assets/images/gifs/tally-ho_MOD.gif';
-import gif3 from '../../assets/images/gifs/TallySWAPHomePage.gif';
+import gif3 from '../../assets/images/gifs/Tally-ho_Home Page 3.gif';
 
 const SlideshowHome = () => {
     return (
@@ -12,7 +12,7 @@ const SlideshowHome = () => {
             showIndicators={false}
             autoPlay={true}
             infiniteLoop={true}
-            interval={3500}
+            interval={5000}
             centerMode={true}
             centerSlidePercentage={100}
             className='w-fit'

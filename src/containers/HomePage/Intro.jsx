@@ -6,7 +6,7 @@ import { MovingIcons, SlideshowHome } from '../../components';
 const Intro = () => {
     return (
         <section className='bg-intro_bg pt-20'>
-            <div className='container mx-auto max-w-6xl px-4 pt-10 md:px-6'>
+            <div className='container mx-auto max-w-7xl px-4 pt-10 md:px-6'>
                 <div className='pb-4'>
                     <div className='relative mx-auto max-w-lg text-center'>
                         <h2 className='mb-2 flex items-center justify-center font-comfortaa text-3xl font-semibold md:text-[40px]'>

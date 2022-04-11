@@ -13,7 +13,8 @@ const serviceItems = [
     },
     {
         title: 'Tally Token',
-        href: '/bsw_token',
+        href: '/WPRevampedFinal.pdf',
+        external: true,
     },
     {
         title: 'Apply to Launch',

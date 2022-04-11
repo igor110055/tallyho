@@ -72,7 +72,7 @@ const Navbar = ({ setSidebarOpen }) => {
                                 className='mr-0 w-5 md:mr-2'
                             />
                             <span className='hidden md:block'>
-                                Tally Ho Home
+                                Tally-Ho Home
                             </span>
                         </button>
                     </div>

@@ -3,7 +3,7 @@ import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { ClaimCard, RadioGroupComp, SettingsModal } from '../components';
 import { LiquiditySection, SliderBanner, SwapSection } from '../containers';
 
-import exchangeGif from '../assets/images/gifs/Tally-ho_icon2.gif';
+import exchangeGif from '../assets/images/gifs/Tally-ho_Exchange.gif';
 
 const ExchangePage = () => {
     const types = [
