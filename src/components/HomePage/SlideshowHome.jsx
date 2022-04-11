@@ -12,7 +12,7 @@ const SlideshowHome = () => {
             showIndicators={false}
             autoPlay={true}
             infiniteLoop={true}
-            interval={5000}
+            interval={13000}
             centerMode={true}
             centerSlidePercentage={100}
             className='w-fit'
