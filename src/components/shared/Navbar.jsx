@@ -137,13 +137,13 @@ const Navbar = ({ setSidebarOpen }) => {
               {balance && (
                 <span className="text-gray-400">
                   {parseFloat(formatEther(balance)).toFixed(5)}
-                  <span className="font-bold"> ETH</span>
+                  <span className="font-bold"> BNB</span>
                 </span>
               )}
               {!balance && (
                 <span className="text-gray-400">
                   {(0).toFixed(5)}
-                  <span className="font-bold"> ETH</span>
+                  <span className="font-bold"> BNB</span>
                 </span>
               )}
               <button

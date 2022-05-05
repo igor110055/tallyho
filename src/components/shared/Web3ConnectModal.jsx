@@ -9,7 +9,7 @@ export default function Web3ConnectModal({ open, setOpen }) {
   const { activateBrowserWallet, chainId, switchNetwork } = useEthers();
   const supportedChainIds = useSelector((state) => state.chain.supportedIds);
 
-  const connectMetamask = async () => {
+  const connectMetamask = () => {
     if (!supportedChainIds.includes(chainId))
       switchNetwork(supportedChainIds?.[0]);
     activateBrowserWallet();

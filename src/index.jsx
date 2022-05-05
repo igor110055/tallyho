@@ -15,11 +15,10 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import {
   DAppProvider,
-  Rinkeby,
   DEFAULT_SUPPORTED_CHAINS,
-  Mainnet,
+  BSC,
+  BSCTestnet,
 } from "@usedapp/core";
-import { getDefaultProvider } from "ethers";
 
 const config = {
   networks: DEFAULT_SUPPORTED_CHAINS,
@@ -27,10 +26,10 @@ const config = {
     expirationPeriod: 4000,
     checkInterval: 1000,
   },
-  readOnlyChainId: Mainnet.chainId,
+  readOnlyChainId: BSC.chainId,
   readOnlyUrls: {
-    [Mainnet.chainId]: getDefaultProvider("mainnet"),
-    [Rinkeby.chainId]: getDefaultProvider("rinkeby"),
+    [BSC.chainId]: "https://bsc-dataseed1.binance.org",
+    [BSCTestnet.chainId]: "https://data-seed-prebsc-1-s1.binance.org:8545",
   },
 };
 

@@ -1,5 +1,5 @@
 const initialData = {
-  supportedIds: [4],
+  supportedIds: [97],
 };
 export function ChainReducer(state = initialData, action) {
   switch (action.type) {
