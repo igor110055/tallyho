@@ -7,8 +7,6 @@ const PoolsPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log('stakeType', stakeType);
-
         if (!stakeType) {
             navigate('stake_tally');
         }

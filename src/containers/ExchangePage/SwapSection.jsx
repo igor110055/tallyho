@@ -13,7 +13,6 @@ import { SelectTokenModal } from '../../components';
 
 const SwapSection = ({ openSettingsModal }) => {
     const { pathname } = useLocation();
-    console.log(pathname);
 
     const [tokenModalOpen, setTokenModalOpen] = useState(false);
 
