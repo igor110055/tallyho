@@ -1,8 +1,8 @@
+import { useState } from 'react';
+import { Transition } from '@headlessui/react';
 import gif1 from '../../assets/images/gifs/Tally-ho_Home 2.gif';
 import gif2 from '../../assets/images/gifs/tally-ho_MOD.gif';
 import gif3 from '../../assets/images/gifs/Tally-ho_Home Page 3.gif';
-import { useState } from 'react';
-import { Transition } from '@headlessui/react';
 
 const SlideshowHome = () => {
     const slides = [

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { ClaimCard, RadioGroupComp, SettingsModal } from '../components';
-import { LiquiditySection, SliderBanner, SwapSection } from '../containers';
+import { SliderBanner, SwapSection } from '../containers';
 
 import exchangeGif from '../assets/images/gifs/Tally-ho_Exchange.gif';
 
@@ -10,10 +10,6 @@ const ExchangePage = () => {
         {
             name: 'Exchange',
             value: 'swap',
-        },
-        {
-            name: 'Liquidity',
-            value: 'pool',
         },
     ];
     const navigate = useNavigate();
@@ -48,12 +44,10 @@ const ExchangePage = () => {
                             className='mb-8 w-full max-w-lg flex-1'
                         />
                         <h1 className='mb-2 whitespace-nowrap text-center  text-3xl font-bold text-white md:text-[40px]'>
-                            {type === 'swap'
-                                ? 'Swap BEP20 Tokens'
-                                : 'Become a Liquidity Provider'}
+                            Swap BEP20 Tokens
                         </h1>
 
-                        {type === 'pool' && (
+                        {/* {type === 'pool' && (
                             <div className='mb-4 flex flex-col text-center text-white'>
                                 <h3 className=' text-base font-light'>
                                     Earn high yields from transaction fees.
@@ -67,23 +61,19 @@ const ExchangePage = () => {
                                     Learn how to add liquidity
                                 </a>
                             </div>
-                        )}
+                        )} */}
                         <RadioGroupComp
                             type={type}
                             setType={setTypeandNavigate}
                             types={types}
                         />
-                        {type === 'swap' && !coin && (
-                            <SwapSection
-                                openSettingsModal={openSettingsModal}
-                            />
-                        )}
-                        {type === 'pool' && !coin && (
+                        <SwapSection openSettingsModal={openSettingsModal} />
+                        {/* {type === 'pool' && !coin && (
                             <LiquiditySection
                                 openSettingsModal={openSettingsModal}
                                 setType={setType}
                             />
-                        )}
+                        )} */}
                         <Outlet />
                     </div>
 

@@ -2,16 +2,19 @@ import { useState } from 'react';
 import { FaCog, FaCaretLeft } from 'react-icons/fa';
 import { GiBackwardTime } from 'react-icons/gi';
 import { ChevronDownIcon } from '@heroicons/react/solid';
+import { Link, useParams, useLocation } from 'react-router-dom';
+import { QuestionMarkCircleIcon } from '@heroicons/react/outline';
 
 import bnbIcon from '../../assets/images/tokens/bnb.svg';
 import tallyIcon from '../../assets/images/logo1.png';
 import exchangeImg from '../../assets/images/exchange.png';
 
 import { SelectTokenModal } from '../../components';
-import { Link, useParams } from 'react-router-dom';
-import { QuestionMarkCircleIcon } from '@heroicons/react/outline';
 
 const SwapSection = ({ openSettingsModal }) => {
+    const { pathname } = useLocation();
+    console.log(pathname);
+
     const [tokenModalOpen, setTokenModalOpen] = useState(false);
 
     const { coin } = useParams();
@@ -21,7 +24,13 @@ const SwapSection = ({ openSettingsModal }) => {
             <div className='flex items-center justify-center p-6'>
                 {coin ? (
                     <h2 className='flex w-full justify-between text-sm font-semibold'>
-                        <Link to='/swap'>
+                        <Link
+                            to={
+                                pathname.includes('liquidity')
+                                    ? '/liquidity'
+                                    : '/swap'
+                            }
+                        >
                             <FaCaretLeft className='h-5 w-5 cursor-pointer' />
                         </Link>
                         <span>Add Liquidity</span>
