@@ -4,6 +4,9 @@ export { default as FarmSection } from './HomePage/FarmSection';
 export { default as FeaturesSection } from './HomePage/FeaturesSection';
 export { default as InfoSection } from './HomePage/InfoSection';
 
+//LiquidityPage
+export { default as LiquiditySwap } from './LiquidityPage/LiquiditySwap';
+
 // ExchangePage
 export { default as SwapSection } from './ExchangePage/SwapSection';
 export { default as LiquiditySection } from './ExchangePage/LiquiditySection';

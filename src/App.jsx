@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { Layout, LazyLoad, NotFoundRoute } from './components';
-import { CoinsTable, SwapSection } from './containers';
+import { CoinsTable, LiquiditySwap, SwapSection } from './containers';
 import {
     HomePage,
     LiquidityPage,
@@ -48,7 +48,7 @@ function App() {
                         </LazyLoad>
                     }
                 >
-                    <Route path='add/:coin' element={<SwapSection />} />
+                    <Route path='add/:coin' element={<LiquiditySwap />} />
                 </Route>
 
                 {/* Exchange Page Route */}

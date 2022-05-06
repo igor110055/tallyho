@@ -9,19 +9,20 @@ import bnbIcon from '../../assets/images/tokens/bnb.svg';
 import tallyIcon from '../../assets/images/logo1.png';
 import exchangeImg from '../../assets/images/exchange.png';
 
-import { SelectTokenModal } from '../../components';
+import { SelectTokenModal, SettingsModal } from '../../components';
 
-const SwapSection = ({ openSettingsModal }) => {
+const LiquiditySwap = () => {
     const [tokenModalOpen, setTokenModalOpen] = useState(false);
+    const [settingsModal, setSettingsModal] = useState(false);
+    const openSettingsModal = () => setSettingsModal(true);
 
     const { coin } = useParams();
-
     return (
         <div className='relative z-10 mt-5 w-full max-w-lg rounded-2xl bg-card_gradient py-4 pb-8 text-white'>
             <div className='flex items-center justify-center p-6'>
                 {coin ? (
                     <h2 className='flex w-full justify-between text-sm font-semibold'>
-                        <Link to={'/swap'}>
+                        <Link to={'/liquidity'}>
                             <FaCaretLeft className='h-5 w-5 cursor-pointer' />
                         </Link>
                         <span>Add Liquidity</span>
@@ -141,8 +142,9 @@ const SwapSection = ({ openSettingsModal }) => {
                 open={tokenModalOpen}
                 setOpen={setTokenModalOpen}
             />
+            <SettingsModal open={settingsModal} setOpen={setSettingsModal} />
         </div>
     );
 };
 
-export default SwapSection;
+export default LiquiditySwap;
