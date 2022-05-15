@@ -10,6 +10,11 @@ module.exports = {
 					sidebar: '#303030',
 					dark: '#212529',
 					darkText: '#07162d'
+				},
+				tallyPay: {
+					dark: '#14171AF2',
+					primaryText: '#95D143',
+					background: '#E5E5E5'
 				}
 			},
 			backgroundImage: {

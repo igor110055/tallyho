@@ -40,6 +40,9 @@ export { default as StakeTokensCard } from './PoolsPage/StakeTokenCard';
 // FarmsPage
 export { default as FarmCard } from './FarmsPage/FarmCard';
 
+//TallyPay
+export { default as FormTab } from './TallyPay/FormTab';
+
 // TokenChecker
 export { default as TokenCheckerNav } from './TokenChecker/TokenCheckerNav';
 export { default as MakeAChallangeModal } from './TokenChecker/MakeAChallangeModal';

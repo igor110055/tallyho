@@ -17,6 +17,11 @@ import {
     AnalyticsPageLayout,
     AnalyticsOverviewPage,
     AnalyticsFilterPage,
+    TallyPay,
+    TallyPayIndex,
+    TallyWills,
+    LivingTrust,
+    TempLock,
 } from './pages';
 
 function App() {
@@ -91,6 +96,50 @@ function App() {
                         </LazyLoad>
                     }
                 />
+
+                {/* Tally Pay Route */}
+                <Route
+                    path='tally-pay'
+                    element={
+                        <LazyLoad>
+                            <TallyPay />
+                        </LazyLoad>
+                    }
+                >
+                    <Route
+                        index
+                        element={
+                            <LazyLoad>
+                                <TallyPayIndex />
+                            </LazyLoad>
+                        }
+                    />
+
+                    <Route
+                        path='tally-wills'
+                        element={
+                            <LazyLoad>
+                                <TallyWills />
+                            </LazyLoad>
+                        }
+                    />
+                    <Route
+                        path='living-trust'
+                        element={
+                            <LazyLoad>
+                                <LivingTrust />
+                            </LazyLoad>
+                        }
+                    />
+                    <Route
+                        path='temp-lock'
+                        element={
+                            <LazyLoad>
+                                <TempLock />
+                            </LazyLoad>
+                        }
+                    />
+                </Route>
 
                 {/* NFTmarket Page Route */}
                 <Route
