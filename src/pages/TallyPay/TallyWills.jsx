@@ -1,5 +1,6 @@
 import { useReducer } from 'react';
 import { FormTab } from '../../components';
+import { FormLayout } from '../../containers';
 
 const tabs = [
     { name: 'New' },
@@ -43,6 +44,8 @@ const TallyWills = () => {
                     currentTab={state.currentTab}
                     dispatch={dispatch}
                 />
+
+                <FormLayout />
             </form>
         </>
     );

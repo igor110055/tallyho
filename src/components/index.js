@@ -42,6 +42,8 @@ export { default as FarmCard } from './FarmsPage/FarmCard';
 
 //TallyPay
 export { default as FormTab } from './TallyPay/FormTab';
+export { default as SelectTokenCombobox } from './TallyPay/SelectTokenCombobox';
+export { default as SearchBar } from './TallyPay/SearchBar';
 
 // TokenChecker
 export { default as TokenCheckerNav } from './TokenChecker/TokenCheckerNav';

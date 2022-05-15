@@ -23,6 +23,9 @@ export { default as FarmHeader } from './FarmsPage/FarmHeader';
 export { default as FarmOptions } from './FarmsPage/FarmOptions';
 export { default as FarmsContainer } from './FarmsPage/FarmsContainer';
 
+//TallyPay
+export { default as FormLayout } from './TallyPay/FormLayout';
+
 // TokenCheckerPage
 export { default as TokenCheckerHeading } from './TokenCheckerPage/TokenCheckerHeading';
 export { default as CoinsTable } from './TokenCheckerPage/CoinsTable';
