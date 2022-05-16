@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Combobox, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/solid';
-import classNames from 'classnames';
 import SearchBar from './SearchBar';
+import RecentCoins from './RecentCoins';
+import AllCoins from './AllCoins';
 
 const tokens = [
     {
@@ -84,9 +85,25 @@ const tokens = [
 
 const SelectTokenCombobox = () => {
     const [selected, setSelected] = useState(tokens[3]);
+    const [items, setItems] = useState(tokens);
+    const [searchString, setSearchString] = useState('');
     const changeHandler = token => {
         setSelected(token);
     };
+
+    useEffect(() => {
+        if (searchString.length > 0) {
+            setItems(
+                tokens.filter(token =>
+                    token.title
+                        .toLowerCase()
+                        .includes(searchString.toLowerCase())
+                )
+            );
+        } else {
+            setItems(tokens);
+        }
+    }, [searchString]);
 
     return (
         <Combobox value={selected} onChange={changeHandler} as='div'>
@@ -98,7 +115,7 @@ const SelectTokenCombobox = () => {
                     <div className='relative mt-1'>
                         <Combobox.Button className='relative w-full cursor-default rounded-md border border-gray-500 bg-transparent py-4 pl-3 pr-10 text-left text-white shadow-sm sm:text-sm'>
                             <span className='flex items-center'>
-                                <div className='polygonIcon absolute -left-5 overflow-hidden bg-tallyPay-background'>
+                                <div className='polygonIcon bg-tallyPay-background absolute -left-5 overflow-hidden'>
                                     <img
                                         src={selected.icon}
                                         alt=''
@@ -125,50 +142,13 @@ const SelectTokenCombobox = () => {
                             as='div'
                             className='flex flex-col'
                         >
-                            <SearchBar />
+                            <SearchBar setSearchString={setSearchString} />
                             <Combobox.Options
-                                className='z-10 mt-1 max-h-96 w-full overflow-auto rounded-md bg-transparent py-1 text-base text-white shadow-lg focus:outline-none sm:text-sm'
+                                className='mt-1 max-h-96 w-full overflow-auto bg-gradient-to-b from-[#252525] to-[#4C4F44] p-4 text-base text-white shadow-lg focus:outline-none sm:text-sm'
                                 as='div'
                             >
-                                <div className='grid grid-cols-2 gap-5 md:grid-cols-4'>
-                                    {tokens.map(token => (
-                                        <Combobox.Option
-                                            key={token.id}
-                                            className='relative cursor-pointer select-none border text-white'
-                                            value={token}
-                                            as='div'
-                                        >
-                                            {({ selected, active }) => (
-                                                <>
-                                                    <div
-                                                        className={classNames(
-                                                            'flex h-full w-full items-center  px-4 py-2',
-                                                            active
-                                                                ? 'bg-tallyPay-dark'
-                                                                : 'bg-slate-600'
-                                                        )}
-                                                    >
-                                                        <img
-                                                            src={token.icon}
-                                                            alt=''
-                                                            className='h-8 w-8 flex-shrink-0 rounded-full'
-                                                        />
-                                                        <span
-                                                            className={classNames(
-                                                                selected
-                                                                    ? 'font-semibold'
-                                                                    : 'font-normal',
-                                                                'ml-3 block truncate'
-                                                            )}
-                                                        >
-                                                            {token.title}
-                                                        </span>
-                                                    </div>
-                                                </>
-                                            )}
-                                        </Combobox.Option>
-                                    ))}
-                                </div>
+                                <RecentCoins tokens={items} />
+                                <AllCoins tokens={items} />
                             </Combobox.Options>
                         </Transition>
                     </div>
