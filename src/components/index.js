@@ -49,6 +49,7 @@ export { default as AllCoins } from './TallyPay/AllCoins';
 export { default as TPDoubleInput } from './TallyPay/TPDoubleInput';
 export { default as TPInput } from './TallyPay/TPInput';
 export { default as TPPasswordInputs } from './TallyPay/TPPasswordInputs';
+export { default as ConnectWalletButton } from './TallyPay/ConnectWalletButton';
 
 // TokenChecker
 export { default as TokenCheckerNav } from './TokenChecker/TokenCheckerNav';

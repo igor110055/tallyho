@@ -1,6 +1,7 @@
 import { useReducer } from 'react';
 import { PlusIcon, XIcon } from '@heroicons/react/solid';
 import {
+    ConnectWalletButton,
     SelectTokenCombobox,
     TPDoubleInput,
     TPInput,
@@ -140,6 +141,43 @@ const FormLayout = () => {
                     password={state.formData.password}
                     confirmPassword={state.formData.confirmPassword}
                 />
+            </div>
+
+            <div className='mt-6 grid w-full grid-cols-1 gap-y-4 md:grid-cols-2'>
+                <div className='flex max-w-fit flex-col'>
+                    <div className='flex items-center space-x-2 text-white'>
+                        <span>Available :</span>
+                        <span>Tally 0.348384</span>
+                    </div>
+                    <span className='self-end text-tallyPay-primaryText'>
+                        0.2445 USD
+                    </span>
+                </div>
+
+                <div className='flex items-start justify-end space-x-2 text-white'>
+                    <span>Defi Account Balance : </span>
+                    <span className='text-tallyPay-primaryText'>345.73USD</span>
+                </div>
+
+                <div className=' flex max-w-fit flex-col'>
+                    <div className='flex items-center space-x-2 text-white'>
+                        <span>Available :</span>
+                        <span>BNB 0.348384</span>
+                    </div>
+                    <span className='self-end text-tallyPay-primaryText'>
+                        0.2445 USD
+                    </span>
+                </div>
+
+                <div className='flex items-start justify-end space-x-2 text-white'>
+                    <span className='text-tallyPay-primaryText'>
+                        view Contract
+                    </span>
+                </div>
+            </div>
+
+            <div className='mt-6 flex w-full flex-col items-center justify-center'>
+                <ConnectWalletButton />
             </div>
         </form>
     );
