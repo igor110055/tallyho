@@ -1,6 +1,7 @@
 import { useReducer } from 'react';
 import { FormTab } from '../../components';
 import { FormLayout } from '../../containers';
+import { produce } from 'immer';
 
 const tabs = [
     { name: 'New' },
@@ -15,10 +16,9 @@ const TallyWills = () => {
         (state, action) => {
             switch (action.type) {
                 case 'SET_TAB':
-                    return {
-                        ...state,
-                        currentTab: action.tab,
-                    };
+                    return produce(state, draft => {
+                        draft.currentTab = action.tab;
+                    });
                 default:
                     return state;
             }
@@ -38,7 +38,7 @@ const TallyWills = () => {
                 Wills
             </h1>
 
-            <form className='container mt-12 max-w-4xl overflow-hidden rounded-lg bg-tallyPay-dark'>
+            <div className='container mt-12 max-w-4xl overflow-hidden rounded-lg bg-tallyPay-dark'>
                 <FormTab
                     tabs={state.tabs}
                     currentTab={state.currentTab}
@@ -46,7 +46,7 @@ const TallyWills = () => {
                 />
 
                 <FormLayout />
-            </form>
+            </div>
         </>
     );
 };

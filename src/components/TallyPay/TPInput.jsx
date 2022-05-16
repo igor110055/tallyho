@@ -1,4 +1,5 @@
 import { PencilIcon } from '@heroicons/react/solid';
+import { debounce } from 'lodash';
 
 const TPInput = ({
     label,
@@ -7,7 +8,16 @@ const TPInput = ({
     required,
     name,
     rightIcon,
+    dispatch,
 }) => {
+    const handleChange = debounce(e => {
+        dispatch({
+            type: 'updateFormData',
+            field: name,
+            value: e.target.value,
+        });
+    }, 500);
+
     return (
         <div className='group relative z-0 mb-4 w-full'>
             <input
@@ -16,6 +26,7 @@ const TPInput = ({
                 className='peer block w-full appearance-none border-0 border-b-[1.5px] border-tallyPay-gray-lighter bg-transparent py-2.5 px-0 text-sm text-white focus:border-tallyPay-primaryText focus:outline-none focus:ring-0'
                 placeholder={placeholder}
                 required={Boolean(required)}
+                onChange={handleChange}
             />
             <label
                 htmlFor={name}

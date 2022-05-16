@@ -1,4 +1,5 @@
 import { PencilIcon } from '@heroicons/react/solid';
+import { debounce } from 'lodash';
 import React from 'react';
 
 const TPDoubleInput = ({
@@ -6,6 +7,7 @@ const TPDoubleInput = ({
     type = 'text',
     placeholder = ' ',
     required,
+    fee,
     name,
     rightIcon,
     bottomLabel,
@@ -13,7 +15,43 @@ const TPDoubleInput = ({
     bottomName,
     bottomPlaceholder = ' ',
     bottomType = 'text',
+    dispatch,
+    index,
 }) => {
+    const topChangeHandler = debounce(e => {
+        if (index !== undefined || index !== null) {
+            dispatch({
+                type: 'updateInheritor',
+                index,
+                field: name,
+                value: e.target.value,
+            });
+        } else {
+            dispatch({
+                type: 'updateFormData',
+                field: name,
+                value: e.target.value,
+            });
+        }
+    }, 500);
+
+    const bottomChangeHandler = debounce(e => {
+        if (index !== undefined || index !== null) {
+            dispatch({
+                type: 'updateInheritor',
+                index,
+                field: bottomName,
+                value: e.target.value,
+            });
+        } else {
+            dispatch({
+                type: 'updateFormData',
+                field: bottomName,
+                value: e.target.value,
+            });
+        }
+    }, 500);
+
     return (
         <>
             <div className='group relative z-0 w-full'>
@@ -23,6 +61,7 @@ const TPDoubleInput = ({
                     className='peer block w-full appearance-none border-0 border-b-[1.5px] border-tallyPay-gray-lighter bg-transparent py-2.5 px-0 text-sm text-white focus:border-tallyPay-primaryText focus:outline-none focus:ring-0'
                     placeholder={placeholder}
                     required={Boolean(required)}
+                    onChange={topChangeHandler}
                 />
                 <label
                     htmlFor={name}
@@ -30,6 +69,14 @@ const TPDoubleInput = ({
                 >
                     {label}
                 </label>
+
+                {fee && (
+                    <div className='absolute inset-y-0 right-20 z-20 flex items-center'>
+                        <span className=' mr-2 rounded-full bg-[#83BD33]/30 px-2.5 py-0.5 text-xs font-semibold text-white'>
+                            {fee}%
+                        </span>
+                    </div>
+                )}
 
                 <div className='pointer-events-none absolute inset-y-0 right-2 flex items-center'>
                     {rightIcon ? (
@@ -48,6 +95,7 @@ const TPDoubleInput = ({
                     className='peer block w-full appearance-none  bg-transparent py-2.5 px-0 text-sm text-white focus:border-tallyPay-primaryText focus:outline-none focus:ring-0'
                     placeholder={bottomPlaceholder}
                     required={Boolean(required)}
+                    onChange={bottomChangeHandler}
                 />
                 <label
                     htmlFor={bottomName}
