@@ -46,6 +46,8 @@ export { default as SelectTokenCombobox } from './TallyPay/SelectTokenCombobox';
 export { default as SearchBar } from './TallyPay/SearchBar';
 export { default as RecentCoins } from './TallyPay/RecentCoins';
 export { default as AllCoins } from './TallyPay/AllCoins';
+export { default as TPDoubleInput } from './TallyPay/TPDoubleInput';
+export { default as TPInput } from './TallyPay/TPInput';
 
 // TokenChecker
 export { default as TokenCheckerNav } from './TokenChecker/TokenCheckerNav';

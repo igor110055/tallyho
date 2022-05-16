@@ -106,7 +106,7 @@ const SelectTokenCombobox = () => {
     }, [searchString]);
 
     return (
-        <Combobox value={selected} onChange={changeHandler} as='div'>
+        <Combobox value={selected} onChange={changeHandler}>
             {({ open }) => (
                 <>
                     <Combobox.Label className='mb-4 block text-sm font-normal text-tallyPay-primaryText'>
