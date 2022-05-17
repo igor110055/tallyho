@@ -19,7 +19,7 @@ const TPInput = ({
     }, 500);
 
     return (
-        <div className='group relative z-0 mb-4 w-full'>
+        <div className='group relative z-0 w-full'>
             <input
                 type={type}
                 name={name}

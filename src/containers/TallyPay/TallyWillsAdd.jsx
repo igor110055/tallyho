@@ -1,14 +1,14 @@
 import { useReducer } from 'react';
-import { PlusIcon, XIcon } from '@heroicons/react/solid';
 import {
     ConnectWalletButton,
     SelectTokenCombobox,
     TPDoubleInput,
+    TPEditableButton,
     TPInput,
-    TPPasswordInputs,
 } from '../../components';
 import { produce } from 'immer';
 import { nanoid } from 'nanoid';
+import { PlusIcon } from '@heroicons/react/solid';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -38,7 +38,7 @@ const reducer = (state, action) => {
     }
 };
 
-const FormLayout = () => {
+const TallyWillsAdd = () => {
     const [state, dispatch] = useReducer(reducer, {
         formData: {
             token: '',
@@ -47,12 +47,14 @@ const FormLayout = () => {
             amountUSD: '',
             password: '',
             confirmPassword: '',
-            inheritors: [
-                {
-                    id: nanoid(),
-                    email: '',
-                    address: '',
-                },
+            inheritorAddress: '',
+            inheritorEmail: '',
+            sendAmount: '',
+            otherInheritors: [
+                { id: nanoid(), percent: '0.00%' },
+                { id: nanoid(), percent: '0.00%' },
+                { id: nanoid(), percent: '0.00%' },
+                { id: nanoid(), percent: '0.00%' },
             ],
         },
     });
@@ -91,56 +93,63 @@ const FormLayout = () => {
                 />
             </div>
 
-            <div className='mt-6 w-full'>
-                {state.formData.inheritors.map((inheritor, index) => (
-                    <>
-                        <p
-                            key={`${inheritor.id}-label`}
-                            className='inline-flex items-center text-sm font-normal text-tallyPay-primaryText'
-                        >
-                            Inheritor {index + 1} wallet address{' '}
-                            {index > 0 && (
-                                <XIcon
-                                    className='ml-3 h-4 w-4 cursor-pointer text-tallyPay-red'
-                                    onClick={() =>
-                                        dispatch({
-                                            type: 'removeInheritor',
-                                            index,
-                                        })
-                                    }
-                                />
-                            )}
-                        </p>
-                        <TPDoubleInput
-                            name='address'
-                            placeholder='Click here to paste Address'
-                            bottomPlaceholder='Click here to paste Email Address'
-                            bottomName='email'
-                            bottomType='email'
-                            fee='0.0'
-                            key={`${inheritor.id}-input`}
-                            dispatch={dispatch}
-                            index={index}
-                        />
-                    </>
-                ))}
+            <div className='mt-6 flex w-full items-center justify-between'>
+                <div className='basis-2/3 pb-5'>
+                    <p className='inline-flex items-center text-sm font-normal text-tallyPay-primaryText'>
+                        Inheritor 5 wallet address{' '}
+                    </p>
+                    <TPInput
+                        name='inheritorAddress'
+                        dispatch={dispatch}
+                        placeholder='Click here to paste Address'
+                    />
+                </div>
+                <div className='basis-1/4'>
+                    <p className='inline-flex items-center text-sm font-normal text-tallyPay-primaryText'>
+                        Send Amount
+                    </p>
+                    <TPInput
+                        placeholder='10%'
+                        name='sendAmount'
+                        dispatch={dispatch}
+                    />
+                    <p className='-mt-6 inline-flex items-center space-x-1 text-xs font-normal text-tallyPay-primaryText'>
+                        <span className='text-white'>Balance:</span>
+                        <span>3.22$</span>
+                    </p>
+                </div>
+            </div>
 
+            <div className='mt-6 w-full'>
+                <p className='inline-flex items-center text-sm font-normal text-tallyPay-primaryText'>
+                    Adjust % of other inheritors{' '}
+                </p>
+
+                <div className='flex items-center gap-6'>
+                    {state.formData.otherInheritors.map((item, index) => (
+                        <TPEditableButton item={item} index={index} />
+                    ))}
+                </div>
+            </div>
+            <div className='mt-6 w-2/3'>
+                <p className='inline-flex items-center text-sm font-normal text-tallyPay-primaryText'>
+                    Inheritor 5 Email address{' '}
+                </p>
+                <TPInput
+                    name='inheritorEmail'
+                    dispatch={dispatch}
+                    placeholder='Click here to paste Email Address'
+                />
+            </div>
+
+            <div className='mt-6 w-full'>
                 <button
                     type='button'
                     className='mr-2 inline-flex items-center rounded-full bg-tallyPay-gray-default px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-tallyPay-gray-light focus:outline-none'
-                    onClick={() => dispatch({ type: 'addInheritor' })}
                 >
                     <PlusIcon className='mr-2 -ml-1 h-5 w-5' />
                     Add More Addresses
                 </button>
-            </div>
-
-            <div className='mt-6 w-full'>
-                <TPPasswordInputs
-                    dispatch={dispatch}
-                    password={state.formData.password}
-                    confirmPassword={state.formData.confirmPassword}
-                />
             </div>
 
             <div className='mt-6 grid w-full grid-cols-1 gap-y-4 md:grid-cols-2'>
@@ -168,19 +177,13 @@ const FormLayout = () => {
                         0.2445 USD
                     </span>
                 </div>
-
-                <div className='flex items-start justify-end space-x-2 text-white'>
-                    <span className='text-tallyPay-primaryText'>
-                        view Contract
-                    </span>
-                </div>
             </div>
 
             <div className='mt-6 flex w-full flex-col items-center justify-center'>
-                <ConnectWalletButton />
+                <ConnectWalletButton price='10,000 Tally' />
             </div>
         </form>
     );
 };
 
-export default FormLayout;
+export default TallyWillsAdd;

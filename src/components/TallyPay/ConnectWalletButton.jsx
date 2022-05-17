@@ -1,4 +1,4 @@
-const ConnectWalletButton = () => {
+const ConnectWalletButton = ({ price }) => {
     return (
         <>
             <button
@@ -10,9 +10,7 @@ const ConnectWalletButton = () => {
 
             <span className='mt-3 space-x-2 text-sm text-white'>
                 <span>Price :</span>
-                <span className='text-tallyPay-primaryText'>
-                    1 BNB or 10,000 Tally
-                </span>
+                <span className='text-tallyPay-primaryText'>{price}</span>
             </span>
         </>
     );

@@ -24,7 +24,8 @@ export { default as FarmOptions } from './FarmsPage/FarmOptions';
 export { default as FarmsContainer } from './FarmsPage/FarmsContainer';
 
 //TallyPay
-export { default as FormLayout } from './TallyPay/FormLayout';
+export { default as TallyWillsNew } from './TallyPay/TallyWillsNew';
+export { default as TallyWillsAdd } from './TallyPay/TallyWillsAdd';
 
 // TokenCheckerPage
 export { default as TokenCheckerHeading } from './TokenCheckerPage/TokenCheckerHeading';

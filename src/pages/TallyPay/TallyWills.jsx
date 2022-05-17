@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 import { FormTab } from '../../components';
-import { FormLayout } from '../../containers';
+import { TallyWillsAdd, TallyWillsNew } from '../../containers';
 import { produce } from 'immer';
 
 const tabs = [
@@ -45,7 +45,8 @@ const TallyWills = () => {
                     dispatch={dispatch}
                 />
 
-                <FormLayout />
+                {state.currentTab === 'New' && <TallyWillsNew />}
+                {state.currentTab === 'Add' && <TallyWillsAdd />}
             </div>
         </>
     );
