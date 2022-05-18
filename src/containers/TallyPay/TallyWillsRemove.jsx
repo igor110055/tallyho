@@ -52,6 +52,7 @@ const TallyWillsRemove = () => {
                 { id: nanoid(), percent: '0.00%' },
                 { id: nanoid(), percent: '0.00%' },
             ],
+            changeWallet: { name: 'Wallet 1' },
         },
     });
 
@@ -124,8 +125,34 @@ const TallyWillsRemove = () => {
             </div>
 
             <div className='mt-6 w-full bg-[#282D32]/40 p-4'>
-                <p className='text-center text-white'>Change Inheritor</p>
-                <TPChangeInheritorRadio options={state.formData.wallets} />
+                <div>
+                    <p className='text-center text-white'>Change Inheritor</p>
+                    <TPChangeInheritorRadio
+                        options={state.formData.wallets}
+                        onChange={value => {
+                            dispatch({
+                                type: 'updateFormData',
+                                field: 'changeWallet',
+                                value,
+                            });
+                        }}
+                        value={state.formData.changeWallet}
+                    />
+                </div>
+                <div className='mt-4'>
+                    <TPInput
+                        label='Click here to paste new wallet Address Replacment'
+                        name='walletAddressReplacement'
+                        dispatch={dispatch}
+                    />
+                </div>
+                <div className='mt-4'>
+                    <TPInput
+                        label='Click here to paste new Email Address Replacment (if required)'
+                        name='walletEmailReplacement'
+                        dispatch={dispatch}
+                    />
+                </div>
             </div>
 
             <div className='mt-6 grid w-full grid-cols-1 gap-y-4 md:grid-cols-2'>
@@ -155,7 +182,7 @@ const TallyWillsRemove = () => {
                 </div>
             </div>
 
-            <div className='mt-6 flex w-full flex-col items-center justify-center'>
+            <div className='my-6 flex w-full flex-col items-center justify-center'>
                 <ConnectWalletButton price='10,000 Tally' />
             </div>
         </form>
