@@ -3,6 +3,7 @@ import { FormTab } from '../../components';
 import {
     TallyWillsAdd,
     TallyWillsNew,
+    TallyWillsRecovery,
     TallyWillsRemove,
 } from '../../containers';
 import { produce } from 'immer';
@@ -52,6 +53,7 @@ const TallyWills = () => {
                 {state.currentTab === 'New' && <TallyWillsNew />}
                 {state.currentTab === 'Add' && <TallyWillsAdd />}
                 {state.currentTab === 'Remove' && <TallyWillsRemove />}
+                {state.currentTab === 'Recovery' && <TallyWillsRecovery />}
             </div>
         </>
     );

@@ -8,10 +8,12 @@ const ConnectWalletButton = ({ price }) => {
                 Connect Wallet
             </button>
 
-            <span className='mt-3 space-x-2 text-sm text-white'>
-                <span>Price :</span>
-                <span className='text-tallyPay-primaryText'>{price}</span>
-            </span>
+            {price && (
+                <span className='mt-3 space-x-2 text-sm text-white'>
+                    <span>Price :</span>
+                    <span className='text-tallyPay-primaryText'>{price}</span>
+                </span>
+            )}
         </>
     );
 };

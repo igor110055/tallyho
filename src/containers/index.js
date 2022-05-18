@@ -27,6 +27,7 @@ export { default as FarmsContainer } from './FarmsPage/FarmsContainer';
 export { default as TallyWillsNew } from './TallyPay/TallyWillsNew';
 export { default as TallyWillsAdd } from './TallyPay/TallyWillsAdd';
 export { default as TallyWillsRemove } from './TallyPay/TallyWillsRemove';
+export { default as TallyWillsRecovery } from './TallyPay/TallyWillsRecovery';
 
 // TokenCheckerPage
 export { default as TokenCheckerHeading } from './TokenCheckerPage/TokenCheckerHeading';
