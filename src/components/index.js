@@ -51,6 +51,8 @@ export { default as TPInput } from './TallyPay/TPInput';
 export { default as TPPasswordInputs } from './TallyPay/TPPasswordInputs';
 export { default as ConnectWalletButton } from './TallyPay/ConnectWalletButton';
 export { default as TPEditableButton } from './TallyPay/TPEditableButton';
+export { default as TPRadioGroup } from './TallyPay/TPRadioGroup';
+export { default as TPChangeInheritorRadio } from './TallyPay/TPChangeInheritorRadio';
 
 // TokenChecker
 export { default as TokenCheckerNav } from './TokenChecker/TokenCheckerNav';

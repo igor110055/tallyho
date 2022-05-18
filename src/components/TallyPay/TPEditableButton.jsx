@@ -9,6 +9,7 @@ const TPEditableButton = ({
     required,
     dispatch,
     index,
+    showTitle = true,
 }) => {
     const [editing, setEditing] = useState(false);
     const ref = useRef(null);
@@ -23,9 +24,11 @@ const TPEditableButton = ({
 
     return (
         <div className='flex flex-col'>
-            <p className='my-4 text-sm text-tallyPay-gray-lighter'>
-                Wallet {index + 1}
-            </p>
+            {showTitle && (
+                <p className='my-4 text-sm text-tallyPay-gray-lighter'>
+                    Wallet {index + 1}
+                </p>
+            )}
 
             <div className='group relative z-0 w-full'>
                 <input
