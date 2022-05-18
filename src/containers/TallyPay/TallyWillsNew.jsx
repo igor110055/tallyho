@@ -9,6 +9,8 @@ import {
 } from '../../components';
 import { produce } from 'immer';
 import { nanoid } from 'nanoid';
+import { debounce } from 'lodash';
+import tokens from '../../assets/data/tokens';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -41,7 +43,7 @@ const reducer = (state, action) => {
 const TallyWillsNew = () => {
     const [state, dispatch] = useReducer(reducer, {
         formData: {
-            token: '',
+            token: tokens[0],
             address: '',
             amount: '',
             amountUSD: '',
@@ -57,6 +59,14 @@ const TallyWillsNew = () => {
         },
     });
 
+    const handleChangeToken = debounce(e => {
+        dispatch({
+            type: 'updateFormData',
+            field: 'token',
+            value: e,
+        });
+    }, 500);
+
     console.log(state.formData);
 
     return (
@@ -68,7 +78,11 @@ const TallyWillsNew = () => {
             }}
         >
             <div className='w-full'>
-                <SelectTokenCombobox />
+                <SelectTokenCombobox
+                    tokens={tokens}
+                    onChange={handleChangeToken}
+                    selected={state.formData.token}
+                />
             </div>
 
             <div className='mt-4 w-full'>

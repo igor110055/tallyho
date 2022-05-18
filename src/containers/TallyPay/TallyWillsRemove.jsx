@@ -10,6 +10,8 @@ import {
 } from '../../components';
 import { produce } from 'immer';
 import { nanoid } from 'nanoid';
+import tokens from '../../assets/data/tokens';
+import { debounce } from 'lodash';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -28,16 +30,13 @@ const reducer = (state, action) => {
 };
 
 const TallyWillsRemove = () => {
-    //! the form data is not perfecty done, neither the reducer
-    // todo: Complete the form data and reducer
     const [state, dispatch] = useReducer(reducer, {
         formData: {
-            token: '',
+            token: tokens[0],
             address: '',
             amount: '',
             amountUSD: '',
-            inheritorAddress: '',
-            inheritorEmail: '',
+            removeWallet: { name: 'Wallet 1' },
             sendAmount: '',
             wallets: [
                 { name: 'Wallet 1', value: '30%' },
@@ -53,10 +52,20 @@ const TallyWillsRemove = () => {
                 { id: nanoid(), percent: '0.00%' },
             ],
             changeWallet: { name: 'Wallet 1' },
+            walletAddressReplacement: '',
+            walletEmailReplacement: '',
         },
     });
 
     console.log(state.formData);
+
+    const handleChangeToken = debounce(e => {
+        dispatch({
+            type: 'updateFormData',
+            field: 'token',
+            value: e,
+        });
+    }, 500);
 
     return (
         <form
@@ -67,7 +76,11 @@ const TallyWillsRemove = () => {
             }}
         >
             <div className='w-full'>
-                <SelectTokenCombobox />
+                <SelectTokenCombobox
+                    tokens={tokens}
+                    onChange={handleChangeToken}
+                    selected={state.formData.token}
+                />
             </div>
 
             <div className='mt-4 w-full'>
@@ -118,6 +131,7 @@ const TallyWillsRemove = () => {
                                 showTitle={false}
                                 item={item}
                                 index={index}
+                                dispatch={dispatch}
                             />
                         ))}
                     </div>

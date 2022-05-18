@@ -19,16 +19,16 @@ const TPDoubleInput = ({
     index,
 }) => {
     const topChangeHandler = debounce(e => {
-        if (index !== undefined || index !== null) {
-            dispatch({
-                type: 'updateInheritor',
-                index,
+        if (index === undefined || index === null) {
+            return dispatch({
+                type: 'updateFormData',
                 field: name,
                 value: e.target.value,
             });
         } else {
-            dispatch({
-                type: 'updateFormData',
+            return dispatch({
+                type: 'updateInheritor',
+                index,
                 field: name,
                 value: e.target.value,
             });
@@ -36,16 +36,16 @@ const TPDoubleInput = ({
     }, 500);
 
     const bottomChangeHandler = debounce(e => {
-        if (index !== undefined || index !== null) {
-            dispatch({
-                type: 'updateInheritor',
-                index,
+        if (index === undefined || index === null) {
+            return dispatch({
+                type: 'updateFormData',
                 field: bottomName,
                 value: e.target.value,
             });
         } else {
-            dispatch({
-                type: 'updateFormData',
+            return dispatch({
+                type: 'updateInheritor',
+                index,
                 field: bottomName,
                 value: e.target.value,
             });

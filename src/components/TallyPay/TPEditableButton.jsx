@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { PencilIcon } from '@heroicons/react/solid';
+import { debounce } from 'lodash';
 // import { debounce } from 'lodash';
 
 const TPEditableButton = ({
@@ -14,13 +15,13 @@ const TPEditableButton = ({
     const [editing, setEditing] = useState(false);
     const ref = useRef(null);
 
-    // const handleChange = debounce(e => {
-    //     dispatch({
-    //         type: 'updateFormData',
-    //         field: name,
-    //         value: e.target.value,
-    //     });
-    // }, 500);
+    const handleChange = debounce(e => {
+        dispatch({
+            type: 'updateOtherInheritors',
+            index,
+            value: e.target.value,
+        });
+    }, 500);
 
     return (
         <div className='flex flex-col'>
@@ -37,7 +38,7 @@ const TPEditableButton = ({
                     className='block w-full appearance-none rounded-full border border-tallyPay-primaryText bg-transparent py-2.5 px-4 text-sm text-white focus:border-tallyPay-primaryText focus:outline-none focus:ring-0'
                     placeholder={placeholder}
                     required={Boolean(required)}
-                    // onChange={handleChange}
+                    onChange={handleChange}
                     readOnly={!editing}
                     ref={ref}
                     onBlur={() => setEditing(false)}
