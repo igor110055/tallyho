@@ -29,6 +29,7 @@ export { default as TallyWillsAdd } from './TallyPay/TallyWillsAdd';
 export { default as TallyWillsRemove } from './TallyPay/TallyWillsRemove';
 export { default as TallyWillsRecovery } from './TallyPay/TallyWillsRecovery';
 export { default as TallyWillsReport } from './TallyPay/TallyWillsReport';
+export { default as LivingTrustNew } from './TallyPay/LivingTrustNew';
 
 // TokenCheckerPage
 export { default as TokenCheckerHeading } from './TokenCheckerPage/TokenCheckerHeading';

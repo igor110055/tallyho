@@ -17,6 +17,7 @@ const TPDoubleInput = ({
     bottomType = 'text',
     dispatch,
     index,
+    actionType = 'updateInheritor',
 }) => {
     const topChangeHandler = debounce(e => {
         if (index === undefined || index === null) {
@@ -27,7 +28,7 @@ const TPDoubleInput = ({
             });
         } else {
             return dispatch({
-                type: 'updateInheritor',
+                type: actionType,
                 index,
                 field: name,
                 value: e.target.value,
@@ -44,7 +45,7 @@ const TPDoubleInput = ({
             });
         } else {
             return dispatch({
-                type: 'updateInheritor',
+                type: actionType,
                 index,
                 field: bottomName,
                 value: e.target.value,
