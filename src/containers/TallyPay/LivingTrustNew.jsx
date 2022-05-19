@@ -3,9 +3,11 @@ import { PlusIcon, XIcon } from '@heroicons/react/solid';
 import {
     ConnectWalletButton,
     SelectTokenCombobox,
+    TPDateInput,
     TPDoubleInput,
     TPInput,
     TPPasswordInputs,
+    TPTimeInput,
 } from '../../components';
 import { produce } from 'immer';
 import { nanoid } from 'nanoid';
@@ -36,6 +38,10 @@ const reducer = (state, action) => {
             return produce(state, draft => {
                 draft.formData[action.field] = action.value;
             });
+        case 'updateReleaseDate':
+            return produce(state, draft => {
+                draft.formData.releaseDate[action.field] = action.value;
+            });
         default:
             return state;
     }
@@ -51,6 +57,12 @@ const LivingTrustNew = () => {
             password: '',
             confirmPassword: '',
             recipients: [{ id: nanoid(), email: '', address: '', amount: '' }],
+            releaseDate: {
+                day: '',
+                month: '',
+                year: '',
+            },
+            time: '',
         },
     });
 
@@ -66,7 +78,7 @@ const LivingTrustNew = () => {
 
     return (
         <form
-            className='container mx-auto min-h-screen max-w-xl'
+            className='container mx-auto max-w-xl py-6'
             onSubmit={e => {
                 e.preventDefault();
                 console.log(state);
@@ -108,7 +120,7 @@ const LivingTrustNew = () => {
                     >
                         <div className='basis-2/3 pb-5'>
                             <p className='inline-flex items-center text-sm font-normal text-tallyPay-primaryText'>
-                                Inheritor {index + 1} wallet address{' '}
+                                Recipient {index + 1} wallet address{' '}
                                 {index > 0 && (
                                     <XIcon
                                         className='ml-3 h-4 w-4 cursor-pointer text-tallyPay-red'
@@ -158,6 +170,36 @@ const LivingTrustNew = () => {
                     <PlusIcon className='mr-2 -ml-1 h-5 w-5' />
                     Add More Addresses
                 </button>
+            </div>
+
+            <div className='mt-6 w-full'>
+                <p className='inline-flex items-center text-sm font-normal text-tallyPay-primaryText'>
+                    Time lock
+                </p>
+
+                <div className='flex items-start justify-between'>
+                    <div className='mt-4 flex basis-1/2 flex-col space-y-3'>
+                        <p className='inline-flex items-center text-sm font-normal capitalize text-white/50'>
+                            Release Date
+                        </p>
+                        <TPDateInput name='releaseDate' dispatch={dispatch} />
+                    </div>
+
+                    <div className='mt-4 flex basis-1/3 flex-col space-y-3'>
+                        <p className='inline-flex items-center text-sm font-normal capitalize text-white/50'>
+                            Select Time
+                        </p>
+                        <TPTimeInput name='time' dispatch={dispatch} />
+                    </div>
+                </div>
+            </div>
+
+            <div className='mt-4 w-full'>
+                <TPInput
+                    label='Your Email Address'
+                    name='email'
+                    dispatch={dispatch}
+                />
             </div>
 
             <div className='mt-6 w-full'>
