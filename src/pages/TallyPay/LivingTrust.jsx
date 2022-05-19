@@ -1,11 +1,11 @@
 import { useReducer } from 'react';
 import { FormTab } from '../../components';
 import {
+    LivingTrustAdd,
     LivingTrustNew,
-    TallyWillsAdd,
-    TallyWillsRecovery,
-    TallyWillsRemove,
-    TallyWillsReport,
+    LivingTrustRecovery,
+    LivingTrustRecurring,
+    LivingTrustRemove,
 } from '../../containers';
 import { produce } from 'immer';
 
@@ -14,7 +14,7 @@ const tabs = [
     { name: 'Add' },
     { name: 'Remove' },
     { name: 'Recurring Payout' },
-    { name: 'Report' },
+    { name: 'Recovery' },
 ];
 
 const LivingTrust = () => {
@@ -52,10 +52,12 @@ const LivingTrust = () => {
                 />
 
                 {state.currentTab === 'New' && <LivingTrustNew />}
-                {state.currentTab === 'Add' && <TallyWillsAdd />}
-                {state.currentTab === 'Remove' && <TallyWillsRemove />}
-                {state.currentTab === 'Recovery' && <TallyWillsRecovery />}
-                {state.currentTab === 'Report' && <TallyWillsReport />}
+                {state.currentTab === 'Add' && <LivingTrustAdd />}
+                {state.currentTab === 'Remove' && <LivingTrustRemove />}
+                {state.currentTab === 'Recurring Payout' && (
+                    <LivingTrustRecurring />
+                )}
+                {state.currentTab === 'Recovery' && <LivingTrustRecovery />}
             </div>
         </>
     );

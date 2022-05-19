@@ -1,11 +1,12 @@
 import { debounce } from 'lodash';
 
-const TPDateInput = ({ dispatch }) => {
+const TPDateInput = ({ dispatch, index }) => {
     const changeHandler = debounce(e => {
         dispatch({
             type: 'updateReleaseDate',
             field: e.target.name,
             value: e.target.value,
+            index: index ?? null,
         });
     }, 1000);
 

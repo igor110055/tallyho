@@ -19,9 +19,9 @@ const reducer = (state, action) => {
             return produce(state, draft => {
                 draft.formData[action.field] = action.value;
             });
-        case 'updateOtherInheritors':
+        case 'updateOtherRecipients':
             return produce(state, draft => {
-                draft.formData.otherInheritors[action.index].percent =
+                draft.formData.otherRecipients[action.index].percent =
                     action.value;
             });
         default:
@@ -29,7 +29,7 @@ const reducer = (state, action) => {
     }
 };
 
-const TallyWillsRemove = () => {
+const LivingTrustRemove = () => {
     const [state, dispatch] = useReducer(reducer, {
         formData: {
             token: tokens[0],
@@ -39,17 +39,17 @@ const TallyWillsRemove = () => {
             removeWallet: { name: 'Wallet 1' },
             sendAmount: '',
             wallets: [
-                { name: 'Wallet 1', value: '30%' },
-                { name: 'Wallet 2', value: '30%' },
-                { name: 'Wallet 3', value: '30%' },
-                { name: 'Wallet 4', value: '30%' },
+                { name: 'Wallet 1', value: '30$' },
+                { name: 'Wallet 2', value: '30$' },
+                { name: 'Wallet 3', value: '30$' },
+                { name: 'Wallet 4', value: '30$' },
             ],
             selectedWallet: { name: 'Wallet 1' },
-            otherInheritors: [
-                { id: nanoid(), percent: '0.00%' },
-                { id: nanoid(), percent: '0.00%' },
-                { id: nanoid(), percent: '0.00%' },
-                { id: nanoid(), percent: '0.00%' },
+            otherRecipients: [
+                { id: nanoid(), percent: '0.00$' },
+                { id: nanoid(), percent: '0.00$' },
+                { id: nanoid(), percent: '0.00$' },
+                { id: nanoid(), percent: '0.00$' },
             ],
             changeWallet: { name: 'Wallet 1' },
             walletAddressReplacement: '',
@@ -104,11 +104,11 @@ const TallyWillsRemove = () => {
             </div>
 
             <div className='mt-6 w-full bg-[#282D32]/40 p-4'>
-                <p className='text-center text-white'>Remove Inheritor</p>
+                <p className='text-center text-white'>Remove Recipient</p>
 
                 <TPRadioGroup
                     options={state.formData.wallets}
-                    title='Remove Inheritor wallet Address'
+                    title='Remove Recipient wallet Address '
                     label='Choose a wallet'
                     value={state.formData.selectedWallet}
                     onChange={value => {
@@ -121,18 +121,19 @@ const TallyWillsRemove = () => {
                 />
 
                 <div className='mt-6 w-full'>
-                    <p className='mb-4 inline-flex items-center text-sm font-normal text-tallyPay-primaryText'>
-                        Adjust % of other inheritors{' '}
+                    <p className='mb-4 inline-flex items-center text-sm font-normal capitalize text-tallyPay-primaryText'>
+                        Adjust Amount to send to other recipients
                     </p>
 
                     <div className='flex items-center gap-6'>
-                        {state.formData.otherInheritors?.map((item, index) => (
+                        {state.formData.otherRecipients?.map((item, index) => (
                             <TPEditableButton
                                 showTitle={false}
                                 item={item}
                                 index={index}
                                 dispatch={dispatch}
                                 key={item.id}
+                                actionType='updateOtherRecipients'
                             />
                         ))}
                     </div>
@@ -141,7 +142,7 @@ const TallyWillsRemove = () => {
 
             <div className='mt-6 w-full bg-[#282D32]/40 p-4'>
                 <div>
-                    <p className='text-center text-white'>Change Inheritor</p>
+                    <p className='text-center text-white'>Change Recipient</p>
                     <TPChangeInheritorRadio
                         options={state.formData.wallets}
                         onChange={value => {
@@ -152,6 +153,7 @@ const TallyWillsRemove = () => {
                             });
                         }}
                         value={state.formData.changeWallet}
+                        title={'Change Recipient wallet Address '}
                     />
                 </div>
                 <div className='mt-4'>
@@ -204,4 +206,4 @@ const TallyWillsRemove = () => {
     );
 };
 
-export default TallyWillsRemove;
+export default LivingTrustRemove;

@@ -11,13 +11,14 @@ const TPEditableButton = ({
     dispatch,
     index,
     showTitle = true,
+    actionType = 'updateOtherInheritors',
 }) => {
     const [editing, setEditing] = useState(false);
     const ref = useRef(null);
 
     const handleChange = debounce(e => {
         dispatch({
-            type: 'updateOtherInheritors',
+            type: actionType,
             index,
             value: e.target.value,
         });

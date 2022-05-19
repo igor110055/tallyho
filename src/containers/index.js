@@ -30,6 +30,10 @@ export { default as TallyWillsRemove } from './TallyPay/TallyWillsRemove';
 export { default as TallyWillsRecovery } from './TallyPay/TallyWillsRecovery';
 export { default as TallyWillsReport } from './TallyPay/TallyWillsReport';
 export { default as LivingTrustNew } from './TallyPay/LivingTrustNew';
+export { default as LivingTrustAdd } from './TallyPay/LivingTrustAdd';
+export { default as LivingTrustRemove } from './TallyPay/LivingTrustRemove';
+export { default as LivingTrustRecurring } from './TallyPay/LivingTrustRecurring';
+export { default as LivingTrustRecovery } from './TallyPay/LivingTrustRecovery';
 
 // TokenCheckerPage
 export { default as TokenCheckerHeading } from './TokenCheckerPage/TokenCheckerHeading';

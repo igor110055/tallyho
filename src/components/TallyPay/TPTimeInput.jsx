@@ -1,6 +1,11 @@
 import TimePicker from 'react-time-picker';
 
-const TPTimeInput = ({ dispatch, name }) => {
+const TPTimeInput = ({
+    dispatch,
+    name,
+    actionType = 'updateFormData',
+    index,
+}) => {
     return (
         <div className='flex items-center space-x-4'>
             <TimePicker
@@ -13,9 +18,10 @@ const TPTimeInput = ({ dispatch, name }) => {
                 name={name}
                 onChange={e =>
                     dispatch({
-                        type: 'updateFormData',
+                        type: actionType,
                         field: name,
                         value: e,
+                        index: index ?? null,
                     })
                 }
             />
