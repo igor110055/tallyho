@@ -43,7 +43,7 @@ const TPEditableButton = ({
                     readOnly={!editing}
                     ref={ref}
                     onBlur={() => setEditing(false)}
-                    defaultValue='0.00%'
+                    defaultValue={placeholder}
                 />
 
                 <button
