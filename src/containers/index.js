@@ -37,6 +37,7 @@ export { default as LivingTrustRecovery } from './TallyPay/LivingTrustRecovery';
 export { default as TempLockNew } from './TallyPay/TempLockNew';
 export { default as TempLockAdd } from './TallyPay/TempLockAdd';
 export { default as TempLockRemove } from './TallyPay/TempLockRemove';
+export { default as DefiAccount } from './TallyPay/DefiAccount';
 
 // TokenCheckerPage
 export { default as TokenCheckerHeading } from './TokenCheckerPage/TokenCheckerHeading';

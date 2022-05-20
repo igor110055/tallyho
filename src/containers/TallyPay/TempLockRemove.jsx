@@ -69,7 +69,7 @@ const TempLockRemove = () => {
 
     return (
         <form
-            className='container mx-auto min-h-screen max-w-xl'
+            className='container mx-auto min-h-screen max-w-2xl'
             onSubmit={e => {
                 e.preventDefault();
                 console.log(state);

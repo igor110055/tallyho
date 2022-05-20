@@ -22,6 +22,7 @@ import {
     TallyWills,
     LivingTrust,
     TempLock,
+    MyDefiAccount,
 } from './pages';
 
 function App() {
@@ -136,6 +137,14 @@ function App() {
                         element={
                             <LazyLoad>
                                 <TempLock />
+                            </LazyLoad>
+                        }
+                    />
+                    <Route
+                        path='my-defi'
+                        element={
+                            <LazyLoad>
+                                <MyDefiAccount />
                             </LazyLoad>
                         }
                     />
