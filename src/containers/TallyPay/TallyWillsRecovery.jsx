@@ -47,6 +47,10 @@ const TallyWillsRecovery = () => {
                 console.log(state);
             }}
         >
+            <p className='my-4 text-white'>
+                Require an Inheritor to connect wallet to validate wallet change
+                <span className='ml-2 text-tallyPay-primaryText'>*</span>
+            </p>
             <div className='mt-4 w-full'>
                 <p className='inline-flex items-center text-sm font-normal text-tallyPay-primaryText'>
                     Loss of wallet address
@@ -57,11 +61,6 @@ const TallyWillsRecovery = () => {
                     dispatch={dispatch}
                 />
             </div>
-
-            <p className='my-4 text-white'>
-                Require an Inheritor to connect wallet to validate wallet change
-                <span className='ml-2 text-tallyPay-primaryText'>*</span>
-            </p>
 
             <div className='mt-4 w-full'>
                 <p className='inline-flex items-center text-sm font-normal text-tallyPay-primaryText'>

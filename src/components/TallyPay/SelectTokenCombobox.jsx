@@ -5,7 +5,12 @@ import SearchBar from './SearchBar';
 import RecentCoins from './RecentCoins';
 import AllCoins from './AllCoins';
 
-const SelectTokenCombobox = ({ tokens, selected, onChange }) => {
+const SelectTokenCombobox = ({
+    tokens,
+    selected,
+    onChange,
+    title = 'Select token to Deposit',
+}) => {
     const [items, setItems] = useState(tokens);
     const [searchString, setSearchString] = useState('');
     const changeHandler = token => {
@@ -31,7 +36,7 @@ const SelectTokenCombobox = ({ tokens, selected, onChange }) => {
             {({ open }) => (
                 <>
                     <Combobox.Label className='mb-4 block text-sm font-normal text-tallyPay-primaryText'>
-                        Select token to Deposit
+                        {title}
                     </Combobox.Label>
                     <div className='relative mt-1'>
                         <Combobox.Button className='relative w-full cursor-default rounded-md border border-gray-500 bg-transparent py-4 pl-3 pr-10 text-left text-white shadow-sm sm:text-sm'>

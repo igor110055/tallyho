@@ -108,7 +108,7 @@ const LivingTrustRemove = () => {
 
                 <TPRadioGroup
                     options={state.formData.wallets}
-                    title='Remove Recipient wallet Address '
+                    title='Remove Recipient Wallet Address '
                     label='Choose a wallet'
                     value={state.formData.selectedWallet}
                     onChange={value => {

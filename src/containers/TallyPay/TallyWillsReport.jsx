@@ -55,10 +55,10 @@ const TallyWillsReport = () => {
             </p>
             <p className='my-4 text-sm text-white'>
                 Making this transaction triggers{' '}
-                <span className='text-tallyPay-primaryText'>TaLLY PAY</span> TO
+                <span className='text-tallyPay-primaryText'>TALLY PAY</span> TO
                 EXECUTE WILL.
             </p>
-            <p className='my-4 text-sm capitalize text-white'>
+            <p className='my-4 text-sm uppercase text-white'>
                 ONCE TWO VERIFICATIONS ARE RECEIVED, funds WILL BE TRANSFERRED
                 TO INHERITORS IN{' '}
                 <span className='text-tallyPay-primaryText'>21 Days.</span>

@@ -46,7 +46,17 @@ const reducer = (state, action) => {
             });
         case 'updateReleaseDate':
             return produce(state, draft => {
-                draft.formData.releaseDate[action.field] = action.value;
+                draft.formData.recipients[action.index].releaseDate[
+                    action.field
+                ] = action.value;
+            });
+        case 'updateTimelock':
+            return produce(state, draft => {
+                draft.formData.recipients[action.index].timelock = action.value;
+            });
+        case 'updateTime':
+            return produce(state, draft => {
+                draft.formData.recipients[action.index].time = action.value;
             });
         default:
             return state;
@@ -62,14 +72,21 @@ const LivingTrustRecurring = () => {
             amountUSD: '',
             password: '',
             confirmPassword: '',
-            recipients: [{ id: nanoid(), email: '', address: '', amount: '' }],
-            releaseDate: {
-                day: '',
-                month: '',
-                year: '',
-            },
-            time: '',
-            timelock: timeOptions[0].name,
+            recipients: [
+                {
+                    id: nanoid(),
+                    email: '',
+                    address: '',
+                    amount: '',
+                    releaseDate: {
+                        day: '',
+                        month: '',
+                        year: '',
+                    },
+                    time: '',
+                    timelock: timeOptions[0].name,
+                },
+            ],
         },
     });
 
@@ -121,100 +138,108 @@ const LivingTrustRecurring = () => {
 
             <div className='mt-6 w-full'>
                 {state.formData?.recipients?.map((recipient, index) => (
-                    <div
-                        key={recipient.id}
-                        className='flex w-full items-start justify-between'
-                    >
-                        <div className='basis-2/3 pb-5'>
-                            <p className='inline-flex items-center text-sm font-normal text-tallyPay-primaryText'>
-                                Recipient {index + 1} wallet address{' '}
-                                {index > 0 && (
-                                    <XIcon
-                                        className='ml-3 h-4 w-4 cursor-pointer text-tallyPay-red'
-                                        onClick={() =>
-                                            dispatch({
-                                                type: 'removeRecipient',
-                                                index,
-                                            })
-                                        }
-                                    />
-                                )}
-                            </p>
-                            <TPDoubleInput
-                                placeholder='Click here to paste Address'
-                                dispatch={dispatch}
-                                bottomPlaceholder='Click here to paste Email Address'
-                                index={index}
-                                actionType='updateRecipient'
-                                name='address'
-                                bottomName='email'
-                            />
+                    <div key={recipient.id} className='my-5'>
+                        <div className='flex w-full items-start justify-between'>
+                            <div className='basis-2/3 pb-5'>
+                                <p className='inline-flex items-center text-sm font-normal text-tallyPay-primaryText'>
+                                    Recipient {index + 1} wallet address{' '}
+                                    {index > 0 && (
+                                        <XIcon
+                                            className='ml-3 h-4 w-4 cursor-pointer text-tallyPay-red'
+                                            onClick={() =>
+                                                dispatch({
+                                                    type: 'removeRecipient',
+                                                    index,
+                                                })
+                                            }
+                                        />
+                                    )}
+                                </p>
+                                <TPDoubleInput
+                                    placeholder='Click here to paste Address'
+                                    dispatch={dispatch}
+                                    bottomPlaceholder='Click here to paste Email Address'
+                                    index={index}
+                                    actionType='updateRecipient'
+                                    name='address'
+                                    bottomName='email'
+                                />
+                            </div>
+                            <div className='basis-1/4'>
+                                <p className='inline-flex items-center text-sm font-normal text-tallyPay-primaryText'>
+                                    Send Amount
+                                </p>
+                                <TPInput
+                                    placeholder='0.00'
+                                    name='amount'
+                                    dispatch={dispatch}
+                                    actionType='updateRecipient'
+                                    index={index}
+                                />
+                                <p className='-mt-6 inline-flex items-center space-x-1 text-xs font-normal text-tallyPay-primaryText'>
+                                    <span className='text-white'>Balance:</span>
+                                    <span>3.22$</span>
+                                </p>
+                            </div>
                         </div>
-                        <div className='basis-1/4'>
+                        <div className='w-full'>
                             <p className='inline-flex items-center text-sm font-normal text-tallyPay-primaryText'>
-                                Send Amount
+                                Time lock
                             </p>
-                            <TPInput
-                                placeholder='0.00'
-                                name='amount'
-                                dispatch={dispatch}
-                                actionType='updateRecipient'
-                                index={index}
-                            />
-                            <p className='-mt-6 inline-flex items-center space-x-1 text-xs font-normal text-tallyPay-primaryText'>
-                                <span className='text-white'>Balance:</span>
-                                <span>3.22$</span>
-                            </p>
+
+                            <div className='my-4 w-full'>
+                                <TPRadioGroup
+                                    options={timeOptions}
+                                    value={state.formData.timelock}
+                                    onChange={e => {
+                                        dispatch({
+                                            type: 'updateTimelock',
+                                            field: 'timelock',
+                                            value: e,
+                                            index: index,
+                                        });
+                                    }}
+                                    variant='primary'
+                                    title=' '
+                                />
+                            </div>
+
+                            <div className='flex items-start justify-between'>
+                                <div className='mt-4 flex basis-1/2 flex-col space-y-3'>
+                                    <p className='inline-flex items-center text-sm font-normal capitalize text-white/50'>
+                                        Release Date
+                                    </p>
+                                    <TPDateInput
+                                        name='releaseDate'
+                                        dispatch={dispatch}
+                                        index={index}
+                                    />
+                                </div>
+
+                                <div className='mt-4 flex basis-1/3 flex-col space-y-3'>
+                                    <p className='inline-flex items-center text-sm font-normal capitalize text-white/50'>
+                                        Select Time
+                                    </p>
+                                    <TPTimeInput
+                                        name='time'
+                                        dispatch={dispatch}
+                                        index={index}
+                                        actionType='updateTime'
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 ))}
 
                 <button
                     type='button'
-                    className='mr-2 inline-flex items-center rounded-full bg-tallyPay-gray-default px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-tallyPay-gray-light focus:outline-none'
+                    className='my-5 mr-2 inline-flex items-center rounded-full bg-tallyPay-gray-default px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-tallyPay-gray-light focus:outline-none'
                     onClick={() => dispatch({ type: 'addRecipient' })}
                 >
                     <PlusIcon className='mr-2 -ml-1 h-5 w-5' />
                     Add More Addresses
                 </button>
-            </div>
-
-            <div className='mt-6 w-full'>
-                <p className='inline-flex items-center text-sm font-normal text-tallyPay-primaryText'>
-                    Time lock
-                </p>
-
-                <div className='my-4 w-full'>
-                    <TPRadioGroup
-                        options={timeOptions}
-                        value={state.formData.timelock}
-                        onChange={e => {
-                            dispatch({
-                                type: 'updateFormData',
-                                field: 'timelock',
-                                value: e,
-                            });
-                        }}
-                        variant='primary'
-                        title=' '
-                    />
-                </div>
-
-                <div className='flex items-start justify-between'>
-                    <div className='mt-4 flex basis-1/2 flex-col space-y-3'>
-                        <p className='inline-flex items-center text-sm font-normal capitalize text-white/50'>
-                            Release Date
-                        </p>
-                        <TPDateInput name='releaseDate' dispatch={dispatch} />
-                    </div>
-
-                    <div className='mt-4 flex basis-1/3 flex-col space-y-3'>
-                        <p className='inline-flex items-center text-sm font-normal capitalize text-white/50'>
-                            Select Time
-                        </p>
-                        <TPTimeInput name='time' dispatch={dispatch} />
-                    </div>
-                </div>
             </div>
 
             <div className='mt-6 grid w-full grid-cols-1 gap-y-4 md:grid-cols-2'>

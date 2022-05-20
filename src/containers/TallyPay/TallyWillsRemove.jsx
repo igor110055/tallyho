@@ -80,6 +80,7 @@ const TallyWillsRemove = () => {
                     tokens={tokens}
                     onChange={handleChangeToken}
                     selected={state.formData.token}
+                    title='Select Token to Withdraw'
                 />
             </div>
 
@@ -156,14 +157,14 @@ const TallyWillsRemove = () => {
                 </div>
                 <div className='mt-4'>
                     <TPInput
-                        label='Click here to paste new wallet Address Replacment'
+                        label='Click here to paste new wallet Address Replacement'
                         name='walletAddressReplacement'
                         dispatch={dispatch}
                     />
                 </div>
                 <div className='mt-4'>
                     <TPInput
-                        label='Click here to paste new Email Address Replacment (if required)'
+                        label='Click here to paste new Email Address Replacement (if required)'
                         name='walletEmailReplacement'
                         dispatch={dispatch}
                     />
