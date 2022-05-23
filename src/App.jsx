@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { Layout, LazyLoad, NotFoundRoute } from './components';
 import { CoinsTable, LiquiditySwap, SwapSection } from './containers';
+import Web3 from 'web3';
 import {
     HomePage,
     LiquidityPage,
@@ -31,6 +32,9 @@ function App() {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [pathname]);
+
+    let web3 = new Web3('ws://localhost:8546');
+    console.log(web3);
 
     return (
         <Routes>
