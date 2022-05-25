@@ -197,7 +197,7 @@ const TallyWillsNew = () => {
 
                 <div className='flex items-start justify-end space-x-2 text-white'>
                     <span className='capitalize text-tallyPay-primaryText'>
-                        View Contract
+                        View Contact
                     </span>
                 </div>
             </div>

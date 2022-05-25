@@ -87,7 +87,9 @@ const TallyWillsAdd = () => {
                 <TPDoubleInput
                     label='Amount'
                     name='amount'
-                    rightIcon='BNB'
+                    rightIcon={state.formData.token.title
+                        .slice(0, 3)
+                        .toUpperCase()}
                     bottomLabel='Amount in USD'
                     bottomRightIcon='USD'
                     bottomName='amountUSD'
