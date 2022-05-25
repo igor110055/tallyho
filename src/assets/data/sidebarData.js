@@ -103,7 +103,7 @@ export const navigation = [
   { name: "Exchange", href: "swap", icon: FaExchangeAlt, badge: "" },
   { name: "Pools", href: "pools/stake_tally", icon: BiRocket, badge: "" },
   { name: "Farms", href: "farms", icon: FarmIcon, badge: "" },
-  { name: "Tally Pay", href: "tally-pay", icon: null, image: tpIcon, badge: "" },
+  { name: "Tally Pay", href: "tally-pay", icon: null, image: tpIcon, badge: "", hasDropdown: true },
   { name: "NFT Market", href: "nftmarket", icon: NftMarketPlaceIcon, badge: "soon" },
   { name: "TallyNFT Launchpad", href: "stakelaunchpad", icon: BiRocket, badge: "soon" },
   { name: "NFT Earn", href: "nftearn", icon: NFTEarnIcon, badge: "soon" },
@@ -124,4 +124,12 @@ export const moreNavigation = [
   { name: "Docs", href: '/' },
   { name: "Voting", href: 'tally_centralise' },
   { name: "Voting2", href: '/' },
+]
+
+
+export const tallyPayNavigation = [
+  { name: 'My DeFi Account', href: '/tally-pay/my-defi' },
+  { name: 'Living Trusts Account', href: '/tally-pay/living-trust' },
+  { name: 'Tally Wills Account', href: '/tally-pay/tally-wills' },
+  { name: 'Temp Lock Account', href: '/tally-pay/temp-lock' },
 ]
