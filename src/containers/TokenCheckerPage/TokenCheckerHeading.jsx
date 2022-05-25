@@ -46,6 +46,13 @@ const TokenCheckerHeading = () => {
 
     return (
         <div className='flex flex-col items-center justify-center sm:mx-4 md:mx-11'>
+            <div className='fixed right-20 top-[10%] hidden w-56 space-y-4 rounded-md bg-primary-dark p-4 text-white md:block'>
+                <p>
+                    Platform Going Live in conjunction with the Tally Launchpad.
+                </p>
+                <p>Reports can be made on Tally-Ho Home Page</p>
+            </div>
+
             <img
                 src={tokenCheckerImg}
                 alt='token checker'
