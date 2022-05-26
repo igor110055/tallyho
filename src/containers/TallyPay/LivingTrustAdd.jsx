@@ -3,7 +3,7 @@ import {
     ConnectWalletButton,
     SelectTokenCombobox,
     TPDateInput,
-    TPDoubleInput,
+    // TPDoubleInput,
     TPInput,
     TPTimeInput,
 } from '../../components';
@@ -65,6 +65,7 @@ const LivingTrustAdd = () => {
                         year: '',
                     },
                     time: '',
+                    address: '',
                 },
                 {
                     id: nanoid(),
@@ -74,6 +75,7 @@ const LivingTrustAdd = () => {
                         year: '',
                     },
                     time: '',
+                    address: '',
                 },
                 {
                     id: nanoid(),
@@ -83,6 +85,7 @@ const LivingTrustAdd = () => {
                         year: '',
                     },
                     time: '',
+                    address: '',
                 },
             ],
             releaseDate: {
@@ -129,7 +132,15 @@ const LivingTrustAdd = () => {
             </div>
 
             <div className='mt-6 w-full'>
-                <TPDoubleInput
+                <TPInput
+                    label='Amount'
+                    name='amount'
+                    dispatch={dispatch}
+                    rightIcon={state.formData.token.title
+                        .slice(0, 3)
+                        .toUpperCase()}
+                />
+                {/* <TPDoubleInput
                     label='Amount'
                     name='amount'
                     rightIcon='BNB'
@@ -137,7 +148,11 @@ const LivingTrustAdd = () => {
                     bottomRightIcon='USD'
                     bottomName='amountUSD'
                     dispatch={dispatch}
-                />
+                /> */}
+            </div>
+
+            <div className='mt-6 flex w-full flex-col items-center justify-center'>
+                <ConnectWalletButton disabled />
             </div>
 
             {state.formData.recipients.map((recipient, index) => (
@@ -159,6 +174,16 @@ const LivingTrustAdd = () => {
                                 0.00
                             </span>
                         </p>
+                    </div>
+
+                    <div className='mt-4 w-full'>
+                        <TPInput
+                            label='Click here to paste Address'
+                            name='address'
+                            dispatch={dispatch}
+                            index={index}
+                            actionType='updateRecipient'
+                        />
                     </div>
 
                     <div className='flex items-start justify-between'>

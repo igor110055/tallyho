@@ -1,9 +1,10 @@
-const ConnectWalletButton = ({ price }) => {
+const ConnectWalletButton = ({ price, disabled }) => {
     return (
         <>
             <button
                 type='button'
-                className='mr-2 mb-2 w-60 rounded-full bg-tp_gradient px-5 py-3 text-center text-sm font-medium text-white'
+                className='mr-2 mb-2 w-60 rounded-full bg-tp_gradient px-5 py-3 text-center text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50'
+                disabled={disabled}
             >
                 Connect Wallet
             </button>
