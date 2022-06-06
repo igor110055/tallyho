@@ -91,13 +91,13 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .banner {
-    background: url('./assests/tally-pay/bg.png');
+    background: url('./assets/tally-pay/bg.png');
     background-repeat: no-repeat;
     background-position: top left;
     background-size: cover;
 }
 .details {
-    background: url('./assests/tally-pay/details-bg.png');
+    background: url('./assets/tally-pay/details-bg.png');
     background-repeat: no-repeat;
     background-position: top left;
     background-size: cover;
@@ -110,7 +110,7 @@ input[type='number']::-webkit-outer-spin-button {
     position: relative;
 }
 .stoke-text::before {
-    content: url('./assests/tally-pay/Vector.png');
+    content: url('./assets/tally-pay/Vector.png');
     position: absolute;
     left: 15%;
     bottom: 10%;

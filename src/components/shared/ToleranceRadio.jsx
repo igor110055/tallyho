@@ -1,7 +1,7 @@
 import { RadioGroup } from "@headlessui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { classNames } from "../../utils/classNames";
-import { toleranceOptions } from "../../assets/data/transSettings";
+import { toleranceOptions } from "../../consts/transSettings";
 import { SLIPPAGE_TOLERANCE_SET } from "../../Store/Actions/actionTypes";
 
 const ToleranceRadio = () => {

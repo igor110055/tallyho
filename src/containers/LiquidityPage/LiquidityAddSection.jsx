@@ -4,18 +4,12 @@ import { ChevronDownIcon } from "@heroicons/react/solid";
 import { Link } from "react-router-dom";
 import { QuestionMarkCircleIcon } from "@heroicons/react/outline";
 import { Contract } from "@ethersproject/contracts";
-import { BigNumber, utils } from "ethers";
-import {
-  useEthers,
-  useCall,
-  useTokenBalance,
-  useContractFunction,
-} from "@usedapp/core";
+import { utils } from "ethers";
+import { useEthers, useCall, useTokenBalance } from "@usedapp/core";
 
 import factoryAbi from "../../assets/abi/TallyswapFactory.json";
-import routerAbi from "../../assets/abi/TallyswapRouter02.json";
-import ierc20Abi from "../../assets/abi/IERC20.json";
 import pairAbi from "../../assets/abi/TallyswapPair.json";
+import ierc20Abi from "../../assets/abi/IERC20.json";
 
 import exchangeImg from "../../assets/images/exchange.png";
 import { SelectTokenModal } from "../../components";
@@ -24,10 +18,7 @@ import { PoolInfo } from "../../components/shared/PoolInfo";
 import {
   TALLYSWAP_FACTORY_ADDRESS,
   ZERO_ADDRESS,
-  TALLYSWAP_ROUTER_ADDRESS,
-  RANDOM_ADDRESS,
-} from "../../assets/data/addresses.js";
-import { useSelector } from "react-redux";
+} from "../../consts/addresses.js";
 
 const LiquidityAddSection = ({ openSettingsModal }) => {
   const [isOnFirstToken, setIsOnFirstToken] = useState(true);
@@ -41,15 +32,8 @@ const LiquidityAddSection = ({ openSettingsModal }) => {
   const [connectModalOpen, setConnectModalOpen] = useState(false);
   const [firstMax, setFirstMax] = useState(false);
   const [secMax, setSecMax] = useState(false);
-  const [caretIn, setCaretIn] = useState(-1);
 
   const { account, chainId } = useEthers();
-
-  const deadlineSetting = useSelector((state) => state.transSetting.deadline);
-  const speedSetting = useSelector((state) => state.transSetting.transSpeed);
-  const slippageSetting = useSelector(
-    (state) => state.transSetting.slipTolerance
-  );
 
   // balance
   const firstBalance = useTokenBalance(
@@ -86,29 +70,6 @@ const LiquidityAddSection = ({ openSettingsModal }) => {
       ) ?? {}
     ).value?.[0] ?? 18;
 
-  // approve functions
-  const approveFirstFunc = useContractFunction(
-    new Contract(
-      firstToken && firstToken.address ? firstToken.address : RANDOM_ADDRESS,
-      ierc20Abi
-    ),
-    "approve",
-    {
-      transactionName:
-        "Approve " + (firstToken ? firstToken.symbol : "UNDEFINED"),
-    }
-  );
-  const approveSecFunc = useContractFunction(
-    new Contract(
-      secToken && secToken.address ? secToken.address : RANDOM_ADDRESS,
-      ierc20Abi
-    ),
-    "approve",
-    {
-      transactionName: "Approve " + (secToken ? secToken.symbol : "UNDEFINED"),
-    }
-  );
-
   // get token pair
   const getPairResult =
     useCall(
@@ -125,10 +86,14 @@ const LiquidityAddSection = ({ openSettingsModal }) => {
         }
     ) ?? {};
 
+  getPairResult &&
+    getPairResult.error &&
+    console.log(getPairResult.error.message);
+
   const pairAddress = getPairResult.value?.[0];
 
-  // get Reserves
-  const reservesResult =
+  // get pair price
+  const price0Result =
     useCall(
       firstToken &&
         firstToken.address &&
@@ -137,69 +102,32 @@ const LiquidityAddSection = ({ openSettingsModal }) => {
         pairAddress &&
         pairAddress !== ZERO_ADDRESS && {
           contract: new Contract(pairAddress, new utils.Interface(pairAbi)),
-          method: "getReserves",
+          method: "price0CumulativeLast",
           args: [],
         }
     ) ?? {};
 
-  // get pair tokens
-  const pairToken0 =
-    (
-      useCall(
-        firstToken &&
-          firstToken.address &&
-          secToken &&
-          secToken.address &&
-          pairAddress &&
-          pairAddress !== ZERO_ADDRESS && {
-            contract: new Contract(pairAddress, new utils.Interface(pairAbi)),
-            method: "token0",
-            args: [],
-          }
-      ) ?? {}
-    ).value?.[0] ?? ZERO_ADDRESS;
+  // get pair price
+  const price1Result =
+    useCall(
+      firstToken &&
+        firstToken.address &&
+        secToken &&
+        secToken.address &&
+        pairAddress &&
+        pairAddress !== ZERO_ADDRESS && {
+          contract: new Contract(pairAddress, new utils.Interface(pairAbi)),
+          method: "price1CumulativeLast",
+          args: [],
+        }
+    ) ?? {};
 
-  // addliquidity function
-  const addLiquidityFunc = useContractFunction(
-    new Contract(TALLYSWAP_ROUTER_ADDRESS[chainId], routerAbi),
-    "addLiquidity",
-    {
-      transactionName: "Add liquidity",
-    }
-  );
+  price0Result && price0Result.error && console.log(price0Result.error.message);
+  price1Result && price1Result.error && console.log(price1Result.error.message);
 
-  // function definitions
-  const addLiquidityDef = () => {
-    var slippedFirstVal =
-      (parseFloat(firstTokenVal) * (100 - slippageSetting)) / 100;
-    var slippedSecVal =
-      (parseFloat(secTokenVal) * (100 - slippageSetting)) / 100;
+  const price0 = price0Result ? price0Result.value?.[0]?.toNumber() : undefined;
+  const price1 = price1Result ? price1Result.value?.[0]?.toNumber() : undefined;
 
-    firstToken &&
-      secToken &&
-      addLiquidityFunc.send(
-        firstToken.address,
-        secToken.address,
-        Math.ceil(parseFloat(firstTokenVal) * 10 ** firstDecimal),
-        Math.ceil(parseFloat(secTokenVal) * 10 ** secDecimal),
-        Math.floor(slippedFirstVal * 10 ** firstDecimal),
-        Math.floor(slippedSecVal * 10 ** secDecimal),
-        account,
-        Math.ceil(new Date().getTime() / 1000) + deadlineSetting * 60
-        // {
-        //   gasLimit: 21000,
-        //   gasPrice: speedSetting,
-        // }
-      );
-  };
-
-  // approve functions
-  const approveFirst = () => {
-    approveFirstFunc.send(
-      TALLYSWAP_ROUTER_ADDRESS[chainId],
-      Math.round(firstTokenVal * 10 ** firstDecimal)
-    );
-  };
   // side effect for account change
   useEffect(() => {
     if (account) setConnectModalOpen(false);
@@ -220,113 +148,25 @@ const LiquidityAddSection = ({ openSettingsModal }) => {
     }
   }, [firstToken, secToken, firstTokenTime, secTokenTime]);
 
-  // auto calculation of a token amount based on the other token value and the relative prices
-  useEffect(() => {
-    if (
-      reservesResult.value &&
-      reservesResult.value[0] &&
-      reservesResult.value[1] &&
-      utils.formatUnits(
-        firstToken.address === pairToken0
-          ? reservesResult.value[0]
-          : reservesResult.value[1],
-        firstDecimal
-      ) !== 0 &&
-      utils.formatUnits(
-        firstToken.address === pairToken0
-          ? reservesResult.value[1]
-          : reservesResult.value[0],
-        secDecimal
-      ) !== 0 &&
-      caretIn === 0
-    ) {
-      setSecTokenVal(
-        (firstTokenVal *
-          utils.formatUnits(
-            firstToken.address === pairToken0
-              ? reservesResult.value[1]
-              : reservesResult.value[0],
-            secDecimal
-          )) /
-          utils.formatUnits(
-            firstToken.address === pairToken0
-              ? reservesResult.value[0]
-              : reservesResult.value[1],
-            firstDecimal
-          )
-      );
-    }
-  }, [
-    firstTokenVal,
-    reservesResult.value,
-    caretIn,
-    firstDecimal,
-    secDecimal,
-    pairToken0,
-  ]);
-  useEffect(() => {
-    if (
-      reservesResult.value &&
-      reservesResult.value[0] &&
-      reservesResult.value[1] &&
-      utils.formatUnits(
-        firstToken.address === pairToken0
-          ? reservesResult.value[0]
-          : reservesResult.value[1],
-        firstDecimal
-      ) !== 0 &&
-      utils.formatUnits(
-        firstToken.address === pairToken0
-          ? reservesResult.value[1]
-          : reservesResult.value[0],
-        secDecimal
-      ) !== 0 &&
-      caretIn === 1
-    ) {
-      setFirstTokenVal(
-        (secTokenVal *
-          utils.formatUnits(
-            firstToken.address === pairToken0
-              ? reservesResult.value[0]
-              : reservesResult.value[1],
-            firstDecimal
-          )) /
-          utils.formatUnits(
-            firstToken.address === pairToken0
-              ? reservesResult.value[1]
-              : reservesResult.value[0],
-            secDecimal
-          )
-      );
-    }
-  }, [
-    secTokenVal,
-    reservesResult.value,
-    caretIn,
-    firstDecimal,
-    secDecimal,
-    pairToken0,
-  ]);
-
   return (
-    <div className="relative z-10 mt-5 w-full max-w-lg rounded-2xl bg-card_gradient py-4 pb-8 text-white">
+    <div className="relative z-10 w-full max-w-lg py-4 pb-8 mt-5 text-white rounded-2xl bg-card_gradient">
       <div className="flex items-center justify-center p-6">
-        <h2 className="flex w-full justify-between text-sm font-semibold">
+        <h2 className="flex justify-between w-full text-sm font-semibold">
           <Link to="/liquidity">
-            <FaCaretLeft className="h-5 w-5 cursor-pointer" />
+            <FaCaretLeft className="w-5 h-5 cursor-pointer" />
           </Link>
           <span>Add Liquidity</span>
-          <QuestionMarkCircleIcon className="h-5 w-5" />
+          <QuestionMarkCircleIcon className="w-5 h-5" />
         </h2>
       </div>
       {account && pairAddress === ZERO_ADDRESS && (
-        <div className="mx-5 flex-row rounded-xl px-4 py-2 text-yellow-300">
+        <div className="flex-row px-4 py-2 mx-5 text-yellow-300 rounded-xl">
           You are the first liquidity provider. The ratio of tokens you add will
           set the price of this pool. Once you are happy with the rate click
           Supply to review.
         </div>
       )}
-      <div className="grid auto-rows-auto gap-y-3 px-6 py-3">
+      <div className="grid px-6 py-3 auto-rows-auto gap-y-3">
         {/* From */}
         <div className="flex justify-between px-3">
           <div className="text-md">
@@ -335,22 +175,19 @@ const LiquidityAddSection = ({ openSettingsModal }) => {
                 <span className="text-gray-400">Balance</span>
                 <span className="mx-3 text-gray-200">
                   {firstBalance &&
-                    BigNumber.isBigNumber(firstBalance) &&
                     utils.formatUnits(firstBalance, firstDecimal)}
                 </span>
               </>
             )}
           </div>
           <div className="flex">
-            {firstToken && !firstMax && (
+            {!firstMax && (
               <button
-                className="mx-2 rounded-xl border border-primary-brand_light px-1 text-sm text-primary-brand_light hover:border-blue-400 hover:text-blue-400"
+                className="px-1 mx-2 text-sm border rounded-xl border-primary-brand_light text-primary-brand_light hover:border-blue-400 hover:text-blue-400"
                 onClick={() => {
-                  firstBalance &&
-                    BigNumber.isBigNumber(firstBalance) &&
-                    setFirstTokenVal(
-                      utils.formatUnits(firstBalance, firstDecimal)
-                    );
+                  setFirstTokenVal(
+                    utils.formatUnits(firstBalance, firstDecimal)
+                  );
                   setFirstMax(true);
                 }}
               >
@@ -369,31 +206,30 @@ const LiquidityAddSection = ({ openSettingsModal }) => {
                   <img
                     src={firstToken.logo}
                     alt={`${firstToken.symbol} logo`}
-                    className="h-6 w-6 rounded-full object-cover"
+                    className="object-cover w-6 h-6 rounded-full"
                   />
                   <span className="text-sm font-semibold">
                     {firstToken.symbol}
                   </span>
-                  <ChevronDownIcon className="h-5 w-5 text-primary-brand_light" />
+                  <ChevronDownIcon className="w-5 h-5 text-primary-brand_light" />
                 </>
               )}
               {!firstToken && (
                 <>
                   <span className="text-sm font-semibold">Select Token</span>
-                  <ChevronDownIcon className="h-5 w-5 text-primary-brand_light" />
+                  <ChevronDownIcon className="w-5 h-5 text-primary-brand_light" />
                 </>
               )}
             </button>
           </div>
         </div>
 
-        <div className="flex w-full flex-row rounded-2xl border border-gray-300 bg-transparent px-3 py-2">
+        <div className="flex flex-row w-full px-3 py-2 bg-transparent border border-gray-300 rounded-2xl">
           <input
             value={firstTokenVal}
             onChange={(event) => {
               setFirstTokenVal(event.target.value);
               setFirstMax(false);
-              setCaretIn(0);
             }}
             min={0}
             type="number"
@@ -437,21 +273,17 @@ const LiquidityAddSection = ({ openSettingsModal }) => {
               <>
                 <span className="text-gray-400">Balance</span>
                 <span className="mx-3 text-gray-200">
-                  {secBalance &&
-                    BigNumber.isBigNumber(secBalance) &&
-                    utils.formatUnits(secBalance, secDecimal)}
+                  {secBalance && utils.formatUnits(secBalance, secDecimal)}
                 </span>
               </>
             )}
           </span>
           <div className="flex">
-            {secToken && !secMax && (
+            {!secMax && (
               <button
-                className="mx-2 rounded-xl border border-primary-brand_light px-1 text-sm text-primary-brand_light hover:border-blue-400 hover:text-blue-400"
+                className="px-1 mx-2 text-sm border rounded-xl border-primary-brand_light text-primary-brand_light hover:border-blue-400 hover:text-blue-400"
                 onClick={() => {
-                  secBalance &&
-                    BigNumber.isBigNumber(secBalance) &&
-                    setSecTokenVal(utils.formatUnits(secBalance, secDecimal));
+                  setSecTokenVal(utils.formatUnits(secBalance, secDecimal));
                   setSecMax(true);
                 }}
               >
@@ -470,31 +302,30 @@ const LiquidityAddSection = ({ openSettingsModal }) => {
                   <img
                     src={secToken.logo}
                     alt={`${secToken.symbol} logo`}
-                    className="h-6 w-6 rounded-full object-cover"
+                    className="object-cover w-6 h-6 rounded-full"
                   />
                   <span className="text-sm font-semibold">
                     {secToken.symbol}
                   </span>
-                  <ChevronDownIcon className="h-5 w-5 text-primary-brand_light" />
+                  <ChevronDownIcon className="w-5 h-5 text-primary-brand_light" />
                 </>
               )}
               {!secToken && (
                 <>
                   <span className="text-sm font-semibold">Select Token</span>
-                  <ChevronDownIcon className="h-5 w-5 text-primary-brand_light" />
+                  <ChevronDownIcon className="w-5 h-5 text-primary-brand_light" />
                 </>
               )}
             </button>
           </div>
         </div>
 
-        <div className="flex w-full flex-row rounded-2xl border border-gray-300 bg-transparent px-3 py-2">
+        <div className="flex flex-row w-full px-3 py-2 bg-transparent border border-gray-300 rounded-2xl">
           <input
             value={secTokenVal}
             onChange={(event) => {
               setSecTokenVal(event.target.value);
               setSecMax(false);
-              setCaretIn(1);
             }}
             type="number"
             min={0}
@@ -514,15 +345,16 @@ const LiquidityAddSection = ({ openSettingsModal }) => {
         <PoolInfo
           firstToken={firstToken}
           secToken={secToken}
+          price={[price0, price1]}
           amount={[firstTokenVal, secTokenVal]}
-          pairAddress={pairAddress}
+          pair={pairAddress}
         />
       )}
       {/* Connect Button */}
       {!account && (
-        <div className="mx-6 flex items-center justify-center">
+        <div className="flex items-center justify-center mx-6">
           <button
-            className="flex h-12 w-full cursor-pointer items-center justify-center rounded-md bg-primary-brand_light px-6 text-xl font-black text-black transition-opacity duration-200 hover:opacity-80"
+            className="flex items-center justify-center w-full h-12 px-6 text-xl font-black text-black transition-opacity duration-200 rounded-md cursor-pointer bg-primary-brand_light hover:opacity-80"
             onClick={() => setConnectModalOpen(true)}
           >
             Connect Wallet
@@ -530,8 +362,8 @@ const LiquidityAddSection = ({ openSettingsModal }) => {
         </div>
       )}
       {account && (!firstToken || !secToken) && (
-        <div className="mx-6 flex items-center justify-center">
-          <button className="diabled flex h-12 w-full cursor-pointer items-center justify-center rounded-md bg-gray-500 px-6 text-xl font-black text-gray-300 transition-opacity duration-200 hover:opacity-80">
+        <div className="flex items-center justify-center mx-6">
+          <button className="flex items-center justify-center w-full h-12 px-6 text-xl font-black text-gray-300 transition-opacity duration-200 bg-gray-500 rounded-md cursor-pointer diabled hover:opacity-80">
             Select tokens
           </button>
         </div>
@@ -543,8 +375,8 @@ const LiquidityAddSection = ({ openSettingsModal }) => {
           parseFloat(firstTokenVal) === 0 ||
           isNaN(parseFloat(secTokenVal)) ||
           parseFloat(secTokenVal) === 0) && (
-          <div className="mx-6 flex items-center justify-center">
-            <button className="disabled flex h-12 w-full cursor-pointer items-center justify-center rounded-md bg-gray-500 px-6 text-xl font-black text-gray-300 transition-opacity duration-200 hover:opacity-80">
+          <div className="flex items-center justify-center mx-6">
+            <button className="flex items-center justify-center w-full h-12 px-6 text-xl font-black text-gray-300 transition-opacity duration-200 bg-gray-500 rounded-md cursor-pointer disabled hover:opacity-80">
               Enter amount
             </button>
           </div>
@@ -557,58 +389,19 @@ const LiquidityAddSection = ({ openSettingsModal }) => {
         !isNaN(parseFloat(secTokenVal)) &&
         parseFloat(secTokenVal) !== 0 && (
           <>
-            {parseFloat(firstTokenVal) <=
-              parseFloat(
-                firstBalance && BigNumber.isBigNumber(firstBalance)
-                  ? utils.formatUnits(firstBalance, firstDecimal)
-                  : "0"
-              ) &&
-              parseFloat(secTokenVal) <=
-                parseFloat(
-                  secBalance && BigNumber.isBigNumber(secBalance)
-                    ? utils.formatUnits(secBalance, secDecimal)
-                    : "0"
-                ) && (
-                <>
-                  <div className="mx-6 mb-3 grid grid-cols-2 gap-3">
-                    <button
-                      className="flex h-12 w-full cursor-pointer items-center justify-center rounded-md bg-primary-brand_light px-6 text-xl font-black text-black transition-opacity duration-200 hover:opacity-80"
-                      onClick={approveFirst}
-                    >
-                      Approve {firstToken.symbol}
-                    </button>
-                    <button
-                      className="flex h-12 w-full cursor-pointer items-center justify-center rounded-md bg-primary-brand_light px-6 text-xl font-black text-black transition-opacity duration-200 hover:opacity-80"
-                      onClick={() => {
-                        approveSecFunc.send(
-                          TALLYSWAP_ROUTER_ADDRESS[chainId],
-                          Math.round(secTokenVal * 10 ** secDecimal)
-                        );
-                      }}
-                    >
-                      Approve {secToken.symbol}
-                    </button>
-                  </div>
-                  <div className="mx-6 flex items-center justify-center">
-                    <button
-                      className="flex h-12 w-full cursor-pointer items-center justify-center rounded-md bg-primary-brand_light px-6 text-xl font-black text-black transition-opacity duration-200 hover:opacity-80"
-                      onClick={addLiquidityDef}
-                    >
-                      Supply
-                    </button>
-                  </div>
-                </>
-              )}
-            {(parseFloat(firstTokenVal) >
-              parseFloat(utils.formatUnits(firstBalance, firstDecimal)) ||
-              parseFloat(secTokenVal) >
-                parseFloat(utils.formatUnits(secBalance, secDecimal))) && (
-              <div className="mx-6 flex items-center justify-center">
-                <button className="disabled flex h-12 w-full cursor-pointer items-center justify-center rounded-md bg-gray-500 px-6 text-xl font-black text-gray-300 transition-opacity duration-200 hover:opacity-80">
-                  Insufficient amount
-                </button>
-              </div>
-            )}
+            <div className="grid grid-cols-2 gap-3 mx-6 mb-3">
+              <button className="flex items-center justify-center w-full h-12 px-6 text-xl font-black text-black transition-opacity duration-200 rounded-md cursor-pointer bg-primary-brand_light hover:opacity-80">
+                Approve {firstToken.symbol}
+              </button>
+              <button className="flex items-center justify-center w-full h-12 px-6 text-xl font-black text-black transition-opacity duration-200 rounded-md cursor-pointer bg-primary-brand_light hover:opacity-80">
+                Approve {secToken.symbol}
+              </button>
+            </div>
+            <div className="flex items-center justify-center mx-6">
+              <button className="flex items-center justify-center w-full h-12 px-6 text-xl font-black text-black transition-opacity duration-200 rounded-md cursor-pointer bg-primary-brand_light hover:opacity-80">
+                Supply
+              </button>
+            </div>
           </>
         )}
       {isOnFirstToken && (

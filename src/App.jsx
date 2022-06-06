@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useEthers } from '@usedapp/core';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { Layout, LazyLoad, NotFoundRoute } from './components';
 import { CoinsTable, LiquiditySwap, SwapSection } from './containers';
@@ -25,13 +26,20 @@ import {
     TempLock,
     MyDefiAccount,
 } from './pages';
+import { useSelector } from 'react-redux';
 
 function App() {
     const { pathname } = useLocation();
-
+    const { account, chainId, switchNetwork } = useEthers();
+    const supportedChainIds = useSelector(state => state.chain.supportedIds);
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [pathname]);
+
+    useEffect(() => {
+        if (account && !supportedChainIds.includes(chainId))
+            switchNetwork(supportedChainIds?.[0]);
+    }, [account, chainId, supportedChainIds, switchNetwork]);
 
     let web3 = new Web3('ws://localhost:8546');
     console.log(web3);
