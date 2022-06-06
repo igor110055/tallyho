@@ -65,3 +65,53 @@ body {
     box-shadow: inset 0 0 5px rgb(2 17 39);
     border-radius: 10px;
 }
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.react-time-picker__wrapper {
+    border: none !important;
+}
+
+.polygonIcon {
+    clip-path: polygon(
+        50% 0,
+        50% 0,
+        100% 30%,
+        100% 70%,
+        50% 100%,
+        50% 100%,
+        0% 70%,
+        0% 30%
+    );
+}
+
+.banner {
+    background: url('./assests/tally-pay/bg.png');
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: cover;
+}
+.details {
+    background: url('./assests/tally-pay/details-bg.png');
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: cover;
+}
+.stoke-text {
+    color: black;
+    -webkit-text-fill-color: black; /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
+    position: relative;
+}
+.stoke-text::before {
+    content: url('./assests/tally-pay/Vector.png');
+    position: absolute;
+    left: 15%;
+    bottom: 10%;
+}

@@ -10,6 +10,20 @@ module.exports = {
 					sidebar: '#303030',
 					dark: '#212529',
 					darkText: '#07162d'
+				},
+				tallyPay: {
+					dark: '#14171AF2',
+					primaryText: '#95D143',
+					primaryText_light: '#A2E942',
+					red: '#F43D3D',
+					black: '#0C0E0F',
+					gray: {
+						lighter: '#686868',
+						light: '#565656',
+						default: '#2F3538',
+						dark: '#2B2E31',
+						darker: '#212629'
+					}
 				}
 			},
 			backgroundImage: {
@@ -19,6 +33,9 @@ module.exports = {
 				'card_gradient': 'linear-gradient(rgba(9,27,54,.8),rgba(9,27,54,.2))',
 				'pools_header': 'linear-gradient(180deg,#3a3a3a,#626262)',
 				'elipseBg': 'url("./assets/images/ellipse1.png")',
+				'tallypay_bg': 'linear-gradient(105.34deg, #171A1C 1.74%, #252A2E 96.37%)',
+				'tp_gradient': 'linear-gradient(89.92deg, #95D143 2.98%, #405C1A 84.96%)',
+				'tp_tokenbox_bg': 'linear-gradient(180deg, #252525 21.44%, #4C4F44 80.72%)'
 			},
 			fontFamily: {
 				comfortaa: '"Comfortaa", cursive',

@@ -2,6 +2,7 @@ import { HomeIcon } from "@heroicons/react/solid";
 
 import { FaExchangeAlt } from "react-icons/fa";
 import { BiRocket } from "react-icons/bi";
+// import { GiPayMoney } from "react-icons/gi";
 
 import scamImg from '../images/scam.png';
 import raffleImg from '../images/raffle.png';
@@ -10,6 +11,7 @@ import ethImg from '../images/eth.png';
 import cardanoImg from '../images/cardano.png';
 import chartsImg from '../images/chats.png';
 import analyImg from '../images/analy.png';
+import tpIcon from '../images/tally-pay/logo-bg-removed.png'
 
 import solanaImg from '../images/tokens/solana-removebg.png';
 
@@ -101,6 +103,7 @@ export const navigation = [
   { name: "Exchange", href: "swap", icon: FaExchangeAlt, badge: "" },
   { name: "Pools", href: "pools/stake_tally", icon: BiRocket, badge: "" },
   { name: "Farms", href: "farms", icon: FarmIcon, badge: "" },
+  { name: "Tally Pay", href: "tally-pay", icon: null, image: tpIcon, badge: "", hasDropdown: true },
   { name: "NFT Market", href: "nftmarket", icon: NftMarketPlaceIcon, badge: "soon" },
   { name: "TallyNFT Launchpad", href: "stakelaunchpad", icon: BiRocket, badge: "soon" },
   { name: "NFT Earn", href: "nftearn", icon: NFTEarnIcon, badge: "soon" },
@@ -121,4 +124,12 @@ export const moreNavigation = [
   { name: "Docs", href: '/' },
   { name: "Voting", href: 'tally_centralise' },
   { name: "Voting2", href: '/' },
+]
+
+
+export const tallyPayNavigation = [
+  { name: 'My DeFi Account', href: '/tally-pay/my-defi' },
+  { name: 'Living Trusts Account', href: '/tally-pay/living-trust' },
+  { name: 'Tally Wills Account', href: '/tally-pay/tally-wills' },
+  { name: 'Temp Lock Account', href: '/tally-pay/temp-lock' },
 ]
