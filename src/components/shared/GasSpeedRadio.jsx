@@ -1,7 +1,7 @@
 import { RadioGroup } from "@headlessui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { classNames } from "../../utils/classNames";
-import { speedOptions } from "../../consts/transSettings";
+import { speedOptions } from "../../assets/data/transSettings";
 import { TRANSACTION_SPEED_SET } from "../../Store/Actions/actionTypes";
 
 const GasSpeedRadio = () => {

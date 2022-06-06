@@ -4,7 +4,12 @@ import { SLIPPAGE_TOLERANCE_SET } from "../Actions/actionTypes";
 import { TRANSACTION_DEADLINE_SET } from "../Actions/actionTypes";
 
 // In production mode, typical tokens are listed here.
-const initialData = {};
+const initialData = {
+  transSpeed: 5,
+  deadline: 5,
+  isAudioOn: false,
+  slipTolerance: 0.5,
+};
 export function TransSettingReducer(state = initialData, action) {
   const data = action.payload;
   switch (action.type) {

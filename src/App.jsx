@@ -19,12 +19,17 @@ import {
   AnalyticsOverviewPage,
   AnalyticsFilterPage,
 } from "./pages";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { PANCAKESWAP_API_URL } from "./assets/data/urls";
+import { TALLY } from "./assets/data/addresses";
+import axios from "axios";
+import { TALLY_PRICE_GET } from "./Store/Actions/actionTypes";
 
 function App() {
   const { pathname } = useLocation();
   const { account, chainId, switchNetwork } = useEthers();
   const supportedChainIds = useSelector((state) => state.chain.supportedIds);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -34,6 +39,18 @@ function App() {
     if (account && !supportedChainIds.includes(chainId))
       switchNetwork(supportedChainIds?.[0]);
   }, [account, chainId, supportedChainIds, switchNetwork]);
+
+  useEffect(() => {
+    axios(
+      PANCAKESWAP_API_URL + "0xab15b3eec70514308b0ad65e8b760398c5839947"
+    ).then((resp) => {
+      if (resp && resp.data && resp.data.data)
+        dispatch({
+          type: TALLY_PRICE_GET,
+          payload: parseFloat(resp.data.data.price),
+        });
+    });
+  }, [dispatch]);
 
   return (
     <Routes>
