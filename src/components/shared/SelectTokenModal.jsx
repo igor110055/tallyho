@@ -4,7 +4,7 @@ import { QuestionMarkCircleIcon } from "@heroicons/react/outline";
 import { ArrowSmDownIcon, ArrowSmUpIcon, XIcon } from "@heroicons/react/solid";
 import { CommonBaseToken, CurrencyItem } from "../../components";
 import { useState } from "react";
-import { supportedTokens } from "../../utils/tokens";
+import { supportedTokens } from "../../assets/data/tokens";
 import { useEthers } from "@usedapp/core";
 
 export default function SelectTokenModal({
