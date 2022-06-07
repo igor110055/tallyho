@@ -2,7 +2,14 @@ import { Disclosure, Transition } from '@headlessui/react';
 import { ChevronDownIcon, ExternalLinkIcon } from '@heroicons/react/solid';
 import btally from '../../assets/images/logo1.png';
 
-const StakeTallyCard = ({ coverImg, avatar, tokenName, apyValue }) => {
+const StakeTallyCard = ({
+    coverImg,
+    avatar,
+    earnToken = 'TALLY',
+    stakeToken = 'TALLY',
+    apyValue,
+    active,
+}) => {
     return (
         <div className='flex flex-col rounded-2xl bg-white p-6'>
             <div className='flex flex-row space-x-5 border-b-2 border-[#708eb7]/10 pb-4'>
@@ -18,14 +25,20 @@ const StakeTallyCard = ({ coverImg, avatar, tokenName, apyValue }) => {
                 </figure>
 
                 <div className=' flex flex-col space-y-2'>
+                    {!active && (
+                        <span className='mr-2 rounded-full bg-tallyPay-red px-2.5 py-0.5 text-center text-xs font-semibold text-white'>
+                            Cooming Soon
+                        </span>
+                    )}
+
                     <h3 className='text-lg font-semibold text-primary-darkText'>
-                        Earn TALLY
+                        <span>Earn {earnToken}</span>
                     </h3>
                     <h4 className='text-xs font-semibold text-[#444444]'>
-                        Stake TALLY
+                        Stake {stakeToken}
                     </h4>
                     <p className='text-xl font-medium text-primary-brand'>
-                        APY 0%
+                        APY {apyValue}
                     </p>
                 </div>
             </div>

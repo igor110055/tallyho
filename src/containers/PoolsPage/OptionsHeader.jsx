@@ -14,11 +14,10 @@ const options2 = [
     { id: 3, name: 'Unlimited', value: 'unlimited' },
 ];
 
-const OptionsHeader = () => {
+const OptionsHeader = ({ status, setStatus }) => {
     const [option1, setOption1] = useState(options1[0].value);
     const [option2, setOption2] = useState(options2[0].value);
 
-    const [status, setStatus] = useState('active');
     return (
         <nav className='flex flex-col justify-between md:flex-row md:flex-wrap'>
             <div className='flex  items-center space-x-5'>

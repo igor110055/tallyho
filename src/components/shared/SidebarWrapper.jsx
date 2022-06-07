@@ -6,7 +6,11 @@ import { MdMore } from 'react-icons/md';
 import { ChevronDownIcon, MinusIcon, PlusIcon } from '@heroicons/react/solid';
 import { FaTelegramPlane, FaTwitter, FaInstagram } from 'react-icons/fa';
 
-import { moreNavigation, navigation } from '../../assets/data/sidebarData';
+import {
+    moreNavigation,
+    navigation,
+    tallyPayNavigation,
+} from '../../assets/data/sidebarData';
 import { SidebarMobile, Navbar, Footer } from '..';
 
 import logo1 from '../../assets/images/btally.png';
@@ -41,45 +45,123 @@ const SidebarWrapper = ({ children }) => {
                     </div>
                     <div className='mt-5 flex flex-grow flex-col'>
                         <nav className='flex-1 space-y-2 overflow-y-auto px-4 pb-4'>
-                            {navigation.map(item => (
-                                <NavLink
-                                    key={item.name}
-                                    to={item.href}
-                                    className={({ isActive }) =>
-                                        classNames(
-                                            isActive
-                                                ? 'bg-[#444444] text-white'
-                                                : 'text-white hover:bg-[#444444] hover:text-[#646464]',
-                                            'group flex h-12 items-center rounded-lg py-2 px-3 text-sm font-medium transition-colors duration-300'
-                                        )
-                                    }
-                                    end
-                                >
-                                    <>
-                                        {item.icon && (
-                                            <item.icon
-                                                className='mr-3 h-5 w-5 flex-shrink-0 fill-white text-white'
-                                                aria-hidden='true'
-                                            />
-                                        )}
+                            {navigation.map(item =>
+                                item.hasDropdown ? (
+                                    <Disclosure>
+                                        {({ open }) => (
+                                            <>
+                                                <NavLink
+                                                    key={item.name}
+                                                    to={item.href}
+                                                    className={({ isActive }) =>
+                                                        classNames(
+                                                            isActive
+                                                                ? 'bg-[#444444] text-white'
+                                                                : 'text-white hover:bg-[#444444] hover:text-[#646464]',
+                                                            'group flex h-12 items-center rounded-lg py-2 px-3 text-sm font-medium transition-colors duration-300'
+                                                        )
+                                                    }
+                                                    end
+                                                >
+                                                    <Disclosure.Button className='flex items-center space-x-4'>
+                                                        <span className='flex items-center font-semibold'>
+                                                            {item.icon && (
+                                                                <item.icon
+                                                                    className='mr-3 h-5 w-5 flex-shrink-0 fill-white text-white'
+                                                                    aria-hidden='true'
+                                                                />
+                                                            )}
 
-                                        {item.image && (
-                                            <img
-                                                src={item.image}
-                                                alt='icon'
-                                                className='mr-2 h-6 w-6 object-cover'
-                                            />
+                                                            {item.image && (
+                                                                <img
+                                                                    src={
+                                                                        item.image
+                                                                    }
+                                                                    alt='icon'
+                                                                    className='mr-2 h-6 w-6 object-contain'
+                                                                />
+                                                            )}
+                                                            <span>
+                                                                {item.name}
+                                                            </span>
+                                                        </span>
+                                                        <ChevronDownIcon
+                                                            className={`${
+                                                                open
+                                                                    ? 'rotate-180 transform'
+                                                                    : ''
+                                                            } h-5 w-5`}
+                                                        />
+                                                    </Disclosure.Button>
+                                                </NavLink>
+                                                <Transition
+                                                    show={open}
+                                                    enter='transition ease-out duration-300'
+                                                    enterFrom='opacity-0 transform scale-95'
+                                                    enterTo='opacity-100 transform scale-100'
+                                                    leave='transition ease-in duration-75'
+                                                    leaveFrom='opacity-100 transform scale-100'
+                                                    leaveTo='opacity-0 transform scale-95'
+                                                >
+                                                    <Disclosure.Panel className='flex flex-col items-center gap-y-2 border-t  border-gray-200/10 px-4 pt-4 pb-2 text-sm text-gray-500'>
+                                                        {tallyPayNavigation.map(
+                                                            (item, index) => (
+                                                                <Link
+                                                                    to={
+                                                                        item.href
+                                                                    }
+                                                                    key={index}
+                                                                    className='group flex w-full items-center rounded-lg bg-primary-brand/50 py-2 px-3 text-sm font-medium text-white transition-colors duration-300 hover:bg-[#444444] hover:text-[#646464]'
+                                                                >
+                                                                    {item.name}
+                                                                </Link>
+                                                            )
+                                                        )}
+                                                    </Disclosure.Panel>
+                                                </Transition>
+                                            </>
                                         )}
-                                        <span>{item.name}</span>
+                                    </Disclosure>
+                                ) : (
+                                    <NavLink
+                                        key={item.name}
+                                        to={item.href}
+                                        className={({ isActive }) =>
+                                            classNames(
+                                                isActive
+                                                    ? 'bg-[#444444] text-white'
+                                                    : 'text-white hover:bg-[#444444] hover:text-[#646464]',
+                                                'group flex h-12 items-center rounded-lg py-2 px-3 text-sm font-medium transition-colors duration-300'
+                                            )
+                                        }
+                                        end
+                                    >
+                                        <>
+                                            {item.icon && (
+                                                <item.icon
+                                                    className='mr-3 h-5 w-5 flex-shrink-0 fill-white text-white'
+                                                    aria-hidden='true'
+                                                />
+                                            )}
 
-                                        {item.badge && (
-                                            <span className=' ml-auto inline-flex items-center justify-center rounded-2xl bg-primary-brand px-2 py-[2px] text-[8px] font-semibold leading-3 text-primary-dark'>
-                                                {item.badge}
-                                            </span>
-                                        )}
-                                    </>
-                                </NavLink>
-                            ))}
+                                            {item.image && (
+                                                <img
+                                                    src={item.image}
+                                                    alt='icon'
+                                                    className='mr-2 h-6 w-6 object-contain'
+                                                />
+                                            )}
+                                            <span>{item.name}</span>
+
+                                            {item.badge && (
+                                                <span className=' ml-auto inline-flex items-center justify-center rounded-2xl bg-primary-brand px-2 py-[2px] text-[8px] font-semibold leading-3 text-primary-dark'>
+                                                    {item.badge}
+                                                </span>
+                                            )}
+                                        </>
+                                    </NavLink>
+                                )
+                            )}
 
                             <Disclosure>
                                 {({ open }) => (

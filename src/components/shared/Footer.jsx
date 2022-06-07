@@ -106,7 +106,7 @@ const Footer = () => {
                             <a
                                 target='_blank'
                                 rel='noopener noreferrer'
-                                href='https://exchange.tally.org/#/swap?outputCurrency=0x965f527d9159dce6288a2219db51fc6eef120dd1'
+                                href='https://pancakeswap.finance/swap?outputCurrency=0xab15B3eeC70514308B0Ad65E8B760398c5839947'
                                 className='rounded-lg bg-[#f93b5d] p-1 text-[10px] font-bold text-white sm:px-2 sm:py-2 sm:text-xs'
                             >
                                 Buy TALLY

@@ -4,7 +4,6 @@ import { AuthReducer } from "./Reducers/AuthReducer";
 import { ChainReducer } from "./Reducers/ChainReducer";
 import { TokenReducer } from "./Reducers/TokenReducer";
 import { TransSettingReducer } from "./Reducers/TransSettingReducer";
-import { TokenPriceReducer } from "./Reducers/TokenPriceReducer";
 
 const loggerMiddleware = (store) => (next) => (action) => {
   console.log("dispatching action", action);
@@ -26,7 +25,6 @@ const reducers = combineReducers({
   chain: ChainReducer,
   token: TokenReducer,
   transSetting: TransSettingReducer,
-  tokenPrice: TokenPriceReducer,
 });
 
 export const store = createStore(reducers, composeEnhancers(middleware));
