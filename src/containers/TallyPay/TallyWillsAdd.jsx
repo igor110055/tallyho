@@ -9,7 +9,7 @@ import {
 import { produce } from 'immer';
 import { nanoid } from 'nanoid';
 import { PlusIcon } from '@heroicons/react/solid';
-import tokens from '../../assets/data/tokens';
+import tokens from '../../assets/data/tp-tokens';
 import { debounce } from 'lodash';
 
 const reducer = (state, action) => {

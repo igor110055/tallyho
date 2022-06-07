@@ -12,7 +12,7 @@ import {
 import { produce } from 'immer';
 import { nanoid } from 'nanoid';
 import { debounce } from 'lodash';
-import tokens from '../../assets/data/tokens';
+import tokens from '../../assets/data/tp-tokens';
 
 const reducer = (state, action) => {
     switch (action.type) {
