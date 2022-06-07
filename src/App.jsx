@@ -3,8 +3,12 @@ import { useEthers } from '@usedapp/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { Layout, LazyLoad, NotFoundRoute } from './components';
-import { CoinsTable, LiquiditySwap, SwapSection, LiquidityAddSection } from './containers';
-import Web3 from 'web3';
+import {
+    CoinsTable,
+    LiquiditySwap,
+    SwapSection,
+    LiquidityAddSection,
+} from './containers';
 import {
     HomePage,
     LiquidityPage,
@@ -27,10 +31,10 @@ import {
     TempLock,
     MyDefiAccount,
 } from './pages';
-import { PANCAKESWAP_API_URL } from "./assets/data/urls";
-import { TALLY } from "./assets/data/addresses";
-import axios from "axios";
-import { TALLY_PRICE_GET } from "./Store/Actions/actionTypes";
+import { PANCAKESWAP_API_URL } from './assets/data/urls';
+import { TALLY } from './assets/data/addresses';
+import axios from 'axios';
+import { TALLY_PRICE_GET } from './Store/Actions/actionTypes';
 
 function App() {
     const { pathname } = useLocation();
@@ -43,23 +47,20 @@ function App() {
 
     useEffect(() => {
         if (account && !supportedChainIds.includes(chainId))
-          switchNetwork(supportedChainIds?.[0]);
-      }, [account, chainId, supportedChainIds, switchNetwork]);
+            switchNetwork(supportedChainIds?.[0]);
+    }, [account, chainId, supportedChainIds, switchNetwork]);
 
     useEffect(() => {
         axios(
-          PANCAKESWAP_API_URL + "0xab15b3eec70514308b0ad65e8b760398c5839947"
-        ).then((resp) => {
-          if (resp && resp.data && resp.data.data)
-            dispatch({
-              type: TALLY_PRICE_GET,
-              payload: parseFloat(resp.data.data.price),
-            });
+            PANCAKESWAP_API_URL + '0xab15b3eec70514308b0ad65e8b760398c5839947'
+        ).then(resp => {
+            if (resp && resp.data && resp.data.data)
+                dispatch({
+                    type: TALLY_PRICE_GET,
+                    payload: parseFloat(resp.data.data.price),
+                });
         });
-      }, [dispatch]);
-
-    let web3 = new Web3('ws://localhost:8546');
-    console.log(web3);
+    }, [dispatch]);
 
     return (
         <Routes>
@@ -83,7 +84,7 @@ function App() {
                         </LazyLoad>
                     }
                 >
-                    <Route path="add" element={<LiquidityAddSection />} />
+                    <Route path='add' element={<LiquidityAddSection />} />
                 </Route>
 
                 {/* Exchange Page Route */}
@@ -95,7 +96,7 @@ function App() {
                         </LazyLoad>
                     }
                 >
-                    <Route path="add" element={<SwapSection />} />
+                    <Route path='add' element={<SwapSection />} />
                 </Route>
 
                 {/* Pools Page Route */}
