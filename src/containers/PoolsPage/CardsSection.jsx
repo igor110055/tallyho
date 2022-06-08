@@ -8,7 +8,7 @@ import masterchefAbi from "../../assets/abi/Masterchef.json";
 // import AutoCompoundCard from "../../components/PoolsPage/AutoCompoundCard";
 
 const CardsSection = ({ stakeType }) => {
-  const {  chainId } = useEthers();
+  const { chainId } = useEthers();
 
   // get the values of masterchef tallyperblock, staking percent, totalAllocpoint
   const tallyPerBlock =
