@@ -3,20 +3,14 @@ import { Dialog, Transition } from "@headlessui/react";
 import { QuestionMarkCircleIcon } from "@heroicons/react/outline";
 import { XIcon } from "@heroicons/react/solid";
 import { useState } from "react";
-import {
-  useEthers,
-  useTokenBalance,
-  useCall,
-  useContractFunction,
-} from "@usedapp/core";
+import { useEthers, useTokenBalance, useCall } from "@usedapp/core";
 import { BigNumber, utils } from "ethers";
 import { Contract } from "@ethersproject/contracts";
-import toast from "react-hot-toast";
+import "react-loading-skeleton/dist/skeleton.css";
+import Skeleton from "react-loading-skeleton";
 
 import spinningGif from "../../assets/images/gifs/Spinner-1.gif";
 import ierc20Abi from "../../assets/abi/IERC20.json";
-import masterchefAbi from "../../assets/abi/Masterchef.json";
-import { MASTERCHEF_ADDRESS } from "../../assets/data/addresses";
 import { isTransReady } from "../../utils/transStatus";
 
 export default function StakeModal({
@@ -28,10 +22,12 @@ export default function StakeModal({
   priceUSD,
   apr,
   poolId,
+  enterStaking,
+  leaveStaking,
 }) {
   const [amountToStake, setAmountToStake] = useState(0);
   const [tokenMax, setTokenMax] = useState(false);
-  const { account, chainId } = useEthers();
+  const { account } = useEthers();
 
   // balance
   const tokenBalance =
@@ -48,31 +44,12 @@ export default function StakeModal({
           args: [],
         }
       ) ?? {}
-    ).value?.[0] ?? 18;
-
-  // staking function
-  const enterStaking = useContractFunction(
-    new Contract(MASTERCHEF_ADDRESS[chainId], masterchefAbi),
-    "enterStaking",
-    {
-      transactionName: "Stake",
-    }
-  );
+    ).value?.[0] ?? undefined;
 
   // side effects for account change
   useEffect(() => {
     if (!account) setOpen(false);
   }, [account, setOpen]);
-
-  // side effect for approve token action status change
-  useEffect(() => {
-    if (enterStaking.state.status === "Success")
-      toast.success("You staked tokens.");
-    if (enterStaking.state.status === "Exception")
-      toast.error("An error occured during staking tokens.");
-
-    if (enterStaking.state.status === "Success") setAmountToStake(0);
-  }, [enterStaking.state.status]);
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -128,11 +105,15 @@ export default function StakeModal({
                   <div className="flex justify-between py-2">
                     <span className="text-md text-[#708db7]">Stake</span>
                     <span className="text-md flex items-center text-right text-primary-darkText">
-                      <img
-                        className="mr-1 h-5 w-5 rounded-full"
-                        src={avatar}
-                        alt="token"
-                      />
+                      {avatar ? (
+                        <img
+                          className="mr-1 h-5 w-5 rounded-full"
+                          src={avatar}
+                          alt="token"
+                        />
+                      ) : (
+                        <Skeleton circle className="mr-1 h-5 w-5" />
+                      )}
                       {token && token.symbol}
                     </span>
                   </div>
@@ -149,18 +130,19 @@ export default function StakeModal({
                         }}
                       ></input>
                       <div className="text-right text-sm text-slate-500">
+                        {"~ $"}
                         {priceUSD && amountToStake
-                          ? "~" + (priceUSD * amountToStake).toFixed(5)
-                          : ""}{" "}
-                        USD
+                          ? (priceUSD * amountToStake).toFixed(5)
+                          : ""}
                       </div>
                     </div>
-                    <div className="py-1 text-right text-sm">
-                      {token && !tokenMax && (
+                    <div className="flex justify-end py-1 text-sm">
+                      {token && !tokenMax && tokenBalance && tokenDecimal && (
                         <button
                           className="mx-2 rounded-xl bg-primary-brand px-1 text-sm text-white transition-opacity duration-200 hover:opacity-60"
                           onClick={() => {
                             tokenBalance &&
+                              tokenDecimal &&
                               setAmountToStake(
                                 utils.formatUnits(tokenBalance, tokenDecimal)
                               );
@@ -171,9 +153,15 @@ export default function StakeModal({
                         </button>
                       )}
                       <span className="text-slate-400">Balance</span>
-                      <span className="ml-3 text-slate-600">
-                        {parseFloat(
-                          utils.formatUnits(tokenBalance, tokenDecimal)
+                      <span className="ml-3 min-w-[30%] text-slate-600">
+                        {tokenBalance && tokenDecimal ? (
+                          <>
+                            {parseFloat(
+                              utils.formatUnits(tokenBalance, tokenDecimal)
+                            )}
+                          </>
+                        ) : (
+                          <Skeleton width="50" />
                         )}
                       </span>
                     </div>
@@ -181,7 +169,14 @@ export default function StakeModal({
                   <div className="flex items-start justify-between px-2 pt-4">
                     <span className="text-md text-[#708db7]">Annual ROI</span>
                     <span className="text-md flex items-start text-primary-darkText">
-                      {apr}%
+                      {!apr ? (
+                        <Skeleton className="w-20" />
+                      ) : (
+                        <>
+                          {apr}
+                          {"%"}
+                        </>
+                      )}
                     </span>
                   </div>
                   {poolId !== 0 && (
@@ -190,8 +185,14 @@ export default function StakeModal({
                         Performance Fee
                       </span>
                       <span className="text-md flex-1 text-right text-primary-darkText">
-                        {performanceFee}
-                        {"%"}
+                        {!performanceFee ? (
+                          <Skeleton className="w-20" />
+                        ) : (
+                          <>
+                            {performanceFee}
+                            {"%"}
+                          </>
+                        )}
                       </span>
                     </div>
                   )}
@@ -199,12 +200,14 @@ export default function StakeModal({
                     className={`${
                       (!amountToStake ||
                         parseFloat(amountToStake) === 0 ||
-                        !isTransReady(enterStaking)) &&
+                        !isTransReady(enterStaking) ||
+                        !isTransReady(leaveStaking)) &&
                       "disabled cursor-not-allowed opacity-80"
                     } mb-4 mt-3 flex h-12 w-full items-center justify-center rounded-lg bg-primary-brand text-xl font-semibold text-white transition-opacity duration-200 hover:opacity-80`}
                     onClick={() => {
                       if (isTransReady(enterStaking)) {
-                        if (tokenMax) enterStaking.send(tokenBalance);
+                        if (tokenMax)
+                          tokenBalance && enterStaking.send(tokenBalance);
                         else
                           enterStaking.send(
                             utils.parseUnits(amountToStake, tokenDecimal)
@@ -212,14 +215,15 @@ export default function StakeModal({
                       }
                     }}
                   >
-                    Confirm
-                    {!isTransReady(enterStaking) && (
+                    {(!isTransReady(enterStaking) ||
+                      !isTransReady(leaveStaking)) && (
                       <img
                         className="mr-2 h-6 w-6 rounded-full"
                         src={spinningGif}
                         alt="waiting"
                       />
                     )}
+                    Confirm
                   </button>
                 </div>
               </div>
