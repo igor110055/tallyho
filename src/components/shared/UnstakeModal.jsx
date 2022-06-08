@@ -3,13 +3,8 @@ import { Dialog, Transition } from "@headlessui/react";
 import { QuestionMarkCircleIcon } from "@heroicons/react/outline";
 import { XIcon } from "@heroicons/react/solid";
 import { useState } from "react";
-import {
-  useEthers,
-  useTokenBalance,
-  useCall,
-  useContractFunction,
-} from "@usedapp/core";
-import { BigNumber, utils } from "ethers";
+import { useEthers, useCall, useContractFunction } from "@usedapp/core";
+import { utils } from "ethers";
 import { Contract } from "@ethersproject/contracts";
 import toast from "react-hot-toast";
 
@@ -144,7 +139,7 @@ export default function UnstakeModal({
                           setTokenMax(false);
                         }}
                       ></input>
-                      <div className="pr-4 text-right text-sm text-slate-500">
+                      <div className="text-right text-sm text-slate-500">
                         {priceUSD && amountToUnStake
                           ? "~" + (priceUSD * amountToUnStake).toFixed(5)
                           : ""}{" "}

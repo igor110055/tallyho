@@ -148,7 +148,7 @@ export default function StakeModal({
                           setTokenMax(false);
                         }}
                       ></input>
-                      <div className="pr-4 text-right text-sm text-slate-500">
+                      <div className="text-right text-sm text-slate-500">
                         {priceUSD && amountToStake
                           ? "~" + (priceUSD * amountToStake).toFixed(5)
                           : ""}{" "}
