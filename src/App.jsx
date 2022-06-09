@@ -32,7 +32,7 @@ import { TALLY_PRICE_GET } from "./Store/Actions/actionTypes";
 
 function App() {
   const { pathname } = useLocation();
-  const { account, chainId, switchNetwork } = useEthers();
+  const { chainId, switchNetwork } = useEthers();
   const supportedChainIds = useSelector((state) => state.chain.supportedIds);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -40,9 +40,9 @@ function App() {
   }, [pathname]);
 
   useEffect(() => {
-    if (account && !supportedChainIds.includes(chainId))
+    if (!supportedChainIds.includes(chainId))
       switchNetwork(supportedChainIds?.[0]);
-  }, [account, chainId, supportedChainIds, switchNetwork]);
+  }, [chainId, supportedChainIds, switchNetwork]);
 
   useEffect(() => {
     axios(
