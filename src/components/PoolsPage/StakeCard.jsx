@@ -44,6 +44,8 @@ const StakeCard = ({
   maintenanceSecurityFee,
   operationFee,
   poolId,
+  showAprModal,
+  setAprModalValue,
 }) => {
   const { account, chainId } = useEthers();
 
@@ -279,21 +281,21 @@ const StakeCard = ({
   }, [leaveStaking]);
 
   return (
-    <div className="flex flex-col rounded-2xl bg-white p-6">
+    <div className="flex flex-col p-6 bg-white rounded-2xl">
       <div className="flex flex-row space-x-5 border-b-2 border-[#708eb7]/10 pb-4">
-        <figure className="relative inline-block h-20 w-20">
+        <figure className="relative inline-block w-20 h-20">
           {!poolMetaInfos ||
           !poolMetaInfos[poolId] ||
           !poolMetaInfos[poolId].logo ? (
-            <Skeleton circle className="h-full w-full" />
+            <Skeleton circle className="w-full h-full" />
           ) : (
             <img src={poolMetaInfos[poolId].logo} alt="token" />
           )}
-          <span className="absolute bottom-2 right-2 block h-8 w-8 translate-x-1/2 translate-y-1/2 transform rounded-full border-2 border-white">
+          <span className="absolute block w-8 h-8 transform translate-x-1/2 translate-y-1/2 border-2 border-white rounded-full bottom-2 right-2">
             {!poolMetaInfos ||
             !poolMetaInfos[poolId] ||
             !poolMetaInfos[poolId].logo ? (
-              <Skeleton circle className="h-full w-full" />
+              <Skeleton circle className="w-full h-full" />
             ) : (
               <img
                 className="rounded-full"
@@ -308,7 +310,7 @@ const StakeCard = ({
             {!poolMetaInfos ||
             !poolMetaInfos[poolId] ||
             !poolMetaInfos[poolId].title ? (
-              <Skeleton className="h-full w-full" />
+              <Skeleton className="w-full h-full" />
             ) : (
               poolMetaInfos[poolId].title
             )}
@@ -317,21 +319,27 @@ const StakeCard = ({
             {!poolMetaInfos ||
             !poolMetaInfos[poolId] ||
             !poolMetaInfos[poolId].subscription ? (
-              <Skeleton className="h-full w-full" />
+              <Skeleton className="w-full h-full" />
             ) : (
               poolMetaInfos[poolId].subscription
             )}
           </h4>
-          <div className="text-md flex truncate font-medium text-primary-brand">
+          <div className="flex font-medium truncate text-md text-primary-brand">
             <span className="pr-4">APR</span>
             {!apr ? (
               <Skeleton className="w-20" />
             ) : (
-              <>
-                {apr}
+              <span
+                onClick={() => {
+                  setAprModalValue(apr);
+                  showAprModal(true);
+                }}
+                className="flex cursor-pointer"
+              >
+                {apr.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                 {"%"}
-                <CalculatorIcon className="h-5 w-5 cursor-pointer" />
-              </>
+                <CalculatorIcon className="w-5 h-5" />
+              </span>
             )}
           </div>
         </div>
@@ -341,9 +349,9 @@ const StakeCard = ({
         {account ? (
           <>
             {!tokenAllowance ? (
-              <button className="disabled flex h-12 w-full cursor-not-allowed items-center justify-center rounded-lg bg-primary-brand px-6 font-semibold text-white opacity-80 transition-opacity duration-200 hover:opacity-80">
+              <button className="flex items-center justify-center w-full h-12 px-6 font-semibold text-white transition-opacity duration-200 rounded-lg cursor-not-allowed disabled bg-primary-brand opacity-80 hover:opacity-80">
                 <img
-                  className="mr-2 h-6 w-6 rounded-full"
+                  className="w-6 h-6 mr-2 rounded-full"
                   src={spinningGif}
                   alt="waiting"
                 />
@@ -363,14 +371,14 @@ const StakeCard = ({
                   >
                     {!isTransReady(approveToken) ? (
                       <img
-                        className="mr-2 h-6 w-6 rounded-full"
+                        className="w-6 h-6 mr-2 rounded-full"
                         src={spinningGif}
                         alt="waiting"
                       />
                     ) : (
-                      <span className="mr-2 block rounded-full border border-white">
+                      <span className="block mr-2 border border-white rounded-full">
                         <img
-                          className="h-6 w-6 rounded-full"
+                          className="w-6 h-6 rounded-full"
                           src={poolMetaInfos[poolId].logo}
                           alt="token"
                         />
@@ -382,13 +390,15 @@ const StakeCard = ({
                   <>
                     <div className="mb-3">
                       <div className="text-md text-[#708db7]">You staked</div>
-                      <div className="flex flex-row items-center gap-x-4 overflow-hidden">
-                        <div className="h-12 items-center overflow-hidden truncate sm:basis-full md:basis-1/2">
+                      <div className="flex flex-row items-center overflow-hidden gap-x-4">
+                        <div className="items-center h-12 overflow-hidden truncate sm:basis-full md:basis-1/2">
                           <div className="text-xl font-bold text-black">
                             {stakedAmount && tokenDecimal ? (
                               parseFloat(
                                 utils.formatUnits(stakedAmount, tokenDecimal)
-                              ).toFixed(5)
+                              ).toLocaleString(undefined, {
+                                minimumFractionDigits: 4,
+                              })
                             ) : (
                               <Skeleton />
                             )}
@@ -404,14 +414,16 @@ const StakeCard = ({
                                       tokenDecimal
                                     )
                                   ) * priceUSD
-                                ).toFixed(5)}
+                                ).toLocaleString(undefined, {
+                                  minimumFractionDigits: 4,
+                                })}
                               </>
                             ) : (
                               <Skeleton />
                             )}
                           </div>
                         </div>
-                        <div className="flex h-12 items-center gap-x-2 overflow-hidden truncate sm:basis-full md:basis-1/2">
+                        <div className="flex items-center h-12 overflow-hidden truncate gap-x-2 sm:basis-full md:basis-1/2">
                           <button
                             className={`${
                               !isTransReady(enterStaking) ||
@@ -457,8 +469,8 @@ const StakeCard = ({
                     </div>
                     <div className="mb-3">
                       <div className="text-md text-[#708db7]">Tally profit</div>
-                      <div className="flex flex-row items-center gap-x-4 overflow-hidden">
-                        <div className="h-12 items-center overflow-hidden truncate sm:basis-full md:basis-1/2">
+                      <div className="flex flex-row items-center overflow-hidden gap-x-4">
+                        <div className="items-center h-12 overflow-hidden truncate sm:basis-full md:basis-1/2">
                           <div
                             className={`text-xl font-bold ${
                               pendingTally &&
@@ -471,7 +483,9 @@ const StakeCard = ({
                             {pendingTally ? (
                               parseFloat(
                                 utils.formatUnits(pendingTally, 9)
-                              ).toFixed(5)
+                              ).toLocaleString(undefined, {
+                                minimumFractionDigits: 4,
+                              })
                             ) : (
                               <Skeleton />
                             )}
@@ -484,14 +498,16 @@ const StakeCard = ({
                                   parseFloat(
                                     utils.formatUnits(pendingTally, 9)
                                   ) * tallyPrice
-                                ).toFixed(5)}
+                                ).toLocaleString(undefined, {
+                                  minimumFractionDigits: 4,
+                                })}
                               </>
                             ) : (
                               <Skeleton />
                             )}
                           </div>
                         </div>
-                        <div className="flex h-12 items-center gap-x-2 overflow-hidden truncate sm:basis-full md:basis-1/2">
+                        <div className="flex items-center h-12 overflow-hidden truncate gap-x-2 sm:basis-full md:basis-1/2">
                           <button
                             className={`${
                               parseFloat(utils.formatUnits(pendingTally, 9)) ===
@@ -512,7 +528,7 @@ const StakeCard = ({
                             {!isTransReady(enterStaking) ||
                             !isTransReady(leaveStaking) ? (
                               <img
-                                className="h-6 w-6 rounded-full"
+                                className="w-6 h-6 rounded-full"
                                 src={spinningGif}
                                 alt="Harvesting"
                               />
@@ -547,7 +563,7 @@ const StakeCard = ({
                             {!isTransReady(enterStaking) ||
                             !isTransReady(leaveStaking) ? (
                               <img
-                                className="h-6 w-6 rounded-full"
+                                className="w-6 h-6 rounded-full"
                                 src={spinningGif}
                                 alt="Compounding"
                               />
@@ -572,7 +588,7 @@ const StakeCard = ({
           </>
         ) : (
           <button
-            className="flex h-12 w-full items-center justify-center rounded-lg bg-primary-brand px-6 font-semibold text-white transition-opacity duration-200 hover:opacity-80"
+            className="flex items-center justify-center w-full h-12 px-6 font-semibold text-white transition-opacity duration-200 rounded-lg bg-primary-brand hover:opacity-80"
             onClick={() => setConnectModalOpen(true)}
           >
             Connect Wallet
@@ -583,7 +599,7 @@ const StakeCard = ({
       <Disclosure>
         {({ open }) => (
           <>
-            <Disclosure.Button className="mx-auto flex items-center justify-center px-4 py-2 font-semibold text-primary-brand">
+            <Disclosure.Button className="flex items-center justify-center px-4 py-2 mx-auto font-semibold text-primary-brand">
               <span>{open ? "Hide" : "Details"}</span>
               <ChevronDownIcon
                 className={`${
@@ -600,7 +616,7 @@ const StakeCard = ({
               leaveFrom="translate-y-0 opacity-100"
               leaveTo="-translate-y-2 opacity-0"
             >
-              <Disclosure.Panel className="space-y-2 pt-2 pb-2 text-xs text-gray-500">
+              <Disclosure.Panel className="pt-2 pb-2 space-y-2 text-xs text-gray-500">
                 <div className="flex">
                   <span className="text-sm text-[#708db7]">Total Stake</span>
                   <div className="flex-1 border-b border-dotted border-[#708db7]"></div>
@@ -608,7 +624,7 @@ const StakeCard = ({
                     {totalStaked && tokenDecimal ? (
                       parseFloat(
                         utils.formatUnits(totalStaked, tokenDecimal)
-                      ).toFixed(2)
+                      ).toLocaleString(undefined, { minimumFractionDigits: 2 })
                     ) : (
                       <Skeleton className="w-20" />
                     )}
@@ -627,12 +643,16 @@ const StakeCard = ({
                       buyBackFee &&
                       percentDec &&
                       percentDec.toNumber() !== 0 ? (
-                        ((reserveFee.toNumber() +
-                          operationFee.toNumber() +
-                          maintenanceSecurityFee.toNumber() +
-                          buyBackFee.toNumber()) /
-                          percentDec.toNumber()) *
-                        100
+                        (
+                          ((reserveFee.toNumber() +
+                            operationFee.toNumber() +
+                            maintenanceSecurityFee.toNumber() +
+                            buyBackFee.toNumber()) /
+                            percentDec.toNumber()) *
+                          100
+                        ).toLocaleString(undefined, {
+                          minimumFractionDigits: 2,
+                        })
                       ) : (
                         <Skeleton className="w-20" />
                       )}
@@ -642,14 +662,14 @@ const StakeCard = ({
                 )}
                 <a
                   href={`${BSCSCAN_ADDRESS_URL[chainId]}${MASTERCHEF_ADDRESS[chainId]}`}
-                  className="flex items-center space-x-1 pt-2"
+                  className="flex items-center pt-2 space-x-1"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <span className="text-base text-primary-brand">
                     View Contact
                   </span>
-                  <ExternalLinkIcon className="ml-2 h-6 w-6 text-primary-brand" />
+                  <ExternalLinkIcon className="w-6 h-6 ml-2 text-primary-brand" />
                 </a>
               </Disclosure.Panel>
             </Transition>

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useCall, useEthers } from "@usedapp/core";
 import { Contract } from "@ethersproject/contracts";
 import { utils } from "ethers";
@@ -5,10 +6,13 @@ import { utils } from "ethers";
 import { StakeCard } from "../../components";
 import { MASTERCHEF_ADDRESS } from "../../assets/data/addresses.js";
 import masterchefAbi from "../../assets/abi/Masterchef.json";
+import AprModal from "../../components/shared/AprModal";
 // import AutoCompoundCard from "../../components/PoolsPage/AutoCompoundCard";
 
 const CardsSection = ({ stakeType }) => {
   const { chainId } = useEthers();
+  const [aprModalOpen, setAprModalOpen] = useState(false);
+  const [aprModalVal, setAprModalVal] = useState(undefined);
 
   // get the values of masterchef tallyperblock, staking percent, totalAllocpoint
   const tallyPerBlock =
@@ -103,7 +107,7 @@ const CardsSection = ({ stakeType }) => {
     })?.value?.[0] ?? undefined;
 
   return (
-    <div className="my-6 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
+    <div className="grid grid-cols-1 gap-4 my-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
       {stakeType === "stake_tally" && (
         <StakeCard
           tallyPerBlock={tallyPerBlock}
@@ -115,6 +119,8 @@ const CardsSection = ({ stakeType }) => {
           maintenanceSecurityFee={maintenanceSecurityFee}
           buyBackFee={buyBackFee}
           operationFee={operationFee}
+          showAprModal={setAprModalOpen}
+          setAprModalValue={setAprModalVal}
         />
       )}
       {stakeType === "stake_tally" &&
@@ -131,9 +137,15 @@ const CardsSection = ({ stakeType }) => {
               maintenanceSecurityFee={maintenanceSecurityFee}
               buyBackFee={buyBackFee}
               operationFee={operationFee}
+              showAprModal={setAprModalOpen}
             />
           );
         })}
+      <AprModal
+        open={aprModalOpen}
+        setOpen={setAprModalOpen}
+        aprValue={aprModalVal}
+      />
     </div>
   );
 };
