@@ -3,15 +3,14 @@ import { Dialog, Transition } from "@headlessui/react";
 import { QuestionMarkCircleIcon } from "@heroicons/react/outline";
 import { XIcon } from "@heroicons/react/solid";
 import { useState } from "react";
-import { useEthers, useCall, useContractFunction } from "@usedapp/core";
+import { useEthers, useCall } from "@usedapp/core";
 import { utils } from "ethers";
 import { Contract } from "@ethersproject/contracts";
-import toast from "react-hot-toast";
+import "react-loading-skeleton/dist/skeleton.css";
+import Skeleton from "react-loading-skeleton";
 
 import spinningGif from "../../assets/images/gifs/Spinner-1.gif";
 import ierc20Abi from "../../assets/abi/IERC20.json";
-import masterchefAbi from "../../assets/abi/Masterchef.json";
-import { MASTERCHEF_ADDRESS } from "../../assets/data/addresses";
 import { isTransReady } from "../../utils/transStatus";
 
 export default function UnstakeModal({
@@ -24,10 +23,12 @@ export default function UnstakeModal({
   apr,
   poolId,
   stakedAmount,
+  enterStaking,
+  leaveStaking,
 }) {
   const [amountToUnStake, setAmountToUnStake] = useState(0);
   const [tokenMax, setTokenMax] = useState(false);
-  const { account, chainId } = useEthers();
+  const { account } = useEthers();
 
   // token decimals
   const tokenDecimal =
@@ -39,31 +40,12 @@ export default function UnstakeModal({
           args: [],
         }
       ) ?? {}
-    ).value?.[0] ?? 18;
-
-  // unstaking function
-  const leaveStaking = useContractFunction(
-    new Contract(MASTERCHEF_ADDRESS[chainId], masterchefAbi),
-    "leaveStaking",
-    {
-      transactionName: "Unstake",
-    }
-  );
+    ).value?.[0] ?? undefined;
 
   // side effects for account change
   useEffect(() => {
     if (!account) setOpen(false);
   }, [account, setOpen]);
-
-  // side effect for approve token action status change
-  useEffect(() => {
-    if (leaveStaking.state.status === "Success")
-      toast.success("You unstaked tokens.");
-    if (leaveStaking.state.status === "Exception")
-      toast.error("An error occured during unstaking tokens.");
-
-    if (leaveStaking.state.status === "Success") setAmountToUnStake(0);
-  }, [leaveStaking.state.status]);
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -119,11 +101,15 @@ export default function UnstakeModal({
                   <div className="flex justify-between py-2">
                     <span className="text-md text-[#708db7]">Unstake</span>
                     <span className="text-md flex items-center text-right text-primary-darkText">
-                      <img
-                        className="mr-1 h-5 w-5 rounded-full"
-                        src={avatar}
-                        alt="token"
-                      />
+                      {avatar ? (
+                        <img
+                          className="mr-1 h-5 w-5 rounded-full"
+                          src={avatar}
+                          alt="token"
+                        />
+                      ) : (
+                        <Skeleton circle className="mr-1 h-5 w-5" />
+                      )}
                       {token && token.symbol}
                     </span>
                   </div>
@@ -140,18 +126,19 @@ export default function UnstakeModal({
                         }}
                       ></input>
                       <div className="text-right text-sm text-slate-500">
+                        {"~ $"}
                         {priceUSD && amountToUnStake
-                          ? "~" + (priceUSD * amountToUnStake).toFixed(5)
-                          : ""}{" "}
-                        USD
+                          ? (priceUSD * amountToUnStake).toFixed(5)
+                          : ""}
                       </div>
                     </div>
                     <div className="py-1 text-right text-sm">
-                      {token && !tokenMax && (
+                      {stakedAmount && tokenDecimal && token && !tokenMax && (
                         <button
                           className="mx-2 rounded-xl bg-primary-brand px-1 text-sm text-white transition-opacity duration-200 hover:opacity-60"
                           onClick={() => {
                             stakedAmount &&
+                              tokenDecimal &&
                               setAmountToUnStake(
                                 utils.formatUnits(stakedAmount, tokenDecimal)
                               );
@@ -163,18 +150,29 @@ export default function UnstakeModal({
                       )}
                       <span className="text-slate-400">You staked</span>
                       <span className="ml-3 text-slate-600">
-                        {stakedAmount
-                          ? parseFloat(
+                        {stakedAmount && tokenDecimal ? (
+                          <>
+                            {parseFloat(
                               utils.formatUnits(stakedAmount, tokenDecimal)
-                            )
-                          : 0}
+                            )}
+                          </>
+                        ) : (
+                          <Skeleton width="50" />
+                        )}
                       </span>
                     </div>
                   </div>
                   <div className="flex items-start justify-between px-2 pt-4">
                     <span className="text-md text-[#708db7]">Annual ROI</span>
                     <span className="text-md flex items-start text-primary-darkText">
-                      {apr}%
+                      {!apr ? (
+                        <Skeleton className="w-20" />
+                      ) : (
+                        <>
+                          {apr}
+                          {"%"}
+                        </>
+                      )}
                     </span>
                   </div>
                   {poolId !== 0 && (
@@ -183,8 +181,14 @@ export default function UnstakeModal({
                         Performance Fee
                       </span>
                       <span className="text-md flex-1 text-right text-primary-darkText">
-                        {performanceFee}
-                        {"%"}
+                        {!performanceFee ? (
+                          <Skeleton className="w-20" />
+                        ) : (
+                          <>
+                            {performanceFee}
+                            {"%"}
+                          </>
+                        )}
                       </span>
                     </div>
                   )}
@@ -192,7 +196,8 @@ export default function UnstakeModal({
                     className={`${
                       (!amountToUnStake ||
                         parseFloat(amountToUnStake) === 0 ||
-                        !isTransReady(leaveStaking)) &&
+                        !isTransReady(leaveStaking) ||
+                        !isTransReady(enterStaking)) &&
                       "disabled cursor-not-allowed opacity-80"
                     } mb-4 mt-3 flex h-12 w-full items-center justify-center rounded-lg bg-primary-brand text-xl font-semibold text-white transition-opacity duration-200 hover:opacity-80`}
                     onClick={() => {
@@ -206,14 +211,15 @@ export default function UnstakeModal({
                       }
                     }}
                   >
-                    Confirm
-                    {!isTransReady(leaveStaking) && (
+                    {(!isTransReady(enterStaking) ||
+                      !isTransReady(leaveStaking)) && (
                       <img
                         className="mr-2 h-6 w-6 rounded-full"
                         src={spinningGif}
                         alt="waiting"
                       />
                     )}
+                    Confirm
                   </button>
                 </div>
               </div>

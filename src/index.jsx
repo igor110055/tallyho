@@ -13,20 +13,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "react-datepicker/dist/react-datepicker.css";
 
-import {
-  DAppProvider,
-  DEFAULT_SUPPORTED_CHAINS,
-  BSC,
-  BSCTestnet,
-} from "@usedapp/core";
+import { DAppProvider, BSC, BSCTestnet } from "@usedapp/core";
 
 const config = {
-  networks: DEFAULT_SUPPORTED_CHAINS,
-  notifications: {
-    expirationPeriod: 4000,
-    checkInterval: 1000,
-  },
-  readOnlyChainId: BSC.chainId,
+  networks: [BSC, BSCTestnet],
+  readOnlyChainId: BSCTestnet.chainId,
   readOnlyUrls: {
     [BSC.chainId]: "https://bsc-dataseed1.binance.org",
     [BSCTestnet.chainId]: "https://data-seed-prebsc-1-s1.binance.org:8545",
