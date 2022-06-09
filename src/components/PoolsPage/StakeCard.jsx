@@ -194,11 +194,9 @@ const StakeCard = ({
 
   // side effect for lptokenAddress change
   useEffect(() => {
-    if (lptokenAddress) {
+    if (lptokenAddress !== undefined) {
       setToken(
-        supportedTokens[chainId].find(
-          (token) => token.address === lptokenAddress
-        )
+        supportedTokens[chainId].find((t) => t.address === lptokenAddress)
       );
     }
   }, [lptokenAddress, chainId]);
