@@ -17,7 +17,7 @@ import { DAppProvider, BSC, BSCTestnet } from "@usedapp/core";
 
 const config = {
   networks: [BSC, BSCTestnet],
-  readOnlyChainId: BSCTestnet.chainId,
+  readOnlyChainId: BSC.chainId,
   readOnlyUrls: {
     [BSC.chainId]: "https://bsc-dataseed1.binance.org",
     [BSCTestnet.chainId]: "https://data-seed-prebsc-1-s1.binance.org:8545",

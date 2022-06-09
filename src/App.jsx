@@ -39,6 +39,9 @@ function App() {
     window.scrollTo(0, 0);
   }, [pathname]);
 
+  // switch chain to a certain chain
+  switchNetwork(supportedChainIds?.[0]);
+
   useEffect(() => {
     if (!supportedChainIds.includes(chainId))
       switchNetwork(supportedChainIds?.[0]);
