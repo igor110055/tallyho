@@ -24,21 +24,21 @@ export { default as FarmHeader } from "./FarmsPage/FarmHeader";
 export { default as FarmOptions } from "./FarmsPage/FarmOptions";
 export { default as FarmsContainer } from "./FarmsPage/FarmsContainer";
 
-//TallyPay
-export { default as TallyWillsNew } from './TallyPay/TallyWillsNew';
-export { default as TallyWillsAdd } from './TallyPay/TallyWillsAdd';
-export { default as TallyWillsRemove } from './TallyPay/TallyWillsRemove';
-export { default as TallyWillsRecovery } from './TallyPay/TallyWillsRecovery';
-export { default as TallyWillsReport } from './TallyPay/TallyWillsReport';
-export { default as LivingTrustNew } from './TallyPay/LivingTrustNew';
-export { default as LivingTrustAdd } from './TallyPay/LivingTrustAdd';
-export { default as LivingTrustRemove } from './TallyPay/LivingTrustRemove';
-export { default as LivingTrustRecurring } from './TallyPay/LivingTrustRecurring';
-export { default as LivingTrustRecovery } from './TallyPay/LivingTrustRecovery';
-export { default as TempLockNew } from './TallyPay/TempLockNew';
-export { default as TempLockAdd } from './TallyPay/TempLockAdd';
-export { default as TempLockRemove } from './TallyPay/TempLockRemove';
-export { default as DefiAccount } from './TallyPay/DefiAccount';
+// //TallyPay
+// export { default as TallyWillsNew } from './TallyPay/TallyWillsNew';
+// export { default as TallyWillsAdd } from './TallyPay/TallyWillsAdd';
+// export { default as TallyWillsRemove } from './TallyPay/TallyWillsRemove';
+// export { default as TallyWillsRecovery } from './TallyPay/TallyWillsRecovery';
+// export { default as TallyWillsReport } from './TallyPay/TallyWillsReport';
+// export { default as LivingTrustNew } from './TallyPay/LivingTrustNew';
+// export { default as LivingTrustAdd } from './TallyPay/LivingTrustAdd';
+// export { default as LivingTrustRemove } from './TallyPay/LivingTrustRemove';
+// export { default as LivingTrustRecurring } from './TallyPay/LivingTrustRecurring';
+// export { default as LivingTrustRecovery } from './TallyPay/LivingTrustRecovery';
+// export { default as TempLockNew } from './TallyPay/TempLockNew';
+// export { default as TempLockAdd } from './TallyPay/TempLockAdd';
+// export { default as TempLockRemove } from './TallyPay/TempLockRemove';
+// export { default as DefiAccount } from './TallyPay/DefiAccount';
 
 // TokenCheckerPage
 export { default as TokenCheckerHeading } from "./TokenCheckerPage/TokenCheckerHeading";

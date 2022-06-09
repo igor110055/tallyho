@@ -5,12 +5,12 @@ const LiquidityPage = lazy(() => import("./LiquidityPage"));
 const ExchangePage = lazy(() => import("./ExchangePage"));
 const PoolsPage = lazy(() => import("./PoolsPage"));
 const FarmsPage = lazy(() => import("./FarmsPage"));
-const TallyPay = lazy(() => import("./TallyPay/TallyPay"));
-const TallyPayIndex = lazy(() => import("./TallyPay/TallyPayIndex"));
-const TallyWills = lazy(() => import("./TallyPay/TallyWills"));
-const LivingTrust = lazy(() => import("./TallyPay/LivingTrust"));
-const MyDefiAccount = lazy(() => import("./TallyPay/MyDefiAccount"));
-const TempLock = lazy(() => import("./TallyPay/TempLock"));
+// const TallyPay = lazy(() => import("./TallyPay/TallyPay"));
+// const TallyPayIndex = lazy(() => import("./TallyPay/TallyPayIndex"));
+// const TallyWills = lazy(() => import("./TallyPay/TallyWills"));
+// const LivingTrust = lazy(() => import("./TallyPay/LivingTrust"));
+// const MyDefiAccount = lazy(() => import("./TallyPay/MyDefiAccount"));
+// const TempLock = lazy(() => import("./TallyPay/TempLock"));
 const NFTmarketPage = lazy(() => import("./NFTMarketPage"));
 const StakeLaunchPadPage = lazy(() => import("./StakeLaunchpadPage"));
 const NFTearnPage = lazy(() => import("./NFTearnPage"));
@@ -27,12 +27,12 @@ export {
     ExchangePage,
     PoolsPage,
     FarmsPage,
-    TallyPay,
-    TallyPayIndex,
-    TallyWills,
-    LivingTrust,
-    TempLock,
-    MyDefiAccount,
+    // TallyPay,
+    // TallyPayIndex,
+    // TallyWills,
+    // LivingTrust,
+    // TempLock,
+    // MyDefiAccount,
     NFTmarketPage,
     StakeLaunchPadPage,
     NFTearnPage,

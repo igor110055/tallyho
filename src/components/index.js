@@ -42,22 +42,22 @@ export { default as StakeCard } from "./PoolsPage/StakeCard";
 export { default as FarmCard } from './FarmsPage/FarmCard';
 
 //TallyPay
-export { default as FormTab } from './TallyPay/FormTab';
-export { default as SelectTokenCombobox } from './TallyPay/SelectTokenCombobox';
-export { default as SearchBar } from './TallyPay/SearchBar';
-export { default as RecentCoins } from './TallyPay/RecentCoins';
-export { default as AllCoins } from './TallyPay/AllCoins';
-export { default as TPDoubleInput } from './TallyPay/TPDoubleInput';
-export { default as TPInput } from './TallyPay/TPInput';
-export { default as TPPasswordInputs } from './TallyPay/TPPasswordInputs';
-export { default as ConnectWalletButton } from './TallyPay/ConnectWalletButton';
-export { default as TPEditableButton } from './TallyPay/TPEditableButton';
-export { default as TPRadioGroup } from './TallyPay/TPRadioGroup';
-export { default as TPChangeInheritorRadio } from './TallyPay/TPChangeInheritorRadio';
-export { default as TPDateInput } from './TallyPay/TPDateInput';
-export { default as TPTimeInput } from './TallyPay/TPTimeInput';
-export { default as DefiSingleAccount } from './TallyPay/DefiSingleAccount';
-export { default as DefiNotFoundComp } from './TallyPay/DefiNotFoundComp';
+// export { default as FormTab } from './TallyPay/FormTab';
+// export { default as SelectTokenCombobox } from './TallyPay/SelectTokenCombobox';
+// export { default as SearchBar } from './TallyPay/SearchBar';
+// export { default as RecentCoins } from './TallyPay/RecentCoins';
+// export { default as AllCoins } from './TallyPay/AllCoins';
+// export { default as TPDoubleInput } from './TallyPay/TPDoubleInput';
+// export { default as TPInput } from './TallyPay/TPInput';
+// export { default as TPPasswordInputs } from './TallyPay/TPPasswordInputs';
+// export { default as ConnectWalletButton } from './TallyPay/ConnectWalletButton';
+// export { default as TPEditableButton } from './TallyPay/TPEditableButton';
+// export { default as TPRadioGroup } from './TallyPay/TPRadioGroup';
+// export { default as TPChangeInheritorRadio } from './TallyPay/TPChangeInheritorRadio';
+// export { default as TPDateInput } from './TallyPay/TPDateInput';
+// export { default as TPTimeInput } from './TallyPay/TPTimeInput';
+// export { default as DefiSingleAccount } from './TallyPay/DefiSingleAccount';
+// export { default as DefiNotFoundComp } from './TallyPay/DefiNotFoundComp';
 
 // TokenChecker
 export { default as TokenCheckerNav } from './TokenChecker/TokenCheckerNav';
