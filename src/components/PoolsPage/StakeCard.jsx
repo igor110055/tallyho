@@ -6,6 +6,8 @@ import { useEthers, useCall, useContractFunction } from "@usedapp/core";
 import { Contract } from "@ethersproject/contracts";
 import { utils, BigNumber } from "ethers";
 import toast from "react-hot-toast";
+import "react-loading-skeleton/dist/skeleton.css";
+import Skeleton from "react-loading-skeleton";
 import ReactTooltip from "react-tooltip";
 import { CalculatorIcon } from "@heroicons/react/outline";
 
@@ -49,7 +51,7 @@ const StakeCard = ({
   const [stakeModalOpen, setStakeModalOpen] = useState(false);
   const [unstakeModalOpen, setUnstakeModalOpen] = useState(false);
   const [token, setToken] = useState();
-  const [apr, setApr] = useState(60);
+  const [apr, setApr] = useState(undefined);
   const [priceUSD, setPriceUSD] = useState(0);
 
   const tallyPrice = useSelector((state) => state?.tokenPrice?.tally);
@@ -58,16 +60,14 @@ const StakeCard = ({
 
   // get pool info
   const [lptokenAddress, allocPoint] =
-    useCall(
-      account && {
-        contract: new Contract(
-          MASTERCHEF_ADDRESS[chainId],
-          new utils.Interface(masterchefAbi)
-        ),
-        method: "poolInfo",
-        args: [poolId],
-      }
-    )?.value ?? [];
+    useCall({
+      contract: new Contract(
+        MASTERCHEF_ADDRESS[chainId],
+        new utils.Interface(masterchefAbi)
+      ),
+      method: "poolInfo",
+      args: [poolId],
+    })?.value ?? [];
 
   // get user info
   const [stakedAmount] =
@@ -92,7 +92,7 @@ const StakeCard = ({
           args: [],
         }
       ) ?? {}
-    )?.value?.[0] ?? 18;
+    )?.value?.[0] ?? undefined;
 
   // tally token allowance from wallet address to mastedchef
   const tokenAllowance =
@@ -105,7 +105,7 @@ const StakeCard = ({
             args: [account, MASTERCHEF_ADDRESS[chainId]],
           }
       ) ?? {}
-    )?.value?.[0] ?? BigNumber.from(0);
+    )?.value?.[0] ?? undefined;
 
   // get current profit
   const pendingTally =
@@ -124,7 +124,7 @@ const StakeCard = ({
   const totalStaked =
     useCall(
       poolId === 0
-        ? account && {
+        ? {
             contract: new Contract(
               MASTERCHEF_ADDRESS[chainId],
               new utils.Interface(masterchefAbi)
@@ -132,16 +132,15 @@ const StakeCard = ({
             method: "depositedTALLY",
             args: [],
           }
-        : account &&
-            lptokenAddress && {
-              contract: new Contract(
-                lptokenAddress,
-                new utils.Interface(pairAbi)
-              ),
-              method: "balanceOf",
-              args: [MASTERCHEF_ADDRESS[chainId]],
-            }
-    )?.value?.[0] ?? BigNumber.from(0);
+        : lptokenAddress && {
+            contract: new Contract(
+              lptokenAddress,
+              new utils.Interface(pairAbi)
+            ),
+            method: "balanceOf",
+            args: [MASTERCHEF_ADDRESS[chainId]],
+          }
+    )?.value?.[0] ?? undefined;
 
   // approve functions
   const approveToken = useContractFunction(
@@ -166,6 +165,15 @@ const StakeCard = ({
     "enterStaking",
     {
       transactionName: "Stake",
+    }
+  );
+
+  // unstaking function
+  const leaveStaking = useContractFunction(
+    new Contract(MASTERCHEF_ADDRESS[chainId], masterchefAbi),
+    "leaveStaking",
+    {
+      transactionName: "Unstake",
     }
   );
 
@@ -235,6 +243,8 @@ const StakeCard = ({
           averageBlockTime
         ).toFixed(2)
       );
+    } else {
+      setApr(undefined);
     }
   }, [
     allocPoint,
@@ -245,41 +255,84 @@ const StakeCard = ({
     percentDec,
   ]);
 
-  // side effect for approve token action status change
+  // side effect for stakin/unstaking token action status change
   useEffect(() => {
-    if (enterStaking.state.status === "Success")
+    if (enterStaking.state.status === "Success") {
       toast.success("You staked tokens.");
-    if (enterStaking.state.status === "Exception")
+      enterStaking.resetState();
+    }
+    if (enterStaking.state.status === "Exception") {
       toast.error("An error occured during staking tokens.");
-  }, [enterStaking.state.status]);
+      enterStaking.resetState();
+    }
+  }, [enterStaking]);
+
+  useEffect(() => {
+    if (leaveStaking.state.status === "Success") {
+      toast.success("You unstaked tokens.");
+      leaveStaking.resetState();
+    }
+    if (leaveStaking.state.status === "Exception") {
+      toast.error("An error occured during unstaking tokens.");
+      leaveStaking.resetState();
+    }
+  }, [leaveStaking]);
 
   return (
     <div className="flex flex-col rounded-2xl bg-white p-6">
       <div className="flex flex-row space-x-5 border-b-2 border-[#708eb7]/10 pb-4">
-        <figure className="relative inline-block">
-          <img
-            className="h-20 w-20"
-            src={poolMetaInfos[poolId].logo}
-            alt="token"
-          />
-          <span className="absolute bottom-2 right-2 block translate-x-1/2 translate-y-1/2 transform rounded-full border-2 border-white">
-            <img
-              className="h-8 w-8 rounded-full"
-              src={poolMetaInfos[poolId].avatar}
-              alt="token"
-            />
+        <figure className="relative inline-block h-20 w-20">
+          {!poolMetaInfos ||
+          !poolMetaInfos[poolId] ||
+          !poolMetaInfos[poolId].logo ? (
+            <Skeleton circle className="h-full w-full" />
+          ) : (
+            <img src={poolMetaInfos[poolId].logo} alt="token" />
+          )}
+          <span className="absolute bottom-2 right-2 block h-8 w-8 translate-x-1/2 translate-y-1/2 transform rounded-full border-2 border-white">
+            {!poolMetaInfos ||
+            !poolMetaInfos[poolId] ||
+            !poolMetaInfos[poolId].logo ? (
+              <Skeleton circle className="h-full w-full" />
+            ) : (
+              <img
+                className="rounded-full"
+                src={poolMetaInfos[poolId].avatar}
+                alt="token"
+              />
+            )}
           </span>
         </figure>
         <div className="flex flex-col space-y-2 ">
           <h3 className="text-lg font-semibold text-primary-darkText">
-            {poolMetaInfos[poolId].title}
+            {!poolMetaInfos ||
+            !poolMetaInfos[poolId] ||
+            !poolMetaInfos[poolId].title ? (
+              <Skeleton className="h-full w-full" />
+            ) : (
+              poolMetaInfos[poolId].title
+            )}
           </h3>
           <h4 className="text-xs font-semibold text-[#444444]">
-            {poolMetaInfos[poolId].subscription}
+            {!poolMetaInfos ||
+            !poolMetaInfos[poolId] ||
+            !poolMetaInfos[poolId].subscription ? (
+              <Skeleton className="h-full w-full" />
+            ) : (
+              poolMetaInfos[poolId].subscription
+            )}
           </h4>
           <div className="text-md flex truncate font-medium text-primary-brand">
-            APR {apr}%
-            <CalculatorIcon className="h-5 w-5 cursor-pointer" />
+            <span className="pr-4">APR</span>
+            {!apr ? (
+              <Skeleton className="w-20" />
+            ) : (
+              <>
+                {apr}
+                {"%"}
+                <CalculatorIcon className="h-5 w-5 cursor-pointer" />
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -287,176 +340,233 @@ const StakeCard = ({
       <div className="py-4">
         {account ? (
           <>
-            {BigNumber.from(2).pow(128).gt(tokenAllowance) ? (
-              <button
-                className={`${
-                  !isTransReady(approveToken) &&
-                  "disabled cursor-not-allowed opacity-80"
-                } flex h-12 w-full items-center justify-center rounded-lg bg-primary-brand px-6 font-semibold text-white transition-opacity duration-200 hover:opacity-80`}
-                onClick={!isTransReady(approveToken) ? () => {} : enableToken}
-              >
-                {!isTransReady(approveToken) ? (
-                  <img
-                    className="mr-2 h-6 w-6 rounded-full"
-                    src={spinningGif}
-                    alt="waiting"
-                  />
-                ) : (
-                  <span className="mr-2 block rounded-full border border-white">
-                    <img
-                      className="h-6 w-6 rounded-full"
-                      src={poolMetaInfos[poolId].logo}
-                      alt="token"
-                    />
-                  </span>
-                )}
-                Enable
+            {!tokenAllowance ? (
+              <button className="disabled flex h-12 w-full cursor-not-allowed items-center justify-center rounded-lg bg-primary-brand px-6 font-semibold text-white opacity-80 transition-opacity duration-200 hover:opacity-80">
+                <img
+                  className="mr-2 h-6 w-6 rounded-full"
+                  src={spinningGif}
+                  alt="waiting"
+                />
+                Loading
               </button>
             ) : (
               <>
-                <div className="mb-3">
-                  <div className="text-md text-[#708db7]">You staked</div>
-                  <div className="flex flex-row items-center gap-x-4 overflow-hidden">
-                    <div className="h-12 items-center overflow-hidden truncate sm:basis-full md:basis-1/2">
-                      <div className="text-xl font-bold text-black">
-                        {parseFloat(
-                          utils.formatUnits(stakedAmount, tokenDecimal)
-                        ).toFixed(5)}
-                      </div>
-                      <div className="text-sm text-slate-400">
-                        ${""}
-                        {(
-                          parseFloat(
-                            utils.formatUnits(stakedAmount, tokenDecimal)
-                          ) * priceUSD
-                        ).toFixed(5)}
+                {BigNumber.from(2).pow(128).gt(tokenAllowance) ? (
+                  <button
+                    className={`${
+                      !isTransReady(approveToken) &&
+                      "disabled cursor-not-allowed opacity-80"
+                    } flex h-12 w-full items-center justify-center rounded-lg bg-primary-brand px-6 font-semibold text-white transition-opacity duration-200 hover:opacity-80`}
+                    onClick={
+                      !isTransReady(approveToken) ? () => {} : enableToken
+                    }
+                  >
+                    {!isTransReady(approveToken) ? (
+                      <img
+                        className="mr-2 h-6 w-6 rounded-full"
+                        src={spinningGif}
+                        alt="waiting"
+                      />
+                    ) : (
+                      <span className="mr-2 block rounded-full border border-white">
+                        <img
+                          className="h-6 w-6 rounded-full"
+                          src={poolMetaInfos[poolId].logo}
+                          alt="token"
+                        />
+                      </span>
+                    )}
+                    Enable
+                  </button>
+                ) : (
+                  <>
+                    <div className="mb-3">
+                      <div className="text-md text-[#708db7]">You staked</div>
+                      <div className="flex flex-row items-center gap-x-4 overflow-hidden">
+                        <div className="h-12 items-center overflow-hidden truncate sm:basis-full md:basis-1/2">
+                          <div className="text-xl font-bold text-black">
+                            {stakedAmount && tokenDecimal ? (
+                              parseFloat(
+                                utils.formatUnits(stakedAmount, tokenDecimal)
+                              ).toFixed(5)
+                            ) : (
+                              <Skeleton />
+                            )}
+                          </div>
+                          <div className="text-sm text-slate-400">
+                            {stakedAmount && tokenDecimal && priceUSD ? (
+                              <>
+                                ${""}
+                                {(
+                                  parseFloat(
+                                    utils.formatUnits(
+                                      stakedAmount,
+                                      tokenDecimal
+                                    )
+                                  ) * priceUSD
+                                ).toFixed(5)}
+                              </>
+                            ) : (
+                              <Skeleton />
+                            )}
+                          </div>
+                        </div>
+                        <div className="flex h-12 items-center gap-x-2 overflow-hidden truncate sm:basis-full md:basis-1/2">
+                          <button
+                            className={`${
+                              !isTransReady(enterStaking) ||
+                              !isTransReady(leaveStaking)
+                                ? "disabled cursor-not-allowed opacity-80"
+                                : "transition-opacity duration-200 hover:opacity-80"
+                            } flex h-12 w-full items-center justify-center rounded-lg bg-primary-brand px-2 font-semibold text-white sm:basis-full md:basis-1/2`}
+                            data-tip
+                            data-for="StakeTooltip"
+                            onClick={() => setStakeModalOpen(true)}
+                          >
+                            <FaPlus />
+                          </button>
+                          <ReactTooltip
+                            id="StakeTooltip"
+                            place="top"
+                            effect="solid"
+                          >
+                            Stake
+                          </ReactTooltip>
+                          <button
+                            className={`${
+                              !isTransReady(enterStaking) ||
+                              !isTransReady(leaveStaking)
+                                ? "disabled cursor-not-allowed opacity-80"
+                                : "transition-opacity duration-200 hover:opacity-80"
+                            } flex h-12 w-full items-center justify-center rounded-lg bg-primary-brand px-2 font-semibold text-white sm:basis-full md:basis-1/2`}
+                            data-tip
+                            data-for="UnstakeTooltip"
+                            onClick={() => setUnstakeModalOpen(true)}
+                          >
+                            <FaMinus />
+                            <ReactTooltip
+                              id="UnstakeTooltip"
+                              place="top"
+                              effect="solid"
+                            >
+                              Unstake
+                            </ReactTooltip>
+                          </button>
+                        </div>
                       </div>
                     </div>
-                    <div className="flex h-12 items-center gap-x-2 overflow-hidden truncate sm:basis-full md:basis-1/2">
-                      <button
-                        className="flex h-12 w-full items-center justify-center rounded-lg bg-primary-brand px-2 font-semibold text-white transition-opacity duration-200 hover:opacity-80 sm:basis-full md:basis-1/2"
-                        data-tip
-                        data-for="StakeTooltip"
-                        onClick={() => setStakeModalOpen(true)}
-                      >
-                        <FaPlus />
-                      </button>
-                      <ReactTooltip
-                        id="StakeTooltip"
-                        place="top"
-                        effect="solid"
-                      >
-                        Stake
-                      </ReactTooltip>
-                      <button
-                        className="flex h-12 w-full items-center justify-center rounded-lg bg-primary-brand px-2 font-semibold text-white transition-opacity duration-200 hover:opacity-80 sm:basis-full md:basis-1/2"
-                        data-tip
-                        data-for="UnstakeTooltip"
-                        onClick={() => setUnstakeModalOpen(true)}
-                      >
-                        <FaMinus />
-                        <ReactTooltip
-                          id="UnstakeTooltip"
-                          place="top"
-                          effect="solid"
-                        >
-                          Unstake
-                        </ReactTooltip>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div className="mb-3">
-                  <div className="text-md text-[#708db7]">Tally profit</div>
-                  <div className="flex flex-row items-center gap-x-4 overflow-hidden">
-                    <div className="h-12 items-center overflow-hidden truncate sm:basis-full md:basis-1/2">
-                      <div
-                        className={`text-xl font-bold ${
-                          parseFloat(utils.formatUnits(pendingTally, 9)) === 0
-                            ? `text-slate-500`
-                            : `text-green-500`
-                        }`}
-                      >
-                        {parseFloat(utils.formatUnits(pendingTally, 9)).toFixed(
-                          5
-                        )}
+                    <div className="mb-3">
+                      <div className="text-md text-[#708db7]">Tally profit</div>
+                      <div className="flex flex-row items-center gap-x-4 overflow-hidden">
+                        <div className="h-12 items-center overflow-hidden truncate sm:basis-full md:basis-1/2">
+                          <div
+                            className={`text-xl font-bold ${
+                              pendingTally &&
+                              parseFloat(utils.formatUnits(pendingTally, 9)) ===
+                                0
+                                ? `text-slate-500`
+                                : `text-green-500`
+                            }`}
+                          >
+                            {pendingTally ? (
+                              parseFloat(
+                                utils.formatUnits(pendingTally, 9)
+                              ).toFixed(5)
+                            ) : (
+                              <Skeleton />
+                            )}
+                          </div>
+                          <div className="text-sm text-slate-400">
+                            {pendingTally && tallyPrice ? (
+                              <>
+                                ${""}
+                                {(
+                                  parseFloat(
+                                    utils.formatUnits(pendingTally, 9)
+                                  ) * tallyPrice
+                                ).toFixed(5)}
+                              </>
+                            ) : (
+                              <Skeleton />
+                            )}
+                          </div>
+                        </div>
+                        <div className="flex h-12 items-center gap-x-2 overflow-hidden truncate sm:basis-full md:basis-1/2">
+                          <button
+                            className={`${
+                              parseFloat(utils.formatUnits(pendingTally, 9)) ===
+                                0 ||
+                              !isTransReady(enterStaking) ||
+                              !isTransReady(leaveStaking)
+                                ? "disabled cursor-not-allowed opacity-80"
+                                : "transition-opacity duration-200 hover:opacity-80"
+                            } flex h-12 w-full items-center justify-center rounded-lg bg-primary-brand px-2 font-semibold text-white sm:basis-full md:basis-1/2`}
+                            data-tip
+                            data-for="HarvestTip"
+                            onClick={() => {
+                              if (isTransReady(enterStaking)) {
+                                enterStaking.send(0);
+                              }
+                            }}
+                          >
+                            {!isTransReady(enterStaking) ||
+                            !isTransReady(leaveStaking) ? (
+                              <img
+                                className="h-6 w-6 rounded-full"
+                                src={spinningGif}
+                                alt="Harvesting"
+                              />
+                            ) : (
+                              <FaWallet />
+                            )}
+                            <ReactTooltip
+                              id="HarvestTip"
+                              place="top"
+                              effect="solid"
+                            >
+                              Harvest
+                            </ReactTooltip>
+                          </button>
+                          <button
+                            className={`${
+                              parseFloat(utils.formatUnits(pendingTally, 9)) ===
+                                0 ||
+                              !isTransReady(enterStaking) ||
+                              !isTransReady(leaveStaking)
+                                ? "disabled cursor-not-allowed opacity-80"
+                                : "transition-opacity duration-200 hover:opacity-80"
+                            } flex h-12 w-full items-center justify-center rounded-lg bg-primary-brand px-2 font-semibold text-white sm:basis-full md:basis-1/2`}
+                            data-tip
+                            data-for="CompoundTip"
+                            onClick={() => {
+                              if (isTransReady(enterStaking)) {
+                                enterStaking.send(pendingTally);
+                              }
+                            }}
+                          >
+                            {!isTransReady(enterStaking) ||
+                            !isTransReady(leaveStaking) ? (
+                              <img
+                                className="h-6 w-6 rounded-full"
+                                src={spinningGif}
+                                alt="Compounding"
+                              />
+                            ) : (
+                              <FaRecycle />
+                            )}
+                            <ReactTooltip
+                              id="CompoundTip"
+                              place="top"
+                              effect="solid"
+                            >
+                              Compound
+                            </ReactTooltip>
+                          </button>
+                        </div>
                       </div>
-                      <div className="text-sm text-slate-400">
-                        ${""}
-                        {(
-                          parseFloat(utils.formatUnits(pendingTally, 9)) *
-                          tallyPrice
-                        ).toFixed(5)}
-                      </div>
                     </div>
-                    <div className="flex h-12 items-center gap-x-2 overflow-hidden truncate sm:basis-full md:basis-1/2">
-                      <button
-                        className={`${
-                          parseFloat(utils.formatUnits(pendingTally, 9)) ===
-                            0 || !isTransReady(enterStaking)
-                            ? "disabled cursor-not-allowed opacity-80"
-                            : "transition-opacity duration-200 hover:opacity-80"
-                        } flex h-12 w-full items-center justify-center rounded-lg bg-primary-brand px-2 font-semibold text-white sm:basis-full md:basis-1/2`}
-                        data-tip
-                        data-for="HarvestTip"
-                        onClick={() => {
-                          if (isTransReady(enterStaking)) {
-                            enterStaking.send(0);
-                          }
-                        }}
-                      >
-                        {!isTransReady(enterStaking) ? (
-                          <img
-                            className="h-6 w-6 rounded-full"
-                            src={spinningGif}
-                            alt="Harvesting"
-                          />
-                        ) : (
-                          <FaWallet />
-                        )}
-                        <ReactTooltip
-                          id="HarvestTip"
-                          place="top"
-                          effect="solid"
-                        >
-                          Harvest
-                        </ReactTooltip>
-                      </button>
-                      <button
-                        className={`${
-                          parseFloat(utils.formatUnits(pendingTally, 9)) ===
-                            0 || !isTransReady(enterStaking)
-                            ? "disabled cursor-not-allowed opacity-80"
-                            : "transition-opacity duration-200 hover:opacity-80"
-                        } flex h-12 w-full items-center justify-center rounded-lg bg-primary-brand px-2 font-semibold text-white sm:basis-full md:basis-1/2`}
-                        data-tip
-                        data-for="CompoundTip"
-                        onClick={() => {
-                          if (isTransReady(enterStaking)) {
-                            enterStaking.send(pendingTally);
-                          }
-                        }}
-                      >
-                        {!isTransReady(enterStaking) ? (
-                          <img
-                            className="h-6 w-6 rounded-full"
-                            src={spinningGif}
-                            alt="Compounding"
-                          />
-                        ) : (
-                          <FaRecycle />
-                        )}
-                        <ReactTooltip
-                          id="CompoundTip"
-                          place="top"
-                          effect="solid"
-                        >
-                          Compound
-                        </ReactTooltip>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                  </>
+                )}
               </>
             )}
           </>
@@ -465,7 +575,7 @@ const StakeCard = ({
             className="flex h-12 w-full items-center justify-center rounded-lg bg-primary-brand px-6 font-semibold text-white transition-opacity duration-200 hover:opacity-80"
             onClick={() => setConnectModalOpen(true)}
           >
-            Unlock Wallet
+            Connect Wallet
           </button>
         )}
       </div>
@@ -495,9 +605,13 @@ const StakeCard = ({
                   <span className="text-sm text-[#708db7]">Total Stake</span>
                   <div className="flex-1 border-b border-dotted border-[#708db7]"></div>
                   <span className="text-sm text-primary-darkText">
-                    {parseFloat(
-                      utils.formatUnits(totalStaked, tokenDecimal)
-                    ).toFixed(2)}
+                    {totalStaked && tokenDecimal ? (
+                      parseFloat(
+                        utils.formatUnits(totalStaked, tokenDecimal)
+                      ).toFixed(2)
+                    ) : (
+                      <Skeleton className="w-20" />
+                    )}
                   </span>
                 </div>
                 {poolId !== 0 && (
@@ -507,14 +621,21 @@ const StakeCard = ({
                     </span>
                     <div className="flex-1 border-b border-dotted border-[#708db7]"></div>
                     <span className="text-sm text-primary-darkText">
-                      {percentDec.toNumber() !== 0
-                        ? ((reserveFee.toNumber() +
-                            operationFee.toNumber() +
-                            maintenanceSecurityFee.toNumber() +
-                            buyBackFee.toNumber()) /
-                            percentDec.toNumber()) *
-                          100
-                        : 0}
+                      {reserveFee &&
+                      operationFee &&
+                      maintenanceSecurityFee &&
+                      buyBackFee &&
+                      percentDec &&
+                      percentDec.toNumber() !== 0 ? (
+                        ((reserveFee.toNumber() +
+                          operationFee.toNumber() +
+                          maintenanceSecurityFee.toNumber() +
+                          buyBackFee.toNumber()) /
+                          percentDec.toNumber()) *
+                        100
+                      ) : (
+                        <Skeleton className="w-20" />
+                      )}
                       {"%"}
                     </span>
                   </div>
@@ -540,6 +661,11 @@ const StakeCard = ({
         open={stakeModalOpen}
         setOpen={setStakeModalOpen}
         performanceFee={
+          reserveFee &&
+          operationFee &&
+          maintenanceSecurityFee &&
+          buyBackFee &&
+          percentDec &&
           percentDec.toNumber() !== 0
             ? ((reserveFee.toNumber() +
                 operationFee.toNumber() +
@@ -547,18 +673,25 @@ const StakeCard = ({
                 buyBackFee.toNumber()) /
                 percentDec.toNumber()) *
               100
-            : 0
+            : undefined
         }
         token={token}
         avatar={poolMetaInfos[poolId].logo}
         priceUSD={priceUSD}
         apr={apr}
         poolId={poolId}
+        enterStaking={enterStaking}
+        leaveStaking={leaveStaking}
       />
       <UnstakeModal
         open={unstakeModalOpen}
         setOpen={setUnstakeModalOpen}
         performanceFee={
+          reserveFee &&
+          operationFee &&
+          maintenanceSecurityFee &&
+          buyBackFee &&
+          percentDec &&
           percentDec.toNumber() !== 0
             ? ((reserveFee.toNumber() +
                 operationFee.toNumber() +
@@ -566,7 +699,7 @@ const StakeCard = ({
                 buyBackFee.toNumber()) /
                 percentDec.toNumber()) *
               100
-            : 0
+            : undefined
         }
         token={token}
         avatar={poolMetaInfos[poolId].logo}
@@ -574,6 +707,8 @@ const StakeCard = ({
         apr={apr}
         poolId={poolId}
         stakedAmount={stakedAmount}
+        enterStaking={enterStaking}
+        leaveStaking={leaveStaking}
       />
     </div>
   );

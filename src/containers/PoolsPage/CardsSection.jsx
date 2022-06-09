@@ -1,8 +1,8 @@
 import { useCall, useEthers } from "@usedapp/core";
 import { Contract } from "@ethersproject/contracts";
-import { utils, BigNumber } from "ethers";
+import { utils } from "ethers";
 
-import { StakeCard, StakeTokensCard } from "../../components";
+import { StakeCard } from "../../components";
 import { MASTERCHEF_ADDRESS } from "../../assets/data/addresses.js";
 import masterchefAbi from "../../assets/abi/Masterchef.json";
 // import AutoCompoundCard from "../../components/PoolsPage/AutoCompoundCard";
@@ -19,7 +19,7 @@ const CardsSection = ({ stakeType }) => {
       ),
       method: "TALLYPerBlock",
       args: [],
-    })?.value?.[0] ?? BigNumber.from(0);
+    })?.value?.[0] ?? undefined;
 
   const totalAllocPoint =
     useCall({
@@ -29,7 +29,7 @@ const CardsSection = ({ stakeType }) => {
       ),
       method: "totalAllocPoint",
       args: [],
-    })?.value?.[0] ?? BigNumber.from(0);
+    })?.value?.[0] ?? undefined;
 
   const stakingPercent =
     useCall({
@@ -39,7 +39,7 @@ const CardsSection = ({ stakeType }) => {
       ),
       method: "stakingPercent",
       args: [],
-    })?.value?.[0] ?? BigNumber.from(0);
+    })?.value?.[0] ?? undefined;
 
   const percentDec =
     useCall({
@@ -49,7 +49,7 @@ const CardsSection = ({ stakeType }) => {
       ),
       method: "percentDec",
       args: [],
-    })?.value?.[0] ?? BigNumber.from(0);
+    })?.value?.[0] ?? undefined;
 
   const poolLength =
     useCall({
@@ -59,7 +59,7 @@ const CardsSection = ({ stakeType }) => {
       ),
       method: "poolLength",
       args: [],
-    })?.value?.[0] ?? BigNumber.from(0);
+    })?.value?.[0] ?? undefined;
 
   // get total performance fee
   const reserveFee =
@@ -70,7 +70,7 @@ const CardsSection = ({ stakeType }) => {
       ),
       method: "reservPercent",
       args: [],
-    })?.value?.[0] ?? BigNumber.from(0);
+    })?.value?.[0] ?? undefined;
 
   const maintenanceSecurityFee =
     useCall({
@@ -80,7 +80,7 @@ const CardsSection = ({ stakeType }) => {
       ),
       method: "maintenanceSecurityPercent",
       args: [],
-    })?.value?.[0] ?? BigNumber.from(0);
+    })?.value?.[0] ?? undefined;
 
   const buyBackFee =
     useCall({
@@ -90,7 +90,7 @@ const CardsSection = ({ stakeType }) => {
       ),
       method: "buyBackReservesPercent",
       args: [],
-    })?.value?.[0] ?? BigNumber.from(0);
+    })?.value?.[0] ?? undefined;
 
   const operationFee =
     useCall({
@@ -100,20 +100,33 @@ const CardsSection = ({ stakeType }) => {
       ),
       method: "operationManagerPercent",
       args: [],
-    })?.value?.[0] ?? BigNumber.from(0);
+    })?.value?.[0] ?? undefined;
 
   return (
     <div className="my-6 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
+      {stakeType === "stake_tally" && (
+        <StakeCard
+          tallyPerBlock={tallyPerBlock}
+          totalAllocPoint={totalAllocPoint}
+          stakingPercent={stakingPercent}
+          percentDec={percentDec}
+          poolId={0}
+          reserveFee={reserveFee}
+          maintenanceSecurityFee={maintenanceSecurityFee}
+          buyBackFee={buyBackFee}
+          operationFee={operationFee}
+        />
+      )}
       {stakeType === "stake_tally" &&
-        Array.from({ length: poolLength }, (x, i) => {
+        Array.from({ length: poolLength - 1 }, (x, i) => {
           return (
             <StakeCard
-              key={i}
+              key={i + 1}
               tallyPerBlock={tallyPerBlock}
               totalAllocPoint={totalAllocPoint}
               stakingPercent={stakingPercent}
               percentDec={percentDec}
-              poolId={i}
+              poolId={i + 1}
               reserveFee={reserveFee}
               maintenanceSecurityFee={maintenanceSecurityFee}
               buyBackFee={buyBackFee}
@@ -121,7 +134,6 @@ const CardsSection = ({ stakeType }) => {
             />
           );
         })}
-      {stakeType === "stake_tokens" && <StakeTokensCard />}
     </div>
   );
 };
