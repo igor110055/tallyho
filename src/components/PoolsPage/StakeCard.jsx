@@ -194,11 +194,9 @@ const StakeCard = ({
 
   // side effect for lptokenAddress change
   useEffect(() => {
-    if (lptokenAddress) {
+    if (lptokenAddress !== undefined) {
       setToken(
-        supportedTokens[chainId].find(
-          (token) => token.address === lptokenAddress
-        )
+        supportedTokens[chainId].find((t) => t.address === lptokenAddress)
       );
     }
   }, [lptokenAddress, chainId]);
@@ -215,7 +213,7 @@ const StakeCard = ({
       axios(PANCAKESWAP_API_URL + mainNetToken.address).then((resp) => {
         if (resp && resp.data) setPriceUSD(parseFloat(resp.data.data.price));
       });
-  }, [lptokenAddress, chainId]);
+  });
 
   // side effect for apy change
   useEffect(() => {
