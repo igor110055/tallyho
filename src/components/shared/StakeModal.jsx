@@ -58,7 +58,7 @@ export default function StakeModal({
         className="fixed inset-0 z-10 overflow-y-auto"
         onClose={setOpen}
       >
-        <div className="flex min-h-screen items-end justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+        <div className="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -68,7 +68,7 @@ export default function StakeModal({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="fixed inset-0 bg-black bg-opacity-50 transition-opacity" />
+            <Dialog.Overlay className="fixed inset-0 transition-opacity bg-black bg-opacity-50" />
           </Transition.Child>
 
           {/* This element is to trick the browser into centering the modal contents. */}
@@ -87,16 +87,16 @@ export default function StakeModal({
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="relative inline-block transform overflow-hidden rounded-lg text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-md sm:align-middle">
-              <div className="grid auto-rows-auto gap-y-4 bg-white">
-                <div className="flex w-full items-center justify-between bg-primary-brand p-5 text-white">
+            <div className="relative inline-block overflow-hidden text-left align-bottom transition-all transform rounded-lg shadow-xl sm:my-8 sm:w-full sm:max-w-md sm:align-middle">
+              <div className="grid bg-white auto-rows-auto gap-y-4">
+                <div className="flex items-center justify-between w-full p-5 text-white bg-primary-brand">
                   <h1 className="flex items-center space-x-3 text-xl font-semibold">
                     Stake {token && token.symbol}
-                    <QuestionMarkCircleIcon className="ml-2 h-4 w-4 cursor-pointer" />
+                    <QuestionMarkCircleIcon className="w-4 h-4 ml-2 cursor-pointer" />
                   </h1>
 
                   <XIcon
-                    className="h-5 w-5 cursor-pointer"
+                    className="w-5 h-5 cursor-pointer"
                     onClick={() => setOpen(false)}
                   />
                 </div>
@@ -104,23 +104,23 @@ export default function StakeModal({
                 <div className="px-5">
                   <div className="flex justify-between py-2">
                     <span className="text-md text-[#708db7]">Stake</span>
-                    <span className="text-md flex items-center text-right text-primary-darkText">
+                    <span className="flex items-center text-right text-md text-primary-darkText">
                       {avatar ? (
                         <img
-                          className="mr-1 h-5 w-5 rounded-full"
+                          className="w-5 h-5 mr-1 rounded-full"
                           src={avatar}
                           alt="token"
                         />
                       ) : (
-                        <Skeleton circle className="mr-1 h-5 w-5" />
+                        <Skeleton circle className="w-5 h-5 mr-1" />
                       )}
                       {token && token.symbol}
                     </span>
                   </div>
                   <div>
-                    <div className="rounded-lg border border-slate-300 bg-slate-200 px-3 py-2">
+                    <div className="px-3 py-2 border rounded-lg border-slate-300 bg-slate-200">
                       <input
-                        className="no-border w-full appearance-none bg-transparent py-2 text-right text-slate-700 outline-none"
+                        className="w-full py-2 text-right bg-transparent outline-none appearance-none no-border text-slate-700"
                         placeholder="Input Tally amount to stake"
                         type="number"
                         value={amountToStake === 0 ? "" : amountToStake}
@@ -129,17 +129,20 @@ export default function StakeModal({
                           setTokenMax(false);
                         }}
                       ></input>
-                      <div className="text-right text-sm text-slate-500">
+                      <div className="text-sm text-right text-slate-500">
                         {"~ $"}
                         {priceUSD && amountToStake
-                          ? (priceUSD * amountToStake).toFixed(5)
+                          ? (priceUSD * amountToStake).toLocaleString(
+                              undefined,
+                              { minimumFractionDigits: 5 }
+                            )
                           : ""}
                       </div>
                     </div>
                     <div className="flex justify-end py-1 text-sm">
                       {token && !tokenMax && tokenBalance && tokenDecimal && (
                         <button
-                          className="mx-2 rounded-xl bg-primary-brand px-1 text-sm text-white transition-opacity duration-200 hover:opacity-60"
+                          className="px-1 mx-2 text-sm text-white transition-opacity duration-200 rounded-xl bg-primary-brand hover:opacity-60"
                           onClick={() => {
                             tokenBalance &&
                               tokenDecimal &&
@@ -153,27 +156,31 @@ export default function StakeModal({
                         </button>
                       )}
                       <span className="text-slate-400">Balance</span>
-                      <span className="ml-3 min-w-[30%] text-slate-600">
+                      <span className="ml-3 min-w-[10%] text-slate-600">
                         {tokenBalance && tokenDecimal ? (
                           <>
                             {parseFloat(
                               utils.formatUnits(tokenBalance, tokenDecimal)
-                            )}
+                            ).toLocaleString(undefined, {
+                              minimumFractionDigits: 9,
+                            })}
                           </>
                         ) : (
-                          <Skeleton width="50" />
+                          <Skeleton classNmae="" />
                         )}
                       </span>
                     </div>
                   </div>
                   <div className="flex items-start justify-between px-2 pt-4">
                     <span className="text-md text-[#708db7]">Annual ROI</span>
-                    <span className="text-md flex items-start text-primary-darkText">
+                    <span className="flex items-start text-md text-primary-darkText">
                       {!apr ? (
                         <Skeleton className="w-20" />
                       ) : (
                         <>
-                          {apr}
+                          {apr.toLocaleString(undefined, {
+                            minimumFractionDigits: 2,
+                          })}
                           {"%"}
                         </>
                       )}
@@ -184,12 +191,14 @@ export default function StakeModal({
                       <span className="text-md text-[#708db7]">
                         Performance Fee
                       </span>
-                      <span className="text-md flex-1 text-right text-primary-darkText">
+                      <span className="flex-1 text-right text-md text-primary-darkText">
                         {!performanceFee ? (
                           <Skeleton className="w-20" />
                         ) : (
                           <>
-                            {performanceFee}
+                            {performanceFee.toLocaleString(undefined, {
+                              minimumFractionDigits: 2,
+                            })}
                             {"%"}
                           </>
                         )}
@@ -218,7 +227,7 @@ export default function StakeModal({
                     {(!isTransReady(enterStaking) ||
                       !isTransReady(leaveStaking)) && (
                       <img
-                        className="mr-2 h-6 w-6 rounded-full"
+                        className="w-6 h-6 mr-2 rounded-full"
                         src={spinningGif}
                         alt="waiting"
                       />
