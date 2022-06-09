@@ -89,33 +89,3 @@ input[type='number']::-webkit-outer-spin-button {
         0% 30%
     );
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Roboto:wght@300;400;500;700&display=swap');
-body {
-    font-family: 'Roboto', sans-serif;
-}
-.banner {
-    background: url('./assets/tally-pay/bg.png');
-    background-repeat: no-repeat;
-    background-position: top left;
-    background-size: cover;
-}
-.details {
-    background: url('./assets/tally-pay/details-bg.png');
-    background-repeat: no-repeat;
-    background-position: top left;
-    background-size: cover;
-}
-.stoke-text {
-    color: black;
-    -webkit-text-fill-color: black; /* Will override color (regardless of order) */
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: white;
-    position: relative;
-}
-.stoke-text::before {
-    content: url('./assets/tally-pay/Vector.png');
-    position: absolute;
-    left: 15%;
-    bottom: 10%;
-}
