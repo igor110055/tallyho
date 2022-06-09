@@ -10,7 +10,7 @@
 // } from '../../components';
 // import { produce } from 'immer';
 // import { nanoid } from 'nanoid';
-// import tokens from '../../assets/data/tokens';
+// import tokens from '../../assets/data/tp-tokens';
 // import { debounce } from 'lodash';
 
 // const reducer = (state, action) => {
@@ -220,7 +220,7 @@ import {
 } from "../../components";
 import { produce } from "immer";
 import { nanoid } from "nanoid";
-import tokens from "../../assets/data/tokens";
+import tokens from "../../assets/data/tp-tokens";
 import { debounce } from "lodash";
 import {
   changeAddressA,

@@ -15,7 +15,7 @@ import {
 import { produce } from "immer";
 import { nanoid } from "nanoid";
 import { debounce } from "lodash";
-import tokens from "../../assets/data/tokens";
+import tokens from "../../assets/data/tp-tokens";
 import { initWeb3, S1DepositA } from "../../state";
 import Web3 from "web3";
 import { conAddress, tokenAbi, tokenAddress } from "../../state/config";

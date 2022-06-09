@@ -13,7 +13,7 @@ import {
 import { produce } from "immer";
 import { nanoid } from "nanoid";
 import { debounce } from "lodash";
-import tokens from "../../assets/data/tokens";
+import tokens from "../../assets/data/tp-tokens";
 import { initWeb3, S1DepositA, S2DepositA } from "../../state";
 const reducer = (state, action) => {
   switch (action.type) {
