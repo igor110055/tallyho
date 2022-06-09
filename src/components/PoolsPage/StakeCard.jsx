@@ -215,7 +215,7 @@ const StakeCard = ({
       axios(PANCAKESWAP_API_URL + mainNetToken.address).then((resp) => {
         if (resp && resp.data) setPriceUSD(parseFloat(resp.data.data.price));
       });
-  }, [lptokenAddress, chainId]);
+  });
 
   // side effect for apy change
   useEffect(() => {
