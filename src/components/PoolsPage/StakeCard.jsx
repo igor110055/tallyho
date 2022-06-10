@@ -61,7 +61,7 @@ const StakeCard = ({
   const averageBlockTime = 3;
 
   // get pool info
-  const [lptokenAddress, allocPoint] =
+  const [lptokenAddress, allocPoint, , , depositFeeBP, withdrawFeeBP] =
     useCall({
       contract: new Contract(
         MASTERCHEF_ADDRESS[chainId],
@@ -279,21 +279,21 @@ const StakeCard = ({
   }, [leaveStaking]);
 
   return (
-    <div className="flex flex-col p-6 bg-white rounded-2xl">
+    <div className="flex flex-col rounded-2xl bg-white p-6">
       <div className="flex flex-row space-x-5 border-b-2 border-[#708eb7]/10 pb-4">
-        <figure className="relative inline-block w-20 h-20">
+        <figure className="relative inline-block h-20 w-20">
           {!poolMetaInfos ||
           !poolMetaInfos[poolId] ||
           !poolMetaInfos[poolId].logo ? (
-            <Skeleton circle className="w-full h-full" />
+            <Skeleton circle className="h-full w-full" />
           ) : (
             <img src={poolMetaInfos[poolId].logo} alt="token" />
           )}
-          <span className="absolute block w-8 h-8 transform translate-x-1/2 translate-y-1/2 border-2 border-white rounded-full bottom-2 right-2">
+          <span className="absolute bottom-2 right-2 block h-8 w-8 translate-x-1/2 translate-y-1/2 transform rounded-full border-2 border-white">
             {!poolMetaInfos ||
             !poolMetaInfos[poolId] ||
             !poolMetaInfos[poolId].logo ? (
-              <Skeleton circle className="w-full h-full" />
+              <Skeleton circle className="h-full w-full" />
             ) : (
               <img
                 className="rounded-full"
@@ -308,7 +308,7 @@ const StakeCard = ({
             {!poolMetaInfos ||
             !poolMetaInfos[poolId] ||
             !poolMetaInfos[poolId].title ? (
-              <Skeleton className="w-full h-full" />
+              <Skeleton className="h-full w-full" />
             ) : (
               poolMetaInfos[poolId].title
             )}
@@ -317,12 +317,12 @@ const StakeCard = ({
             {!poolMetaInfos ||
             !poolMetaInfos[poolId] ||
             !poolMetaInfos[poolId].subscription ? (
-              <Skeleton className="w-full h-full" />
+              <Skeleton className="h-full w-full" />
             ) : (
               poolMetaInfos[poolId].subscription
             )}
           </h4>
-          <div className="flex font-medium truncate text-md text-primary-brand">
+          <div className="text-md flex truncate font-medium text-primary-brand">
             <span className="pr-4">APR</span>
             {!apr ? (
               <Skeleton className="w-20" />
@@ -336,7 +336,7 @@ const StakeCard = ({
               >
                 {apr.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                 {"%"}
-                <CalculatorIcon className="w-5 h-5" />
+                <CalculatorIcon className="h-5 w-5" />
               </span>
             )}
           </div>
@@ -347,9 +347,9 @@ const StakeCard = ({
         {account ? (
           <>
             {!tokenAllowance ? (
-              <button className="flex items-center justify-center w-full h-12 px-6 font-semibold text-white transition-opacity duration-200 rounded-lg cursor-not-allowed disabled bg-primary-brand opacity-80 hover:opacity-80">
+              <button className="disabled flex h-12 w-full cursor-not-allowed items-center justify-center rounded-lg bg-primary-brand px-6 font-semibold text-white opacity-80 transition-opacity duration-200 hover:opacity-80">
                 <img
-                  className="w-6 h-6 mr-2 rounded-full"
+                  className="mr-2 h-6 w-6 rounded-full"
                   src={spinningGif}
                   alt="waiting"
                 />
@@ -369,14 +369,14 @@ const StakeCard = ({
                   >
                     {!isTransReady(approveToken) ? (
                       <img
-                        className="w-6 h-6 mr-2 rounded-full"
+                        className="mr-2 h-6 w-6 rounded-full"
                         src={spinningGif}
                         alt="waiting"
                       />
                     ) : (
-                      <span className="block mr-2 border border-white rounded-full">
+                      <span className="mr-2 block rounded-full border border-white">
                         <img
-                          className="w-6 h-6 rounded-full"
+                          className="h-6 w-6 rounded-full"
                           src={poolMetaInfos[poolId].logo}
                           alt="token"
                         />
@@ -388,8 +388,8 @@ const StakeCard = ({
                   <>
                     <div className="mb-3">
                       <div className="text-md text-[#708db7]">You staked</div>
-                      <div className="flex flex-row items-center overflow-hidden gap-x-4">
-                        <div className="items-center h-12 overflow-hidden truncate sm:basis-full md:basis-1/2">
+                      <div className="flex flex-row items-center gap-x-4 overflow-hidden">
+                        <div className="h-12 items-center overflow-hidden truncate sm:basis-full md:basis-1/2">
                           <div className="text-xl font-bold text-black">
                             {stakedAmount && tokenDecimal ? (
                               parseFloat(
@@ -421,7 +421,7 @@ const StakeCard = ({
                             )}
                           </div>
                         </div>
-                        <div className="flex items-center h-12 overflow-hidden truncate gap-x-2 sm:basis-full md:basis-1/2">
+                        <div className="flex h-12 items-center gap-x-2 overflow-hidden truncate sm:basis-full md:basis-1/2">
                           <button
                             className={`${
                               !isTransReady(enterStaking) ||
@@ -467,8 +467,8 @@ const StakeCard = ({
                     </div>
                     <div className="mb-3">
                       <div className="text-md text-[#708db7]">Tally profit</div>
-                      <div className="flex flex-row items-center overflow-hidden gap-x-4">
-                        <div className="items-center h-12 overflow-hidden truncate sm:basis-full md:basis-1/2">
+                      <div className="flex flex-row items-center gap-x-4 overflow-hidden">
+                        <div className="h-12 items-center overflow-hidden truncate sm:basis-full md:basis-1/2">
                           <div
                             className={`text-xl font-bold ${
                               pendingTally &&
@@ -505,7 +505,7 @@ const StakeCard = ({
                             )}
                           </div>
                         </div>
-                        <div className="flex items-center h-12 overflow-hidden truncate gap-x-2 sm:basis-full md:basis-1/2">
+                        <div className="flex h-12 items-center gap-x-2 overflow-hidden truncate sm:basis-full md:basis-1/2">
                           <button
                             className={`${
                               !pendingTally ||
@@ -534,7 +534,7 @@ const StakeCard = ({
                             {!isTransReady(enterStaking) ||
                             !isTransReady(leaveStaking) ? (
                               <img
-                                className="w-6 h-6 rounded-full"
+                                className="h-6 w-6 rounded-full"
                                 src={spinningGif}
                                 alt="Harvesting"
                               />
@@ -577,7 +577,7 @@ const StakeCard = ({
                             {!isTransReady(enterStaking) ||
                             !isTransReady(leaveStaking) ? (
                               <img
-                                className="w-6 h-6 rounded-full"
+                                className="h-6 w-6 rounded-full"
                                 src={spinningGif}
                                 alt="Compounding"
                               />
@@ -602,7 +602,7 @@ const StakeCard = ({
           </>
         ) : (
           <button
-            className="flex items-center justify-center w-full h-12 px-6 font-semibold text-white transition-opacity duration-200 rounded-lg bg-primary-brand hover:opacity-80"
+            className="flex h-12 w-full items-center justify-center rounded-lg bg-primary-brand px-6 font-semibold text-white transition-opacity duration-200 hover:opacity-80"
             onClick={() => setConnectModalOpen(true)}
           >
             Connect Wallet
@@ -613,7 +613,7 @@ const StakeCard = ({
       <Disclosure>
         {({ open }) => (
           <>
-            <Disclosure.Button className="flex items-center justify-center px-4 py-2 mx-auto font-semibold text-primary-brand">
+            <Disclosure.Button className="mx-auto flex items-center justify-center px-4 py-2 font-semibold text-primary-brand">
               <span>{open ? "Hide" : "Details"}</span>
               <ChevronDownIcon
                 className={`${
@@ -630,7 +630,7 @@ const StakeCard = ({
               leaveFrom="translate-y-0 opacity-100"
               leaveTo="-translate-y-2 opacity-0"
             >
-              <Disclosure.Panel className="pt-2 pb-2 space-y-2 text-xs text-gray-500">
+              <Disclosure.Panel className="space-y-2 pt-2 pb-2 text-xs text-gray-500">
                 <div className="flex">
                   <span className="text-sm text-[#708db7]">Total Stake</span>
                   <div className="flex-1 border-b border-dotted border-[#708db7]"></div>
@@ -644,46 +644,69 @@ const StakeCard = ({
                     )}
                   </span>
                 </div>
-                {poolId !== 0 && (
-                  <div className="flex">
-                    <span className="text-sm text-[#708db7]">
-                      Performance Fee
-                    </span>
-                    <div className="flex-1 border-b border-dotted border-[#708db7]"></div>
-                    <span className="text-sm text-primary-darkText">
-                      {reserveFee &&
-                      operationFee &&
-                      maintenanceSecurityFee &&
-                      buyBackFee &&
-                      percentDec &&
-                      percentDec.toNumber() !== 0 ? (
-                        (
-                          ((reserveFee.toNumber() +
-                            operationFee.toNumber() +
-                            maintenanceSecurityFee.toNumber() +
-                            buyBackFee.toNumber()) /
-                            percentDec.toNumber()) *
-                          100
-                        ).toLocaleString(undefined, {
-                          minimumFractionDigits: 2,
-                        })
-                      ) : (
-                        <Skeleton className="w-20" />
-                      )}
-                      {"%"}
-                    </span>
-                  </div>
-                )}
+                <div className="flex">
+                  <span className="text-sm text-[#708db7]">
+                    Performance Fee
+                  </span>
+                  <div className="flex-1 border-b border-dotted border-[#708db7]"></div>
+                  <span className="text-sm text-primary-darkText">
+                    {reserveFee &&
+                    operationFee &&
+                    maintenanceSecurityFee &&
+                    buyBackFee &&
+                    percentDec &&
+                    percentDec.toNumber() !== 0 ? (
+                      (
+                        ((reserveFee.toNumber() +
+                          operationFee.toNumber() +
+                          maintenanceSecurityFee.toNumber() +
+                          buyBackFee.toNumber()) /
+                          percentDec.toNumber()) *
+                        100
+                      ).toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                      }) + "%"
+                    ) : (
+                      <Skeleton className="w-20" />
+                    )}
+                  </span>
+                </div>
+                <div className="flex">
+                  <span className="text-sm text-[#708db7]">Staking Fee</span>
+                  <div className="flex-1 border-b border-dotted border-[#708db7]"></div>
+                  <span className="text-sm text-primary-darkText">
+                    {depositFeeBP !== undefined ? (
+                      (depositFeeBP / 100).toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                      }) + "%"
+                    ) : (
+                      <Skeleton className="w-20" />
+                    )}
+                  </span>
+                </div>
+                <div className="flex">
+                  <span className="text-sm text-[#708db7]">Unstaking Fee</span>
+                  <div className="flex-1 border-b border-dotted border-[#708db7]"></div>
+                  <span className="text-sm text-primary-darkText">
+                    {withdrawFeeBP !== undefined ? (
+                      (withdrawFeeBP / 100).toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                      }) + "%"
+                    ) : (
+                      <Skeleton className="w-20" />
+                    )}
+                  </span>
+                </div>
                 <a
                   href={`${BSCSCAN_ADDRESS_URL[chainId]}${MASTERCHEF_ADDRESS[chainId]}`}
-                  className="flex items-center pt-2 space-x-1"
+                  className="flex items-center space-x-1 pt-2"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <span className="text-base text-primary-brand">
                     View Contact
                   </span>
-                  <ExternalLinkIcon className="w-6 h-6 ml-2 text-primary-brand" />
+                  <ExternalLinkIcon className="ml-2 h-6 w-6 text-primary-brand" />
                 </a>
               </Disclosure.Panel>
             </Transition>
@@ -709,6 +732,7 @@ const StakeCard = ({
               100
             : undefined
         }
+        depositFeeBP={depositFeeBP}
         token={token}
         avatar={poolMetaInfos[poolId].logo}
         priceUSD={priceUSD}
@@ -735,6 +759,7 @@ const StakeCard = ({
               100
             : undefined
         }
+        withdrawFeeBP={withdrawFeeBP}
         token={token}
         avatar={poolMetaInfos[poolId].logo}
         priceUSD={priceUSD}
