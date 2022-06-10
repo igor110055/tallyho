@@ -704,7 +704,7 @@ const StakeCard = ({
                   rel="noopener noreferrer"
                 >
                   <span className="text-base text-primary-brand">
-                    View Contact
+                    View Contract
                   </span>
                   <ExternalLinkIcon className="ml-2 h-6 w-6 text-primary-brand" />
                 </a>
