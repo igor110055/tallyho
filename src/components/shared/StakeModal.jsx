@@ -210,7 +210,7 @@ export default function StakeModal({
                         <Skeleton className="w-20" />
                       ) : (
                         <>
-                          {depositFeeBP.toLocaleString(undefined, {
+                          {(depositFeeBP / 100).toLocaleString(undefined, {
                             minimumFractionDigits: 2,
                           })}
                           {"%"}

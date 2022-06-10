@@ -207,7 +207,7 @@ export default function UnstakeModal({
                         <Skeleton className="w-20" />
                       ) : (
                         <>
-                          {withdrawFeeBP.toLocaleString(undefined, {
+                          {(withdrawFeeBP / 100).toLocaleString(undefined, {
                             minimumFractionDigits: 2,
                           })}
                           {"%"}
