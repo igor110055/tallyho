@@ -217,6 +217,12 @@ export default function UnstakeModal({
                           );
                       }
                     }}
+                    disabled={
+                      !amountToUnStake ||
+                      parseFloat(amountToUnStake) === 0 ||
+                      !isTransReady(enterStaking) ||
+                      !isTransReady(leaveStaking)
+                    }
                   >
                     {(!isTransReady(enterStaking) ||
                       !isTransReady(leaveStaking)) && (

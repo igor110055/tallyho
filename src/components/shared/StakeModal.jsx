@@ -4,7 +4,7 @@ import { QuestionMarkCircleIcon } from "@heroicons/react/outline";
 import { XIcon } from "@heroicons/react/solid";
 import { useState } from "react";
 import { useEthers, useTokenBalance, useCall } from "@usedapp/core";
-import { BigNumber, utils } from "ethers";
+import { utils } from "ethers";
 import { Contract } from "@ethersproject/contracts";
 import "react-loading-skeleton/dist/skeleton.css";
 import Skeleton from "react-loading-skeleton";
@@ -31,8 +31,7 @@ export default function StakeModal({
 
   // balance
   const tokenBalance =
-    useTokenBalance(token && token.address, account && account) ??
-    BigNumber.from(0);
+    useTokenBalance(token && token.address, account && account) ?? undefined;
 
   // token decimals
   const tokenDecimal =
@@ -223,6 +222,12 @@ export default function StakeModal({
                           );
                       }
                     }}
+                    disabled={
+                      !amountToStake ||
+                      parseFloat(amountToStake) === 0 ||
+                      !isTransReady(enterStaking) ||
+                      !isTransReady(leaveStaking)
+                    }
                   >
                     {(!isTransReady(enterStaking) ||
                       !isTransReady(leaveStaking)) && (
