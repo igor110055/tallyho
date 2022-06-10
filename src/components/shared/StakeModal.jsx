@@ -4,7 +4,7 @@ import { QuestionMarkCircleIcon } from "@heroicons/react/outline";
 import { XIcon } from "@heroicons/react/solid";
 import { useState } from "react";
 import { useEthers, useTokenBalance, useCall } from "@usedapp/core";
-import { BigNumber, utils } from "ethers";
+import { utils } from "ethers";
 import { Contract } from "@ethersproject/contracts";
 import "react-loading-skeleton/dist/skeleton.css";
 import Skeleton from "react-loading-skeleton";
