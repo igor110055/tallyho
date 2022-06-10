@@ -120,7 +120,7 @@ const StakeCard = ({
         method: "pendingTALLY",
         args: [poolId, account],
       }
-    )?.value?.[0] ?? BigNumber.from(0);
+    )?.value?.[0] ?? undefined;
 
   // get total staked Tally
   const totalStaked =
@@ -508,6 +508,7 @@ const StakeCard = ({
                         <div className="flex items-center h-12 overflow-hidden truncate gap-x-2 sm:basis-full md:basis-1/2">
                           <button
                             className={`${
+                              !pendingTally ||
                               parseFloat(utils.formatUnits(pendingTally, 9)) ===
                                 0 ||
                               !isTransReady(enterStaking) ||
@@ -522,6 +523,13 @@ const StakeCard = ({
                                 enterStaking.send(0);
                               }
                             }}
+                            disabled={
+                              !pendingTally ||
+                              parseFloat(utils.formatUnits(pendingTally, 9)) ===
+                                0 ||
+                              !isTransReady(enterStaking) ||
+                              !isTransReady(leaveStaking)
+                            }
                           >
                             {!isTransReady(enterStaking) ||
                             !isTransReady(leaveStaking) ? (
@@ -543,6 +551,7 @@ const StakeCard = ({
                           </button>
                           <button
                             className={`${
+                              !pendingTally ||
                               parseFloat(utils.formatUnits(pendingTally, 9)) ===
                                 0 ||
                               !isTransReady(enterStaking) ||
@@ -557,6 +566,13 @@ const StakeCard = ({
                                 enterStaking.send(pendingTally);
                               }
                             }}
+                            disabled={
+                              !pendingTally ||
+                              parseFloat(utils.formatUnits(pendingTally, 9)) ===
+                                0 ||
+                              !isTransReady(enterStaking) ||
+                              !isTransReady(leaveStaking)
+                            }
                           >
                             {!isTransReady(enterStaking) ||
                             !isTransReady(leaveStaking) ? (

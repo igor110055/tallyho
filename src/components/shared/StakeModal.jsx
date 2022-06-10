@@ -31,8 +31,7 @@ export default function StakeModal({
 
   // balance
   const tokenBalance =
-    useTokenBalance(token && token.address, account && account) ??
-    BigNumber.from(0);
+    useTokenBalance(token && token.address, account && account) ?? undefined;
 
   // token decimals
   const tokenDecimal =
@@ -223,6 +222,12 @@ export default function StakeModal({
                           );
                       }
                     }}
+                    disabled={
+                      !amountToStake ||
+                      parseFloat(amountToStake) === 0 ||
+                      !isTransReady(enterStaking) ||
+                      !isTransReady(leaveStaking)
+                    }
                   >
                     {(!isTransReady(enterStaking) ||
                       !isTransReady(leaveStaking)) && (
