@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 import "react-loading-skeleton/dist/skeleton.css";
 import Skeleton from "react-loading-skeleton";
 import ReactTooltip from "react-tooltip";
-import { CalculatorIcon } from "@heroicons/react/outline";
+import { MdOutlineCalculate } from "react-icons/md";
 
 import Web3ConnectModal from "../../components/shared/Web3ConnectModal";
 
@@ -33,35 +33,22 @@ import { supportedTokens } from "../../assets/data/tokens";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import UnstakeModal from "../shared/UnstakeModal";
+import { useAPR } from "../../hooks/pools";
 
-const StakeCard = ({
-  tallyPerBlock,
-  totalAllocPoint,
-  stakingPercent,
-  percentDec,
-  reserveFee,
-  buyBackFee,
-  maintenanceSecurityFee,
-  operationFee,
-  poolId,
-  showAprModal,
-  setAprModalValue,
-}) => {
+const StakeCard = ({ poolId, perfFee, showAprModal, setAprModalValue }) => {
   const { account, chainId } = useEthers();
 
   const [connectModalOpen, setConnectModalOpen] = useState(false);
   const [stakeModalOpen, setStakeModalOpen] = useState(false);
   const [unstakeModalOpen, setUnstakeModalOpen] = useState(false);
   const [token, setToken] = useState();
-  const [apr, setApr] = useState(undefined);
   const [priceUSD, setPriceUSD] = useState(0);
 
   const tallyPrice = useSelector((state) => state?.tokenPrice?.tally);
-
-  const averageBlockTime = 3;
+  const apr = useAPR(poolId, chainId);
 
   // get pool info
-  const [lptokenAddress, allocPoint, , , depositFeeBP, withdrawFeeBP] =
+  const [lptokenAddress, , , , depositFeeBP, withdrawFeeBP] =
     useCall({
       contract: new Contract(
         MASTERCHEF_ADDRESS[chainId],
@@ -215,46 +202,6 @@ const StakeCard = ({
       });
   });
 
-  // side effect for apy change
-  useEffect(() => {
-    if (
-      allocPoint &&
-      totalStaked &&
-      totalAllocPoint &&
-      tallyPerBlock &&
-      stakingPercent &&
-      percentDec &&
-      totalAllocPoint.toNumber() !== 0 &&
-      percentDec.toNumber() !== 0 &&
-      totalStaked.toNumber() !== 0
-    ) {
-      setApr(
-        (
-          (24 *
-            3600 *
-            365 *
-            tallyPerBlock.toNumber() *
-            allocPoint.toNumber() *
-            stakingPercent.toNumber() *
-            100) /
-          totalAllocPoint.toNumber() /
-          percentDec.toNumber() /
-          totalStaked.toNumber() /
-          averageBlockTime
-        ).toFixed(2)
-      );
-    } else {
-      setApr(undefined);
-    }
-  }, [
-    allocPoint,
-    totalStaked,
-    totalAllocPoint,
-    tallyPerBlock,
-    stakingPercent,
-    percentDec,
-  ]);
-
   // side effect for stakin/unstaking token action status change
   useEffect(() => {
     if (enterStaking.state.status === "Success") {
@@ -322,7 +269,7 @@ const StakeCard = ({
               poolMetaInfos[poolId].subscription
             )}
           </h4>
-          <div className="text-md flex truncate font-medium text-primary-brand">
+          <div className="text-md align-center flex truncate font-medium text-primary-brand">
             <span className="pr-4">APR</span>
             {!apr ? (
               <Skeleton className="w-20" />
@@ -334,9 +281,9 @@ const StakeCard = ({
                 }}
                 className="flex cursor-pointer"
               >
-                {apr.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                {apr.toLocaleString(undefined, { maximumFractionDigits: 2 })}
                 {"%"}
-                <CalculatorIcon className="h-5 w-5" />
+                <MdOutlineCalculate className="h-5 w-5" />
               </span>
             )}
           </div>
@@ -395,7 +342,7 @@ const StakeCard = ({
                               parseFloat(
                                 utils.formatUnits(stakedAmount, tokenDecimal)
                               ).toLocaleString(undefined, {
-                                minimumFractionDigits: 4,
+                                maximumFractionDigits: 4,
                               })
                             ) : (
                               <Skeleton />
@@ -413,7 +360,7 @@ const StakeCard = ({
                                     )
                                   ) * priceUSD
                                 ).toLocaleString(undefined, {
-                                  minimumFractionDigits: 4,
+                                  maximumFractionDigits: 4,
                                 })}
                               </>
                             ) : (
@@ -482,7 +429,7 @@ const StakeCard = ({
                               parseFloat(
                                 utils.formatUnits(pendingTally, 9)
                               ).toLocaleString(undefined, {
-                                minimumFractionDigits: 4,
+                                maximumFractionDigits: 4,
                               })
                             ) : (
                               <Skeleton />
@@ -497,7 +444,7 @@ const StakeCard = ({
                                     utils.formatUnits(pendingTally, 9)
                                   ) * tallyPrice
                                 ).toLocaleString(undefined, {
-                                  minimumFractionDigits: 4,
+                                  maximumFractionDigits: 4,
                                 })}
                               </>
                             ) : (
@@ -638,7 +585,7 @@ const StakeCard = ({
                     {totalStaked && tokenDecimal ? (
                       parseFloat(
                         utils.formatUnits(totalStaked, tokenDecimal)
-                      ).toLocaleString(undefined, { minimumFractionDigits: 2 })
+                      ).toLocaleString(undefined, { maximumFractionDigits: 2 })
                     ) : (
                       <Skeleton className="w-20" />
                     )}
@@ -650,21 +597,9 @@ const StakeCard = ({
                   </span>
                   <div className="flex-1 border-b border-dotted border-[#708db7]"></div>
                   <span className="text-sm text-primary-darkText">
-                    {reserveFee &&
-                    operationFee &&
-                    maintenanceSecurityFee &&
-                    buyBackFee &&
-                    percentDec &&
-                    percentDec.toNumber() !== 0 ? (
-                      (
-                        ((reserveFee.toNumber() +
-                          operationFee.toNumber() +
-                          maintenanceSecurityFee.toNumber() +
-                          buyBackFee.toNumber()) /
-                          percentDec.toNumber()) *
-                        100
-                      ).toLocaleString(undefined, {
-                        minimumFractionDigits: 2,
+                    {perfFee ? (
+                      perfFee.toLocaleString(undefined, {
+                        maximumFractionDigits: 2,
                       }) + "%"
                     ) : (
                       <Skeleton className="w-20" />
@@ -677,7 +612,7 @@ const StakeCard = ({
                   <span className="text-sm text-primary-darkText">
                     {depositFeeBP !== undefined ? (
                       (depositFeeBP / 100).toLocaleString(undefined, {
-                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
                       }) + "%"
                     ) : (
                       <Skeleton className="w-20" />
@@ -690,7 +625,7 @@ const StakeCard = ({
                   <span className="text-sm text-primary-darkText">
                     {withdrawFeeBP !== undefined ? (
                       (withdrawFeeBP / 100).toLocaleString(undefined, {
-                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
                       }) + "%"
                     ) : (
                       <Skeleton className="w-20" />
@@ -717,21 +652,7 @@ const StakeCard = ({
       <StakeModal
         open={stakeModalOpen}
         setOpen={setStakeModalOpen}
-        performanceFee={
-          reserveFee &&
-          operationFee &&
-          maintenanceSecurityFee &&
-          buyBackFee &&
-          percentDec &&
-          percentDec.toNumber() !== 0
-            ? ((reserveFee.toNumber() +
-                operationFee.toNumber() +
-                maintenanceSecurityFee.toNumber() +
-                buyBackFee.toNumber()) /
-                percentDec.toNumber()) *
-              100
-            : undefined
-        }
+        performanceFee={perfFee}
         depositFeeBP={depositFeeBP}
         token={token}
         avatar={poolMetaInfos[poolId].logo}
@@ -744,21 +665,7 @@ const StakeCard = ({
       <UnstakeModal
         open={unstakeModalOpen}
         setOpen={setUnstakeModalOpen}
-        performanceFee={
-          reserveFee &&
-          operationFee &&
-          maintenanceSecurityFee &&
-          buyBackFee &&
-          percentDec &&
-          percentDec.toNumber() !== 0
-            ? ((reserveFee.toNumber() +
-                operationFee.toNumber() +
-                maintenanceSecurityFee.toNumber() +
-                buyBackFee.toNumber()) /
-                percentDec.toNumber()) *
-              100
-            : undefined
-        }
+        performanceFee={perfFee}
         withdrawFeeBP={withdrawFeeBP}
         token={token}
         avatar={poolMetaInfos[poolId].logo}

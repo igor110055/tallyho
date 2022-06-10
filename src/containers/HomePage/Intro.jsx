@@ -1,9 +1,19 @@
 import { Link } from "react-router-dom";
+import { BSC, useEthers } from "@usedapp/core";
+
 import logo2 from "../../assets/images/logo2.png";
 import { ChevronRightIcon } from "@heroicons/react/solid";
 import { MovingIcons, SlideshowHome } from "../../components";
+import { useTokenPrice } from "../../hooks/tokens";
+import { TALLY as TALLYAddress } from "../../assets/data/addresses";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import { useTotalValueLocked } from "../../hooks/pools";
 
 const Intro = () => {
+  const { chainId } = useEthers();
+  const tallyPrice = useTokenPrice(TALLYAddress[BSC.chainId]);
+  const tvl = useTotalValueLocked(chainId);
+
   return (
     <section className="bg-intro_bg pt-20">
       <div className="container mx-auto max-w-7xl px-4 pt-10 md:px-6">
@@ -47,21 +57,45 @@ const Intro = () => {
                     className=" h-10 w-10 md:h-12 md:w-12"
                   />
                   <div className="ml-4 sm:mr-4">
-                    <span className="mb-1 block text-xs font-bold leading-6 text-primary-brand">
+                    <span className="mb-1 block text-sm font-bold leading-6 text-primary-brand">
                       Total Value Locked
                     </span>
                     <span className="text-lg font-semibold text-white md:text-2xl">
-                      $000, 000,000
+                      {tvl ? (
+                        "$" +
+                        tvl.toLocaleString(undefined, {
+                          maximumFractionDigits: 5,
+                        })
+                      ) : (
+                        <SkeletonTheme
+                          baseColor="#606060"
+                          highlightColor="#808080"
+                        >
+                          <Skeleton />
+                        </SkeletonTheme>
+                      )}
                     </span>
                   </div>
                 </div>
                 <div className="flex items-center">
                   <div className="ml-3 md:ml-8">
-                    <span className="mb-1 block text-xs font-bold leading-6 text-primary-brand">
-                      Total Trading Volume
+                    <span className="mb-1 block text-sm font-bold leading-6 text-primary-brand">
+                      Tally Price
                     </span>
                     <span className="text-lg font-semibold text-white md:text-2xl">
-                      $000, 000,000
+                      {tallyPrice ? (
+                        "$" +
+                        tallyPrice.toLocaleString(undefined, {
+                          maximumFractionDigits: 5,
+                        })
+                      ) : (
+                        <SkeletonTheme
+                          baseColor="#606060"
+                          highlightColor="#808080"
+                        >
+                          <Skeleton />
+                        </SkeletonTheme>
+                      )}
                     </span>
                   </div>
                 </div>
@@ -75,7 +109,6 @@ const Intro = () => {
 
           <div className="flex max-h-52 w-full justify-center overflow-hidden pt-6 pb-1 ">
             <MovingIcons />
-
             <Link
               to="/analytics"
               className="group ml-auto hidden items-center text-white md:flex"

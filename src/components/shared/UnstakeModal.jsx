@@ -131,7 +131,7 @@ export default function UnstakeModal({
                         {priceUSD && amountToUnStake
                           ? (priceUSD * amountToUnStake).toLocaleString(
                               undefined,
-                              { minimumFractionDigits: 5 }
+                              { maximumFractionDigits: 5 }
                             )
                           : ""}
                       </div>
@@ -153,7 +153,11 @@ export default function UnstakeModal({
                         </button>
                       )}
                       <span className="text-slate-400">You staked</span>
-                      <span className="ml-3 text-slate-600">
+                      <span
+                        className={`ml-3 ${
+                          stakedAmount && tokenDecimal ? "" : "min-w-[30%]"
+                        } text-slate-600`}
+                      >
                         {stakedAmount && tokenDecimal ? (
                           <>
                             {parseFloat(
@@ -174,7 +178,7 @@ export default function UnstakeModal({
                       ) : (
                         <>
                           {apr.toLocaleString(undefined, {
-                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
                           })}
                           {"%"}
                         </>
@@ -191,7 +195,7 @@ export default function UnstakeModal({
                       ) : (
                         <>
                           {performanceFee.toLocaleString(undefined, {
-                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
                           })}
                           {"%"}
                         </>
@@ -208,7 +212,7 @@ export default function UnstakeModal({
                       ) : (
                         <>
                           {(withdrawFeeBP / 100).toLocaleString(undefined, {
-                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
                           })}
                           {"%"}
                         </>
