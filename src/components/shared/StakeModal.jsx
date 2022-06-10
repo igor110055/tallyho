@@ -134,7 +134,7 @@ export default function StakeModal({
                         {priceUSD && amountToStake
                           ? (priceUSD * amountToStake).toLocaleString(
                               undefined,
-                              { minimumFractionDigits: 5 }
+                              { maximumFractionDigits: 5 }
                             )
                           : ""}
                       </div>
@@ -156,13 +156,17 @@ export default function StakeModal({
                         </button>
                       )}
                       <span className="text-slate-400">Balance</span>
-                      <span className="ml-3 min-w-[10%] text-slate-600">
+                      <span
+                        className={`ml-3 ${
+                          tokenBalance && tokenDecimal ? "" : "min-w-[30%]"
+                        } text-slate-600`}
+                      >
                         {tokenBalance && tokenDecimal ? (
                           <>
                             {parseFloat(
                               utils.formatUnits(tokenBalance, tokenDecimal)
                             ).toLocaleString(undefined, {
-                              minimumFractionDigits: 9,
+                              maximumFractionDigits: 9,
                             })}
                           </>
                         ) : (
@@ -179,7 +183,7 @@ export default function StakeModal({
                       ) : (
                         <>
                           {apr.toLocaleString(undefined, {
-                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
                           })}
                           {"%"}
                         </>
@@ -196,7 +200,7 @@ export default function StakeModal({
                       ) : (
                         <>
                           {performanceFee.toLocaleString(undefined, {
-                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
                           })}
                           {"%"}
                         </>
@@ -211,7 +215,7 @@ export default function StakeModal({
                       ) : (
                         <>
                           {(depositFeeBP / 100).toLocaleString(undefined, {
-                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
                           })}
                           {"%"}
                         </>
