@@ -7,8 +7,7 @@ import { MASTERCHEF_ADDRESS, TALLY } from "../assets/data/addresses.js";
 import masterchefAbi from "../assets/abi/Masterchef.json";
 import ierc20Abi from "../assets/abi/IERC20.json";
 import pairAbi from "../assets/abi/TallyswapPair.json";
-import { useTokenPrice } from "./tokens.js";
-import { useAverageBlockTime } from "./chain.js";
+import { useTokenPrice, useAverageBlockTime } from "./index";
 
 export const useTotalAmountStaked = (chainId) => {
   const [tas, setTas] = useState(undefined);
@@ -276,4 +275,27 @@ export const useAPR = (poolId, chainId) => {
   ]);
 
   return apr;
+};
+
+export const useTotalSupply = () => {
+  return 1000000000;
+};
+
+export const useMaxSupply = () => {
+  return 1000000000;
+};
+
+export const useCirculatingSupply = () => {
+  return 184616125;
+};
+
+export const useBurnedAmount = () => {
+  return 0;
+};
+
+export const useMarketCap = () => {
+  const maxSupply = useMaxSupply();
+  const tallyPrice = useTokenPrice(TALLY[BSC.chainId]);
+
+  return maxSupply && tallyPrice ? maxSupply * tallyPrice : undefined;
 };
