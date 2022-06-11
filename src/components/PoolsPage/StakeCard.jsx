@@ -33,7 +33,7 @@ import { supportedTokens } from "../../assets/data/tokens";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import UnstakeModal from "../shared/UnstakeModal";
-import { useAPR } from "../../hooks/pools";
+import { useAPR } from "../../hooks";
 
 const StakeCard = ({ poolId, perfFee, showAprModal, setAprModalValue }) => {
   const { account, chainId } = useEthers();
