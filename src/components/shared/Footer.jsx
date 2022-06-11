@@ -7,10 +7,17 @@ import {
 import FooterToggle from "./FooterToggle";
 import btally from "../../assets/images/logo2.png";
 import Tooltip from "rc-tooltip";
-import { useTokenPrice } from "../../hooks/tokens";
+import { useTokenPrice } from "../../hooks";
 import { TALLY } from "../../assets/data/addresses";
 import { BSC } from "@usedapp/core";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import {
+  useBurnedAmount,
+  useCirculatingSupply,
+  useMarketCap,
+  useMaxSupply,
+  useTotalSupply,
+} from "../../hooks";
 
 function MetaMaskIcon(props) {
   return (
@@ -81,7 +88,11 @@ function MetaMaskIcon(props) {
 
 const Footer = () => {
   const tallyPrice = useTokenPrice(TALLY[BSC.chainId]);
-  const circSupply = 184616125;
+  const circSupply = useCirculatingSupply();
+  const maxSupply = useMaxSupply();
+  const totalSupply = useTotalSupply();
+  const marketCap = useMarketCap();
+  const burnedAmount = useBurnedAmount();
 
   return (
     <footer className="bg-primary-dark px-4 py-8">
@@ -129,34 +140,70 @@ const Footer = () => {
           <div className="grow space-y-3 text-xs font-bold text-white">
             <div className="flex items-center justify-between">
               <span className=" text-[#c3c3c3]">Max supply:</span>
-              <span>1,000,000,000</span>
+              <span>
+                {maxSupply !== undefined ? (
+                  maxSupply.toLocaleString(undefined, {
+                    maximumFractionDigits: 2,
+                  })
+                ) : (
+                  <SkeletonTheme baseColor="#606060" highlightColor="#808080">
+                    <Skeleton />
+                  </SkeletonTheme>
+                )}
+              </span>
             </div>
 
             <div className="flex items-center justify-between">
               <span className=" text-[#c3c3c3]">Total supply:</span>
-              <span>1,000,000,000</span>
+              <span>
+                {totalSupply !== undefined ? (
+                  totalSupply.toLocaleString(undefined, {
+                    maximumFractionDigits: 2,
+                  })
+                ) : (
+                  <SkeletonTheme baseColor="#606060" highlightColor="#808080">
+                    <Skeleton />
+                  </SkeletonTheme>
+                )}
+              </span>
             </div>
 
             <div className="flex items-center justify-between">
               <span className=" text-[#c3c3c3]">Circulating supply:</span>
               <span>
-                {circSupply.toLocaleString(undefined, {
-                  maximumFractionDigits: 2,
-                })}
+                {circSupply !== undefined ? (
+                  circSupply.toLocaleString(undefined, {
+                    maximumFractionDigits: 2,
+                  })
+                ) : (
+                  <SkeletonTheme baseColor="#606060" highlightColor="#808080">
+                    <Skeleton />
+                  </SkeletonTheme>
+                )}
               </span>
             </div>
 
             <div className="flex items-center justify-between">
               <span className=" text-[#c3c3c3]">Total Burned:</span>
-              <span>0</span>
+              <span>
+                {burnedAmount !== undefined ? (
+                  burnedAmount.toLocaleString(undefined, {
+                    maximumFractionDigits: 2,
+                  })
+                ) : (
+                  <SkeletonTheme baseColor="#606060" highlightColor="#808080">
+                    <Skeleton />
+                  </SkeletonTheme>
+                )}
+              </span>
             </div>
 
             <div className="flex items-center justify-between">
               <span className=" text-[#c3c3c3]">Market Cap:</span>
               <span>
-                {tallyPrice ? (
+                {marketCap !== undefined ? (
                   "$ " +
-                  (tallyPrice * circSupply).toLocaleString(undefined, {
+                  marketCap.toLocaleString(undefined, {
                     maximumFractionDigits: 2,
                   })
                 ) : (

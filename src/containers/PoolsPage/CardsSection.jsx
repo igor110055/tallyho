@@ -7,7 +7,7 @@ import { StakeCard } from "../../components";
 import { MASTERCHEF_ADDRESS } from "../../assets/data/addresses.js";
 import masterchefAbi from "../../assets/abi/Masterchef.json";
 import AprModal from "../../components/shared/AprModal";
-import { usePerformanceFee } from "../../hooks/pools";
+import { usePerformanceFee } from "../../hooks";
 // import AutoCompoundCard from "../../components/PoolsPage/AutoCompoundCard";
 
 const CardsSection = ({ stakeType }) => {

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 
 import { poolMetaInfos } from "../../assets/data/pools";
-import { useAPR } from "../../hooks/pools";
+import { useAPR } from "../../hooks";
 import { useEthers } from "@usedapp/core";
 
 const PoolItem = ({ poolId, showAprModal, setAprModalValue }) => {
