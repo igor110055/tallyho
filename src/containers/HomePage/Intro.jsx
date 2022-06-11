@@ -4,10 +4,10 @@ import { BSC, useEthers } from "@usedapp/core";
 import logo2 from "../../assets/images/logo2.png";
 import { ChevronRightIcon } from "@heroicons/react/solid";
 import { MovingIcons, SlideshowHome } from "../../components";
-import { useTokenPrice } from "../../hooks/tokens";
+import { useTokenPrice } from "../../hooks";
 import { TALLY as TALLYAddress } from "../../assets/data/addresses";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import { useTotalValueLocked } from "../../hooks/pools";
+import { useTotalValueLocked } from "../../hooks";
 
 const Intro = () => {
   const { chainId } = useEthers();
