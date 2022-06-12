@@ -107,9 +107,9 @@ const Footer = () => {
                   Tally
                 </span>
               </div>
-              <span className="font-semibold text-white">
+              <span className="text-xs font-semibold text-white">
                 {tallyPrice ? (
-                  "$ " +
+                  "$" +
                   tallyPrice.toLocaleString(undefined, {
                     maximumFractionDigits: 5,
                   })
