@@ -25,9 +25,9 @@ export const fakeData = [
     },
     {
         id: 3,
-        title: "Time Lock and reLEASE",
+        title: "Time Lock and Release",
         details: [
-            "Free Deposits and Withdrawals.Time release mechanism to multiple wallet addresses on set dates and times.",
+            "Time release mechanism sending funds to multiple wallets on set dates and times",
         ],
     },
 ];
@@ -44,6 +44,7 @@ export const accountsData = [
             "Stable coin friendly USDT,  BUSD, USDC (ON BSC NETWORK).",
             "Tokens released and sent to recipients when time lock expires.",
         ],
+        href: 'https://tallypaydefi.tally-ho.org/guides/readme/types-of-defi-accounts/living-trust-defi-account'
     },
     {
         id: 2,
@@ -57,6 +58,7 @@ export const accountsData = [
             "Tokens released and sent to beneficiaries when triggered.",
             "Stable coin friendly/Compatible with all BSC TOKENS.",
         ],
+        href: 'https://tallypaydefi.tally-ho.org/guides/readme/types-of-defi-accounts/tally-wills-defi-account'
     },
     {
         id: 3,
@@ -70,6 +72,7 @@ export const accountsData = [
             "Tokens released and sent to recipients if time lock expires.",
             "Locked tokens are removable by account owner at any time. 24/7.",
         ],
+        href: 'https://tallypaydefi.tally-ho.org/guides/readme/types-of-defi-accounts/temp-lock-defi-account'
     },
 ];
 
@@ -113,7 +116,7 @@ export const valdata = [
     {
         id: 1,
         title: "free",
-        description: "No Fees or Charges on Deposits and Withdrawals.",
+        description: "Deposits and Withdrawals",
         img: freeIcon,
     },
     {
@@ -125,7 +128,7 @@ export const valdata = [
     {
         id: 3,
         title: "reliability",
-        description: "we have reliable resources to keep your mind rest assured.",
+        description: "Audit Passed (Funds safe and secure)",
         img: reliabilityIcon,
     },
 ];
