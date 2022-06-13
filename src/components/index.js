@@ -41,7 +41,7 @@ export { default as StakeCard } from "./PoolsPage/StakeCard";
 // FarmsPage
 export { default as FarmCard } from './FarmsPage/FarmCard';
 
-//TallyPay
+// // TallyPay
 // export { default as FormTab } from './TallyPay/FormTab';
 // export { default as SelectTokenCombobox } from './TallyPay/SelectTokenCombobox';
 // export { default as SearchBar } from './TallyPay/SearchBar';

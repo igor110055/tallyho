@@ -5,8 +5,8 @@ const LiquidityPage = lazy(() => import("./LiquidityPage"));
 const ExchangePage = lazy(() => import("./ExchangePage"));
 const PoolsPage = lazy(() => import("./PoolsPage"));
 const FarmsPage = lazy(() => import("./FarmsPage"));
-// const TallyPay = lazy(() => import("./TallyPay/TallyPay"));
-// const TallyPayIndex = lazy(() => import("./TallyPay/TallyPayIndex"));
+const TallyPay = lazy(() => import("./TallyPay/TallyPay"));
+const TallyPayIndex = lazy(() => import("./TallyPay/TallyPayIndex"));
 // const TallyWills = lazy(() => import("./TallyPay/TallyWills"));
 // const LivingTrust = lazy(() => import("./TallyPay/LivingTrust"));
 // const MyDefiAccount = lazy(() => import("./TallyPay/MyDefiAccount"));
@@ -27,8 +27,8 @@ export {
     ExchangePage,
     PoolsPage,
     FarmsPage,
-    // TallyPay,
-    // TallyPayIndex,
+    TallyPay,
+    TallyPayIndex,
     // TallyWills,
     // LivingTrust,
     // TempLock,

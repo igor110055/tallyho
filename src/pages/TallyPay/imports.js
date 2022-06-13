@@ -9,7 +9,8 @@ import Ether from '../../assets/tally-pay/icon/ether.svg';
 import Solana from '../../assets/tally-pay/icon/Solana.svg';
 import Tether from '../../assets/tally-pay/icon/Tether.svg';
 import Logo from '../../assets/tally-pay/icon/TPay.svg';
-
+import featureBg from "../../assets/tally-pay/featuresBg.png";
+import infoImage from "../../assets/tally-pay/icon _info circle_.svg";
 
 export {
     fakeData,
@@ -22,5 +23,7 @@ export {
     Ether,
     Solana,
     Tether,
-    Logo
+    Logo,
+    featureBg,
+    infoImage
 }
