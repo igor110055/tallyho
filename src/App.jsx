@@ -21,10 +21,10 @@ import {
   AnalyticsFilterPage,
   TallyPay,
   TallyPayIndex,
-  TallyWills,
-  LivingTrust,
-  TempLock,
-  MyDefiAccount,
+  // TallyWills,
+  // LivingTrust,
+  // TempLock,
+  // MyDefiAccount,
 } from "./pages";
 import { PANCAKESWAP_API_URL } from "./assets/data/urls";
 import axios from "axios";
@@ -143,7 +143,7 @@ function App() {
             }
           />
 
-          <Route
+          {/* <Route
             path="tally-wills"
             element={
               <LazyLoad>
@@ -174,7 +174,7 @@ function App() {
                 <MyDefiAccount />
               </LazyLoad>
             }
-          />
+          /> */}
         </Route>
 
         {/* NFTmarket Page Route */}
