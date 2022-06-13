@@ -8,6 +8,7 @@ import {
     TallyWillsReport,
 } from '../../containers';
 import { produce } from 'immer';
+import tallyPayLogo from '../../assets/images/tally-pay/logo-bg-removed.png';
 
 const tabs = [
     { name: 'New' },
@@ -36,28 +37,38 @@ const TallyWills = () => {
     );
 
     return (
-        <>
-            <h1 className='text-center text-5xl font-medium tracking-wider text-white'>
-                <span className='underline decoration-primary-brand decoration-2 underline-offset-4'>
-                    Tally
-                </span>{' '}
-                Wills
-            </h1>
+        <div className='container mx-auto my-10 h-full max-w-6xl'>
+            <div className='flex h-full flex-col items-center justify-center'>
+                <div className='mb-6'>
+                    <img
+                        src={tallyPayLogo}
+                        alt='logo of tally pay'
+                        className='w-20'
+                    />
+                </div>
 
-            <div className='container mt-12 max-w-4xl overflow-hidden rounded-lg bg-tallyPay-dark'>
-                <FormTab
-                    tabs={state.tabs}
-                    currentTab={state.currentTab}
-                    dispatch={dispatch}
-                />
+                <h1 className='text-center text-5xl font-medium tracking-wider text-white'>
+                    <span className='underline decoration-primary-brand decoration-2 underline-offset-4'>
+                        Tally
+                    </span>{' '}
+                    Wills
+                </h1>
 
-                {state.currentTab === 'New' && <TallyWillsNew />}
-                {state.currentTab === 'Add' && <TallyWillsAdd />}
-                {state.currentTab === 'Remove' && <TallyWillsRemove />}
-                {state.currentTab === 'Recovery' && <TallyWillsRecovery />}
-                {state.currentTab === 'Report' && <TallyWillsReport />}
+                <div className='container mt-12 max-w-4xl overflow-hidden rounded-lg bg-tallyPay-dark'>
+                    <FormTab
+                        tabs={state.tabs}
+                        currentTab={state.currentTab}
+                        dispatch={dispatch}
+                    />
+
+                    {state.currentTab === 'New' && <TallyWillsNew />}
+                    {state.currentTab === 'Add' && <TallyWillsAdd />}
+                    {state.currentTab === 'Remove' && <TallyWillsRemove />}
+                    {state.currentTab === 'Recovery' && <TallyWillsRecovery />}
+                    {state.currentTab === 'Report' && <TallyWillsReport />}
+                </div>
             </div>
-        </>
+        </div>
     );
 };
 
