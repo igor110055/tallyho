@@ -13,7 +13,7 @@ const serviceItems = [
     },
     {
         title: 'Tally Token',
-        href: '/WPRevampedFinal.pdf',
+        href: 'https://docs.tally-ho.org/',
         external: true,
     },
     {
@@ -24,39 +24,39 @@ const serviceItems = [
 ];
 
 const productItems = [
-    {
-        title: 'Exchange',
-        href: '/ExchangeWP.pdf',
-        external: true,
-    },
+    // {
+    //     title: 'Exchange',
+    //     href: '/ExchangeWP.pdf',
+    //     external: true,
+    // },
     {
         title: 'Liquidity',
-        href: '/ExchangeWP.pdf',
+        href: 'https://docs.tally-ho.org/readme',
         external: true,
 
     },
     {
         title: 'Farms',
-        href: '/ExchangeWP.pdf',
+        href: 'https://docs.tally-ho.org/how-to-stake-your-liquidity',
         external: true,
 
     },
     {
         title: 'Pools',
-        href: '/ExchangeWP.pdf',
+        href: 'https://docs.tally-ho.org/stake-tally-tokens',
         external: true,
 
     },
-    {
-        title: 'Analytics',
-        href: '/analytics',
-    },
+    // {
+    //     title: 'Analytics',
+    //     href: '/analytics',
+    // },
 ];
 
 const aboutItems = [
     {
         title: 'Docs',
-        href: '/docs',
+        href: 'https://docs.tally-ho.org/',
     },
     {
         title: 'News',
@@ -65,7 +65,7 @@ const aboutItems = [
     },
     {
         title: 'Audit',
-        href: '/',
+        href: 'https://docs.tally-ho.org/audit',
     },
 ];
 
