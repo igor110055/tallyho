@@ -8,9 +8,13 @@ import { MASTERCHEF_ADDRESS } from "../../assets/data/addresses.js";
 import masterchefAbi from "../../assets/abi/Masterchef.json";
 import AprModal from "../../components/shared/AprModal";
 import { usePerformanceFee } from "../../hooks";
-// import AutoCompoundCard from "../../components/PoolsPage/AutoCompoundCard";
+import { poolsCards } from "../../assets/data/poolsCards";
+import AutoCompoundCard from "../../components/PoolsPage/AutoCompoundCard";
 
-const CardsSection = ({ stakeType }) => {
+const CardsSection = ({ stakeType, status }) => {
+  // status = active, coming_soon
+  // stakeType = stake_tally, stake_tokens
+
   const { chainId } = useEthers();
   const [aprModalOpen, setAprModalOpen] = useState(false);
   const [aprModalVal, setAprModalVal] = useState(undefined);
@@ -28,7 +32,7 @@ const CardsSection = ({ stakeType }) => {
 
   return (
     <div className="my-6 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
-      {stakeType === "stake_tally" && (
+      {stakeType === "stake_tally" && status === "active" && (
         <StakeCard
           poolId={0}
           perfFee={perfFee}
@@ -48,6 +52,32 @@ const CardsSection = ({ stakeType }) => {
             />
           );
         })}
+
+      {status === "coming_soon" &&
+        poolsCards.map((pool, i) => {
+          return (
+            <AutoCompoundCard
+              key={pool.id}
+              pool={pool}
+              perfFee={perfFee}
+              setAprModalValue={setAprModalVal}
+              showAprModal={setAprModalOpen}
+            />
+          );
+        })}
+
+      {/* {poolsCards.map((card, i) => {
+        return (
+          <StakeCard
+            key={i}
+            poolId={i + 1}
+            perfFee={perfFee}
+            setAprModalValue={setAprModalVal}
+            showAprModal={setAprModalOpen}
+          />
+        );
+      })} */}
+
       <AprModal
         open={aprModalOpen}
         setOpen={setAprModalOpen}
