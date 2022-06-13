@@ -57,6 +57,7 @@ const aboutItems = [
     {
         title: 'Docs',
         href: 'https://docs.tally-ho.org/',
+        external: true,
     },
     {
         title: 'News',
@@ -66,6 +67,8 @@ const aboutItems = [
     {
         title: 'Audit',
         href: 'https://docs.tally-ho.org/audit',
+        external: true,
+
     },
 ];
 
