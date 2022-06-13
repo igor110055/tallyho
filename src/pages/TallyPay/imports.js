@@ -11,6 +11,7 @@ import Tether from '../../assets/tally-pay/icon/Tether.svg';
 import Logo from '../../assets/tally-pay/icon/TPay.svg';
 import featureBg from "../../assets/tally-pay/featuresBg.png";
 import infoImage from "../../assets/tally-pay/icon _info circle_.svg";
+import tpGif from '../../assets/tally-pay/tally-pay-icon.gif';
 
 export {
     fakeData,
@@ -25,5 +26,6 @@ export {
     Tether,
     Logo,
     featureBg,
-    infoImage
+    infoImage,
+    tpGif
 }

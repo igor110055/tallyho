@@ -13,6 +13,7 @@ import {
   fakeData,
   featureBg,
   infoImage,
+  tpGif,
 } from "./imports";
 import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
@@ -73,8 +74,13 @@ const TallyPayIndex = () => {
               </button>
             </div>
           </div>
-          <div className="ml-4 hidden md:block">
+          <div className="relative ml-4 hidden md:block">
             <img src={BannerImg} alt="" />
+            <img
+              src={tpGif}
+              alt="gif"
+              className="absolute inset-y-0 right-0 aspect-square w-10/12"
+            />
           </div>
         </div>
       </div>
