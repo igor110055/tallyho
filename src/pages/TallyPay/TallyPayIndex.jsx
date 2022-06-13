@@ -16,7 +16,6 @@ import {
   tpGif,
 } from "./imports";
 import ReactPlayer from "react-player";
-import { Link } from "react-router-dom";
 
 const Heading = ({ title, colorText, subTitle }) => {
   return (
@@ -48,7 +47,7 @@ const TallyPayIndex = () => {
           <div className=" flex basis-2/3 flex-col items-center md:items-start md:justify-start">
             <img src={Logo} width={80} alt="" />
             <h3 className="my-3 text-2xl font-semibold capitalize text-white md:my-2 md:text-3xl">
-              taLLY <span className="text-[#A0E641]">pay Defi</span>
+              Tally <span className="text-[#A0E641]">pay Defi</span>
             </h3>
             <h2 className="my-6 text-3xl font-semibold capitalize text-white md:text-5xl">
               The safe place
@@ -198,12 +197,12 @@ const TallyPayIndex = () => {
           />
 
           <ReactPlayer
-            url="https://www.youtube.com/watch?v=nOQyWbPO2Ds"
+            url="https://youtu.be/VNfgmtPNlJk"
             controls={true}
             className="hidden aspect-video md:block"
           />
           <ReactPlayer
-            url="https://www.youtube.com/watch?v=nOQyWbPO2Ds"
+            url="https://youtu.be/VNfgmtPNlJk"
             controls={true}
             width="100%"
             height={225}
