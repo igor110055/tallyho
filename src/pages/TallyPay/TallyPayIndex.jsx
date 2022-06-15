@@ -13,9 +13,9 @@ import {
   fakeData,
   featureBg,
   infoImage,
+  tpGif,
 } from "./imports";
 import ReactPlayer from "react-player";
-import { Link } from "react-router-dom";
 
 const Heading = ({ title, colorText, subTitle }) => {
   return (
@@ -47,7 +47,7 @@ const TallyPayIndex = () => {
           <div className=" flex basis-2/3 flex-col items-center md:items-start md:justify-start">
             <img src={Logo} width={80} alt="" />
             <h3 className="my-3 text-2xl font-semibold capitalize text-white md:my-2 md:text-3xl">
-              taLLY <span className="text-[#A0E641]">pay Defi</span>
+              Tally <span className="text-[#A0E641]">pay Defi</span>
             </h3>
             <h2 className="my-6 text-3xl font-semibold capitalize text-white md:text-5xl">
               The safe place
@@ -68,13 +68,23 @@ const TallyPayIndex = () => {
               </p>
             </div>
             <div className="mt-6">
-              <button class="rounded-full bg-[#A2E941] px-[120px] py-[16px] font-semibold text-[#0F0F0F] md:px-[120px]">
-                Get Started
-              </button>
+              <a
+                href="https://tallypaydefi.tally-ho.org/guides/users-manual"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="rounded-full bg-[#A2E941] px-[120px] py-[16px] font-semibold text-[#0F0F0F] md:px-[120px]"
+              >
+                Users Manual
+              </a>
             </div>
           </div>
-          <div className="ml-4 hidden md:block">
+          <div className="relative ml-4 hidden md:block">
             <img src={BannerImg} alt="" />
+            <img
+              src={tpGif}
+              alt="gif"
+              className="absolute inset-y-0 right-0 aspect-square w-10/12"
+            />
           </div>
         </div>
       </div>
@@ -115,7 +125,7 @@ const TallyPayIndex = () => {
             <Heading
               title=""
               colorText="Features"
-              subTitle="The safe place For Your Coins."
+              subTitle="The safe place for your coins"
             />
             <img src={featureBg} alt="" />
           </div>
@@ -127,7 +137,7 @@ const TallyPayIndex = () => {
         <Heading
           title="Defi"
           colorText="Accounts"
-          subTitle="The safe place For Your Coins."
+          subTitle="The safe place for your coins."
         />
 
         {accountsData.map((item) => (
@@ -160,14 +170,16 @@ const TallyPayIndex = () => {
                   {item.details.map((data, index) => (
                     <li
                       key={index}
-                      className={`relative my-2 text-base font-thin text-white before:absolute before:left-[-25px] before:content-link`}
+                      className={`relative my-2 text-base font-thin text-white first-letter:uppercase before:absolute before:left-[-25px] before:content-link`}
                     >
                       {data}
                     </li>
                   ))}
                 </ul>
                 <p className="my-4 capitalize text-[#A2E941]">
-                  <a href="#">discover more...</a>
+                  <a href={item.href} target="_blank" rel="noopener noreferrer">
+                    discover more...
+                  </a>
                 </p>
               </div>
             </div>
@@ -185,12 +197,12 @@ const TallyPayIndex = () => {
           />
 
           <ReactPlayer
-            url="https://www.youtube.com/watch?v=nOQyWbPO2Ds"
+            url="https://youtu.be/VNfgmtPNlJk"
             controls={true}
             className="hidden aspect-video md:block"
           />
           <ReactPlayer
-            url="https://www.youtube.com/watch?v=nOQyWbPO2Ds"
+            url="https://youtu.be/VNfgmtPNlJk"
             controls={true}
             width="100%"
             height={225}
@@ -318,12 +330,12 @@ const TallyPayIndex = () => {
                 Why not get started?
               </h5>
             </div>
-            <Link
-              to="/tally-pay/tally-wills"
+            <a
+              href="https://tallypaydefi.tally-ho.org/guides/readme"
               className="rounded-3xl bg-[#0F0F0F] py-4 px-16 text-center text-base font-semibold capitalize text-primary-brand_light transition-colors hover:bg-primary-brand_light hover:text-[#0f0f0f] md:px-12"
             >
-              <span>create account</span>
-            </Link>
+              <span>See Accounts</span>
+            </a>
           </div>
         </div>
       </div>
