@@ -21,14 +21,16 @@ const CardsSection = ({ stakeType, status }) => {
   const perfFee = usePerformanceFee(chainId);
 
   const poolLength =
-    useCall({
-      contract: new Contract(
-        MASTERCHEF_ADDRESS[chainId],
-        new utils.Interface(masterchefAbi)
-      ),
-      method: "poolLength",
-      args: [],
-    })?.value?.[0] ?? undefined;
+    useCall(
+      MASTERCHEF_ADDRESS[chainId] && {
+        contract: new Contract(
+          MASTERCHEF_ADDRESS[chainId],
+          new utils.Interface(masterchefAbi)
+        ),
+        method: "poolLength",
+        args: [],
+      }
+    )?.value?.[0] ?? undefined;
 
   return (
     <div className="my-6 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
