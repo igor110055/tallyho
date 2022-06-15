@@ -45,7 +45,7 @@ const LiquidityPage = () => {
 
         <div className="mb-4 flex flex-col text-center text-white">
           <a
-            href="https://docs.tally.org/education-hub/how-to-earn-on-tally-farms#:~:text=for%20this%20guide.-,Provide%20Liquidity%2C%20Stake%20LP%20tokens%20%26%20Earn%20BSW,-As%20you%20noticed"
+            href="https://docs.tally-ho.org/readme"
             target="_blank"
             rel="noopener noreferrer"
             className="font-semibold text-primary-brand transition-colors hover:text-primary-brand/80"
