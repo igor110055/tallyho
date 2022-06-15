@@ -6,7 +6,7 @@ name: CI/CD into the hosting server
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -23,25 +23,25 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@main
-      
+
       - name: Use Node.js 16.x
         uses: actions/setup-node@v1
         with:
-          node-version: '16.x'
-          
+          node-version: "16.x"
+
       - name: Build Project
         run: |
           npm install
           npm run build --if-present
-          
+
       - name: List output files
         run: ls
-          
+
       - name: sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
-          server: ftp.tally-ho.org
+          server: tally-ho.org
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          protocol: sftp
-          local-dir: build
+          protocol: ftp
+          local-dir: build/
