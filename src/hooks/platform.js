@@ -15,14 +15,16 @@ export const useTotalAmountStaked = (chainId) => {
 
   // get total staked Tally
   const totalStaked =
-    useCall({
-      contract: new Contract(
-        MASTERCHEF_ADDRESS[chainId],
-        new utils.Interface(masterchefAbi)
-      ),
-      method: "depositedTALLY",
-      args: [],
-    })?.value?.[0] ?? undefined;
+    useCall(
+      MASTERCHEF_ADDRESS[chainId] && {
+        contract: new Contract(
+          MASTERCHEF_ADDRESS[chainId],
+          new utils.Interface(masterchefAbi)
+        ),
+        method: "depositedTALLY",
+        args: [],
+      }
+    )?.value?.[0] ?? undefined;
 
   // token decimals
   const tokenDecimal =
@@ -68,55 +70,65 @@ export const usePerformanceFee = (chainId) => {
   const [perfFee, setPerfFee] = useState(undefined);
 
   const percentDec =
-    useCall({
-      contract: new Contract(
-        MASTERCHEF_ADDRESS[chainId],
-        new utils.Interface(masterchefAbi)
-      ),
-      method: "percentDec",
-      args: [],
-    })?.value?.[0] ?? undefined;
+    useCall(
+      MASTERCHEF_ADDRESS[chainId] && {
+        contract: new Contract(
+          MASTERCHEF_ADDRESS[chainId],
+          new utils.Interface(masterchefAbi)
+        ),
+        method: "percentDec",
+        args: [],
+      }
+    )?.value?.[0] ?? undefined;
 
   // get total performance fee
   const reserveFee =
-    useCall({
-      contract: new Contract(
-        MASTERCHEF_ADDRESS[chainId],
-        new utils.Interface(masterchefAbi)
-      ),
-      method: "reservPercent",
-      args: [],
-    })?.value?.[0] ?? undefined;
+    useCall(
+      MASTERCHEF_ADDRESS[chainId] && {
+        contract: new Contract(
+          MASTERCHEF_ADDRESS[chainId],
+          new utils.Interface(masterchefAbi)
+        ),
+        method: "reservPercent",
+        args: [],
+      }
+    )?.value?.[0] ?? undefined;
 
   const maintenanceSecurityFee =
-    useCall({
-      contract: new Contract(
-        MASTERCHEF_ADDRESS[chainId],
-        new utils.Interface(masterchefAbi)
-      ),
-      method: "maintenanceSecurityPercent",
-      args: [],
-    })?.value?.[0] ?? undefined;
+    useCall(
+      MASTERCHEF_ADDRESS[chainId] && {
+        contract: new Contract(
+          MASTERCHEF_ADDRESS[chainId],
+          new utils.Interface(masterchefAbi)
+        ),
+        method: "maintenanceSecurityPercent",
+        args: [],
+      }
+    )?.value?.[0] ?? undefined;
 
   const buyBackFee =
-    useCall({
-      contract: new Contract(
-        MASTERCHEF_ADDRESS[chainId],
-        new utils.Interface(masterchefAbi)
-      ),
-      method: "buyBackReservesPercent",
-      args: [],
-    })?.value?.[0] ?? undefined;
+    useCall(
+      MASTERCHEF_ADDRESS[chainId] && {
+        contract: new Contract(
+          MASTERCHEF_ADDRESS[chainId],
+          new utils.Interface(masterchefAbi)
+        ),
+        method: "buyBackReservesPercent",
+        args: [],
+      }
+    )?.value?.[0] ?? undefined;
 
   const operationFee =
-    useCall({
-      contract: new Contract(
-        MASTERCHEF_ADDRESS[chainId],
-        new utils.Interface(masterchefAbi)
-      ),
-      method: "operationManagerPercent",
-      args: [],
-    })?.value?.[0] ?? undefined;
+    useCall(
+      MASTERCHEF_ADDRESS[chainId] && {
+        contract: new Contract(
+          MASTERCHEF_ADDRESS[chainId],
+          new utils.Interface(masterchefAbi)
+        ),
+        method: "operationManagerPercent",
+        args: [],
+      }
+    )?.value?.[0] ?? undefined;
 
   useEffect(() => {
     setPerfFee(
@@ -153,19 +165,21 @@ export const useAPR = (poolId, chainId) => {
 
   // get pool info
   const [lptokenAddress, allocPoint, , , depositFeeBP, withdrawFeeBP] =
-    useCall({
-      contract: new Contract(
-        MASTERCHEF_ADDRESS[chainId],
-        new utils.Interface(masterchefAbi)
-      ),
-      method: "poolInfo",
-      args: [poolId],
-    })?.value ?? [];
+    useCall(
+      MASTERCHEF_ADDRESS[chainId] && {
+        contract: new Contract(
+          MASTERCHEF_ADDRESS[chainId],
+          new utils.Interface(masterchefAbi)
+        ),
+        method: "poolInfo",
+        args: [poolId],
+      }
+    )?.value ?? [];
 
   // get total staked Tally
   const totalStaked =
     useCall(
-      poolId === 0
+      poolId === 0 && MASTERCHEF_ADDRESS[chainId]
         ? {
             contract: new Contract(
               MASTERCHEF_ADDRESS[chainId],
@@ -186,44 +200,52 @@ export const useAPR = (poolId, chainId) => {
 
   // get the values of masterchef tallyperblock, staking percent, totalAllocpoint
   const tallyPerBlock =
-    useCall({
-      contract: new Contract(
-        MASTERCHEF_ADDRESS[chainId],
-        new utils.Interface(masterchefAbi)
-      ),
-      method: "TALLYPerBlock",
-      args: [],
-    })?.value?.[0] ?? undefined;
+    useCall(
+      MASTERCHEF_ADDRESS[chainId] && {
+        contract: new Contract(
+          MASTERCHEF_ADDRESS[chainId],
+          new utils.Interface(masterchefAbi)
+        ),
+        method: "TALLYPerBlock",
+        args: [],
+      }
+    )?.value?.[0] ?? undefined;
 
   const totalAllocPoint =
-    useCall({
-      contract: new Contract(
-        MASTERCHEF_ADDRESS[chainId],
-        new utils.Interface(masterchefAbi)
-      ),
-      method: "totalAllocPoint",
-      args: [],
-    })?.value?.[0] ?? undefined;
+    useCall(
+      MASTERCHEF_ADDRESS[chainId] && {
+        contract: new Contract(
+          MASTERCHEF_ADDRESS[chainId],
+          new utils.Interface(masterchefAbi)
+        ),
+        method: "totalAllocPoint",
+        args: [],
+      }
+    )?.value?.[0] ?? undefined;
 
   const stakingPercent =
-    useCall({
-      contract: new Contract(
-        MASTERCHEF_ADDRESS[chainId],
-        new utils.Interface(masterchefAbi)
-      ),
-      method: "stakingPercent",
-      args: [],
-    })?.value?.[0] ?? undefined;
+    useCall(
+      MASTERCHEF_ADDRESS[chainId] && {
+        contract: new Contract(
+          MASTERCHEF_ADDRESS[chainId],
+          new utils.Interface(masterchefAbi)
+        ),
+        method: "stakingPercent",
+        args: [],
+      }
+    )?.value?.[0] ?? undefined;
 
   const percentDec =
-    useCall({
-      contract: new Contract(
-        MASTERCHEF_ADDRESS[chainId],
-        new utils.Interface(masterchefAbi)
-      ),
-      method: "percentDec",
-      args: [],
-    })?.value?.[0] ?? undefined;
+    useCall(
+      MASTERCHEF_ADDRESS[chainId] && {
+        contract: new Contract(
+          MASTERCHEF_ADDRESS[chainId],
+          new utils.Interface(masterchefAbi)
+        ),
+        method: "percentDec",
+        args: [],
+      }
+    )?.value?.[0] ?? undefined;
 
   // get total performance fee
   const perfFee = usePerformanceFee(chainId);
