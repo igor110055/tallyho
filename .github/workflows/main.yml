@@ -40,9 +40,8 @@ jobs:
       - name: sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
-          server: ftp.tally-ho.org
+          server: tally-ho.org
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           protocol: ftp
           local-dir: build/
-          port: 2083
