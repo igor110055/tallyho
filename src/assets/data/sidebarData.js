@@ -13,6 +13,7 @@ import chartsImg from '../images/chats.png';
 import analyImg from '../images/analy.png';
 import tpIcon from '../images/tally-pay/logo-bg-removed.png'
 
+
 import solanaImg from '../images/tokens/solana-removebg.png';
 
 
@@ -118,10 +119,10 @@ export const navigation = [
 ];
 
 export const moreNavigation = [
-  { name: 'Audit (PDF)', href: 'pdf/TallyAudit.pdf' },
+  { name: 'Audit (PDF)', href: 'https://docs.tally-ho.org/audit' },
   { name: 'News', href: 'hc/en-us' },
-  { name: "About Tally", href: 'bsw_token' },
-  { name: "Docs", href: '/' },
+  { name: "About Tally", href: '/WPRevampedFinal.pdf' },
+  { name: "Docs", href: 'https://docs.tally-ho.org/' },
   { name: "Voting", href: 'tally_centralise' },
   { name: "Voting2", href: '/' },
 ]
