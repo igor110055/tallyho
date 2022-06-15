@@ -241,7 +241,7 @@ export const useAPR = (poolId, chainId) => {
       perfFee &&
       totalAllocPoint.toNumber() !== 0 &&
       percentDec.toNumber() !== 0 &&
-      totalStaked.toNumber() !== 0
+      utils.formatUnits(totalStaked, 9) !== "0"
     ) {
       setApr(
         (24 *
@@ -253,7 +253,7 @@ export const useAPR = (poolId, chainId) => {
           100) /
           totalAllocPoint.toNumber() /
           percentDec.toNumber() /
-          totalStaked.toNumber() /
+          utils.formatUnits(totalStaked, 0) /
           averageBlockTime -
           perfFee -
           (withdrawFeeBP + depositFeeBP) / 100
