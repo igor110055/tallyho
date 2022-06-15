@@ -43,6 +43,6 @@ jobs:
           server: ftp.tally-ho.org
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          protocol: ftps
+          protocol: ftp
           local-dir: build/
           port: 2083
