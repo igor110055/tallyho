@@ -49,26 +49,29 @@ const StakeCard = ({ poolId, perfFee, showAprModal, setAprModalValue }) => {
 
   // get pool info
   const [lptokenAddress, , , , depositFeeBP, withdrawFeeBP] =
-    useCall({
-      contract: new Contract(
-        MASTERCHEF_ADDRESS[chainId],
-        new utils.Interface(masterchefAbi)
-      ),
-      method: "poolInfo",
-      args: [poolId],
-    })?.value ?? [];
-
-  // get user info
-  const [stakedAmount] =
     useCall(
-      account && {
+      MASTERCHEF_ADDRESS[chainId] && {
         contract: new Contract(
           MASTERCHEF_ADDRESS[chainId],
           new utils.Interface(masterchefAbi)
         ),
-        method: "userInfo",
-        args: [poolId, account],
+        method: "poolInfo",
+        args: [poolId],
       }
+    )?.value ?? [];
+
+  // get user info
+  const [stakedAmount] =
+    useCall(
+      account &&
+        MASTERCHEF_ADDRESS[chainId] && {
+          contract: new Contract(
+            MASTERCHEF_ADDRESS[chainId],
+            new utils.Interface(masterchefAbi)
+          ),
+          method: "userInfo",
+          args: [poolId, account],
+        }
     )?.value ?? [];
 
   // token decimals
@@ -88,6 +91,7 @@ const StakeCard = ({ poolId, perfFee, showAprModal, setAprModalValue }) => {
     (
       useCall(
         account &&
+          MASTERCHEF_ADDRESS[chainId] &&
           lptokenAddress && {
             contract: new Contract(lptokenAddress, ierc20Abi),
             method: "allowance",
@@ -99,20 +103,21 @@ const StakeCard = ({ poolId, perfFee, showAprModal, setAprModalValue }) => {
   // get current profit
   const pendingTally =
     useCall(
-      account && {
-        contract: new Contract(
-          MASTERCHEF_ADDRESS[chainId],
-          new utils.Interface(masterchefAbi)
-        ),
-        method: "pendingTALLY",
-        args: [poolId, account],
-      }
+      account &&
+        MASTERCHEF_ADDRESS[chainId] && {
+          contract: new Contract(
+            MASTERCHEF_ADDRESS[chainId],
+            new utils.Interface(masterchefAbi)
+          ),
+          method: "pendingTALLY",
+          args: [poolId, account],
+        }
     )?.value?.[0] ?? undefined;
 
   // get total staked Tally
   const totalStaked =
     useCall(
-      poolId === 0
+      poolId === 0 && MASTERCHEF_ADDRESS[chainId]
         ? {
             contract: new Contract(
               MASTERCHEF_ADDRESS[chainId],
@@ -143,14 +148,21 @@ const StakeCard = ({ poolId, perfFee, showAprModal, setAprModalValue }) => {
   // enable functions own definition
   const enableToken = async () => {
     await approveToken.send(
-      MASTERCHEF_ADDRESS[chainId],
+      MASTERCHEF_ADDRESS[chainId]
+        ? MASTERCHEF_ADDRESS[chainId]
+        : RANDOM_ADDRESS,
       BigNumber.from(2).pow(256).sub(1)
     );
   };
 
   // staking function
   const enterStaking = useContractFunction(
-    new Contract(MASTERCHEF_ADDRESS[chainId], masterchefAbi),
+    new Contract(
+      MASTERCHEF_ADDRESS[chainId]
+        ? MASTERCHEF_ADDRESS[chainId]
+        : RANDOM_ADDRESS,
+      masterchefAbi
+    ),
     "enterStaking",
     {
       transactionName: "Stake",
@@ -159,7 +171,12 @@ const StakeCard = ({ poolId, perfFee, showAprModal, setAprModalValue }) => {
 
   // unstaking function
   const leaveStaking = useContractFunction(
-    new Contract(MASTERCHEF_ADDRESS[chainId], masterchefAbi),
+    new Contract(
+      MASTERCHEF_ADDRESS[chainId]
+        ? MASTERCHEF_ADDRESS[chainId]
+        : RANDOM_ADDRESS,
+      masterchefAbi
+    ),
     "leaveStaking",
     {
       transactionName: "Unstake",
@@ -190,9 +207,11 @@ const StakeCard = ({ poolId, perfFee, showAprModal, setAprModalValue }) => {
 
   // side effect for getting token price in USD
   useEffect(() => {
-    const chainToken = supportedTokens[chainId].find(
-      (token) => token.address === lptokenAddress
-    );
+    const chainToken =
+      supportedTokens[chainId] &&
+      supportedTokens[chainId].find(
+        (token) => token.address === lptokenAddress
+      );
     const mainNetToken =
       chainToken &&
       supportedTokens["56"].find((token1) => token1.name === chainToken.name);
