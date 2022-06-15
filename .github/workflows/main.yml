@@ -28,5 +28,5 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
           server: ftp.tally-ho.org
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
+          username: th-ftp-cicd
+          password: em_pSA~LWf;w
