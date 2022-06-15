@@ -27,6 +27,6 @@ jobs:
       - name: sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
-          server: th-ftp-cicd@app.tally-ho.org
-          username: th-ftp-cicd
-          password: em_pSA~LWf;w
+          server: ftp.tally-ho.org
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
